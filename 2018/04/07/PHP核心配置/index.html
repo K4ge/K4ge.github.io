@@ -73,8 +73,6 @@
 
 
 
-  
-
 
   <link rel="alternate" href="/atom.xml" title="Kage's Blog" type="application/atom+xml" />
 
@@ -90,20 +88,20 @@
 <meta property="og:site_name" content="Kage&#39;s Blog">
 <meta property="og:description" content="了解php的配置对web渗透还是很重要的~ 基础语法 大小写敏感 directive = value (指令=值) foo=bar ≠ FOO=bar 运算符|、&amp;amp;、~、!  空值的表达式 foo = ; foo = none ; foo = “none” 是空的字符串  安全模式safe_mode = off安全模式，用来限制文档的存取与命令执行漏洞有关 本特性已在PHP5.4.0被移除">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="d:/hexo/source/img/40501.png">
-<meta property="og:image" content="d:/hexo/source/img/40502.png">
-<meta property="og:image" content="d:/hexo/source/img/40503.png">
-<meta property="og:image" content="d:/hexo/source/img/40505.png">
-<meta property="og:image" content="d:/hexo/source/img/40506.png">
-<meta property="og:image" content="d:/hexo/source/img/40507.png">
-<meta property="og:image" content="d:/hexo/source/img/40508.png">
-<meta property="og:image" content="d:/hexo/source/img/40509.png">
-<meta property="og:image" content="d:/photo/40510.png">
-<meta property="og:updated_time" content="2018-04-07T14:12:57.953Z">
+<meta property="og:image" content="http://yoursite.com/img/40501.png">
+<meta property="og:image" content="http://yoursite.com/img/40502.png">
+<meta property="og:image" content="http://yoursite.com/img/40503.png">
+<meta property="og:image" content="http://yoursite.com/img/40505.png">
+<meta property="og:image" content="http://yoursite.com/img/40506.png">
+<meta property="og:image" content="http://yoursite.com/img/40507.png">
+<meta property="og:image" content="http://yoursite.com/img/40508.png">
+<meta property="og:image" content="http://yoursite.com/img/40509.png">
+<meta property="og:image" content="http://yoursite.com/img/40510.png">
+<meta property="og:updated_time" content="2018-04-07T14:16:29.453Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PHP核心配置">
 <meta name="twitter:description" content="了解php的配置对web渗透还是很重要的~ 基础语法 大小写敏感 directive = value (指令=值) foo=bar ≠ FOO=bar 运算符|、&amp;amp;、~、!  空值的表达式 foo = ; foo = none ; foo = “none” 是空的字符串  安全模式safe_mode = off安全模式，用来限制文档的存取与命令执行漏洞有关 本特性已在PHP5.4.0被移除">
-<meta name="twitter:image" content="d:/hexo/source/img/40501.png">
+<meta name="twitter:image" content="http://yoursite.com/img/40501.png">
 
 
 
@@ -334,13 +332,13 @@
 <h3 id="安全模式"><a href="#安全模式" class="headerlink" title="安全模式"></a>安全模式<br></h3><p>safe_mode = off<br>安全模式，用来限制文档的存取<br>与命令执行漏洞有关</p>
 <p><em>本特性已在PHP5.4.0被移除</em></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$cmd = $_GET[&apos;cmd&apos;];</span><br><span class="line">system($cmd);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
-<p>关闭safe_mode，可以进行命令执行<br><img src="D:\hexo\source\img\40501.png" alt=""><br>开启safe_mode，显示为空白<br>    <img src="D:\hexo\source\img\40502.png" alt=""></p>
+<p>关闭safe_mode，可以进行命令执行<br><img src="/img/40501.png" alt=""><br>开启safe_mode，显示为空白<br>    <img src="/img/40502.png" alt=""></p>
 <h3 id="限制环境变量存取"><a href="#限制环境变量存取" class="headerlink" title="限制环境变量存取"></a>限制环境变量存取<br></h3><p>safe_mode_allowed_env_vars = string<br><br>制定PHP程序可以改变的环境变量的前缀，当这个选项的值为空时，那么PHP可以改变任何环境变量</p>
 <h3 id="外部程序执行目录"><a href="#外部程序执行目录" class="headerlink" title="外部程序执行目录"></a>外部程序执行目录<br></h3><p>指定网站的主目录</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">safe_mode_exec_dir = &quot;E:\Local Test\WWW&quot;</span><br></pre></td></tr></table></figure>
 <h3 id="禁用函数"><a href="#禁用函数" class="headerlink" title="禁用函数"></a>禁用函数<br></h3><p>disable_functions<br><br>为了更安全的运行PHP，可以用此指令来禁止一些敏感函数的使用，当你想用本指令禁止一些函数时，切忌把dl()函数也加到禁止列表，攻击者可以利用dl()函数加载自定义的php扩展来突破disalbe_function。配置禁用函数时可以使用逗号分隔函数名</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">disable_functions = system</span><br></pre></td></tr></table></figure>
-<p><img src="D:\hexo\source\img\40503.png" alt=""></p>
+<p><img src="/img/40503.png" alt=""></p>
 <h3 id="com组件"><a href="#com组件" class="headerlink" title="com组件"></a>com组件<br></h3><p>默认为true<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">com.allow_dcom = false</span><br></pre></td></tr></table></figure></p>
 <p>PHP设置在安全模式下(safe_mode)，仍旧允许攻击者使用COM()函数来创建系统组件来执行任意命令，推荐关闭这个函数来防止出现此漏洞</p>
 <p>使用COM()函数需要在PHP.ini中配置extension=php_com_dotnet.dll，如果PHP&lt;5.4.5 则不需要</p>
@@ -351,11 +349,11 @@
 <li>register_globals=On时，服务器端使用POST或者GET提交的变量，都将自动使用全局变量的值来接受值</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;form action=&apos;&apos; method=&apos;get&apos;&gt;</span><br><span class="line">&lt;input type=&apos;text&apos; name=&apos;username&apos; value=&apos;alex&apos; &gt;</span><br><span class="line">&lt;input type=&apos;submit&apos; name=&apos;sub&apos; value=&apos;sub&apos;&gt;</span><br><span class="line">&lt;/form&gt;</span><br><span class="line">&lt;?php</span><br><span class="line">echo &apos;username::&apos;,$username;</span><br><span class="line">echo &apos;&lt;br&gt;sub::&apos;,$sub;</span><br><span class="line">echo &apos;&lt;br&gt;GET::&apos;;</span><br><span class="line">print_r($_GET);</span><br><span class="line"></span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
-<p>当设置为off时<br><img src="D:\hexo\source\img\40505.png" alt=""><br>设置为On时<br><img src="D:\hexo\source\img\40506.png" alt=""></p>
+<p>当设置为off时<br><img src="/img/40505.png" alt=""><br>设置为On时<br><img src="/img/40506.png" alt=""></p>
 <h3 id="魔术引号自动过滤"><a href="#魔术引号自动过滤" class="headerlink" title="魔术引号自动过滤"></a>魔术引号自动过滤<br></h3><p>magic_quotes_gpc= on<br>magic_quotes_gpc = Off 在php.ini里是默认关闭的，如果它打开后将自动把用户提交对sql的查询语句进行转换，如果设置成ON的话，PHP会把所有的单引号、双引号、反斜杠和空字符加上反斜杠进行转义，它会影响HTTP请求的数据有（GET、POST、Cookies），开启它会提高网站的安全性，当然，也可以使用addslashes来转义提交的HTTP请求数据，或者用stripslashes来删除转义</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$a = $_GET[&apos;a&apos;];</span><br><span class="line">echo $a;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
 <p>当关闭魔术过滤，可以看到原样输出</p>
-<p><img src="D:\hexo\source\img\40507.png" alt=""><br>当开启魔术过滤，就被转义了<br><img src="D:\hexo\source\img\40508.png" alt=""></p>
+<p><img src="/img/40507.png" alt=""><br>当开启魔术过滤，就被转义了<br><img src="/img/40508.png" alt=""></p>
 <h3 id="是否允许包含远程文件"><a href="#是否允许包含远程文件" class="headerlink" title="是否允许包含远程文件"></a>是否允许包含远程文件</h3><p><br>allow_url_include = off<br>该配置为on的情况下，可以直接包含远程文件，若包含的变量为可控的情况下，可以直接控制变量来执行PHP代码</p>
 <h3 id="HTTP头版本信息"><a href="#HTTP头版本信息" class="headerlink" title="HTTP头版本信息"></a>HTTP头版本信息</h3><p><br> expose_php = off<br><br> 防止了通过http头部泄露的php版本信息</p>
 <h3 id="文件上传临时目录"><a href="#文件上传临时目录" class="headerlink" title="文件上传临时目录"></a>文件上传临时目录</h3><p><br> upload_tmp_dir =<br><br>上传文件临时保存的目录，如果不设置的话，则采用系统的临时目录</p>
@@ -364,9 +362,9 @@
 <p>查看目录文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">var_dump(scandir(dirname(__FILE__)));</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
 <p>并限制可访问目录为当前目录</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">open_basedir =C:\www\zaxiang</span><br></pre></td></tr></table></figure>
-<p>查看目录<br><img src="D:\hexo\source\img\40509.png" alt=""><br>查看其他目录</p>
+<p>查看目录<br><img src="/img/40509.png" alt=""><br>查看其他目录</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">var_dump(scandir(dirname(__FILE__.&quot;./../&quot;)));</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
-<p><img src="D:/photo/40510.png" alt=""><br>访问被拒绝</p>
+<p><img src="/img/40510.png" alt=""><br>访问被拒绝</p>
 <h3 id="内部错误选项"><a href="#内部错误选项" class="headerlink" title="内部错误选项"></a>内部错误选项</h3><p>display_errors = on<br>表明显示PHP脚本的内部错误，网站发布后建议关闭PHP的错误回显，在调试的时候通常把PHP错误显示打开</p>
 <h3 id="错误报告级别"><a href="#错误报告级别" class="headerlink" title="错误报告级别"></a>错误报告级别<br></h3><p>error_reportting = E_ALL &amp; ~E_NOTICE<br>这个设置的作用是将错误级别调到最高，显示所有问题，方便排错</p>
 
