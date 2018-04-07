@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-03-20T08:07:03.610Z</updated>
+  <updated>2018-04-07T14:12:57.953Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,52 +17,25 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>article title</title>
-    <link href="http://yoursite.com/2018/03/20/article-title/"/>
-    <id>http://yoursite.com/2018/03/20/article-title/</id>
-    <published>2018-03-20T08:06:08.000Z</published>
-    <updated>2018-03-20T08:07:03.610Z</updated>
+    <title>PHP核心配置</title>
+    <link href="http://yoursite.com/2018/04/07/PHP%E6%A0%B8%E5%BF%83%E9%85%8D%E7%BD%AE/"/>
+    <id>http://yoursite.com/2018/04/07/PHP核心配置/</id>
+    <published>2018-04-07T13:55:56.705Z</published>
+    <updated>2018-04-07T14:12:57.953Z</updated>
     
-    <content type="html"><![CDATA[<p>厉害啊 ！！！</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;厉害啊 ！！！&lt;/p&gt;
-
-      
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>test</title>
-    <link href="http://yoursite.com/2017/12/04/test/"/>
-    <id>http://yoursite.com/2017/12/04/test/</id>
-    <published>2017-12-04T06:03:23.000Z</published>
-    <updated>2017-12-04T06:27:41.076Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="你好哦"><a href="#你好哦" class="headerlink" title="你好哦"></a>你好哦</h2><p>categories:</p><pre><code>- cate</code></pre><p>tags:</p><pre><code>- Tag1</code></pre>]]></content>
+    <content type="html"><![CDATA[<p>了解php的配置对web渗透还是很重要的~</p><h3 id="基础语法"><a href="#基础语法" class="headerlink" title="基础语法"></a>基础语法</h3><ol><li>大小写敏感<br> directive = value (指令=值)<br> foo=bar ≠ FOO=bar</li><li>运算符<br>|、&amp;、~、! </li><li>空值的表达式<br> foo = ;<br> foo = none ;<br> foo = “none” 是空的字符串</li></ol><h3 id="安全模式"><a href="#安全模式" class="headerlink" title="安全模式"></a>安全模式<br></h3><p>safe_mode = off<br>安全模式，用来限制文档的存取<br>与命令执行漏洞有关</p><p><em>本特性已在PHP5.4.0被移除</em></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$cmd = $_GET[&apos;cmd&apos;];</span><br><span class="line">system($cmd);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure><p>关闭safe_mode，可以进行命令执行<br><img src="D:\hexo\source\img\40501.png" alt=""><br>开启safe_mode，显示为空白<br>    <img src="D:\hexo\source\img\40502.png" alt=""></p><h3 id="限制环境变量存取"><a href="#限制环境变量存取" class="headerlink" title="限制环境变量存取"></a>限制环境变量存取<br></h3><p>safe_mode_allowed_env_vars = string<br><br>制定PHP程序可以改变的环境变量的前缀，当这个选项的值为空时，那么PHP可以改变任何环境变量</p><h3 id="外部程序执行目录"><a href="#外部程序执行目录" class="headerlink" title="外部程序执行目录"></a>外部程序执行目录<br></h3><p>指定网站的主目录</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">safe_mode_exec_dir = &quot;E:\Local Test\WWW&quot;</span><br></pre></td></tr></table></figure><h3 id="禁用函数"><a href="#禁用函数" class="headerlink" title="禁用函数"></a>禁用函数<br></h3><p>disable_functions<br><br>为了更安全的运行PHP，可以用此指令来禁止一些敏感函数的使用，当你想用本指令禁止一些函数时，切忌把dl()函数也加到禁止列表，攻击者可以利用dl()函数加载自定义的php扩展来突破disalbe_function。配置禁用函数时可以使用逗号分隔函数名</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">disable_functions = system</span><br></pre></td></tr></table></figure><p><img src="D:\hexo\source\img\40503.png" alt=""></p><h3 id="com组件"><a href="#com组件" class="headerlink" title="com组件"></a>com组件<br></h3><p>默认为true<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">com.allow_dcom = false</span><br></pre></td></tr></table></figure></p><p>PHP设置在安全模式下(safe_mode)，仍旧允许攻击者使用COM()函数来创建系统组件来执行任意命令，推荐关闭这个函数来防止出现此漏洞</p><p>使用COM()函数需要在PHP.ini中配置extension=php_com_dotnet.dll，如果PHP&lt;5.4.5 则不需要</p><h3 id="全局变量注册开关"><a href="#全局变量注册开关" class="headerlink" title="全局变量注册开关"></a>全局变量注册开关</h3><p><br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">register_globals = off</span><br></pre></td></tr></table></figure></p><p>php.ini的register_globals选项的默认值预设为off，在4.2版本之前是默认开启的，当register_globals的设定为On时，程序可以接受来自服务器的各种环境变量，包括表单提交的变量，这是对服务器来讲是非常不安全的，所以我们不能让它注册为全局变量。</p><ul><li>register_globals=Off时，服务器端获取数据的时候用$_GET[‘name’]来获取数据</li><li>register_globals=On时，服务器端使用POST或者GET提交的变量，都将自动使用全局变量的值来接受值</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;form action=&apos;&apos; method=&apos;get&apos;&gt;</span><br><span class="line">&lt;input type=&apos;text&apos; name=&apos;username&apos; value=&apos;alex&apos; &gt;</span><br><span class="line">&lt;input type=&apos;submit&apos; name=&apos;sub&apos; value=&apos;sub&apos;&gt;</span><br><span class="line">&lt;/form&gt;</span><br><span class="line">&lt;?php</span><br><span class="line">echo &apos;username::&apos;,$username;</span><br><span class="line">echo &apos;&lt;br&gt;sub::&apos;,$sub;</span><br><span class="line">echo &apos;&lt;br&gt;GET::&apos;;</span><br><span class="line">print_r($_GET);</span><br><span class="line"></span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure><p>当设置为off时<br><img src="D:\hexo\source\img\40505.png" alt=""><br>设置为On时<br><img src="D:\hexo\source\img\40506.png" alt=""></p><h3 id="魔术引号自动过滤"><a href="#魔术引号自动过滤" class="headerlink" title="魔术引号自动过滤"></a>魔术引号自动过滤<br></h3><p>magic_quotes_gpc= on<br>magic_quotes_gpc = Off 在php.ini里是默认关闭的，如果它打开后将自动把用户提交对sql的查询语句进行转换，如果设置成ON的话，PHP会把所有的单引号、双引号、反斜杠和空字符加上反斜杠进行转义，它会影响HTTP请求的数据有（GET、POST、Cookies），开启它会提高网站的安全性，当然，也可以使用addslashes来转义提交的HTTP请求数据，或者用stripslashes来删除转义</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$a = $_GET[&apos;a&apos;];</span><br><span class="line">echo $a;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure><p>当关闭魔术过滤，可以看到原样输出</p><p><img src="D:\hexo\source\img\40507.png" alt=""><br>当开启魔术过滤，就被转义了<br><img src="D:\hexo\source\img\40508.png" alt=""></p><h3 id="是否允许包含远程文件"><a href="#是否允许包含远程文件" class="headerlink" title="是否允许包含远程文件"></a>是否允许包含远程文件</h3><p><br>allow_url_include = off<br>该配置为on的情况下，可以直接包含远程文件，若包含的变量为可控的情况下，可以直接控制变量来执行PHP代码</p><h3 id="HTTP头版本信息"><a href="#HTTP头版本信息" class="headerlink" title="HTTP头版本信息"></a>HTTP头版本信息</h3><p><br> expose_php = off<br><br> 防止了通过http头部泄露的php版本信息</p><h3 id="文件上传临时目录"><a href="#文件上传临时目录" class="headerlink" title="文件上传临时目录"></a>文件上传临时目录</h3><p><br> upload_tmp_dir =<br><br>上传文件临时保存的目录，如果不设置的话，则采用系统的临时目录</p><h3 id="用户可访问目录"><a href="#用户可访问目录" class="headerlink" title="用户可访问目录"></a>用户可访问目录<br></h3><pre><code>open_basedir = E:\Local Test\WWW&lt;br&gt;&lt;br&gt;</code></pre><p>能够控制PHP脚本只能访问指定的目录，这样能够避免PHP脚本访问，不应该访问的文件，一定程度上限制了phpshell的危害</p><p>查看目录文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">var_dump(scandir(dirname(__FILE__)));</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p><p>并限制可访问目录为当前目录</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">open_basedir =C:\www\zaxiang</span><br></pre></td></tr></table></figure><p>查看目录<br><img src="D:\hexo\source\img\40509.png" alt=""><br>查看其他目录</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">var_dump(scandir(dirname(__FILE__.&quot;./../&quot;)));</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure><p><img src="D:/photo/40510.png" alt=""><br>访问被拒绝</p><h3 id="内部错误选项"><a href="#内部错误选项" class="headerlink" title="内部错误选项"></a>内部错误选项</h3><p>display_errors = on<br>表明显示PHP脚本的内部错误，网站发布后建议关闭PHP的错误回显，在调试的时候通常把PHP错误显示打开</p><h3 id="错误报告级别"><a href="#错误报告级别" class="headerlink" title="错误报告级别"></a>错误报告级别<br></h3><p>error_reportting = E_ALL &amp; ~E_NOTICE<br>这个设置的作用是将错误级别调到最高，显示所有问题，方便排错</p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;h2 id=&quot;你好哦&quot;&gt;&lt;a href=&quot;#你好哦&quot; class=&quot;headerlink&quot; title=&quot;你好哦&quot;&gt;&lt;/a&gt;你好哦&lt;/h2&gt;&lt;p&gt;categories:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;- cate
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;tags:&lt;/p&gt;
-&lt;pre&gt;&lt;
+        &lt;p&gt;了解php的配置对web渗透还是很重要的~&lt;/p&gt;
+&lt;h3 id=&quot;基础语法&quot;&gt;&lt;a href=&quot;#基础语法&quot; class=&quot;headerlink&quot; title=&quot;基础语法&quot;&gt;&lt;/a&gt;基础语法&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;大小写敏感&lt;br&gt; directive = value
       
     
     </summary>
     
-      <category term="cate" scheme="http://yoursite.com/categories/cate/"/>
-    
-    
-      <category term="Tag1" scheme="http://yoursite.com/tags/Tag1/"/>
     
   </entry>
   
