@@ -81,19 +81,17 @@
 
 
 
-<meta name="description" content="1.MSF架构了解架构可以清楚的知道msf是怎么工作的。 1.1.MSF的架构可以简单的用这幅图描述msf的架构，对于大部分库初学先简单了解下有些概念就行了，因为很多在后台自动化运行接触不到。">
+<meta name="description" content="前言最近重新捣鼓了一下vps，决定整理一下vps的一些安装资料。 小飞机a.安装123wget --no-check-certificate -O shadowsocksR.sh https://git.io/vHRHichmod +x shadowsocksR.sh./shadowsocksR.sh 2&amp;gt">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Metasploit Framework">
-<meta property="og:url" content="http://yoursite.com/2018/05/21/msf/index.html">
+<meta property="og:title" content="VPS软件安装指南">
+<meta property="og:url" content="http://yoursite.com/2018/10/06/vps安装指南/index.html">
 <meta property="og:site_name" content="Kage&#39;s Blog">
-<meta property="og:description" content="1.MSF架构了解架构可以清楚的知道msf是怎么工作的。 1.1.MSF的架构可以简单的用这幅图描述msf的架构，对于大部分库初学先简单了解下有些概念就行了，因为很多在后台自动化运行接触不到。">
+<meta property="og:description" content="前言最近重新捣鼓了一下vps，决定整理一下vps的一些安装资料。 小飞机a.安装123wget --no-check-certificate -O shadowsocksR.sh https://git.io/vHRHichmod +x shadowsocksR.sh./shadowsocksR.sh 2&amp;gt;&amp;amp;1 | tee shadowsocksR.log 然后设置密码端口，其他默认">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://yoursite.com/img/5211.png">
-<meta property="og:updated_time" content="2018-10-05T16:26:40.022Z">
+<meta property="og:updated_time" content="2018-10-06T04:03:52.531Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Metasploit Framework">
-<meta name="twitter:description" content="1.MSF架构了解架构可以清楚的知道msf是怎么工作的。 1.1.MSF的架构可以简单的用这幅图描述msf的架构，对于大部分库初学先简单了解下有些概念就行了，因为很多在后台自动化运行接触不到。">
-<meta name="twitter:image" content="http://yoursite.com/img/5211.png">
+<meta name="twitter:title" content="VPS软件安装指南">
+<meta name="twitter:description" content="前言最近重新捣鼓了一下vps，决定整理一下vps的一些安装资料。 小飞机a.安装123wget --no-check-certificate -O shadowsocksR.sh https://git.io/vHRHichmod +x shadowsocksR.sh./shadowsocksR.sh 2&amp;gt;&amp;amp;1 | tee shadowsocksR.log 然后设置密码端口，其他默认">
 
 
 
@@ -123,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/05/21/msf/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/10/06/vps安装指南/"/>
 
 
 
 
 
-  <title>Metasploit Framework | Kage's Blog</title>
+  <title>VPS软件安装指南 | Kage's Blog</title>
   
 
 
@@ -248,7 +246,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/21/msf/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/06/vps安装指南/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Kage">
@@ -265,7 +263,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Metasploit Framework</h1>
+          <h1 class="post-title" itemprop="name headline">VPS软件安装指南</h1>
         
 
         <div class="post-meta">
@@ -277,8 +275,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-21T18:25:55+08:00">
-                2018-05-21
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-06T11:58:51+08:00">
+                2018-10-06
               </time>
             
 
@@ -315,112 +313,34 @@
       
 
       
-        <h2 id="1-MSF架构"><a href="#1-MSF架构" class="headerlink" title="1.MSF架构"></a>1.MSF架构</h2><p>了解架构可以清楚的知道msf是怎么工作的。</p>
-<h3 id="1-1-MSF的架构可以简单的用这幅图描述"><a href="#1-1-MSF的架构可以简单的用这幅图描述" class="headerlink" title="1.1.MSF的架构可以简单的用这幅图描述"></a>1.1.MSF的架构可以简单的用这幅图描述</h3><p><img src="/img/5211.png" alt=""><br>msf的架构，对于大部分库初学先简单了解下有些概念就行了，因为很多在后台自动化运行接触不到。<br><a id="more"></a></p>
-<ul>
-<li><p><strong>Rex：“基础库”</strong><br>MSF需要依赖的基本功能的库，用于完成日常基本任务，无需人工手动编码实现<br>如：处理socket连接访问、协议应答(http、SMB、SMB等)、编码转换</p>
-</li>
-<li><p><strong>MSF::Core：“底层核心库”</strong><br>MSF最底层、最基本功能的实现，提供MSF的核心基本API，是框架核心能力实现库。<br>如：Datastore(数据库管理)、PluginManager(插件管理)等</p>
-</li>
-<li><p><strong>MSF::Base: “基础库”</strong><br>Core库经过扩展形成Base库，主要是为上层用户更好调用API、再次开发的库。<br>如：Sessions(对会话进行管理)</p>
-</li>
-<li><p><strong>MSF::UI：“用户界面”</strong><br>MSF提供了6种操作方式，kali一般是用console命令行操作。</p>
-</li>
-<li><p><strong>Framework Plugins：“框架扩展”</strong><br>MSF虽然很强大，但是也并不是所有功能都包含，因而可以调用一些扩展来完善<br>如：可以调用nessus、openvas、sqlmap、nmap等</p>
-</li>
-<li><p>🚩<strong>Penetration Modules: “渗透模块”</strong><br>这个模块是用户直接使用、调用功能的模块，是我们最经常使用的模块。</p>
-<ul>
-<li>Auxiliary：“辅助模块”<br>用户执行信息收集、枚举、指纹探测、扫描等功能的模块。</li>
-<li>Exploits：“利用模块”<br>利用漏洞进行攻击的动作，这个模块对应每一个具体漏洞的攻击方法。</li>
-<li>Payloads<br>成功exploit之后，真正在目标系统执行的代码或指令。</li>
-<li>Encoders<br>主要是辅助payloads模块，对payload进行加密，躲避AV检查的模块</li>
-<li>Nops<br>也是用来辅助payloads模块，能够提高payload的稳定性及维持大小。</li>
-</ul>
-</li>
-</ul>
-<h3 id="1-2-MSF的数据库"><a href="#1-2-MSF的数据库" class="headerlink" title="1.2.MSF的数据库"></a>1.2.MSF的数据库</h3><p>可以让各个数据能够在每个模块存储、传输，如：通过Auxiliary模块搜集的信息通过exploit模块进行利用。<br>MSF使用的是postgersql数据库进行数据存储，工作在5432端口。在每次开启MSF的时候，都会开启数据库。</p>
-<p>但有时候数据库开启也会失败，可以用下面命令调试一下：</p>
-<ul>
-<li>service postgresql start：开启postgresql服务</li>
-<li>msfdb init：初始化数据库</li>
-<li>msfdb reinit：重新初始化数据库</li>
-<li>msfdb delete：删除数据库</li>
-<li>msfdb start：觉得数据没开启自己开一下</li>
-<li>msfdb stop：手动停止数据库</li>
-</ul>
-<h2 id="2-MSF常用命令"><a href="#2-MSF常用命令" class="headerlink" title="2.MSF常用命令"></a>2.MSF常用命令</h2><p>命令行操作那肯定要熟悉命令啦，不然怎么操作…其实大部分命令可以用msf的help，或者命令加-h就可以得到详细指南，不过都是英文的，看的有点头大，所以把一些常用的整理一下..</p>
-<h3 id="2-1-使用MSF前可以使用的一些命令："><a href="#2-1-使用MSF前可以使用的一些命令：" class="headerlink" title="2.1.使用MSF前可以使用的一些命令："></a>2.1.使用MSF前可以使用的一些命令：</h3><ul>
-<li>msfupdate：使用前升级</li>
-<li>msfconsle<ul>
-<li>-h：帮助</li>
-<li>-q：安静启动</li>
-<li>-r：导入资源<br><br>如：msfconsole -r r.rc</li>
-<li>-v：查看版本</li>
-<li>-x：编写脚本便于调用<br><br>如：msfconsole -x “use ms08_067_netapi;set RHOST 1.1.1.1 ……”</li>
-</ul>
-</li>
-</ul>
-<h3 id="2-2-MSF的一些常用命令"><a href="#2-2-MSF的一些常用命令" class="headerlink" title="2.2.MSF的一些常用命令"></a>2.2.MSF的一些常用命令</h3><p>在msf界面下，可以使用kali下的命令，如cd、ls、pwd、甚至nc、sqlmap都可以</p>
-<ul>
-<li>banner：进入控制界面获得的图像</li>
-<li>back：回到提示符起点</li>
-<li>color：设置提示符颜色<br>如：color false就是关闭颜色</li>
-<li>connect：可以理解为提示符界面下的nc命令<br>如：connect 192.168.1.1 80</li>
-<li>show：显示功能模块信息<br>如：show encoders</li>
-<li>search：寻找模块<br>如：search ms10-046<br>参数：<ul>
-<li>name：关键字筛选</li>
-<li>path：路径筛选</li>
-<li>platform：哪个平台的</li>
-<li>cve：比如2018就是2018的cve</li>
-<li>type：哪个类型的(payloads、exploit等)</li>
-</ul>
-</li>
-<li>use：进入模块<br>进入模块后，可以进行这些命令：<ul>
-<li>info: 得到模块信息</li>
-<li>show：<br>如：show options<br>参数：<ul>
-<li>targets：显示可攻击的目标</li>
-<li>options：显示可选项</li>
-<li>payloads：适用于当前模块的pyaload</li>
-<li>evasion：做混淆的参数</li>
-<li>missing：查看哪些选项还没设置</li>
-</ul>
-</li>
-<li>set：设置选项，设置的结果只在当前运行有效<br>如：set rhost 192.168.1.1</li>
-<li>setg：设置全局选项，就是所有模块的这个选项都被设置</li>
-<li>unset：取消选项</li>
-<li>unsetg：取消全局选项</li>
-<li>edit：直接修改模块的脚本文件内容，进行二次开发</li>
-<li>check：测试一下目标是否存在漏洞，大部分模块没这个功能</li>
-<li>back：回到命令行起点位置</li>
-<li>run：运行模块，auxiliary习惯使用</li>
-<li>exoploit：也是运行模块，exploit习惯使用<br>-j：命令执行后，会在后台执行</li>
-<li>creds：查看攻击后的信息</li>
-<li>vulns：扫完漏洞后可以查看漏洞</li>
-<li>loot：查看密码的hash值</li>
-<li>sessions：一旦攻击成功，会在目标机器与攻击机建立一个会话，这个命令可以查看会话<br>-i 2：进入第二个会话</li>
-</ul>
-</li>
-<li>db_<ul>
-<li>db_status：查看数据库状态，要是没连上，可以看下上文1.2处理方案</li>
-<li>db_rebulid_cache：缓存模块信息，可以让search命令搜的更快</li>
-<li>db_disconnect：断开连接</li>
-<li>db_conncet：连接指定数据库</li>
-<li>db_nmap：和nmap几乎一样，不同的是会把结果保存在数据库里</li>
-<li>db_export：将数据导出<br>如：db_export -f xml /root/msf.bak.xml</li>
-<li>db_import：将数据导入，可以导入备份数据，甚至可以导入nmap扫出来的数据<br>如：db_import /root/nmap.xml</li>
-</ul>
-</li>
-<li>hosts：查看已发现的主机</li>
-<li>sevices：查看发现主机的端口信息</li>
-<li>save：保存刚才设置所有操作成配置文件，配置文件在/root/.msf4/config</li>
-<li>load：调用外部插件<br>如：load nessus</li>
-<li>unload：取消调用</li>
-<li>loadpath：调用自己开发的模块</li>
-<li>route：指定session路由流量</li>
-<li>resource：调用资源文件<br>如：可以设置一个资源文件为<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">use ms08-067</span><br><span class="line">set rhost 192.168.1.121</span><br><span class="line">exploit</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>保存为r.rc，然后resouce r.rc直接调用</p>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近重新捣鼓了一下vps，决定整理一下vps的一些安装资料。</p>
+<h2 id="小飞机"><a href="#小飞机" class="headerlink" title="小飞机"></a>小飞机</h2><h3 id="a-安装"><a href="#a-安装" class="headerlink" title="a.安装"></a>a.安装</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget --no-check-certificate -O shadowsocksR.sh https://git.io/vHRHi</span><br><span class="line">chmod +x shadowsocksR.sh</span><br><span class="line">./shadowsocksR.sh 2&gt;&amp;1 | tee shadowsocksR.log</span><br></pre></td></tr></table></figure>
+<p>然后设置密码端口，其他默认就行。<br><a id="more"></a></p>
+<h3 id="b-更换内核"><a href="#b-更换内核" class="headerlink" title="b.更换内核"></a>b.更换内核</h3><p>CentOS6 内核更换为：2.6.32-504.3.3.el6.x86_64</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">rpm -ivh http://soft.91yun.org/ISO/Linux/CentOS/kernel/kernel-firmware-2.6.32-504.3.3.el6.noarch.rpm</span><br><span class="line">rpm -ivh http://soft.91yun.org/ISO/Linux/CentOS/kernel/kernel-2.6.32-504.3.3.el6.x86_64.rpm --force</span><br></pre></td></tr></table></figure>
+<p>CentOS7 内核更换为：3.10.0-229.1.2.el7.x86_64</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -ivh http://soft.91yun.org/ISO/Linux/CentOS/kernel/kernel-3.10.0-229.1.2.el7.x86_64.rpm --force</span><br></pre></td></tr></table></figure>
+<p>查看内核是否安装成功</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -qa | grep kernel</span><br></pre></td></tr></table></figure>
+<p>重启，查看内核是否更换成功</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">reboot</span><br><span class="line">uname -r</span><br></pre></td></tr></table></figure>
+<p>如何查找想要的内核</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">site:centos.org 你需要的内核</span><br></pre></td></tr></table></figure>
+<h3 id="c-锐速"><a href="#c-锐速" class="headerlink" title="c.锐速"></a>c.锐速</h3><p>安装<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -N --no-check-certificate https://raw.githubusercontent.com/91yun/serverspeeder/master/serverspeeder-all.sh &amp;&amp; bash serverspeeder-all.sh</span><br></pre></td></tr></table></figure></p>
+<p>常用命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/serverspeeder/bin/serverSpeeder.sh start/stop/restart</span><br><span class="line">service serverSpeeder status</span><br></pre></td></tr></table></figure>
+<h2 id="Docker"><a href="#Docker" class="headerlink" title="Docker"></a>Docker</h2><h3 id="a-内核升级"><a href="#a-内核升级" class="headerlink" title="a.内核升级"></a>a.内核升级</h3><p>a. Centos 6内核升级</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">uname -r   #内核查看确认</span><br><span class="line">rpm --import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org</span><br><span class="line">rpm -Uvh http://www.elrepo.org/elrepo-release-6-8.el6.elrepo.noarch.rpm #安装yum源</span><br><span class="line">yum --enablerepo=elrepo-kernel install kernel-lt -y #安装内核</span><br><span class="line">vim /etc/grub.conf #将default改为0</span><br><span class="line">reboot</span><br><span class="line">uname -r #查看内核是否升级成功</span><br></pre></td></tr></table></figure>
+<p>b. Centos 7内核升级</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">uname -sr #查看当前版本</span><br><span class="line">yum clean all</span><br><span class="line">yum update</span><br><span class="line">rpm --import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org</span><br><span class="line">rpm -Uvh http://www.elrepo.org/elrepo-release-7.0-2.el7.elrepo.noarch.rpm</span><br><span class="line">yum --disablerepo=&quot;*&quot; --enablerepo=&quot;elrepo-kernel&quot; list available #仓库启用</span><br><span class="line">yum --enablerepo=elrepo-kernel install kernel-ml #安装内核</span><br><span class="line">cat /boot/grub2/grub.cfg | grep menuentry #查看有没有相应内核</span><br><span class="line">grub2-set-default 0 #修改默认启动项</span><br><span class="line">grub2-editenv list #看设置了没有</span><br><span class="line">	</span><br><span class="line">grub2-mkconfig -o /boot/grub2/grub.cfg #生成更新grub.cfg</span><br><span class="line">reboot</span><br></pre></td></tr></table></figure>
+<h3 id="b-安装docker"><a href="#b-安装docker" class="headerlink" title="b.安装docker"></a>b.安装docker</h3><p>centos 6 安装docker1.9.1</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">curl -sSL -O https://get.docker.com/builds/Linux/x86_64/docker-1.9.1 &amp;&amp; chmod +x docker-1.9.1 &amp;&amp; mv docker-1.9.1 /usr/local/bin/docker</span><br><span class="line">cp /usr/local/bin/docker /usr/bin/docker</span><br><span class="line">service docker start</span><br><span class="line">docker version</span><br></pre></td></tr></table></figure>
+<h2 id="lnmp"><a href="#lnmp" class="headerlink" title="lnmp"></a>lnmp</h2><h3 id="a-安装-1"><a href="#a-安装-1" class="headerlink" title="a.安装"></a>a.安装</h3><p>一键安装<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget http://soft.vpser.net/lnmp/lnmp1.5.tar.gz -cO lnmp1.5.tar.gz &amp;&amp; tar zxf lnmp1.5.tar.gz &amp;&amp; cd lnmp1.5 &amp;&amp; ./install.sh lnmp</span><br></pre></td></tr></table></figure></p>
+<p>选项根据需求就行</p>
+<p>LNMP相关目录及文件位置<br><a href="https://lnmp.org/faq/lnmp-software-list.html" target="_blank" rel="noopener">https://lnmp.org/faq/lnmp-software-list.html</a></p>
+<h3 id="b-域名设置"><a href="#b-域名设置" class="headerlink" title="b.域名设置"></a>b.域名设置</h3><p><a href="https://blog.csdn.net/grn11/article/details/77869117" target="_blank" rel="noopener">https://blog.csdn.net/grn11/article/details/77869117</a></p>
+<p>lnmp vhost add<br>根据选项设置，基本上大部分默认就行</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://www.jianshu.com/p/17522251883e" target="_blank" rel="noopener">ShadowsocksR+锐速配置及优化</a><br><a href="https://www.cnblogs.com/zksfyz/p/7919425.html" target="_blank" rel="noopener">CentOS内核升级</a></p>
 
       
     </div>
@@ -445,8 +365,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/04/23/bugku个人笔记/" rel="next" title="bugku个人笔记">
-                <i class="fa fa-chevron-left"></i> bugku个人笔记
+              <a href="/2018/10/06/道格ctf web wp/" rel="next" title="道格ctf web wp">
+                <i class="fa fa-chevron-left"></i> 道格ctf web wp
               </a>
             
           </div>
@@ -454,10 +374,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/09/22/杂记/" rel="prev" title="杂记">
-                杂记 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -582,7 +498,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-MSF架构"><span class="nav-number">1.</span> <span class="nav-text">1.MSF架构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-MSF的架构可以简单的用这幅图描述"><span class="nav-number">1.1.</span> <span class="nav-text">1.1.MSF的架构可以简单的用这幅图描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-MSF的数据库"><span class="nav-number">1.2.</span> <span class="nav-text">1.2.MSF的数据库</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-MSF常用命令"><span class="nav-number">2.</span> <span class="nav-text">2.MSF常用命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-使用MSF前可以使用的一些命令："><span class="nav-number">2.1.</span> <span class="nav-text">2.1.使用MSF前可以使用的一些命令：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-MSF的一些常用命令"><span class="nav-number">2.2.</span> <span class="nav-text">2.2.MSF的一些常用命令</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小飞机"><span class="nav-number">2.</span> <span class="nav-text">小飞机</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#a-安装"><span class="nav-number">2.1.</span> <span class="nav-text">a.安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#b-更换内核"><span class="nav-number">2.2.</span> <span class="nav-text">b.更换内核</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#c-锐速"><span class="nav-number">2.3.</span> <span class="nav-text">c.锐速</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker"><span class="nav-number">3.</span> <span class="nav-text">Docker</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#a-内核升级"><span class="nav-number">3.1.</span> <span class="nav-text">a.内核升级</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#b-安装docker"><span class="nav-number">3.2.</span> <span class="nav-text">b.安装docker</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lnmp"><span class="nav-number">4.</span> <span class="nav-text">lnmp</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#a-安装-1"><span class="nav-number">4.1.</span> <span class="nav-text">a.安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#b-域名设置"><span class="nav-number">4.2.</span> <span class="nav-text">b.域名设置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li></ol></div>
             
 
           </div>
