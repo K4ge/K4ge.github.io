@@ -351,7 +351,16 @@
                 <span>bugku个人笔记</span>
         </a>
         <div class="abstract-content">
-            <h3 id="1-web2"><a href="#1-web2" class="headerlink" title="1.web2"></a>1.web2</h3><p>直接右键查看元素就能看到flag<br><br>主要还是要养成看源码的习惯<br><img src="/img/3261.jpg" alt=""><br>
+            1.web2直接右键查看元素就能看到flag主要还是要养成看源码的习惯
+2.文件上传测试上传php说非图片文件,上传图片说非php文件,应该是一个上传绕过，通过burpsuit抓包改文件名后缀轻松绕过。
+3.计算器谷歌浏览器F12修改样式，轻松绕过用户是可以通过浏览器修改前端代码的，所以类似通过js或者html的过滤限制是可以用同样方法绕过
+4.矛盾简单的numeric绕过，输入num=1*0轻松绕过
+
+is_numeric(“1*0”) false
+is_numeric(“1x0”) false
+is_numeric(1*0) true
+is_numeric(0x1) true
+is_...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -568,9 +577,28 @@
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 7
+        Total : 8
         </div>
         <!-- search  -->
         
@@ -580,6 +608,20 @@
     
     
     
+    
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2019/02/03/hgame草稿/" >hgame-web-week1</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
