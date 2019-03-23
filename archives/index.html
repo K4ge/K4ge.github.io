@@ -399,84 +399,6 @@
         </div>
     </article>
     
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2018/10/06/vps安装指南/" >
-            
-                <span>VPS软件安装指南</span>
-        </a>
-        <div class="abstract-content">
-            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近重新捣鼓了一下vps，决定整理一下vps的一些安装资料。</p>
-<h2 id="小飞机"><a href="#小飞机" class="headerlink" title="小飞机"></a>小飞机</h2><h3 id="a-安装"><a href="#a-安装" class="headerlink" title="a.安装"></a>a.安装</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget --no-check-certificate -O shadowsocksR.sh https://git.io/vHRHi</span><br><span class="line">chmod +x shadowsocksR.sh</span><br><span class="line">./shadowsocksR.sh 2&gt;&amp;1 | tee shadowsocksR.log</span><br></pre></td></tr></table></figure>
-<p>然后设置密码端口，其他默认就行。<br>
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/10/06</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2018/10/06/道格ctf web wp/" >
-            
-                <span>道格ctf web wp</span>
-        </a>
-        <div class="abstract-content">
-            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>说好的要好好写博客呢，怎么这么久还没发布新文章。别急啦，文章并不是主要的，关键在于有没有在搞技术啦。最近国庆没什么事干，就到各个平台刷一下CTF，这里就总结一下道格平台web的wp。</p>
-<h2 id="GET"><a href="#GET" class="headerlink" title="$_GET"></a>$_GET</h2><p>前两题主要学习HTTP的两种传参方式，GET传参和POST传参，这也是web安全漏洞产生的两个主要入口。<br>如何GET传参呢？在网页的网址就是url末尾加上？然后以键值对形式表示，多个值要用&amp;分隔。<br>Payload：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://106.12.21.77:8080/get/get.php?what=flag</span><br></pre></td></tr></table></figure></p>
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/10/06</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2018/04/07/PHP核心配置/" >
-            
-                <span>PHP核心配置</span>
-        </a>
-        <div class="abstract-content">
-            <p>了解php的配置对web渗透还是很重要的~</p>
-<h3 id="基础语法"><a href="#基础语法" class="headerlink" title="基础语法"></a>基础语法</h3><ol>
-<li>大小写敏感<br> directive = value (指令=值)<br> foo=bar ≠ FOO=bar</li>
-<li>运算符<br>|、&amp;、~、! </li>
-<li>空值的表达式<br> foo = ;<br> foo = none ;<br> foo = “none” 是空的字符串</li>
-</ol>
-<h3 id="安全模式"><a href="#安全模式" class="headerlink" title="安全模式"></a>安全模式<br></h3><p>safe_mode = off<br>安全模式，用来限制文档的存取<br>与命令执行漏洞有关<br>
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/04/07</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
     <!-- paginator  -->
     
 </main>
@@ -589,40 +511,9 @@
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 5
+        Total : 2
         </div>
         <!-- search  -->
         
@@ -632,39 +523,6 @@
     
     
     
-    
-    <div class="archive-year"> 2019 </div>
-    <ul class="year-list">
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">02/03</span><a class="archive-post-title" href= "/2019/02/03/同一台电脑连接多个github仓库/" >同一台电脑连接多个github仓库</a>
-        </li>
-    
-    
-    
-    
-    
-        </ul>
-    
-    <div class="archive-year"> 2018 </div>
-    <ul class="year-list">
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">10/06</span><a class="archive-post-title" href= "/2018/10/06/vps安装指南/" >VPS软件安装指南</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">10/06</span><a class="archive-post-title" href= "/2018/10/06/道格ctf web wp/" >道格ctf web wp</a>
-        </li>
-    
-    
-    
-    
-    
-        </ul>
     
     <div class="archive-year"> Invalid date </div>
     <ul class="year-list">
@@ -680,12 +538,12 @@
     
         </ul>
     
-    <div class="archive-year"> Invalid date </div>
+    <div class="archive-year"> 2019 </div>
     <ul class="year-list">
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2018/04/07/PHP核心配置/" >PHP核心配置</a>
+            <span class="archive-post-date">02/03</span><a class="archive-post-title" href= "/2019/02/03/同一台电脑连接多个github仓库/" >同一台电脑连接多个github仓库</a>
         </li>
     
     </div>
