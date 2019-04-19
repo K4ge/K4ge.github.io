@@ -264,9 +264,15 @@ height:50vh;
             <div class="post-intros">
                 <!-- 文章页标签  -->
                 
+                    <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "web">web</a>
+    
+</div>
+                
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">664</span>阅读时长: <span class="post-count reading-time">2 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">725</span>阅读时长: <span class="post-count reading-time">2 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -395,8 +401,7 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <h2 id="文件包含漏洞"><a href="#文件包含漏洞" class="headerlink" title="文件包含漏洞"></a>文件包含漏洞</h2><p>@(技术小卖铺)[代码审计]</p>
-<h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>如果客户可以将恶意参数动态地添加到包含函数中，会导致恶意代码执行，敏感信息泄露，主要包括本地文件包含和远程文件包含两种形式。<br>常见函数有：include()、require()<br>区别：</p>
+        <h2 id="文件包含漏洞"><a href="#文件包含漏洞" class="headerlink" title="文件包含漏洞"></a>文件包含漏洞</h2><h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>如果客户可以将恶意参数动态地添加到包含函数中，会导致恶意代码执行，敏感信息泄露，主要包括本地文件包含和远程文件包含两种形式。<br>常见函数有：include()、require()<br>区别：</p>
 <ol>
 <li>include是当代码执行到它的时候才加载文件,发生错误的时候只是给一个警告,然后继续往下执行</li>
 <li>require是只要程序一执行就会立即调用文件,发生错误的时候会输出错误信息,并且终止脚本的运行</li>
@@ -426,6 +431,7 @@ height:50vh;
 <li>phar伪协议<br>?file=phar://test.jpg/test.php<br>利用方法，先新建一个php文件，然后在php文件中写入phpinfo，然后进行压缩为zip文件，重命名为jpg文件，然后进行phar包含</li>
 <li>zip伪协议<br>?file=zip://C:/www/K4ge/CodeAduit/1000/include/test.jpg%23test.php<br>必须使用绝对路径</li>
 </ol>
+<p>&lt;%@ page contentType=”text/html” pageEncoding=”UTF-8”%&gt;<br>&lt;%@ page import=”java.util.*” errorPage=”error.jsp” %&gt;<br>&lt;%<br>String userName = request.getParameter(“userName”);<br>if(session.getAttribute(“login”) == null){<br>    out.println(“登录失败，用户名或密码错误，3秒钟后将跳到登录页面”);<br>    out.println(“<script>“);<br>    out.println(“window.setTimeout(\”window.location.href=’login.jsp’\”, 3000); “);<br>    out.println(“</script>“);<br>} else {<br>%&gt;</p>
 
     </article>
     <!-- license  -->
@@ -433,14 +439,19 @@ height:50vh;
         <div class="license-wrapper">
             <p>原文作者：<a href="http://yoursite.com">Kage</a>
             <p>原文链接：<a href="http://yoursite.com/2019/03/31/文件包含漏洞/">http://yoursite.com/2019/03/31/文件包含漏洞/</a>
-            <p>发表日期：<a href="http://yoursite.com/2019/03/31/文件包含漏洞/">三月 31日 2019, 2:38:58 下午</a>
-            <p>更新日期：<a href="http://yoursite.com/2019/03/31/文件包含漏洞/">March 31st 2019, 2:40:16 pm</a>
+            <p>发表日期：<a href="http://yoursite.com/2019/03/31/文件包含漏洞/">March 31st 2019, 2:38:58 pm</a>
+            <p>更新日期：<a href="http://yoursite.com/2019/03/31/文件包含漏洞/">April 19th 2019, 10:28:25 pm</a>
             <p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
     <!-- paginator  -->
     <ul class="post-paginator">
         <li class="next">
+            
+                <div class="nextSlogan">Next Post</div>
+                <a href= "/2019/04/19/DDCTF-2019-web-部分wp/" title= "DDCTF-2019-WEB-部分wp">
+                    <div class="nextTitle">DDCTF-2019-WEB-部分wp</div>
+                </a>
             
         </li>
         <li class="previous">
@@ -603,9 +614,20 @@ top:50vh;
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 3
+        Total : 4
         </div>
         <!-- search  -->
         
@@ -618,6 +640,11 @@ top:50vh;
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/19</span><a class="archive-post-title" href= "/2019/04/19/DDCTF-2019-web-部分wp/" >DDCTF-2019-WEB-部分wp</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -651,6 +678,8 @@ top:50vh;
         <span class="sidebar-tag-name" data-tags="web"><span class="iconfont-archer">&#xe606;</span>web</span>
     
         <span class="sidebar-tag-name" data-tags="ctf"><span class="iconfont-archer">&#xe606;</span>ctf</span>
+    
+        <span class="sidebar-tag-name" data-tags="other"><span class="iconfont-archer">&#xe606;</span>other</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
@@ -686,6 +715,10 @@ jsonContent:
     <div class="sidebar-categories-name">
     
         <span class="sidebar-category-name" data-categories="ctf"><span class="iconfont-archer">&#xe60a;</span>ctf</span>
+    
+        <span class="sidebar-category-name" data-categories="web"><span class="iconfont-archer">&#xe60a;</span>web</span>
+    
+        <span class="sidebar-category-name" data-categories="other"><span class="iconfont-archer">&#xe60a;</span>other</span>
     
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
