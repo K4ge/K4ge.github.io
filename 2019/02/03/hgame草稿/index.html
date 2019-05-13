@@ -401,12 +401,12 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <h3 id="1-谁吃了我的flag"><a href="#1-谁吃了我的flag" class="headerlink" title="1. 谁吃了我的flag"></a>1. 谁吃了我的flag</h3><p><img src="/img/1548569716058.png" alt=""><br>获取vim备份文件<br>vim自动退出会临时备份隐藏文件 .xxx.swp<br>用linux打<br><code>vim -r .xxx.swp</code> 可以恢复备份文件<br>hgame{3eek_diScl0Sure_fRom+wEbsit@}</p>
-<h3 id="2-换头大作战"><a href="#2-换头大作战" class="headerlink" title="2. 换头大作战"></a>2. 换头大作战</h3><p><img src="/img/1548570653300.png" alt=""><br>输入框输入，要求使用post<br>post输入<br>要求使用waterfox，更改<br>要求bilibili登录<br>最后得到flag<br>hgame{hTTp_HeaDeR_iS_Ez}</p>
-<h3 id="3-very-easy-web"><a href="#3-very-easy-web" class="headerlink" title="3. very easy web"></a>3. very easy web</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">error_reporting(0);</span><br><span class="line">include(&quot;flag.php&quot;);</span><br><span class="line"></span><br><span class="line">if(strpos(&quot;vidar&quot;,$_GET[&apos;id&apos;])!==FALSE)</span><br><span class="line">  die(&quot;&lt;p&gt;干巴爹/img/p&gt;&quot;);</span><br><span class="line"></span><br><span class="line">$_GET[&apos;id&apos;] = urldecode($_GET[&apos;id&apos;]);</span><br><span class="line">if($_GET[&apos;id&apos;] === &quot;vidar&quot;)</span><br><span class="line">&#123;</span><br><span class="line">  echo $flag;</span><br><span class="line">&#125;</span><br><span class="line">highlight_file(__FILE__);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+        <h2 id="1-谁吃了我的flag"><a href="#1-谁吃了我的flag" class="headerlink" title="1. 谁吃了我的flag"></a>1. 谁吃了我的flag</h2><p><img src="/img/1548569716058.png" alt=""><br>获取vim备份文件<br>vim自动退出会临时备份隐藏文件 .xxx.swp<br>用linux打<br><code>vim -r .xxx.swp</code> 可以恢复备份文件<br>hgame{3eek_diScl0Sure_fRom+wEbsit@}</p>
+<h2 id="2-换头大作战"><a href="#2-换头大作战" class="headerlink" title="2. 换头大作战"></a>2. 换头大作战</h2><p><img src="/img/1548570653300.png" alt=""><br>输入框输入，要求使用post<br>post输入<br>要求使用waterfox，更改<br>要求bilibili登录<br>最后得到flag<br>hgame{hTTp_HeaDeR_iS_Ez}</p>
+<h2 id="3-very-easy-web"><a href="#3-very-easy-web" class="headerlink" title="3. very easy web"></a>3. very easy web</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">error_reporting(0);</span><br><span class="line">include(&quot;flag.php&quot;);</span><br><span class="line"></span><br><span class="line">if(strpos(&quot;vidar&quot;,$_GET[&apos;id&apos;])!==FALSE)</span><br><span class="line">  die(&quot;&lt;p&gt;干巴爹/img/p&gt;&quot;);</span><br><span class="line"></span><br><span class="line">$_GET[&apos;id&apos;] = urldecode($_GET[&apos;id&apos;]);</span><br><span class="line">if($_GET[&apos;id&apos;] === &quot;vidar&quot;)</span><br><span class="line">&#123;</span><br><span class="line">  echo $flag;</span><br><span class="line">&#125;</span><br><span class="line">highlight_file(__FILE__);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
 <p>urldecode()函数的危险问题<br>php会进行自动解码一次<br>如果使用这个函数，可以通过二次编码绕过前面的过滤<br>hgame{urlDecode_Is_GoOd}</p>
-<h3 id="4-can-you-find-me"><a href="#4-can-you-find-me" class="headerlink" title="4. can you find me"></a>4. can you find me</h3><p><img src="/img/1548571660564.png" alt=""><br><img src="/img/1548571688433.png" alt=""><br>从返回包头找到密码woyaoflag<br>发送post密码得到flag<br>hgame{f12_1s_aMazIng111}</p>
-<h3 id="5-Hidden-Image-in-LSB"><a href="#5-Hidden-Image-in-LSB" class="headerlink" title="5. Hidden Image in LSB"></a>5. Hidden Image in LSB</h3><p>有StegSolve打开，按下面左右调试即可<br><img src="/img/1548572207626.png" alt=""><br>hgame{LSB_is_easy_for_u}</p>
+<h2 id="4-can-you-find-me"><a href="#4-can-you-find-me" class="headerlink" title="4. can you find me"></a>4. can you find me</h2><p><img src="/img/1548571660564.png" alt=""><br><img src="/img/1548571688433.png" alt=""><br>从返回包头找到密码woyaoflag<br>发送post密码得到flag<br>hgame{f12_1s_aMazIng111}</p>
+<h2 id="5-Hidden-Image-in-LSB"><a href="#5-Hidden-Image-in-LSB" class="headerlink" title="5. Hidden Image in LSB"></a>5. Hidden Image in LSB</h2><p>有StegSolve打开，按下面左右调试即可<br><img src="/img/1548572207626.png" alt=""><br>hgame{LSB_is_easy_for_u}</p>
 
     </article>
     <!-- license  -->
@@ -414,8 +414,8 @@ height:50vh;
         <div class="license-wrapper">
             <p>原文作者：<a href="http://yoursite.com">Kage</a>
             <p>原文链接：<a href="http://yoursite.com/2019/02/03/hgame草稿/">http://yoursite.com/2019/02/03/hgame草稿/</a>
-            <p>发表日期：<a href="http://yoursite.com/2019/02/03/hgame草稿/">二月 3日 2019, 6:28:51 晚上</a>
-            <p>更新日期：<a href="http://yoursite.com/2019/02/03/hgame草稿/">April 19th 2019, 10:30:52 pm</a>
+            <p>发表日期：<a href="http://yoursite.com/2019/02/03/hgame草稿/">February 3rd 2019, 1:45:23 pm</a>
+            <p>更新日期：<a href="http://yoursite.com/2019/02/03/hgame草稿/">May 13th 2019, 8:46:12 pm</a>
             <p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
@@ -424,17 +424,12 @@ height:50vh;
         <li class="next">
             
                 <div class="nextSlogan">Next Post</div>
-                <a href= "/2019/03/31/文件包含漏洞/" title= "文件包含漏洞小结">
-                    <div class="nextTitle">文件包含漏洞小结</div>
+                <a href= "/2019/02/03/同一台电脑连接多个github仓库/" title= "同一台电脑连接多个github仓库">
+                    <div class="nextTitle">同一台电脑连接多个github仓库</div>
                 </a>
             
         </li>
         <li class="previous">
-            
-                <div class="prevSlogan">Previous Post</div>
-                <a href= "/2019/02/03/同一台电脑连接多个github仓库/" title= "同一台电脑连接多个github仓库">
-                    <div class="prevTitle">同一台电脑连接多个github仓库</div>
-                </a>
             
         </li>
     </ul>
@@ -549,7 +544,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-谁吃了我的flag"><span class="toc-number">1.</span> <span class="toc-text">1. 谁吃了我的flag</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-换头大作战"><span class="toc-number">2.</span> <span class="toc-text">2. 换头大作战</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-very-easy-web"><span class="toc-number">3.</span> <span class="toc-text">3. very easy web</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-can-you-find-me"><span class="toc-number">4.</span> <span class="toc-text">4. can you find me</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-Hidden-Image-in-LSB"><span class="toc-number">5.</span> <span class="toc-text">5. Hidden Image in LSB</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-谁吃了我的flag"><span class="toc-number">1.</span> <span class="toc-text">1. 谁吃了我的flag</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-换头大作战"><span class="toc-number">2.</span> <span class="toc-text">2. 换头大作战</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-very-easy-web"><span class="toc-number">3.</span> <span class="toc-text">3. very easy web</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-can-you-find-me"><span class="toc-number">4.</span> <span class="toc-text">4. can you find me</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-Hidden-Image-in-LSB"><span class="toc-number">5.</span> <span class="toc-text">5. Hidden Image in LSB</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -613,9 +608,31 @@ top:50vh;
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 5
+        Total : 7
         </div>
         <!-- search  -->
         
@@ -626,22 +643,23 @@ top:50vh;
     
     
     
-    <div class="archive-year"> Invalid date </div>
+    <div class="archive-year"> 2019 </div>
     <ul class="year-list">
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2019/02/03/hgame草稿/" >hgame-web-week1</a>
+            <span class="archive-post-date">05/13</span><a class="archive-post-title" href= "/2019/05/13/代码审计的相关函数分析/" >代码审计相关函数分析</a>
         </li>
     
     
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/13</span><a class="archive-post-title" href= "/2019/05/13/bugku代码审计wp/" >bugku代码审计wp</a>
+        </li>
     
     
-    
-        </ul>
-    
-    <div class="archive-year"> 2019 </div>
-    <ul class="year-list">
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/21</span><a class="archive-post-title" href= "/2019/04/21/PHP反序列化绕过__wakeup方法/" >PHP反序列化绕过__wakeup方法</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -659,17 +677,8 @@ top:50vh;
         </li>
     
     
-    
-    
-    
-        </ul>
-    
-    <div class="archive-year"> Invalid date </div>
-    <ul class="year-list">
-    
-    
         <li class="archive-post-item">
-            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2019/04/21/PHP反序列化绕过__wakeup方法/" >PHP反序列化绕过__wakeup方法</a>
+            <span class="archive-post-date">02/03</span><a class="archive-post-title" href= "/2019/02/03/hgame草稿/" >hgame-web-week1</a>
         </li>
     
     </div>

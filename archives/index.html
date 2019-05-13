@@ -346,6 +346,72 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/2019/05/13/代码审计的相关函数分析/" >
+            
+                <span>代码审计相关函数分析</span>
+        </a>
+        <div class="abstract-content">
+            0x01. \$_GET$_GET函数经常是ctf解题入口，该函数可以传递数组get.php1var_dump($_GET);
+(1) 传递多个值优先选择后一个值(2) 传递数组(3) array&gt;数字
+附：$_POST同样有效
+0x02. extract将键名摘取为变量值，键值作为变量值
+0x03. strcmp传入数组返回Null
+0x04. strpos传入数组返回null
+0x05. ereg传入数组返回null
+0x06. is_numeric可以传入&#39;数字+字母&#39;绕过判断，如&#39;123a&#39;比较可被当成数字，即&#39;123a&#39;&g...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/05/13</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "web">web</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2019/05/13/bugku代码审计wp/" >
+            
+                <span>bugku代码审计wp</span>
+        </a>
+        <div class="abstract-content">
+            0x01. extract变量覆盖1234567891011121314$flag=&apos;xxx&apos;;extract($_GET);if(isset($shiyan))&#123;$content=trim(file_get_contents($flag));if($shiyan==$content)&#123;echo&apos;flag&#123;xxx&#125;&apos;;&#125;else&#123;echo&apos;Oh.no&apos;;&#125;&#125;
+\$shiyan和$flag变量由extract变量覆盖进行控制$content变量由fil...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/05/13</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "web">web</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/2019/04/21/PHP反序列化绕过__wakeup方法/" >
             
                 <span>PHP反序列化绕过__wakeup方法</span>
@@ -381,7 +447,7 @@
                 <span>DDCTF-2019-WEB-部分wp</span>
         </a>
         <div class="abstract-content">
-            DDCTF-2019-web-部分wp滴~进入题目，看到urlhttp://117.51.150.246/index.php?jpg=TmpZMlF6WXhOamN5UlRaQk56QTJOdz09类型base64字符串进行两次base64解码，得到16进制代码，进行ascii转换可以看到结果为flag.jpg，得到jpg的编码方案写脚本如下1234567891011121314import base64text = input(&quot;请输入字符串：&quot;)l = len(text)text_ascii = &quot;&quot;for i in range(0,l):	t...
+            滴~进入题目，看到urlhttp://117.51.150.246/index.php?jpg=TmpZMlF6WXhOamN5UlRaQk56QTJOdz09类型base64字符串进行两次base64解码，得到16进制代码，进行ascii转换可以看到结果为flag.jpg，得到jpg的编码方案写脚本如下1234567891011121314import base64text = input(&quot;请输入字符串：&quot;)l = len(text)text_ascii = &quot;&quot;for i in range(0,l):	text_ascii += str(he...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -410,12 +476,12 @@
                 <span>文件包含漏洞小结</span>
         </a>
         <div class="abstract-content">
-            文件包含漏洞原理如果客户可以将恶意参数动态地添加到包含函数中，会导致恶意代码执行，敏感信息泄露，主要包括本地文件包含和远程文件包含两种形式。常见函数有：include()、require()区别：
+            原理如果客户可以将恶意参数动态地添加到包含函数中，会导致恶意代码执行，敏感信息泄露，主要包括本地文件包含和远程文件包含两种形式。常见函数有：include()、require()区别：
 
 include是当代码执行到它的时候才加载文件,发生错误的时候只是给一个警告,然后继续往下执行
 require是只要程序一执行就会立即调用文件,发生错误的时候会输出错误信息,并且终止脚本的运行
 
-require一般是用于文件头包含类文件、数据库等等文件，include一般是用于包含html模板文件include_once()、require_once()与(include\require)的...
+require一般是用于文件头包含类文件、数据库等等文件，include一般是用于包含html模板文件include_once()、require_once()与(include\require)的功能相同,只...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -427,37 +493,6 @@ require一般是用于文件头包含类文件、数据库等等文件，include
             <div class= abstract-tags >
     
         <a class="post-tag" href="javascript:void(0);" data-tags = "web">web</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/02/03/hgame草稿/" >
-            
-                <span>hgame-web-week1</span>
-        </a>
-        <div class="abstract-content">
-            1. 谁吃了我的flag获取vim备份文件vim自动退出会临时备份隐藏文件 .xxx.swp用linux打vim -r .xxx.swp 可以恢复备份文件hgame{3eek_diScl0Sure_fRom+wEbsit@}
-2. 换头大作战输入框输入，要求使用postpost输入要求使用waterfox，更改要求bilibili登录最后得到flaghgame{hTTp_HeaDeR_iS_Ez}
-3. very easy web1234567891011121314&lt;?phperror_reporting(0);include(&quot;flag.php&quot;);if(s...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/02/03</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "ctf">ctf</a>
     
 </div>
             
@@ -490,6 +525,37 @@ require一般是用于文件头包含类文件、数据库等等文件，include
             <div class= abstract-tags >
     
         <a class="post-tag" href="javascript:void(0);" data-tags = "other">other</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2019/02/03/hgame草稿/" >
+            
+                <span>hgame-web-week1</span>
+        </a>
+        <div class="abstract-content">
+            1. 谁吃了我的flag获取vim备份文件vim自动退出会临时备份隐藏文件 .xxx.swp用linux打vim -r .xxx.swp 可以恢复备份文件hgame{3eek_diScl0Sure_fRom+wEbsit@}
+2. 换头大作战输入框输入，要求使用postpost输入要求使用waterfox，更改要求bilibili登录最后得到flaghgame{hTTp_HeaDeR_iS_Ez}
+3. very easy web1234567891011121314&lt;?phperror_reporting(0);include(&quot;flag.php&quot;);if(s...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/02/03</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "ctf">ctf</a>
     
 </div>
             
@@ -641,9 +707,31 @@ require一般是用于文件头包含类文件、数据库等等文件，include
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 5
+        Total : 7
         </div>
         <!-- search  -->
         
@@ -654,22 +742,23 @@ require一般是用于文件头包含类文件、数据库等等文件，include
     
     
     
-    <div class="archive-year"> Invalid date </div>
+    <div class="archive-year"> 2019 </div>
     <ul class="year-list">
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2019/02/03/hgame草稿/" >hgame-web-week1</a>
+            <span class="archive-post-date">05/13</span><a class="archive-post-title" href= "/2019/05/13/代码审计的相关函数分析/" >代码审计相关函数分析</a>
         </li>
     
     
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/13</span><a class="archive-post-title" href= "/2019/05/13/bugku代码审计wp/" >bugku代码审计wp</a>
+        </li>
     
     
-    
-        </ul>
-    
-    <div class="archive-year"> 2019 </div>
-    <ul class="year-list">
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/21</span><a class="archive-post-title" href= "/2019/04/21/PHP反序列化绕过__wakeup方法/" >PHP反序列化绕过__wakeup方法</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -687,17 +776,8 @@ require一般是用于文件头包含类文件、数据库等等文件，include
         </li>
     
     
-    
-    
-    
-        </ul>
-    
-    <div class="archive-year"> Invalid date </div>
-    <ul class="year-list">
-    
-    
         <li class="archive-post-item">
-            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2019/04/21/PHP反序列化绕过__wakeup方法/" >PHP反序列化绕过__wakeup方法</a>
+            <span class="archive-post-date">02/03</span><a class="archive-post-title" href= "/2019/02/03/hgame草稿/" >hgame-web-week1</a>
         </li>
     
     </div>

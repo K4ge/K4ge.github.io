@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <!-- title -->
+
+
+
+
+<!-- keywords -->
+
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" >
+    <meta name="author" content="Kage">
+    <meta name="renderer" content="webkit">
+    <meta name="copyright" content="Kage">
+    
+    <meta name="keywords" content="hexo,hexo-theme,hexo-blog">
+    
+    <meta name="description" content="">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>bugku代码审计wp · K4ge&#39;s Blog</title>
+    <style type="text/css">
+    @font-face {
+        font-family: 'Oswald-Regular';
+        src: url("/font/Oswald-Regular.ttf");
+    }
+
+    body {
+        margin: 0;
+    }
+
+    header,
+    footer,
+    .back-top,
+    .sidebar,
+    .container,
+    .site-intro-meta,
+    .toc-wrapper {
+        display: none;
+    }
+
+    .site-intro {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        /* height: 50vh; */
+        overflow: hidden;
+    }
+
+    .site-intro-placeholder {
+        position: absolute;
+        z-index: -2;
+        top: 0;
+        left: 0;
+        width: calc(100% + 300px);
+        height: 100%;
+        background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
+        background-position: center center;
+        transform: translate3d(-226px, 0, 0);
+        animation: gradient-move 2.5s ease-out 0s infinite;
+    }
+
+    @keyframes gradient-move {
+        0% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+</style>
+
+    <link rel="preload" href= "/css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <link rel="stylesheet" href= "/css/mobile.css?v=20180824" media="(max-width: 980px)">
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    
+    <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+/* This file is meant as a standalone workflow for
+- testing support for link[rel=preload]
+- enabling async CSS loading in browsers that do not support rel=preload
+- applying rel preload css once loaded, whether supported or not.
+*/ -->
+<script>
+(function( w ){
+	"use strict";
+	// rel=preload support test
+	if( !w.loadCSS ){
+		w.loadCSS = function(){};
+	}
+	// define on the loadCSS obj
+	var rp = loadCSS.relpreload = {};
+	// rel=preload feature support test
+	// runs once and returns a function for compat purposes
+	rp.support = (function(){
+		var ret;
+		try {
+			ret = w.document.createElement( "link" ).relList.supports( "preload" );
+		} catch (e) {
+			ret = false;
+		}
+		return function(){
+			return ret;
+		};
+	})();
+
+	// if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+	// then change that media back to its intended value on load
+	rp.bindMediaToggle = function( link ){
+		// remember existing media attr for ultimate state, or default to 'all'
+		var finalMedia = link.media || "all";
+
+		function enableStylesheet(){
+			link.media = finalMedia;
+		}
+
+		// bind load handlers to enable media
+		if( link.addEventListener ){
+			link.addEventListener( "load", enableStylesheet );
+		} else if( link.attachEvent ){
+			link.attachEvent( "onload", enableStylesheet );
+		}
+
+		// Set rel and non-applicable media type to start an async request
+		// note: timeout allows this to happen async to let rendering continue in IE
+		setTimeout(function(){
+			link.rel = "stylesheet";
+			link.media = "only x";
+		});
+		// also enable media after 3 seconds,
+		// which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+		setTimeout( enableStylesheet, 3000 );
+	};
+
+	// loop through link elements in DOM
+	rp.poly = function(){
+		// double check this to prevent external calls from running
+		if( rp.support() ){
+			return;
+		}
+		var links = w.document.getElementsByTagName( "link" );
+		for( var i = 0; i < links.length; i++ ){
+			var link = links[ i ];
+			// qualify links to those with rel=preload and as=style attrs
+			if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+				// prevent rerunning on link
+				link.setAttribute( "data-loadcss", true );
+				// bind listeners to toggle media back
+				rp.bindMediaToggle( link );
+			}
+		}
+	};
+
+	// if unsupported, run the polyfill
+	if( !rp.support() ){
+		// run once at least
+		rp.poly();
+
+		// rerun poly on an interval until onload
+		var run = w.setInterval( rp.poly, 500 );
+		if( w.addEventListener ){
+			w.addEventListener( "load", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		} else if( w.attachEvent ){
+			w.attachEvent( "onload", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		}
+	}
+
+
+	// commonjs
+	if( typeof exports !== "undefined" ){
+		exports.loadCSS = loadCSS;
+	}
+	else {
+		w.loadCSS = loadCSS;
+	}
+}( typeof global !== "undefined" ? global : this ) );
+</script>
+
+    <link rel="icon" href= "/assets/favicon.ico" />
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js" as="script" />
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" as="script" />
+    <link rel="preload" href="/scripts/main.js" as="script" />
+    <link rel="preload" as="font" href="/font/Oswald-Regular.ttf" crossorigin>
+    <link rel="preload" as="font" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" crossorigin>
+    
+    <!-- fancybox -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script>
+    <!-- 百度统计  -->
+    
+    <!-- 谷歌统计  -->
+    
+</head>
+
+    
+        <body class="post-body">
+    
+    
+<header class="header">
+
+    <div class="read-progress"></div>
+    <div class="header-sidebar-menu">&#xe775;</div>
+    <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >K4ge&#39;s Blog</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">bugku代码审计wp</a>
+            </div>
+    </div>
+    
+    <a class="home-link" href=/>K4ge's Blog</a>
+</header>
+    <div class="wrapper">
+        <div class="site-intro" style="
+
+
+
+
+
+
+
+height:50vh;
+">
+    
+    <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
+            
+    <div class="site-intro-placeholder"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
+    <div class="site-intro-meta">
+        <!-- 标题  -->
+        <h1 class="intro-title">
+            <!-- 主页  -->
+            
+            bugku代码审计wp
+            <!-- 404 -->
+            
+        </h1>
+        <!-- 副标题 -->
+        <p class="intro-subtitle">
+            <!-- 主页副标题  -->
+            
+            
+            <!-- 404 -->
+            
+        </p>
+        <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "web">web</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">1.2k</span>阅读时长: <span class="post-count reading-time">6 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2019/05/13</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
+        
+    </div>
+</div>
+        <script>
+ 
+  // get user agent
+  var browser = {
+    versions: function () {
+      var u = window.navigator.userAgent;
+      return {
+        userAgent: u,
+        trident: u.indexOf('Trident') > -1, //IE内核
+        presto: u.indexOf('Presto') > -1, //opera内核
+        webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+        gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+        mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+        ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+        android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+        iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
+        iPad: u.indexOf('iPad') > -1, //是否为iPad
+        webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
+        weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
+        uc: u.indexOf('UCBrowser') > -1 //是否为android下的UC浏览器
+      };
+    }()
+  }
+  console.log("userAgent:" + browser.versions.userAgent);
+
+  // callback
+  function fontLoaded() {
+    console.log('font loaded');
+    if (document.getElementsByClassName('site-intro-meta')) {
+      document.getElementsByClassName('intro-title')[0].classList.add('intro-fade-in');
+      document.getElementsByClassName('intro-subtitle')[0].classList.add('intro-fade-in');
+      var postIntros = document.getElementsByClassName('post-intros')[0]
+      if (postIntros) {
+        postIntros.classList.add('post-fade-in');
+      }
+    }
+  }
+
+  // UC不支持跨域，所以直接显示
+  function asyncCb(){
+    if (browser.versions.uc) {
+      console.log("UCBrowser");
+      fontLoaded();
+    } else {
+      WebFont.load({
+        custom: {
+          families: ['Oswald-Regular']
+        },
+        loading: function () {  //所有字体开始加载
+          // console.log('loading');
+        },
+        active: function () {  //所有字体已渲染
+          fontLoaded();
+        },
+        inactive: function () { //字体预加载失败，无效字体或浏览器不支持加载
+          console.log('inactive: timeout');
+          fontLoaded();
+        },
+        timeout: 5000 // Set the timeout to two seconds
+      });
+    }
+  }
+
+  function asyncErr(){
+    console.warn('script load from CDN failed, will load local script')
+  }
+
+  // load webfont-loader async, and add callback function
+  function async(u, cb, err) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (cb) { o.addEventListener('load', function (e) { cb(null, e); }, false); }
+    if (err) { o.addEventListener('error', function (e) { err(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+
+  var asyncLoadWithFallBack = function(arr, success, reject) {
+      var currReject = function(){
+        reject()
+        arr.shift()
+        if(arr.length)
+          async(arr[0], success, currReject)
+        }
+
+      async(arr[0], success, currReject)
+  }
+
+  asyncLoadWithFallBack([
+    "https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js", 
+    "https://cdn.bootcss.com/webfont/1.6.28/webfontloader.js",
+    "/lib/webfontloader.min.js"
+  ], asyncCb, asyncErr)
+</script>        
+        <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+        <div class="container container-unloaded">
+            <main class="main post-page">
+    <article class="article-entry">
+        <h2 id="0x01-extract变量覆盖"><a href="#0x01-extract变量覆盖" class="headerlink" title="0x01. extract变量覆盖"></a>0x01. extract变量覆盖</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">$flag=&apos;xxx&apos;;</span><br><span class="line">extract($_GET);</span><br><span class="line">if(isset($shiyan))</span><br><span class="line">&#123;</span><br><span class="line">$content=trim(file_get_contents($flag));</span><br><span class="line">if($shiyan==$content)</span><br><span class="line">&#123;</span><br><span class="line">echo&apos;flag&#123;xxx&#125;&apos;;</span><br><span class="line">&#125;</span><br><span class="line">else</span><br><span class="line">&#123;</span><br><span class="line">echo&apos;Oh.no&apos;;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>\$shiyan和$flag变量由<code>extract</code>变量覆盖进行控制<br>$content变量由<code>file_get_contents</code>函数通过<code>php://input</code>进行控制<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">http://123.206.87.240:9009/1.php?shiyan=1&amp;flag=php://input</span><br><span class="line">1</span><br></pre></td></tr></table></figure></p>
+<h2 id="0x02-strcmp比较字符串"><a href="#0x02-strcmp比较字符串" class="headerlink" title="0x02. strcmp比较字符串"></a>0x02. strcmp比较字符串</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$flag = &quot;flag&#123;xxxxx&#125;&quot;;</span><br><span class="line">if (isset($_GET[&apos;a&apos;])) &#123;</span><br><span class="line">if (strcmp($_GET[&apos;a&apos;], $flag) == 0) //如果 str1 小于 str2 返回 &lt; 0； 如果 str1大于 str2返回 &gt; 0；如果两者相等，返回 0。</span><br><span class="line">//比较两个字符串（区分大小写）</span><br><span class="line">die(&apos;Flag: &apos;.$flag);</span><br><span class="line">else</span><br><span class="line">print &apos;No&apos;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>strcmp</code>函数遇到数组后，会出错返回null，而<code>null==0</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://123.206.87.240:9009/6.php?a[]</span><br></pre></td></tr></table></figure></p>
+<h2 id="0x03-urldecode二次编码绕过"><a href="#0x03-urldecode二次编码绕过" class="headerlink" title="0x03. urldecode二次编码绕过"></a>0x03. urldecode二次编码绕过</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">if(eregi(&quot;hackerDJ&quot;,$_GET[id])) &#123;</span><br><span class="line">echo(&quot;</span><br><span class="line"></span><br><span class="line">not allowed!</span><br><span class="line"></span><br><span class="line">&quot;);</span><br><span class="line">exit();</span><br><span class="line">&#125;</span><br><span class="line">$_GET[id] = urldecode($_GET[id]);</span><br><span class="line">if($_GET[id] == &quot;hackerDJ&quot;)</span><br><span class="line">&#123;</span><br><span class="line">echo &quot;</span><br><span class="line">Access granted!</span><br><span class="line"></span><br><span class="line">&quot;;</span><br><span class="line">echo &quot;</span><br><span class="line">flag</span><br><span class="line"></span><br><span class="line">&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>二次编码绕过</p>
+<h2 id="0x04-md5-函数"><a href="#0x04-md5-函数" class="headerlink" title="0x04. md5()函数"></a>0x04. md5()函数</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">error_reporting(0);</span><br><span class="line">$flag = &apos;flag&#123;test&#125;&apos;;</span><br><span class="line">if (isset($_GET[&apos;username&apos;]) and isset($_GET[&apos;password&apos;])) &#123;</span><br><span class="line">if ($_GET[&apos;username&apos;] == $_GET[&apos;password&apos;])</span><br><span class="line">print &apos;Your password can not be your username.&apos;;</span><br><span class="line">else if (md5($_GET[&apos;username&apos;]) === md5($_GET[&apos;password&apos;]))</span><br><span class="line">die(&apos;Flag: &apos;.$flag);</span><br><span class="line">else</span><br><span class="line">print &apos;Invalid password&apos;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>传入数组绕过<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://123.206.87.240:9009/18.php?username[]=1&amp;password[]=2</span><br></pre></td></tr></table></figure></p>
+<h2 id="0x05-数组返回NULL绕过"><a href="#0x05-数组返回NULL绕过" class="headerlink" title="0x05. 数组返回NULL绕过"></a>0x05. 数组返回NULL绕过</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$flag = &quot;flag&quot;;</span><br><span class="line"></span><br><span class="line">if (isset ($_GET[&apos;password&apos;])) &#123;</span><br><span class="line">if (ereg (&quot;^[a-zA-Z0-9]+$&quot;, $_GET[&apos;password&apos;]) === FALSE)</span><br><span class="line">echo &apos;You password must be alphanumeric&apos;;</span><br><span class="line">else if (strpos ($_GET[&apos;password&apos;], &apos;--&apos;) !== FALSE)</span><br><span class="line">die(&apos;Flag: &apos; . $flag);</span><br><span class="line">else</span><br><span class="line">echo &apos;Invalid password&apos;;</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p>ereg传入数组返回null，strpos传入数组返回null<br>paload: ?password[]</p>
+<h2 id="0x06-弱类型整数大小比较绕过"><a href="#0x06-弱类型整数大小比较绕过" class="headerlink" title="0x06. 弱类型整数大小比较绕过"></a>0x06. 弱类型整数大小比较绕过</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$temp = $_GET[&apos;password&apos;];</span><br><span class="line">is_numeric($temp)?die(&quot;no numeric&quot;):NULL;</span><br><span class="line">if($temp&gt;1336)&#123;</span><br><span class="line">echo $flag;</span><br></pre></td></tr></table></figure>
+<p>传入’1337a’可以绕过is_numeric</p>
+<h2 id="0x07-sha-函数比较绕过"><a href="#0x07-sha-函数比较绕过" class="headerlink" title="0x07. sha()函数比较绕过"></a>0x07. sha()函数比较绕过</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">$flag = &quot;flag&quot;;</span><br><span class="line">if (isset($_GET[&apos;name&apos;]) and isset($_GET[&apos;password&apos;]))</span><br><span class="line">&#123;</span><br><span class="line">var_dump($_GET[&apos;name&apos;]);</span><br><span class="line">echo &quot;</span><br><span class="line">&quot;;</span><br><span class="line">var_dump($_GET[&apos;password&apos;]);</span><br><span class="line">var_dump(sha1($_GET[&apos;name&apos;]));</span><br><span class="line">var_dump(sha1($_GET[&apos;password&apos;]));</span><br><span class="line">if ($_GET[&apos;name&apos;] == $_GET[&apos;password&apos;])</span><br><span class="line">echo &apos;</span><br><span class="line"></span><br><span class="line">Your password can not be your name!</span><br><span class="line"></span><br><span class="line">&apos;;</span><br><span class="line">else if (sha1($_GET[&apos;name&apos;]) === sha1($_GET[&apos;password&apos;]))</span><br><span class="line">die(&apos;Flag: &apos;.$flag);</span><br><span class="line">else</span><br><span class="line">echo &apos;</span><br><span class="line">Invalid password.</span><br><span class="line"></span><br><span class="line">&apos;;</span><br><span class="line">&#125;</span><br><span class="line">else</span><br><span class="line">echo &apos;</span><br><span class="line">Login first!</span><br><span class="line"></span><br><span class="line">&apos;;</span><br></pre></td></tr></table></figure>
+<p>哈希算法，传入数组返回null<br>payload:?name[]=1&amp;password[]=2</p>
+<h2 id="0x08-md5加密相等绕过"><a href="#0x08-md5加密相等绕过" class="headerlink" title="0x08. md5加密相等绕过"></a>0x08. md5加密相等绕过</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$md51 = md5(&apos;QNKCDZO&apos;);</span><br><span class="line">$a = @$_GET[&apos;a&apos;];</span><br><span class="line">$md52 = @md5($a);</span><br><span class="line">if(isset($a))&#123;</span><br><span class="line">if ($a != &apos;QNKCDZO&apos; &amp;&amp; $md51 == $md52) &#123;</span><br><span class="line">echo &quot;flag&#123;*&#125;&quot;;</span><br><span class="line">&#125; else &#123;</span><br><span class="line">echo &quot;false!!!&quot;;</span><br><span class="line">&#125;&#125;</span><br><span class="line">else&#123;echo &quot;please input a&quot;;&#125;</span><br></pre></td></tr></table></figure>
+<p>QNKCDZO的哈希值为0e830400451993494058024219903391<br>s878926199a的哈希值为0e545993274517709034328855841020<br>php弱类型 ‘0e数字’ == ‘0e数字’<br>payload:?a=s878926199a</p>
+<h2 id="0x09-十六进制与数字比较"><a href="#0x09-十六进制与数字比较" class="headerlink" title="0x09. 十六进制与数字比较"></a>0x09. 十六进制与数字比较</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">error_reporting(0);</span><br><span class="line">function noother_says_correct($temp)</span><br><span class="line">&#123;</span><br><span class="line">$flag = &apos;flag&#123;test&#125;&apos;;</span><br><span class="line">$one = ord(&apos;1&apos;); //ord — 返回字符的 ASCII 码值</span><br><span class="line">$nine = ord(&apos;9&apos;); //ord — 返回字符的 ASCII 码值</span><br><span class="line">$number = &apos;3735929054&apos;;</span><br><span class="line">// Check all the input characters!</span><br><span class="line">for ($i = 0; $i &lt; strlen($number); $i++)</span><br><span class="line">&#123;</span><br><span class="line">// Disallow all the digits!</span><br><span class="line">$digit = ord($temp&#123;$i&#125;);</span><br><span class="line">if ( ($digit &gt;= $one) &amp;&amp; ($digit &lt;= $nine) )</span><br><span class="line">&#123;</span><br><span class="line">// Aha, digit not allowed!</span><br><span class="line">return &quot;flase&quot;;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">if($number == $temp)</span><br><span class="line">return $flag;</span><br><span class="line">&#125;</span><br><span class="line">$temp = $_GET[&apos;password&apos;];</span><br><span class="line">echo noother_says_correct($temp);</span><br></pre></td></tr></table></figure>
+<p>ascii值在1~9过滤掉，而php弱类型比较 ‘16进制’ == ‘10进制’，可以绕过<br>paylaod:password=0xdeadc0de</p>
+<h2 id="0x10-ereg正则-00截断"><a href="#0x10-ereg正则-00截断" class="headerlink" title="0x10. ereg正则%00截断"></a>0x10. ereg正则%00截断</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">$flag = &quot;xxx&quot;;</span><br><span class="line">if (isset ($_GET[&apos;password&apos;]))</span><br><span class="line">&#123;</span><br><span class="line">if (ereg (&quot;^[a-zA-Z0-9]+$&quot;, $_GET[&apos;password&apos;]) === FALSE)</span><br><span class="line">&#123;</span><br><span class="line">echo &apos;</span><br><span class="line"></span><br><span class="line">You password must be alphanumeric</span><br><span class="line"></span><br><span class="line">&apos;;</span><br><span class="line">&#125;</span><br><span class="line">else if (strlen($_GET[&apos;password&apos;]) &lt; 8 &amp;&amp; $_GET[&apos;password&apos;] &gt; 9999999)</span><br><span class="line">&#123;</span><br><span class="line">if (strpos ($_GET[&apos;password&apos;], &apos;-&apos;) !== FALSE) //strpos — 查找字符串首次出现的位置</span><br><span class="line">&#123;</span><br><span class="line">die(&apos;Flag: &apos; . $flag);</span><br><span class="line">&#125;</span><br><span class="line">else</span><br><span class="line">&#123;</span><br><span class="line">echo(&apos;</span><br><span class="line">- have not been found</span><br><span class="line"></span><br><span class="line">&apos;);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">else</span><br><span class="line">&#123;</span><br><span class="line">echo &apos;</span><br><span class="line">Invalid password</span><br><span class="line"></span><br><span class="line">&apos;;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>利用数组&gt;数字，并且ereg和strlen和strpos传入数组均为null可以绕过<br>payload：?password[]</p>
+<h2 id="0x11-strpos数组绕过"><a href="#0x11-strpos数组绕过" class="headerlink" title="0x11. strpos数组绕过"></a>0x11. strpos数组绕过</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$flag = &quot;flag&quot;;</span><br><span class="line">if (isset ($_GET[&apos;ctf&apos;])) &#123;</span><br><span class="line">if (@ereg (&quot;^[1-9]+$&quot;, $_GET[&apos;ctf&apos;]) === FALSE)</span><br><span class="line">echo &apos;必须输入数字才行&apos;;</span><br><span class="line">else if (strpos ($_GET[&apos;ctf&apos;], &apos;#biubiubiu&apos;) !== FALSE)</span><br><span class="line">die(&apos;Flag: &apos;.$flag);</span><br><span class="line">else</span><br><span class="line">echo &apos;骚年，继续努力吧啊~&apos;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>老知识点，ereg和strpos传入数组返回null可以绕过<br>paylaod: ?ctf[]</p>
+<h2 id="0x12-数字验证正则绕过"><a href="#0x12-数字验证正则绕过" class="headerlink" title="0x12.  数字验证正则绕过"></a>0x12.  数字验证正则绕过</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">error_reporting(0);</span><br><span class="line">$flag = &apos;flag&#123;test&#125;&apos;;</span><br><span class="line">if (&quot;POST&quot; == $_SERVER[&apos;REQUEST_METHOD&apos;])</span><br><span class="line">&#123;</span><br><span class="line">$password = $_POST[&apos;password&apos;];</span><br><span class="line">if (0 &gt;= preg_match(&apos;/^[[:graph:]]&#123;12,&#125;$/&apos;, $password)) //preg_match — 执行一个正则表达式匹配</span><br><span class="line">&#123;</span><br><span class="line">echo &apos;flag&apos;;</span><br><span class="line">exit;</span><br><span class="line">&#125;</span><br><span class="line">while (TRUE)</span><br><span class="line">&#123;</span><br><span class="line">$reg = &apos;/([[:punct:]]+|[[:digit:]]+|[[:upper:]]+|[[:lower:]]+)/&apos;;</span><br><span class="line">if (6 &gt; preg_match_all($reg, $password, $arr))</span><br><span class="line">break;</span><br><span class="line">$c = 0;</span><br><span class="line">$ps = array(&apos;punct&apos;, &apos;digit&apos;, &apos;upper&apos;, &apos;lower&apos;); //[[:punct:]] 任何标点符号 [[:digit:]] 任何数字 [[:upper:]] 任何大写字母 [[:lower:]] 任何小写字母</span><br><span class="line">foreach ($ps as $pt)</span><br><span class="line">&#123;</span><br><span class="line">if (preg_match(&quot;/[[:$pt:]]+/&quot;, $password))</span><br><span class="line">$c += 1;</span><br><span class="line">&#125;</span><br><span class="line">if ($c &lt; 3) break;</span><br><span class="line">//&gt;=3，必须包含四种类型三种与三种以上</span><br><span class="line">if (&quot;42&quot; == $password) echo $flag;</span><br><span class="line">else echo &apos;Wrong password&apos;;</span><br><span class="line">exit;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>根据代码题意，进行绕过<br>payload: password=42.000000000000e-0    </p>
+
+    </article>
+    <!-- license  -->
+    
+        <div class="license-wrapper">
+            <p>原文作者：<a href="http://yoursite.com">Kage</a>
+            <p>原文链接：<a href="http://yoursite.com/2019/05/13/bugku代码审计wp/">http://yoursite.com/2019/05/13/bugku代码审计wp/</a>
+            <p>发表日期：<a href="http://yoursite.com/2019/05/13/bugku代码审计wp/">May 13th 2019, 8:44:23 pm</a>
+            <p>更新日期：<a href="http://yoursite.com/2019/05/13/bugku代码审计wp/">May 13th 2019, 8:44:46 pm</a>
+            <p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
+        </div>
+    
+    <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+                <div class="nextSlogan">Next Post</div>
+                <a href= "/2019/05/13/代码审计的相关函数分析/" title= "代码审计相关函数分析">
+                    <div class="nextTitle">代码审计相关函数分析</div>
+                </a>
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href= "/2019/04/21/PHP反序列化绕过__wakeup方法/" title= "PHP反序列化绕过__wakeup方法">
+                    <div class="prevTitle">PHP反序列化绕过__wakeup方法</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
+    
+    
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
+</main>
+            <!-- profile -->
+            
+        </div>
+        <footer class="footer footer-unloaded">
+    <!-- social  -->
+    
+    <div class="social">
+        
+    
+        
+            
+                <a href="mailto:543251348@qq.com" class="iconfont-archer email" title=email ></a>
+            
+        
+    
+        
+            
+                <a href="//github.com/K4ge" class="iconfont-archer github" target="_blank" title=github></a>
+            
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+            
+                <a href="/atom.xml" class="iconfont-archer rss" target="_blank" title=rss></a>
+            
+        
+    
+
+    </div>
+    
+    <!-- powered by Hexo  -->
+    <div class="copyright">
+        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">Archer</a></span>
+    </div>
+    <!-- 不蒜子  -->
+    
+    <div class="busuanzi-container">
+    
+     
+    <span id="busuanzi_container_site_pv">PV: <span id="busuanzi_value_site_pv"></span> :)</span>
+    
+    </div>
+    
+</footer>
+    </div>
+    <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#0x01-extract变量覆盖"><span class="toc-number">1.</span> <span class="toc-text">0x01. extract变量覆盖</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x02-strcmp比较字符串"><span class="toc-number">2.</span> <span class="toc-text">0x02. strcmp比较字符串</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x03-urldecode二次编码绕过"><span class="toc-number">3.</span> <span class="toc-text">0x03. urldecode二次编码绕过</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x04-md5-函数"><span class="toc-number">4.</span> <span class="toc-text">0x04. md5()函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x05-数组返回NULL绕过"><span class="toc-number">5.</span> <span class="toc-text">0x05. 数组返回NULL绕过</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x06-弱类型整数大小比较绕过"><span class="toc-number">6.</span> <span class="toc-text">0x06. 弱类型整数大小比较绕过</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x07-sha-函数比较绕过"><span class="toc-number">7.</span> <span class="toc-text">0x07. sha()函数比较绕过</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x08-md5加密相等绕过"><span class="toc-number">8.</span> <span class="toc-text">0x08. md5加密相等绕过</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x09-十六进制与数字比较"><span class="toc-number">9.</span> <span class="toc-text">0x09. 十六进制与数字比较</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x10-ereg正则-00截断"><span class="toc-number">10.</span> <span class="toc-text">0x10. ereg正则%00截断</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x11-strpos数组绕过"><span class="toc-number">11.</span> <span class="toc-text">0x11. strpos数组绕过</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x12-数字验证正则绕过"><span class="toc-number">12.</span> <span class="toc-text">0x12.  数字验证正则绕过</span></a></li></ol>
+    </div>
+    
+    <div class="back-top iconfont-archer">&#xe639;</div>
+    <div class="sidebar sidebar-hide">
+    <ul class="sidebar-tabs sidebar-tabs-active-0">
+        <li class="sidebar-tab-archives"><span class="iconfont-archer">&#xe67d;</span><span class="tab-name">Archive</span></li>
+        <li class="sidebar-tab-tags"><span class="iconfont-archer">&#xe61b;</span><span class="tab-name">Tag</span></li>
+        <li class="sidebar-tab-categories"><span class="iconfont-archer">&#xe666;</span><span class="tab-name">Cate</span></li>
+    </ul>
+    <div class="sidebar-content sidebar-content-show-archive">
+          <div class="sidebar-panel-archives">
+    <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="total-and-search">
+        <div class="total-archive">
+        Total : 7
+        </div>
+        <!-- search  -->
+        
+    </div>
+    
+    <div class="post-archive">
+    
+    
+    
+    
+    <div class="archive-year"> 2019 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/13</span><a class="archive-post-title" href= "/2019/05/13/代码审计的相关函数分析/" >代码审计相关函数分析</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/13</span><a class="archive-post-title" href= "/2019/05/13/bugku代码审计wp/" >bugku代码审计wp</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/21</span><a class="archive-post-title" href= "/2019/04/21/PHP反序列化绕过__wakeup方法/" >PHP反序列化绕过__wakeup方法</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/19</span><a class="archive-post-title" href= "/2019/04/19/DDCTF-2019-web-部分wp/" >DDCTF-2019-WEB-部分wp</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/31</span><a class="archive-post-title" href= "/2019/03/31/文件包含漏洞/" >文件包含漏洞小结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/03</span><a class="archive-post-title" href= "/2019/02/03/同一台电脑连接多个github仓库/" >同一台电脑连接多个github仓库</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/03</span><a class="archive-post-title" href= "/2019/02/03/hgame草稿/" >hgame-web-week1</a>
+        </li>
+    
+    </div>
+  </div>
+        <div class="sidebar-panel-tags">
+    <div class="sidebar-tags-name">
+    
+        <span class="sidebar-tag-name" data-tags="web"><span class="iconfont-archer">&#xe606;</span>web</span>
+    
+        <span class="sidebar-tag-name" data-tags="ctf"><span class="iconfont-archer">&#xe606;</span>ctf</span>
+    
+        <span class="sidebar-tag-name" data-tags="other"><span class="iconfont-archer">&#xe606;</span>other</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
+    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+    缺失模块。<br/>
+    1、请确保node版本大于6.2<br/>
+    2、在博客根目录（注意不是archer根目录）执行以下命令：<br/>
+    <span style="color: #f75357; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content --save</span><br/>
+    3、在根目录_config.yml里添加配置：
+    <pre style="color: #787878; font-size: 0.6rem;">
+jsonContent:
+  meta: false
+  pages: false
+  posts:
+    title: true
+    date: true
+    path: true
+    text: false
+    raw: false
+    content: false
+    slug: false
+    updated: false
+    comments: false
+    link: false
+    permalink: false
+    excerpt: false
+    categories: true
+    tags: true</pre>
+    </div> 
+    <div class="sidebar-tags-list"></div>
+</div>
+        <div class="sidebar-panel-categories">
+    <div class="sidebar-categories-name">
+    
+        <span class="sidebar-category-name" data-categories="web"><span class="iconfont-archer">&#xe60a;</span>web</span>
+    
+        <span class="sidebar-category-name" data-categories="ctf"><span class="iconfont-archer">&#xe60a;</span>ctf</span>
+    
+        <span class="sidebar-category-name" data-categories="other"><span class="iconfont-archer">&#xe60a;</span>other</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
+    <div class="sidebar-categories-list"></div>
+</div>
+    </div>
+</div> 
+    <script>
+    var siteMeta = {
+        root: "/",
+        author: "Kage"
+    }
+</script>
+    <!-- CDN failover -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        if (typeof window.$ === 'undefined')
+        {
+            console.warn('jquery load from jsdelivr failed, will load local script')
+            document.write('<script src="/lib/jquery.min.js">\x3C/script>')
+        }
+    </script>
+    <script src="/scripts/main.js"></script>
+    <!-- algolia -->
+    
+    <!-- busuanzi  -->
+    
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+    <!-- CNZZ  -->
+    
+    </div>
+    <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
+     
+    </body>
+</html>
+
+
