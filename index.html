@@ -359,6 +359,49 @@ height:50vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/2019/05/21/Beautifulsoup解析/" >
+            
+                <span>BeautifulSoup解析</span>
+        </a>
+        <div class="abstract-content">
+            概念一个节点可以由5个部分来概括
+
+节点名
+节点内容
+子节点
+父亲节点
+属性
+
+所以我们主要围绕两个问题：
+
+如何获得相应节点
+如何从该节点获得我们需要的信息
+
+获得节点soup.p：获得第一个p标签节点soup.find_all(&quot;p&quot;)：获得所有p标签节点组成的listsoup.find(id=&quot;link3&quot;)：通过id选择器获得指定节点
+获得信息soup.p.name：获得节点名soup.p.text：获得节点文字内容包含子节点soup.p.string：获得节点文字内容soup.p[&quot;class&quot;]：获得属性内容soup...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/05/21</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "编程">编程</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/2019/05/13/代码审计的相关函数分析/" >
             
                 <span>代码审计相关函数分析</span>
@@ -836,9 +879,20 @@ require一般是用于文件头包含类文件、数据库等等文件，include
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 7
+        Total : 8
         </div>
         <!-- search  -->
         
@@ -851,6 +905,11 @@ require一般是用于文件头包含类文件、数据库等等文件，include
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/21</span><a class="archive-post-title" href= "/2019/05/21/Beautifulsoup解析/" >BeautifulSoup解析</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -898,6 +957,8 @@ require一般是用于文件头包含类文件、数据库等等文件，include
     
         <span class="sidebar-tag-name" data-tags="other"><span class="iconfont-archer">&#xe606;</span>other</span>
     
+        <span class="sidebar-tag-name" data-tags="编程"><span class="iconfont-archer">&#xe606;</span>编程</span>
+    
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
     <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
@@ -936,6 +997,8 @@ jsonContent:
         <span class="sidebar-category-name" data-categories="ctf"><span class="iconfont-archer">&#xe60a;</span>ctf</span>
     
         <span class="sidebar-category-name" data-categories="other"><span class="iconfont-archer">&#xe60a;</span>other</span>
+    
+        <span class="sidebar-category-name" data-categories="编程"><span class="iconfont-archer">&#xe60a;</span>编程</span>
     
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>

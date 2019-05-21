@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-05-13T12:50:25.422Z</updated>
+  <updated>2019-05-21T10:39:21.572Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>BeautifulSoup解析</title>
+    <link href="http://yoursite.com/2019/05/21/Beautifulsoup%E8%A7%A3%E6%9E%90/"/>
+    <id>http://yoursite.com/2019/05/21/Beautifulsoup解析/</id>
+    <published>2019-05-21T10:36:18.000Z</published>
+    <updated>2019-05-21T10:39:21.572Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>一个节点可以由5个部分来概括</p><ul><li>节点名</li><li>节点内容</li><li>子节点</li><li>父亲节点</li><li>属性</li></ul><p>所以我们主要围绕两个问题：</p><ul><li>如何获得相应节点</li><li>如何从该节点获得我们需要的信息</li></ul><h2 id="获得节点"><a href="#获得节点" class="headerlink" title="获得节点"></a>获得节点</h2><p><code>soup.p</code>：获得第一个p标签节点<br><code>soup.find_all(&quot;p&quot;)</code>：获得所有p标签节点组成的list<br><code>soup.find(id=&quot;link3&quot;)</code>：通过id选择器获得指定节点</p><h2 id="获得信息"><a href="#获得信息" class="headerlink" title="获得信息"></a>获得信息</h2><p><code>soup.p.name</code>：获得节点名<br><code>soup.p.text</code>：获得节点文字内容包含子节点<br><code>soup.p.string</code>：获得节点文字内容<br><code>soup.p[&quot;class&quot;]</code>：获得属性内容<br><code>soup.p.get(&quot;class&quot;)</code>：获得属性内容<br><code>soup.p.get_text()</code>：获取文字内容</p><h2 id="Tag对象"><a href="#Tag对象" class="headerlink" title="Tag对象"></a>Tag对象</h2><p>用于找出节点的信息<br>1.获取名字<br><code>tag.name</code><br>2.获取属性<br><code>tag[&#39;id&#39;]</code><br><code>tag.attrs[&#39;id&#39;]</code><br><code>tag.get(&#39;id&#39;)</code><br>3.获得字符串<br><code>tag.string</code>：可以获得NavigableString类<br><code>tag.text</code>：获得普通str<br>4.获取子节点<br><code>tag.tag.tag</code>如<code>soup.body.b</code><br><code>soup.find_all(&#39;a&#39;)</code>遍历所有选择的子节点<br>5.获取子节点列表<br><code>tag.contents</code><br><code>tag.children</code>：子节点生成器<br>6.获取子孙节点<br><code>tag.descendants</code>：子孙节点生成器<br><code>tag.strings</code>：获得所有子孙节点的string生成器<br><code>tag.stripped_strings</code>：与上面功能相同，增加去除空格<br>7.获取父节点<br><code>tag.parent</code>：获取父亲节点<br><code>tag.parents</code>：获取父辈节点生成器<br>8.获取兄弟节点<br><code>tag.next_sibling</code>：获取兄弟节点，包括string<br><code>tag.previous_sibling</code><br><code>tag.next_siblings</code>：兄弟节点生成器<br><code>tag.previous_siblings</code></p><h2 id="过滤器"><a href="#过滤器" class="headerlink" title="过滤器"></a>过滤器</h2><p>用于找到想要的节点<br><strong>find_all( name , attrs , recursive , text , **kwargs )</strong><br>1.通过name直接查找<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">soup.find_all(&apos;b&apos;)</span><br><span class="line"># [&lt;b&gt;The Dormouse&apos;s story&lt;/b&gt;]</span><br></pre></td></tr></table></figure></p><p>2.正则表达式<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">for tag in soup.find_all(re.compile(&quot;^b&quot;)):</span><br><span class="line">    print(tag.name)</span><br><span class="line"># body</span><br><span class="line"># b</span><br></pre></td></tr></table></figure></p><p>3.构造器<br>如果没有合适的过滤器能够进行筛选，我们可以自己进行构造<br>如：要寻找class为title的p标签<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">def class_title(tag):</span><br><span class="line">attr = tag.get(&apos;class&apos;)</span><br><span class="line">if attr != None:</span><br><span class="line">return attr[0] == &apos;title&apos;</span><br><span class="line">else:</span><br><span class="line">return False</span><br><span class="line"></span><br><span class="line">soup.find_all(class_title)</span><br><span class="line"># [&lt;p class=&quot;title&quot;&gt;&lt;b&gt;The Dormouse&apos;s story&lt;/b&gt;&lt;/p&gt;]</span><br></pre></td></tr></table></figure></p><p>4.通过属性查找<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">soup.find_all(href=re.compile(&quot;elsie&quot;), id=&apos;link1&apos;)</span><br><span class="line"># [&lt;a class=&quot;sister&quot; href=&quot;http://example.com/elsie&quot; id=&quot;link1&quot;&gt;three&lt;/a&gt;]</span><br></pre></td></tr></table></figure></p><p>5.通过字典搜索<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">data_soup.find_all(attrs=&#123;&quot;data-foo&quot;: &quot;value&quot;&#125;)</span><br><span class="line"># [&lt;div data-foo=&quot;value&quot;&gt;foo!&lt;/div&gt;]</span><br></pre></td></tr></table></figure></p><p>6.通过class搜索<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">css_soup.find_all(&quot;p&quot;, class_=&quot;body strikeout&quot;)</span><br><span class="line"># [&lt;p class=&quot;body strikeout&quot;&gt;&lt;/p&gt;]</span><br></pre></td></tr></table></figure></p><p>7.通过text搜索<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">soup.find_all(text=&quot;Elsie&quot;)</span><br><span class="line"># [u&apos;Elsie&apos;]</span><br></pre></td></tr></table></figure></p><p>8.通过limit限制搜索数量<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">soup.find_all(&quot;a&quot;, limit=2)</span><br><span class="line"># [&lt;a class=&quot;sister&quot; href=&quot;http://example.com/elsie&quot; id=&quot;link1&quot;&gt;Elsie&lt;/a&gt;,</span><br><span class="line">#  &lt;a class=&quot;sister&quot; href=&quot;http://example.com/lacie&quot; id=&quot;link2&quot;&gt;Lacie&lt;/a&gt;]</span><br></pre></td></tr></table></figure></p><p>9.recursive 参数<br>调用tag的 find_all() 方法时,Beautiful Soup会检索当前tag的所有子孙节点,如果只想搜索tag的直接子节点,可以使用参数 recursive=False .<br>10.简写<br><code>soup.find_all()</code>等价于<code>soup()</code></p><h2 id="CSS选择器"><a href="#CSS选择器" class="headerlink" title="CSS选择器"></a>CSS选择器</h2><p><code>soup.select(#id)</code></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;概念&quot;&gt;&lt;a href=&quot;#概念&quot; class=&quot;headerlink&quot; title=&quot;概念&quot;&gt;&lt;/a&gt;概念&lt;/h2&gt;&lt;p&gt;一个节点可以由5个部分来概括&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;节点名&lt;/li&gt;
+&lt;li&gt;节点内容&lt;/li&gt;
+&lt;li&gt;子节点&lt;/li&gt;
+&lt;li&gt;父亲
+      
+    
+    </summary>
+    
+      <category term="编程" scheme="http://yoursite.com/categories/%E7%BC%96%E7%A8%8B/"/>
+    
+    
+      <category term="编程" scheme="http://yoursite.com/tags/%E7%BC%96%E7%A8%8B/"/>
+    
+  </entry>
   
   <entry>
     <title>代码审计相关函数分析</title>

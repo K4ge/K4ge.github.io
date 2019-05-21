@@ -22,7 +22,7 @@
     <meta name="description" content="">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>VPS软件安装指南 · K4ge&#39;s Blog</title>
+    <title>BeautifulSoup解析 · K4ge&#39;s Blog</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -203,12 +203,23 @@
 </head>
 
     
+        <body class="post-body">
+    
     
 <header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >K4ge&#39;s Blog</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">BeautifulSoup解析</a>
+            </div>
+    </div>
     
     <a class="home-link" href=/>K4ge's Blog</a>
 </header>
@@ -220,24 +231,74 @@
 
 
 
+
+height:50vh;
 ">
     
     <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/)"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
+            
+            BeautifulSoup解析
+            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
+            
+            <!-- 404 -->
+            
         </p>
         <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "编程">编程</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">763</span>阅读时长: <span class="post-count reading-time">3 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2019/05/21</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
         
     </div>
 </div>
@@ -340,43 +401,41 @@
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近重新捣鼓了一下vps，决定整理一下vps的一些安装资料。</p>
-<h2 id="小飞机"><a href="#小飞机" class="headerlink" title="小飞机"></a>小飞机</h2><h3 id="a-安装"><a href="#a-安装" class="headerlink" title="a.安装"></a>a.安装</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget --no-check-certificate -O shadowsocksR.sh https://git.io/vHRHi</span><br><span class="line">chmod +x shadowsocksR.sh</span><br><span class="line">./shadowsocksR.sh 2&gt;&amp;1 | tee shadowsocksR.log</span><br></pre></td></tr></table></figure>
-<p>然后设置密码端口，其他默认就行。<br><a id="more"></a></p>
-<h3 id="b-更换内核"><a href="#b-更换内核" class="headerlink" title="b.更换内核"></a>b.更换内核</h3><p>CentOS6 内核更换为：2.6.32-504.3.3.el6.x86_64</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">rpm -ivh http://soft.91yun.org/ISO/Linux/CentOS/kernel/kernel-firmware-2.6.32-504.3.3.el6.noarch.rpm</span><br><span class="line">rpm -ivh http://soft.91yun.org/ISO/Linux/CentOS/kernel/kernel-2.6.32-504.3.3.el6.x86_64.rpm --force</span><br></pre></td></tr></table></figure>
-<p>CentOS7 内核更换为：3.10.0-229.1.2.el7.x86_64</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -ivh http://soft.91yun.org/ISO/Linux/CentOS/kernel/kernel-3.10.0-229.1.2.el7.x86_64.rpm --force</span><br></pre></td></tr></table></figure>
-<p>查看内核是否安装成功</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -qa | grep kernel</span><br></pre></td></tr></table></figure>
-<p>重启，查看内核是否更换成功</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">reboot</span><br><span class="line">uname -r</span><br></pre></td></tr></table></figure>
-<p>如何查找想要的内核</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">site:centos.org 你需要的内核</span><br></pre></td></tr></table></figure>
-<h3 id="c-锐速"><a href="#c-锐速" class="headerlink" title="c.锐速"></a>c.锐速</h3><p>安装<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -N --no-check-certificate https://raw.githubusercontent.com/91yun/serverspeeder/master/serverspeeder-all.sh &amp;&amp; bash serverspeeder-all.sh</span><br></pre></td></tr></table></figure></p>
-<p>常用命令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/serverspeeder/bin/serverSpeeder.sh start/stop/restart</span><br><span class="line">service serverSpeeder status</span><br></pre></td></tr></table></figure>
-<h2 id="Docker"><a href="#Docker" class="headerlink" title="Docker"></a>Docker</h2><h3 id="a-内核升级"><a href="#a-内核升级" class="headerlink" title="a.内核升级"></a>a.内核升级</h3><p>a. Centos 6内核升级</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">uname -r   #内核查看确认</span><br><span class="line">rpm --import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org</span><br><span class="line">rpm -Uvh http://www.elrepo.org/elrepo-release-6-8.el6.elrepo.noarch.rpm #安装yum源</span><br><span class="line">yum --enablerepo=elrepo-kernel install kernel-lt -y #安装内核</span><br><span class="line">vim /etc/grub.conf #将default改为0</span><br><span class="line">reboot</span><br><span class="line">uname -r #查看内核是否升级成功</span><br></pre></td></tr></table></figure>
-<p>b. Centos 7内核升级</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">uname -sr #查看当前版本</span><br><span class="line">yum clean all</span><br><span class="line">yum update</span><br><span class="line">rpm --import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org</span><br><span class="line">rpm -Uvh http://www.elrepo.org/elrepo-release-7.0-2.el7.elrepo.noarch.rpm</span><br><span class="line">yum --disablerepo=&quot;*&quot; --enablerepo=&quot;elrepo-kernel&quot; list available #仓库启用</span><br><span class="line">yum --enablerepo=elrepo-kernel install kernel-ml #安装内核</span><br><span class="line">cat /boot/grub2/grub.cfg | grep menuentry #查看有没有相应内核</span><br><span class="line">grub2-set-default 0 #修改默认启动项</span><br><span class="line">grub2-editenv list #看设置了没有</span><br><span class="line">	</span><br><span class="line">grub2-mkconfig -o /boot/grub2/grub.cfg #生成更新grub.cfg</span><br><span class="line">reboot</span><br></pre></td></tr></table></figure>
-<h3 id="b-安装docker"><a href="#b-安装docker" class="headerlink" title="b.安装docker"></a>b.安装docker</h3><p>centos 6 安装docker1.9.1</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">curl -sSL -O https://get.docker.com/builds/Linux/x86_64/docker-1.9.1 &amp;&amp; chmod +x docker-1.9.1 &amp;&amp; mv docker-1.9.1 /usr/local/bin/docker</span><br><span class="line">cp /usr/local/bin/docker /usr/bin/docker</span><br><span class="line">service docker start</span><br><span class="line">docker version</span><br></pre></td></tr></table></figure>
-<h2 id="lnmp"><a href="#lnmp" class="headerlink" title="lnmp"></a>lnmp</h2><h3 id="a-安装-1"><a href="#a-安装-1" class="headerlink" title="a.安装"></a>a.安装</h3><p>一键安装<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget http://soft.vpser.net/lnmp/lnmp1.5.tar.gz -cO lnmp1.5.tar.gz &amp;&amp; tar zxf lnmp1.5.tar.gz &amp;&amp; cd lnmp1.5 &amp;&amp; ./install.sh lnmp</span><br></pre></td></tr></table></figure></p>
-<p>选项根据需求就行</p>
-<p>LNMP相关目录及文件位置<br><a href="https://lnmp.org/faq/lnmp-software-list.html" target="_blank" rel="noopener">https://lnmp.org/faq/lnmp-software-list.html</a></p>
-<h3 id="b-域名设置"><a href="#b-域名设置" class="headerlink" title="b.域名设置"></a>b.域名设置</h3><p><a href="https://blog.csdn.net/grn11/article/details/77869117" target="_blank" rel="noopener">https://blog.csdn.net/grn11/article/details/77869117</a></p>
-<p>lnmp vhost add<br>根据选项设置，基本上大部分默认就行</p>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://www.jianshu.com/p/17522251883e" target="_blank" rel="noopener">ShadowsocksR+锐速配置及优化</a><br><a href="https://www.cnblogs.com/zksfyz/p/7919425.html" target="_blank" rel="noopener">CentOS内核升级</a></p>
+        <h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>一个节点可以由5个部分来概括</p>
+<ul>
+<li>节点名</li>
+<li>节点内容</li>
+<li>子节点</li>
+<li>父亲节点</li>
+<li>属性</li>
+</ul>
+<p>所以我们主要围绕两个问题：</p>
+<ul>
+<li>如何获得相应节点</li>
+<li>如何从该节点获得我们需要的信息</li>
+</ul>
+<h2 id="获得节点"><a href="#获得节点" class="headerlink" title="获得节点"></a>获得节点</h2><p><code>soup.p</code>：获得第一个p标签节点<br><code>soup.find_all(&quot;p&quot;)</code>：获得所有p标签节点组成的list<br><code>soup.find(id=&quot;link3&quot;)</code>：通过id选择器获得指定节点</p>
+<h2 id="获得信息"><a href="#获得信息" class="headerlink" title="获得信息"></a>获得信息</h2><p><code>soup.p.name</code>：获得节点名<br><code>soup.p.text</code>：获得节点文字内容包含子节点<br><code>soup.p.string</code>：获得节点文字内容<br><code>soup.p[&quot;class&quot;]</code>：获得属性内容<br><code>soup.p.get(&quot;class&quot;)</code>：获得属性内容<br><code>soup.p.get_text()</code>：获取文字内容</p>
+<h2 id="Tag对象"><a href="#Tag对象" class="headerlink" title="Tag对象"></a>Tag对象</h2><p>用于找出节点的信息<br>1.获取名字<br><code>tag.name</code><br>2.获取属性<br><code>tag[&#39;id&#39;]</code><br><code>tag.attrs[&#39;id&#39;]</code><br><code>tag.get(&#39;id&#39;)</code><br>3.获得字符串<br><code>tag.string</code>：可以获得NavigableString类<br><code>tag.text</code>：获得普通str<br>4.获取子节点<br><code>tag.tag.tag</code>如<code>soup.body.b</code><br><code>soup.find_all(&#39;a&#39;)</code>遍历所有选择的子节点<br>5.获取子节点列表<br><code>tag.contents</code><br><code>tag.children</code>：子节点生成器<br>6.获取子孙节点<br><code>tag.descendants</code>：子孙节点生成器<br><code>tag.strings</code>：获得所有子孙节点的string生成器<br><code>tag.stripped_strings</code>：与上面功能相同，增加去除空格<br>7.获取父节点<br><code>tag.parent</code>：获取父亲节点<br><code>tag.parents</code>：获取父辈节点生成器<br>8.获取兄弟节点<br><code>tag.next_sibling</code>：获取兄弟节点，包括string<br><code>tag.previous_sibling</code><br><code>tag.next_siblings</code>：兄弟节点生成器<br><code>tag.previous_siblings</code></p>
+<h2 id="过滤器"><a href="#过滤器" class="headerlink" title="过滤器"></a>过滤器</h2><p>用于找到想要的节点<br><strong>find_all( name , attrs , recursive , text , **kwargs )</strong><br>1.通过name直接查找<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">soup.find_all(&apos;b&apos;)</span><br><span class="line"># [&lt;b&gt;The Dormouse&apos;s story&lt;/b&gt;]</span><br></pre></td></tr></table></figure></p>
+<p>2.正则表达式<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">for tag in soup.find_all(re.compile(&quot;^b&quot;)):</span><br><span class="line">    print(tag.name)</span><br><span class="line"># body</span><br><span class="line"># b</span><br></pre></td></tr></table></figure></p>
+<p>3.构造器<br>如果没有合适的过滤器能够进行筛选，我们可以自己进行构造<br>如：要寻找class为title的p标签<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">def class_title(tag):</span><br><span class="line">	attr = tag.get(&apos;class&apos;)</span><br><span class="line">	if attr != None:</span><br><span class="line">		return attr[0] == &apos;title&apos;</span><br><span class="line">	else:</span><br><span class="line">		return False</span><br><span class="line"></span><br><span class="line">soup.find_all(class_title)</span><br><span class="line"># [&lt;p class=&quot;title&quot;&gt;&lt;b&gt;The Dormouse&apos;s story&lt;/b&gt;&lt;/p&gt;]</span><br></pre></td></tr></table></figure></p>
+<p>4.通过属性查找<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">soup.find_all(href=re.compile(&quot;elsie&quot;), id=&apos;link1&apos;)</span><br><span class="line"># [&lt;a class=&quot;sister&quot; href=&quot;http://example.com/elsie&quot; id=&quot;link1&quot;&gt;three&lt;/a&gt;]</span><br></pre></td></tr></table></figure></p>
+<p>5.通过字典搜索<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">data_soup.find_all(attrs=&#123;&quot;data-foo&quot;: &quot;value&quot;&#125;)</span><br><span class="line"># [&lt;div data-foo=&quot;value&quot;&gt;foo!&lt;/div&gt;]</span><br></pre></td></tr></table></figure></p>
+<p>6.通过class搜索<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">css_soup.find_all(&quot;p&quot;, class_=&quot;body strikeout&quot;)</span><br><span class="line"># [&lt;p class=&quot;body strikeout&quot;&gt;&lt;/p&gt;]</span><br></pre></td></tr></table></figure></p>
+<p>7.通过text搜索<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">soup.find_all(text=&quot;Elsie&quot;)</span><br><span class="line"># [u&apos;Elsie&apos;]</span><br></pre></td></tr></table></figure></p>
+<p>8.通过limit限制搜索数量<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">soup.find_all(&quot;a&quot;, limit=2)</span><br><span class="line"># [&lt;a class=&quot;sister&quot; href=&quot;http://example.com/elsie&quot; id=&quot;link1&quot;&gt;Elsie&lt;/a&gt;,</span><br><span class="line">#  &lt;a class=&quot;sister&quot; href=&quot;http://example.com/lacie&quot; id=&quot;link2&quot;&gt;Lacie&lt;/a&gt;]</span><br></pre></td></tr></table></figure></p>
+<p>9.recursive 参数<br>调用tag的 find_all() 方法时,Beautiful Soup会检索当前tag的所有子孙节点,如果只想搜索tag的直接子节点,可以使用参数 recursive=False .<br>10.简写<br><code>soup.find_all()</code>等价于<code>soup()</code></p>
+<h2 id="CSS选择器"><a href="#CSS选择器" class="headerlink" title="CSS选择器"></a>CSS选择器</h2><p><code>soup.select(#id)</code></p>
 
     </article>
     <!-- license  -->
     
         <div class="license-wrapper">
             <p>原文作者：<a href="http://yoursite.com">Kage</a>
-            <p>原文链接：<a href="http://yoursite.com/others/vps安装指南.html">http://yoursite.com/others/vps安装指南.html</a>
-            <p>发表日期：<a href="http://yoursite.com/others/vps安装指南.html">March 23rd 2019, 11:06:55 am</a>
-            <p>更新日期：<a href="http://yoursite.com/others/vps安装指南.html">October 6th 2018, 12:03:52 pm</a>
+            <p>原文链接：<a href="http://yoursite.com/2019/05/21/Beautifulsoup解析/">http://yoursite.com/2019/05/21/Beautifulsoup解析/</a>
+            <p>发表日期：<a href="http://yoursite.com/2019/05/21/Beautifulsoup解析/">May 21st 2019, 6:36:18 pm</a>
+            <p>更新日期：<a href="http://yoursite.com/2019/05/21/Beautifulsoup解析/">May 21st 2019, 6:39:21 pm</a>
             <p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
@@ -386,6 +445,11 @@
             
         </li>
         <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href= "/2019/05/13/代码审计的相关函数分析/" title= "代码审计相关函数分析">
+                    <div class="prevTitle">代码审计相关函数分析</div>
+                </a>
             
         </li>
     </ul>
@@ -484,6 +548,24 @@
 </footer>
     </div>
     <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#概念"><span class="toc-number">1.</span> <span class="toc-text">概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#获得节点"><span class="toc-number">2.</span> <span class="toc-text">获得节点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#获得信息"><span class="toc-number">3.</span> <span class="toc-text">获得信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Tag对象"><span class="toc-number">4.</span> <span class="toc-text">Tag对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#过滤器"><span class="toc-number">5.</span> <span class="toc-text">过滤器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS选择器"><span class="toc-number">6.</span> <span class="toc-text">CSS选择器</span></a></li></ol>
+    </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
@@ -721,6 +803,8 @@ jsonContent:
     
     </div>
     <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
      
     </body>
 </html>
