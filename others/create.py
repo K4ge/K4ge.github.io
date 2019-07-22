@@ -79,5 +79,7 @@ if flag:
 		except:
 			pass
 	shutil.rmtree(dsrc)
+	os.remove("D:/hexo/source/others/"+filename+'.zip')
 
+os.remove("D:/hexo/source/others/"+filename+'.md')
 print('Markdown create in hexo successfuly :)')
