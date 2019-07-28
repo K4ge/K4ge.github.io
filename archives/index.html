@@ -346,6 +346,37 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/2019/07/28/XSS练习靶场/" >
+            
+                <span>XSS练习靶场</span>
+        </a>
+        <div class="abstract-content">
+            一、DVWA1.DOMlow：&lt;script&gt;alert(1)&lt;/script&gt;medium：&lt;/option&gt;&lt;/select&gt;&lt;img src=1 onerror=alert(1)&gt;注意有的要包裹前面的high：English#&lt;script&gt;alert(1)&lt;/script&gt;服务器端过滤的是GET的参数，而前端js使用的是整个url，可以通过#隔开插入js语句
+2.stored和reflect&lt;img src=1 onerror=alert(1)&gt;通关所有
+二、XSS靶场level1：h...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/28</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "other">other</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/2019/07/28/制作windows小脚本/" >
             
                 <span>制作windows小脚本</span>
@@ -630,36 +661,6 @@ get.php12345$text = file_get_contents(&quot;./cookie.txt&quot;);$text = $text . 
         </div>
     </article>
     
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/04/21/PHP反序列化绕过__wakeup方法/" >
-            
-                <span>PHP反序列化绕过__wakeup方法</span>
-        </a>
-        <div class="abstract-content">
-            0x01.前言做国赛ctf，遇到一个绕过点感觉挺有价值的，主要是通过CVE-2016-7124进行绕过。影响版本：PHP5 &lt; 5.6.25 PHP7 &lt; 7.0.10
-0x02. public private protected的序列化12345678910111213class Kage&#123;	public $name=&apos;kxj&apos;;	private $name2=&apos;kxj&apos;;	protected $name3=&apos;kxj&apos;;	public function getName()&#123;		var_dump(...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/21</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "web">web</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
     <!-- paginator  -->
     
     <nav class="page-nav">
@@ -917,9 +918,10 @@ get.php12345$text = file_get_contents(&quot;./cookie.txt&quot;);$text = $text . 
     
     
     
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 13
+        Total : 14
         </div>
         <!-- search  -->
         
@@ -932,6 +934,11 @@ get.php12345$text = file_get_contents(&quot;./cookie.txt&quot;);$text = $text . 
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/28</span><a class="archive-post-title" href= "/2019/07/28/XSS练习靶场/" >XSS练习靶场</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -1005,11 +1012,11 @@ get.php12345$text = file_get_contents(&quot;./cookie.txt&quot;);$text = $text . 
     
         <span class="sidebar-tag-name" data-tags="编程"><span class="iconfont-archer">&#xe606;</span>编程</span>
     
-        <span class="sidebar-tag-name" data-tags="web"><span class="iconfont-archer">&#xe606;</span>web</span>
-    
         <span class="sidebar-tag-name" data-tags="Web"><span class="iconfont-archer">&#xe606;</span>Web</span>
     
         <span class="sidebar-tag-name" data-tags="other"><span class="iconfont-archer">&#xe606;</span>other</span>
+    
+        <span class="sidebar-tag-name" data-tags="web"><span class="iconfont-archer">&#xe606;</span>web</span>
     
         <span class="sidebar-tag-name" data-tags="ctf"><span class="iconfont-archer">&#xe606;</span>ctf</span>
     
@@ -1048,11 +1055,11 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="编程"><span class="iconfont-archer">&#xe60a;</span>编程</span>
     
-        <span class="sidebar-category-name" data-categories="web"><span class="iconfont-archer">&#xe60a;</span>web</span>
-    
         <span class="sidebar-category-name" data-categories="Web"><span class="iconfont-archer">&#xe60a;</span>Web</span>
     
         <span class="sidebar-category-name" data-categories="渗透"><span class="iconfont-archer">&#xe60a;</span>渗透</span>
+    
+        <span class="sidebar-category-name" data-categories="web"><span class="iconfont-archer">&#xe60a;</span>web</span>
     
         <span class="sidebar-category-name" data-categories="ctf"><span class="iconfont-archer">&#xe60a;</span>ctf</span>
     
@@ -1062,9 +1069,9 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="other"><span class="iconfont-archer">&#xe60a;</span>other</span>
     
-        <span class="sidebar-category-name" data-categories="代码审计"><span class="iconfont-archer">&#xe60a;</span>代码审计</span>
-    
         <span class="sidebar-category-name" data-categories="其他"><span class="iconfont-archer">&#xe60a;</span>其他</span>
+    
+        <span class="sidebar-category-name" data-categories="代码审计"><span class="iconfont-archer">&#xe60a;</span>代码审计</span>
     
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
