@@ -346,6 +346,37 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/2019/08/11/python中byte、str和bytearray相互转换/" >
+            
+                <span>python中byte、str和bytearray相互转换</span>
+        </a>
+        <div class="abstract-content">
+            三者用途首先str是采用Unicode编码方式的序列，主要用于显示。而bytes是字节序列，主要用于网络和文件传输。bytearray和bytes是一样的，只是它是可变的，它们的关系和str与list类似。在aes解密或者网络数据中，数据应该是bytes或bytearray。
+str 和 bytestr = &#39;asdf&#39;.encode(&#39;utf-8&#39;)byte = b&#39;asdf&#39;.decode(&#39;utf-8&#39;)
+byte 和 byetearraybyte = bytearray(b&#39;asdf&#39;)byte = ...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/11</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "other">other</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/2019/08/06/De1CTF SSRF ME/" >
             
                 <span>De1CTF SSRF ME</span>
@@ -624,42 +655,6 @@ get.php12345$text = file_get_contents(&quot;./cookie.txt&quot;);$text = $text . 
         </div>
     </article>
     
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/05/13/代码审计的相关函数分析/" >
-            
-                <span>代码审计相关函数分析</span>
-        </a>
-        <div class="abstract-content">
-            0x01. \$_GET$_GET函数经常是ctf解题入口，该函数可以传递数组get.php1var_dump($_GET);
-(1) 传递多个值优先选择后一个值(2) 传递数组(3) array&gt;数字
-附：$_POST同样有效
-0x02. extract将键名摘取为变量值，键值作为变量值
-0x03. strcmp传入数组返回Null
-0x04. strpos传入数组返回null
-0x05. ereg传入数组返回null
-0x06. is_numeric可以传入&#39;数字+字母&#39;绕过判断，如&#39;123a&#39;比较可被当成数字，即&#39;123a&#39;&g...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/05/13</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "web">web</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
     <!-- paginator  -->
     
     <nav class="page-nav">
@@ -915,9 +910,20 @@ get.php12345$text = file_get_contents(&quot;./cookie.txt&quot;);$text = $text . 
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 15
+        Total : 16
         </div>
         <!-- search  -->
         
@@ -930,6 +936,11 @@ get.php12345$text = file_get_contents(&quot;./cookie.txt&quot;);$text = $text . 
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/11</span><a class="archive-post-title" href= "/2019/08/11/python中byte、str和bytearray相互转换/" >python中byte、str和bytearray相互转换</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -1013,9 +1024,9 @@ get.php12345$text = file_get_contents(&quot;./cookie.txt&quot;);$text = $text . 
     
         <span class="sidebar-tag-name" data-tags="other"><span class="iconfont-archer">&#xe606;</span>other</span>
     
-        <span class="sidebar-tag-name" data-tags="web"><span class="iconfont-archer">&#xe606;</span>web</span>
-    
         <span class="sidebar-tag-name" data-tags="编程"><span class="iconfont-archer">&#xe606;</span>编程</span>
+    
+        <span class="sidebar-tag-name" data-tags="web"><span class="iconfont-archer">&#xe606;</span>web</span>
     
         <span class="sidebar-tag-name" data-tags="Web"><span class="iconfont-archer">&#xe606;</span>Web</span>
     
@@ -1056,19 +1067,19 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="ctf"><span class="iconfont-archer">&#xe60a;</span>ctf</span>
     
-        <span class="sidebar-category-name" data-categories="web"><span class="iconfont-archer">&#xe60a;</span>web</span>
-    
         <span class="sidebar-category-name" data-categories="编程"><span class="iconfont-archer">&#xe60a;</span>编程</span>
-    
-        <span class="sidebar-category-name" data-categories="Web"><span class="iconfont-archer">&#xe60a;</span>Web</span>
     
         <span class="sidebar-category-name" data-categories="渗透"><span class="iconfont-archer">&#xe60a;</span>渗透</span>
     
+        <span class="sidebar-category-name" data-categories="web"><span class="iconfont-archer">&#xe60a;</span>web</span>
+    
+        <span class="sidebar-category-name" data-categories="Web"><span class="iconfont-archer">&#xe60a;</span>Web</span>
+    
         <span class="sidebar-category-name" data-categories="开发"><span class="iconfont-archer">&#xe60a;</span>开发</span>
     
-        <span class="sidebar-category-name" data-categories="渗透测试"><span class="iconfont-archer">&#xe60a;</span>渗透测试</span>
-    
         <span class="sidebar-category-name" data-categories="其他"><span class="iconfont-archer">&#xe60a;</span>其他</span>
+    
+        <span class="sidebar-category-name" data-categories="渗透测试"><span class="iconfont-archer">&#xe60a;</span>渗透测试</span>
     
         <span class="sidebar-category-name" data-categories="other"><span class="iconfont-archer">&#xe60a;</span>other</span>
     

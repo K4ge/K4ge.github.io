@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-08-06T10:45:16.071Z</updated>
+  <updated>2019-08-11T05:39:27.449Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>python中byte、str和bytearray相互转换</title>
+    <link href="http://yoursite.com/2019/08/11/python%E4%B8%ADbyte%E3%80%81str%E5%92%8Cbytearray%E7%9B%B8%E4%BA%92%E8%BD%AC%E6%8D%A2/"/>
+    <id>http://yoursite.com/2019/08/11/python中byte、str和bytearray相互转换/</id>
+    <published>2019-08-11T05:39:27.000Z</published>
+    <updated>2019-08-11T05:39:27.449Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="三者用途"><a href="#三者用途" class="headerlink" title="三者用途"></a>三者用途</h2><p>首先str是采用Unicode编码方式的序列，主要用于显示。<br>而bytes是字节序列，主要用于网络和文件传输。<br>bytearray和bytes是一样的，只是它是可变的，它们的关系和str与list类似。<br>在aes解密或者网络数据中，数据应该是bytes或bytearray。</p><h2 id="str-和-byte"><a href="#str-和-byte" class="headerlink" title="str 和 byte"></a>str 和 byte</h2><p><code>str = &#39;asdf&#39;.encode(&#39;utf-8&#39;)</code><br><code>byte = b&#39;asdf&#39;.decode(&#39;utf-8&#39;)</code></p><h2 id="byte-和-byetearray"><a href="#byte-和-byetearray" class="headerlink" title="byte 和 byetearray"></a>byte 和 byetearray</h2><p><code>byte = bytearray(b&#39;asdf&#39;)</code><br><code>byte = byte(bytearray(b&#39;asdf&#39;))</code></p><h2 id="str-和-bytearray"><a href="#str-和-bytearray" class="headerlink" title="str 和 bytearray"></a>str 和 bytearray</h2><p><code>bytearray = bytearray(&#39;asdf&#39;,&#39;utf-8&#39;)</code><br><code>str = bytearray.decode(&#39;utf-8&#39;)</code></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;三者用途&quot;&gt;&lt;a href=&quot;#三者用途&quot; class=&quot;headerlink&quot; title=&quot;三者用途&quot;&gt;&lt;/a&gt;三者用途&lt;/h2&gt;&lt;p&gt;首先str是采用Unicode编码方式的序列，主要用于显示。&lt;br&gt;而bytes是字节序列，主要用于网络和文件传输。&lt;br&gt;
+      
+    
+    </summary>
+    
+      <category term="编程" scheme="http://yoursite.com/categories/%E7%BC%96%E7%A8%8B/"/>
+    
+    
+      <category term="other" scheme="http://yoursite.com/tags/other/"/>
+    
+  </entry>
   
   <entry>
     <title>De1CTF SSRF ME</title>
