@@ -7,7 +7,8 @@ import time
 import sys  
 from os.path import join, getsize
 
-filename = sys.argv[1]
+# filename = sys.argv[1]
+filename = "sb"
 
 #解压函数
 def unzip_file(zip_src, dst_dir):
@@ -79,7 +80,11 @@ if flag:
 		except:
 			pass
 	shutil.rmtree(dsrc)
-	os.remove("D:/hexo/source/others/"+filename+'.zip')
+	# os.remove("D:/hexo/source/others/"+sys.argv[1]+'.zip')
+	os.remove("D:/hexo/source/others/"+"sb"+'.zip')
+	print('Markdown create in hexo successfuly :)')
+	exit()
 
-os.remove("D:/hexo/source/others/"+filename+'.md')
+# os.remove("D:/hexo/source/others/"+filename+'.md')
+os.remove("D:/hexo/source/others/"+"sb"+'.md')
 print('Markdown create in hexo successfuly :)')

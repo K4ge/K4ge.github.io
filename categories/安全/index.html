@@ -346,25 +346,25 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href = "/2019/02/03/hgame草稿/" >
+        <a class="abstract-title" href = "/2019/08/15/CBC翻转字节攻击/" >
             
-                <span>hgame-web-week1</span>
+                <span>CBC翻转字节攻击</span>
         </a>
         <div class="abstract-content">
-            1. 谁吃了我的flag获取vim备份文件vim自动退出会临时备份隐藏文件 .xxx.swp用linux打vim -r .xxx.swp 可以恢复备份文件hgame{3eek_diScl0Sure_fRom+wEbsit@}
-2. 换头大作战输入框输入，要求使用postpost输入要求使用waterfox，更改要求bilibili登录最后得到flaghgame{hTTp_HeaDeR_iS_Ez}
-3. very easy web1234567891011121314&lt;?phperror_reporting(0);include(&quot;flag.php&quot;);if(s...
+            CBC模式加密过程：将Plaintext分成多组，每组16个字节，第一轮与IV进行异或，然后加密，再将第一组密文与第二组plantext进行异或，再进行加密解密过程：与加密过程相反，先将密文解密，再与前一组密文异或，第一轮是先解密再与IV异或
+对于解密：设明文为X，密文为Y，解密函数为kX[i] = k(Y[i]) Xor Y[i-1]对于第一组：X[1] = k(Y[1]) Xor IV
+CBC翻转攻击如果客户知道明文X、密文Y和IV，并可以对其进行修改，那么可以实现CBC翻转攻击，使得后台解密得到的明文可以让我们所控制。控制X[i]：令Y[i-1] = Y[i-1] Xor X[i]...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/02/03</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/15</span>
             </div>
             <!-- tags  -->
             
             <div class= abstract-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "ctf">ctf</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "other">other</a>
     
 </div>
             

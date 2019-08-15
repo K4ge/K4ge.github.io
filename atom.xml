@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-08-11T05:39:27.449Z</updated>
+  <updated>2019-08-15T13:17:06.902Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>CBC翻转字节攻击</title>
+    <link href="http://yoursite.com/2019/08/15/CBC%E7%BF%BB%E8%BD%AC%E5%AD%97%E8%8A%82%E6%94%BB%E5%87%BB/"/>
+    <id>http://yoursite.com/2019/08/15/CBC翻转字节攻击/</id>
+    <published>2019-08-15T13:17:06.000Z</published>
+    <updated>2019-08-15T13:17:06.902Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="CBC模式"><a href="#CBC模式" class="headerlink" title="CBC模式"></a>CBC模式</h2><p><img src="/img/1565873423512.png" alt=""><br>加密过程：将Plaintext分成多组，每组16个字节，第一轮与IV进行异或，然后加密，再将第一组密文与第二组plantext进行异或，再进行加密<br>解密过程：与加密过程相反，先将密文解密，再与前一组密文异或，第一轮是先解密再与IV异或</p><p><strong>对于解密：</strong><br>设明文为X，密文为Y，解密函数为k<br>X[i] = k(Y[i]) Xor Y[i-1]<br><strong>对于第一组：</strong><br>X[1] = k(Y[1]) Xor IV</p><h2 id="CBC翻转攻击"><a href="#CBC翻转攻击" class="headerlink" title="CBC翻转攻击"></a>CBC翻转攻击</h2><p>如果客户知道明文X、密文Y和IV，并可以对其进行修改，那么可以实现CBC翻转攻击，使得后台解密得到的明文可以让我们所控制。<br><strong>控制X[i]：</strong><br>令Y[i-1] = Y[i-1] Xor X[i]，那么能够使得X[i] = 0<br>令Y[i-1] = Y[i-1] Xor X[i] Xor A，那么能够使得X[i] = A<br>控制前一组密文与当前明文异或可以使得解密为0，再异或一个值，我们就可以对其进行控制<br><strong>控制X[1]：</strong><br>令IV = IV Xor X[1]，使得X[1] = 0<br>令IV = IV Xor X[1] Xor A，使得X[1] = A<br>要控制第一组，需要对IV进行修改</p><h2 id="脚本测试"><a href="#脚本测试" class="headerlink" title="脚本测试"></a>脚本测试</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"># -*- coding: utf-8 -*-</span><br><span class="line">from Crypto.Cipher import AES</span><br><span class="line">from binascii import b2a_hex,a2b_hex</span><br><span class="line"></span><br><span class="line">def encrypt(iv,plaintext):</span><br><span class="line">if len(plaintext)%16 != 0:</span><br><span class="line">print(&quot;plaintext length is invalid&quot;)</span><br><span class="line">return</span><br><span class="line">if len(iv) != 16:</span><br><span class="line">print(&quot;IV length is invalid&quot;)</span><br><span class="line">return</span><br><span class="line">key = &quot;1234567890123456&quot;</span><br><span class="line">aes_encrypt = AES.new(key,AES.MODE_CBC,IV=iv)</span><br><span class="line">return b2a_hex(aes_encrypt.encrypt(plaintext))</span><br><span class="line"></span><br><span class="line">def decrypt(iv,cipher):</span><br><span class="line">if len(iv) != 16:</span><br><span class="line">print(&quot;IV length is invalid&quot;)</span><br><span class="line">return</span><br><span class="line">key = &quot;1234567890123456&quot;</span><br><span class="line">aes_decrypt = AES.new(key,AES.MODE_CBC,IV=iv)</span><br><span class="line">return b2a_hex(aes_decrypt.decrypt(a2b_hex(cipher)))</span><br><span class="line"></span><br><span class="line">def test():</span><br><span class="line">iv = &quot;ABCDEFGH12345678&quot;</span><br><span class="line">plaintext = &quot;0123456789ABCDEFhellocbcflipping&quot;</span><br><span class="line">cipher = encrypt(iv,plaintext)</span><br><span class="line">print(cipher)</span><br><span class="line">de_cipher = decrypt(iv,cipher)</span><br><span class="line">print(de_cipher)</span><br><span class="line">print(a2b_hex(de_cipher))</span><br><span class="line">print(&quot;\n&quot;)</span><br><span class="line"></span><br><span class="line">bin_cipher = bytearray(a2b_hex(cipher))</span><br><span class="line">bin_cipher[15] = bin_cipher[15] ^ ord(&apos;g&apos;) ^ ord(&apos;G&apos;)</span><br><span class="line">de_cipher = decrypt(iv,b2a_hex(bin_cipher))</span><br><span class="line">print(de_cipher)</span><br><span class="line">print(a2b_hex(de_cipher))</span><br><span class="line">print(&quot;\n&quot;)</span><br><span class="line"></span><br><span class="line">bin_decipher = bytearray(a2b_hex(de_cipher))</span><br><span class="line">bin_iv = bytearray(iv.encode(&apos;ascii&apos;))</span><br><span class="line">for i in range(0,len(iv)):</span><br><span class="line">bin_iv[i] = bin_iv[i] ^ bin_decipher[i] ^ ord(&apos;X&apos;)</span><br><span class="line"></span><br><span class="line">de_cipher = decrypt(bytes(bin_iv),b2a_hex(bin_cipher))</span><br><span class="line">print(de_cipher)</span><br><span class="line">print(a2b_hex(de_cipher))</span><br><span class="line"></span><br><span class="line">test()</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;CBC模式&quot;&gt;&lt;a href=&quot;#CBC模式&quot; class=&quot;headerlink&quot; title=&quot;CBC模式&quot;&gt;&lt;/a&gt;CBC模式&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;/img/1565873423512.png&quot; alt=&quot;&quot;&gt;&lt;br&gt;加密过程：将Plainte
+      
+    
+    </summary>
+    
+      <category term="安全" scheme="http://yoursite.com/categories/%E5%AE%89%E5%85%A8/"/>
+    
+    
+      <category term="other" scheme="http://yoursite.com/tags/other/"/>
+    
+  </entry>
   
   <entry>
     <title>python中byte、str和bytearray相互转换</title>
