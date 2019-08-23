@@ -359,17 +359,53 @@ height:50vh;
     
     
     <article class="index-post">
-        <a class="abstract-title" href = "/2019/08/17/sqli-labs通过2/" >
+        <a class="abstract-title" href = "/2019/08/23/跨域实现-jsonp和CORS/" >
             
-                <span>sqli-labs通过2</span>
+                <span>跨域实现-jsonp和CORS</span>
         </a>
         <div class="abstract-content">
-            第二十三关过滤了注释1.插入\判断包裹1\通过报错可以发现，id由&#39;&#39;包裹2.and再次判断1&#39; and 1=1 %23发现报错，系统可能对注释符有过滤，再次试验\*、--、#都失败，应该是都过滤了3.绕过过滤1&#39; and 1=1 and &#39;1&#39;=&#39;1绕过1&#39; and 1=1 and &#39;11&#39; union select 1,2,&#39;3可以在where后面处以True为闭合，也可以作为union的一个字段进行闭合4.payload(1)-1&#39; union select 1,group_concat...
+            同源策略(SOP)同源策略限制了同一个源于另一个源的脚本交互。一般同源策略必须满足三个条件：
+
+1、协议相同2、域名相同3、端口相同
+
+jsonp许多html标签都能够跨域发出请求，如：img、a、script等，jsonp就是利用了script标签src属性的特性进行动态获取json数据。jsonp客户端需要写一个函数，称为回调函数，通过服务器端触发调用，参数为所传递的json数据，服务器端返回明文如jsonp({&#39;id&#39;:1,&#39;name&#39;:&#39;kage&#39;})的调用字符串。
+具体看代码：用户登录验证：只有登录才能访问该jsonp接口，一定程...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/17</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/23</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "other">other</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2019/08/23/sqli-labs 通关1/" >
+            
+                <span>sqli-labs 通关1</span>
+        </a>
+        <div class="abstract-content">
+            第一关union 注入1.插入转义字符查看报错1\You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ‘’1\’ LIMIT 0,1’ at line 1通过报错可以看到id是用什么包裹的
+1.and判断是否存在注入1&#39; and 1=1 %231&#39; and 1=2 %23`1&#39; %26%26 1=2 %23
+2.order by判断字段数因为union...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/23</span>
             </div>
             <!-- tags  -->
             
@@ -388,14 +424,12 @@ height:50vh;
     
     
     <article class="index-post">
-        <a class="abstract-title" href = "/2019/08/17/sqli-labs 通关1/" >
+        <a class="abstract-title" href = "/2019/08/17/sqli-labs通过2/" >
             
-                <span>sqli-labs 通关1</span>
+                <span>sqli-labs通过2</span>
         </a>
         <div class="abstract-content">
-            第一关union 注入1.插入转义字符查看报错1\You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ‘’1\’ LIMIT 0,1’ at line 1通过报错可以看到id是用什么包裹的
-1.and判断是否存在注入1&#39; and 1=1 %231&#39; and 1=2 %23`1&#39; %26%26 1=2 %23
-2.order by判断字段数因为union...
+            第二十三关过滤了注释1.插入\判断包裹1\通过报错可以发现，id由&#39;&#39;包裹2.and再次判断1&#39; and 1=1 %23发现报错，系统可能对注释符有过滤，再次试验\*、--、#都失败，应该是都过滤了3.绕过过滤1&#39; and 1=1 and &#39;1&#39;=&#39;1绕过1&#39; and 1=1 and &#39;11&#39; union select 1,2,&#39;3可以在where后面处以True为闭合，也可以作为union的一个字段进行闭合4.payload(1)-1&#39; union select 1,group_concat...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -613,36 +647,6 @@ get.php12345$text = file_get_contents(&quot;./cookie.txt&quot;);$text = $text . 
             <!-- date  -->
             <div class="abstract-date">
                 <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/22</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "other">other</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/07/20/python脚本-自动上传到hexo/" >
-            
-                <span>python脚本-自动上传到hexo</span>
-        </a>
-        <div class="abstract-content">
-            一、压缩与解压导入相应模块1234import osimport shutilimport zipfilefrom os.path import join, getsize
-1. python压缩指定文件夹12345678910def zip_file(src_dir):    zip_name = src_dir +&apos;.zip&apos;    z = zipfile.ZipFile(zip_name,&apos;w&apos;,zipfile.ZIP_DEFLATED)    for dirpath, dirnames, filenames in os.walk(src_d...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/20</span>
             </div>
             <!-- tags  -->
             
@@ -1098,9 +1102,16 @@ get.php12345$text = file_get_contents(&quot;./cookie.txt&quot;);$text = $text . 
     
     
     
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 19
+        Total : 20
         </div>
         <!-- search  -->
         
@@ -1116,7 +1127,12 @@ get.php12345$text = file_get_contents(&quot;./cookie.txt&quot;);$text = $text . 
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">08/17</span><a class="archive-post-title" href= "/2019/08/17/sqli-labs 通关1/" >sqli-labs 通关1</a>
+            <span class="archive-post-date">08/23</span><a class="archive-post-title" href= "/2019/08/23/跨域实现-jsonp和CORS/" >跨域实现-jsonp和CORS</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/23</span><a class="archive-post-title" href= "/2019/08/23/sqli-labs 通关1/" >sqli-labs 通关1</a>
         </li>
     
     
@@ -1181,12 +1197,12 @@ get.php12345$text = file_get_contents(&quot;./cookie.txt&quot;);$text = $text . 
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/13</span><a class="archive-post-title" href= "/2019/05/13/代码审计的相关函数分析/" >代码审计相关函数分析</a>
+            <span class="archive-post-date">05/13</span><a class="archive-post-title" href= "/2019/05/13/bugku代码审计wp/" >bugku代码审计wp</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/13</span><a class="archive-post-title" href= "/2019/05/13/bugku代码审计wp/" >bugku代码审计wp</a>
+            <span class="archive-post-date">05/13</span><a class="archive-post-title" href= "/2019/05/13/代码审计的相关函数分析/" >代码审计相关函数分析</a>
         </li>
     
     
@@ -1218,9 +1234,9 @@ get.php12345$text = file_get_contents(&quot;./cookie.txt&quot;);$text = $text . 
     
         <span class="sidebar-tag-name" data-tags="other"><span class="iconfont-archer">&#xe606;</span>other</span>
     
-        <span class="sidebar-tag-name" data-tags="Web"><span class="iconfont-archer">&#xe606;</span>Web</span>
-    
         <span class="sidebar-tag-name" data-tags="web"><span class="iconfont-archer">&#xe606;</span>web</span>
+    
+        <span class="sidebar-tag-name" data-tags="Web"><span class="iconfont-archer">&#xe606;</span>Web</span>
     
         <span class="sidebar-tag-name" data-tags="ctf"><span class="iconfont-archer">&#xe606;</span>ctf</span>
     
@@ -1265,17 +1281,17 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="ctf"><span class="iconfont-archer">&#xe60a;</span>ctf</span>
     
-        <span class="sidebar-category-name" data-categories="渗透"><span class="iconfont-archer">&#xe60a;</span>渗透</span>
+        <span class="sidebar-category-name" data-categories="web"><span class="iconfont-archer">&#xe60a;</span>web</span>
     
         <span class="sidebar-category-name" data-categories="Web"><span class="iconfont-archer">&#xe60a;</span>Web</span>
     
-        <span class="sidebar-category-name" data-categories="web"><span class="iconfont-archer">&#xe60a;</span>web</span>
+        <span class="sidebar-category-name" data-categories="渗透"><span class="iconfont-archer">&#xe60a;</span>渗透</span>
     
         <span class="sidebar-category-name" data-categories="开发"><span class="iconfont-archer">&#xe60a;</span>开发</span>
     
-        <span class="sidebar-category-name" data-categories="其他"><span class="iconfont-archer">&#xe60a;</span>其他</span>
-    
         <span class="sidebar-category-name" data-categories="渗透测试"><span class="iconfont-archer">&#xe60a;</span>渗透测试</span>
+    
+        <span class="sidebar-category-name" data-categories="其他"><span class="iconfont-archer">&#xe60a;</span>其他</span>
     
         <span class="sidebar-category-name" data-categories="other"><span class="iconfont-archer">&#xe60a;</span>other</span>
     
