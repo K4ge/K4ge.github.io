@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-08-23T15:52:39.849Z</updated>
+  <updated>2019-08-30T05:24:16.937Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>session.upload_progress的利用</title>
+    <link href="http://yoursite.com/2019/08/30/session.upload_progress%E7%9A%84%E5%88%A9%E7%94%A8/"/>
+    <id>http://yoursite.com/2019/08/30/session.upload_progress的利用/</id>
+    <published>2019-08-30T05:24:16.000Z</published>
+    <updated>2019-08-30T05:24:16.937Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>session.upload_progress 是PHP5.4的新特征<br>当<code>session.upload_progress.enabled</code>选项开启时，PHP能够在每一个文件上传时监测上传进度。 这个信息对上传请求自身并没有什么帮助，但在文件上传时应用可以发送一个POST请求到终端（例如通过XHR）来检查这个状态。<br>当一个上传在处理中，同时POST一个与INI中设置的<code>session.upload_progress.name</code>同名变量时，上传进度可以在<code>$_SESSION</code>中获得。 当PHP检测到这种POST请求时，它会在<code>$_SESSION</code>中添加一组数据, 索引是<code>session.upload_progress.prefix</code>与<code>session.upload_progress.name</code>连接在一起的值</p><h2 id="设置session-upload-progress"><a href="#设置session-upload-progress" class="headerlink" title="设置session.upload_progress"></a>设置session.upload_progress</h2><p>修改php.ini<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">session.upload_progress.enabled = On</span><br><span class="line">session.upload_progress.cleanup = On</span><br><span class="line">session.upload_progress.prefix = &quot;upload_progress_&quot;</span><br><span class="line">session.upload_progress.name = &quot;PHP_SESSION_UPLOAD_PROGRESS&quot;</span><br><span class="line">session.upload_progress.freq = &quot;1%&quot;</span><br><span class="line">session.upload_progress.min_freq = &quot;1&quot;</span><br></pre></td></tr></table></figure></p><p>cleanup的值为On时表示上传完后会删除session中的值，Off则不会，如果为On需要通过条件竞争来攻击。</p><h2 id="适用目标"><a href="#适用目标" class="headerlink" title="适用目标"></a>适用目标</h2><p>如果网站开启phpinfo，如果发现<code>session.upload_progress.enabled = On</code>，那么即可对session文件的索引字段进行控制，间接控制session文件，如果存在文件包含漏洞，那么可以获得目标shell。</p><h2 id="实验效果"><a href="#实验效果" class="headerlink" title="实验效果"></a>实验效果</h2><p>构造attack.html进行post上传控制session文件。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;form action=&quot;http://127.0.0.1/t/830/test.php&quot; method=&quot;post&quot; enctype=&quot;multipart/form-data&quot;&gt;</span><br><span class="line">    &lt;input type=&quot;hidden&quot; name=&quot;PHP_SESSION_UPLOAD_PROGRESS&quot; value=&quot;&lt;?= phpinfo(); ?&gt;&quot; /&gt;</span><br><span class="line">    &lt;input type=&quot;file&quot; name=&quot;demo&quot;&gt;</span><br><span class="line">    &lt;input type=&quot;submit&quot; value=&quot;上传&quot;&gt;</span><br><span class="line">&lt;/form&gt;</span><br></pre></td></tr></table></figure></p><p>查看后台session文件，可以发现session已被我们间接控制<br><img src="/img/1567142601524.png" alt=""></p><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://skysec.top/2018/04/04/amazing-phpinfo/#session-upload-progress" target="_blank" rel="noopener">https://skysec.top/2018/04/04/amazing-phpinfo/#session-upload-progress</a><br><a href="https://blog.csdn.net/koastal/article/details/52980757" target="_blank" rel="noopener">https://blog.csdn.net/koastal/article/details/52980757</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;定义&quot;&gt;&lt;a href=&quot;#定义&quot; class=&quot;headerlink&quot; title=&quot;定义&quot;&gt;&lt;/a&gt;定义&lt;/h2&gt;&lt;p&gt;session.upload_progress 是PHP5.4的新特征&lt;br&gt;当&lt;code&gt;session.upload_progress.
+      
+    
+    </summary>
+    
+      <category term="web" scheme="http://yoursite.com/categories/web/"/>
+    
+    
+      <category term="other" scheme="http://yoursite.com/tags/other/"/>
+    
+  </entry>
   
   <entry>
     <title>跨域实现-jsonp和CORS</title>
@@ -493,31 +518,6 @@
     
     
       <category term="other" scheme="http://yoursite.com/tags/other/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>hgame-web-week1</title>
-    <link href="http://yoursite.com/2019/02/03/hgame%E8%8D%89%E7%A8%BF/"/>
-    <id>http://yoursite.com/2019/02/03/hgame草稿/</id>
-    <published>2019-02-03T05:45:23.000Z</published>
-    <updated>2019-05-13T12:46:12.502Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="1-谁吃了我的flag"><a href="#1-谁吃了我的flag" class="headerlink" title="1. 谁吃了我的flag"></a>1. 谁吃了我的flag</h2><p><img src="/img/1548569716058.png" alt=""><br>获取vim备份文件<br>vim自动退出会临时备份隐藏文件 .xxx.swp<br>用linux打<br><code>vim -r .xxx.swp</code> 可以恢复备份文件<br>hgame{3eek_diScl0Sure_fRom+wEbsit@}</p><h2 id="2-换头大作战"><a href="#2-换头大作战" class="headerlink" title="2. 换头大作战"></a>2. 换头大作战</h2><p><img src="/img/1548570653300.png" alt=""><br>输入框输入，要求使用post<br>post输入<br>要求使用waterfox，更改<br>要求bilibili登录<br>最后得到flag<br>hgame{hTTp_HeaDeR_iS_Ez}</p><h2 id="3-very-easy-web"><a href="#3-very-easy-web" class="headerlink" title="3. very easy web"></a>3. very easy web</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">error_reporting(0);</span><br><span class="line">include(&quot;flag.php&quot;);</span><br><span class="line"></span><br><span class="line">if(strpos(&quot;vidar&quot;,$_GET[&apos;id&apos;])!==FALSE)</span><br><span class="line">  die(&quot;&lt;p&gt;干巴爹/img/p&gt;&quot;);</span><br><span class="line"></span><br><span class="line">$_GET[&apos;id&apos;] = urldecode($_GET[&apos;id&apos;]);</span><br><span class="line">if($_GET[&apos;id&apos;] === &quot;vidar&quot;)</span><br><span class="line">&#123;</span><br><span class="line">  echo $flag;</span><br><span class="line">&#125;</span><br><span class="line">highlight_file(__FILE__);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure><p>urldecode()函数的危险问题<br>php会进行自动解码一次<br>如果使用这个函数，可以通过二次编码绕过前面的过滤<br>hgame{urlDecode_Is_GoOd}</p><h2 id="4-can-you-find-me"><a href="#4-can-you-find-me" class="headerlink" title="4. can you find me"></a>4. can you find me</h2><p><img src="/img/1548571660564.png" alt=""><br><img src="/img/1548571688433.png" alt=""><br>从返回包头找到密码woyaoflag<br>发送post密码得到flag<br>hgame{f12_1s_aMazIng111}</p><h2 id="5-Hidden-Image-in-LSB"><a href="#5-Hidden-Image-in-LSB" class="headerlink" title="5. Hidden Image in LSB"></a>5. Hidden Image in LSB</h2><p>有StegSolve打开，按下面左右调试即可<br><img src="/img/1548572207626.png" alt=""><br>hgame{LSB_is_easy_for_u}</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;1-谁吃了我的flag&quot;&gt;&lt;a href=&quot;#1-谁吃了我的flag&quot; class=&quot;headerlink&quot; title=&quot;1. 谁吃了我的flag&quot;&gt;&lt;/a&gt;1. 谁吃了我的flag&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;/img/1548569716058.png
-      
-    
-    </summary>
-    
-      <category term="ctf" scheme="http://yoursite.com/categories/ctf/"/>
-    
-    
-      <category term="ctf" scheme="http://yoursite.com/tags/ctf/"/>
     
   </entry>
   
