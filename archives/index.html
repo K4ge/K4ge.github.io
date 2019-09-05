@@ -346,6 +346,68 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/2019/09/05/alert(1) to win wp/" >
+            
+                <span>alert(1) to win wp</span>
+        </a>
+        <div class="abstract-content">
+            1.Warmup：123function escape(s) &#123;  return &apos;&lt;script&gt;console.log(&quot;&apos;+s+&apos;&quot;);&lt;/script&gt;&apos;;&#125;
+将用户输入字符串放入console.log中，可以通过闭合括号和注释，输出alert&quot;);alert(1)//js正则表达式
+2.Adobe：1234function escape(s) &#123;  s = s.replace(/&quot;/g, &apos;\\&quot;&apos;);  retur...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/09/05</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "other">other</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2019/09/05/XSS挑战write up/" >
+            
+                <span>XSS挑战write up</span>
+        </a>
+        <div class="abstract-content">
+            一、DVWA1.DOMlow：&lt;script&gt;alert(1)&lt;/script&gt;medium：&lt;/option&gt;&lt;/select&gt;&lt;img src=1 onerror=alert(1)&gt;注意有的要包裹前面的high：English#&lt;script&gt;alert(1)&lt;/script&gt;服务器端过滤的是GET的参数，而前端js使用的是整个url，可以通过#隔开插入js语句
+2.stored和reflect&lt;img src=1 onerror=alert(1)&gt;通关所有
+二、XSS挑战level1：h...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/09/05</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "other">other</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/2019/09/05/实验吧web wp/" >
             
                 <span>实验吧web wp</span>
@@ -574,66 +636,6 @@ jsonp许多html标签都能够跨域发出请求，如：img、a、script等，j
             <div class= abstract-tags >
     
         <a class="post-tag" href="javascript:void(0);" data-tags = "other">other</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/08/23/sqli-labs 通关1/" >
-            
-                <span>sqli-labs 通关1</span>
-        </a>
-        <div class="abstract-content">
-            第一关union 注入1.插入转义字符查看报错1\You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ‘’1\’ LIMIT 0,1’ at line 1通过报错可以看到id是用什么包裹的
-1.and判断是否存在注入1&#39; and 1=1 %231&#39; and 1=2 %23`1&#39; %26%26 1=2 %23
-2.order by判断字段数因为union...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/23</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "靶场">靶场</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/08/17/sqli-labs通过2/" >
-            
-                <span>sqli-labs通过2</span>
-        </a>
-        <div class="abstract-content">
-            第二十三关过滤了注释1.插入\判断包裹1\通过报错可以发现，id由&#39;&#39;包裹2.and再次判断1&#39; and 1=1 %23发现报错，系统可能对注释符有过滤，再次试验\*、--、#都失败，应该是都过滤了3.绕过过滤1&#39; and 1=1 and &#39;1&#39;=&#39;1绕过1&#39; and 1=1 and &#39;11&#39; union select 1,2,&#39;3可以在where后面处以True为闭合，也可以作为union的一个字段进行闭合4.payload(1)-1&#39; union select 1,group_concat...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/17</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "靶场">靶场</a>
     
 </div>
             
@@ -1075,9 +1077,73 @@ jsonp许多html标签都能够跨域发出请求，如：img、a、script等，j
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 27
+        Total : 29
         </div>
         <!-- search  -->
         
@@ -1090,6 +1156,16 @@ jsonp许多html标签都能够跨域发出请求，如：img、a、script等，j
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/05</span><a class="archive-post-title" href= "/2019/09/05/XSS挑战write up/" >XSS挑战write up</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/05</span><a class="archive-post-title" href= "/2019/09/05/alert(1) to win wp/" >alert(1) to win wp</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -1128,12 +1204,12 @@ jsonp许多html标签都能够跨域发出请求，如：img、a、script等，j
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">08/23</span><a class="archive-post-title" href= "/2019/08/23/跨域实现-jsonp和CORS/" >跨域实现-jsonp和CORS</a>
+            <span class="archive-post-date">08/23</span><a class="archive-post-title" href= "/2019/08/23/sqli-labs 通关1/" >sqli-labs 通关1</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">08/23</span><a class="archive-post-title" href= "/2019/08/23/sqli-labs 通关1/" >sqli-labs 通关1</a>
+            <span class="archive-post-date">08/23</span><a class="archive-post-title" href= "/2019/08/23/跨域实现-jsonp和CORS/" >跨域实现-jsonp和CORS</a>
         </li>
     
     
@@ -1198,12 +1274,12 @@ jsonp许多html标签都能够跨域发出请求，如：img、a、script等，j
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/13</span><a class="archive-post-title" href= "/2019/05/13/代码审计的相关函数分析/" >代码审计相关函数分析</a>
+            <span class="archive-post-date">05/13</span><a class="archive-post-title" href= "/2019/05/13/bugku代码审计wp/" >bugku代码审计wp</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/13</span><a class="archive-post-title" href= "/2019/05/13/bugku代码审计wp/" >bugku代码审计wp</a>
+            <span class="archive-post-date">05/13</span><a class="archive-post-title" href= "/2019/05/13/代码审计的相关函数分析/" >代码审计相关函数分析</a>
         </li>
     
     
@@ -1235,9 +1311,9 @@ jsonp许多html标签都能够跨域发出请求，如：img、a、script等，j
     
         <span class="sidebar-tag-name" data-tags="other"><span class="iconfont-archer">&#xe606;</span>other</span>
     
-        <span class="sidebar-tag-name" data-tags="web"><span class="iconfont-archer">&#xe606;</span>web</span>
-    
         <span class="sidebar-tag-name" data-tags="Web"><span class="iconfont-archer">&#xe606;</span>Web</span>
+    
+        <span class="sidebar-tag-name" data-tags="web"><span class="iconfont-archer">&#xe606;</span>web</span>
     
         <span class="sidebar-tag-name" data-tags="ctf"><span class="iconfont-archer">&#xe606;</span>ctf</span>
     
@@ -1278,13 +1354,13 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="编程"><span class="iconfont-archer">&#xe60a;</span>编程</span>
     
-        <span class="sidebar-category-name" data-categories="安全"><span class="iconfont-archer">&#xe60a;</span>安全</span>
-    
         <span class="sidebar-category-name" data-categories="ctf"><span class="iconfont-archer">&#xe60a;</span>ctf</span>
     
         <span class="sidebar-category-name" data-categories="代码审计"><span class="iconfont-archer">&#xe60a;</span>代码审计</span>
     
         <span class="sidebar-category-name" data-categories="web"><span class="iconfont-archer">&#xe60a;</span>web</span>
+    
+        <span class="sidebar-category-name" data-categories="安全"><span class="iconfont-archer">&#xe60a;</span>安全</span>
     
         <span class="sidebar-category-name" data-categories="Web"><span class="iconfont-archer">&#xe60a;</span>Web</span>
     
