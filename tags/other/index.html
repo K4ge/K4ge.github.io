@@ -346,6 +346,67 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/2019/09/06/linux常用指令/" >
+            
+                <span>linux常用指令</span>
+        </a>
+        <div class="abstract-content">
+            Mysql授权用户远程访问登录Mysql，执行sql语句1234use mysql;grant all privileges on *.* to &apos;root&apos;@&apos;%&apos; identified by &apos;root&apos; with grant option;flush privileges;quit;
+修改mysqld.cnf，默认位置在/etc/mysql/mysql.conf.d1vi /etc/mysql/mysql.conf.d/mysqld.cnf
+将bind=127.0.0.1注释掉1service mysql restart
+...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/09/06</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "other">other</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2019/09/06/python脚本(不定时更新)/" >
+            
+                <span>python脚本(不定时更新)</span>
+        </a>
+        <div class="abstract-content">
+            md5验证码python312345678910111213141516171819202122232425262728293031323334import hashlibfrom multiprocessing.dummy import Pool as ThreadPool# MD5截断数值已知 求原始数据# 例子 substr(md5(captcha), 0, 6)=60b7efdef md5(s):  # 计算MD5字符串    return hashlib.md5(str(s).encode(&apos;utf-8&apos;)).hexdigest()keymd5 = &apo...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/09/06</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "other">other</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/2019/09/05/alert(1) to win wp/" >
             
                 <span>alert(1) to win wp</span>
@@ -579,73 +640,10 @@
         </div>
     </article>
     
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/08/30/session.upload_progress的利用/" >
-            
-                <span>session.upload_progress的利用</span>
-        </a>
-        <div class="abstract-content">
-            定义session.upload_progress 是PHP5.4的新特征当session.upload_progress.enabled选项开启时，PHP能够在每一个文件上传时监测上传进度。 这个信息对上传请求自身并没有什么帮助，但在文件上传时应用可以发送一个POST请求到终端（例如通过XHR）来检查这个状态。当一个上传在处理中，同时POST一个与INI中设置的session.upload_progress.name同名变量时，上传进度可以在$_SESSION中获得。 当PHP检测到这种POST请求时，它会在$_SESSION中添加一组数据, 索引是session.upload_pro...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/30</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "other">other</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/08/23/跨域实现-jsonp和CORS/" >
-            
-                <span>跨域实现-jsonp和CORS</span>
-        </a>
-        <div class="abstract-content">
-            同源策略(SOP)同源策略限制了同一个源于另一个源的脚本交互。一般同源策略必须满足三个条件：
-
-1、协议相同2、域名相同3、端口相同
-
-jsonp许多html标签都能够跨域发出请求，如：img、a、script等，jsonp就是利用了script标签src属性的特性进行动态获取json数据。jsonp客户端需要写一个函数，称为回调函数，通过服务器端触发调用，参数为所传递的json数据，服务器端返回明文如jsonp({&#39;id&#39;:1,&#39;name&#39;:&#39;kage&#39;})的调用字符串。
-具体看代码：用户登录验证：只有登录才能访问该jsonp接口，一定程...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/23</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "other">other</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
     <!-- paginator  -->
     
     <nav class="page-nav">
-        <span class="page-number current">1</span><a class="page-number" href="/tags/other/page/2/">2</a><a class="extend next" rel="next" href="/tags/other/page/2/">NEXT &#62;</a>
+        <span class="page-number current">1</span><a class="page-number" href="/tags/other/page/2/">2</a><a class="page-number" href="/tags/other/page/3/">3</a><a class="extend next" rel="next" href="/tags/other/page/2/">NEXT &#62;</a>
     </nav>
     
 </main>
@@ -1141,9 +1139,47 @@ jsonp许多html标签都能够跨域发出请求，如：img、a、script等，j
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 29
+        Total : 31
         </div>
         <!-- search  -->
         
@@ -1156,6 +1192,16 @@ jsonp许多html标签都能够跨域发出请求，如：img、a、script等，j
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/06</span><a class="archive-post-title" href= "/2019/09/06/linux常用指令/" >linux常用指令</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/06</span><a class="archive-post-title" href= "/2019/09/06/python脚本(不定时更新)/" >python脚本(不定时更新)</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -1307,13 +1353,13 @@ jsonp许多html标签都能够跨域发出请求，如：img、a、script等，j
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
     
-        <span class="sidebar-tag-name" data-tags="编程"><span class="iconfont-archer">&#xe606;</span>编程</span>
-    
         <span class="sidebar-tag-name" data-tags="other"><span class="iconfont-archer">&#xe606;</span>other</span>
     
-        <span class="sidebar-tag-name" data-tags="Web"><span class="iconfont-archer">&#xe606;</span>Web</span>
+        <span class="sidebar-tag-name" data-tags="编程"><span class="iconfont-archer">&#xe606;</span>编程</span>
     
         <span class="sidebar-tag-name" data-tags="web"><span class="iconfont-archer">&#xe606;</span>web</span>
+    
+        <span class="sidebar-tag-name" data-tags="Web"><span class="iconfont-archer">&#xe606;</span>Web</span>
     
         <span class="sidebar-tag-name" data-tags="ctf"><span class="iconfont-archer">&#xe606;</span>ctf</span>
     
@@ -1352,15 +1398,15 @@ jsonContent:
         <div class="sidebar-panel-categories">
     <div class="sidebar-categories-name">
     
-        <span class="sidebar-category-name" data-categories="编程"><span class="iconfont-archer">&#xe60a;</span>编程</span>
-    
         <span class="sidebar-category-name" data-categories="ctf"><span class="iconfont-archer">&#xe60a;</span>ctf</span>
+    
+        <span class="sidebar-category-name" data-categories="编程"><span class="iconfont-archer">&#xe60a;</span>编程</span>
     
         <span class="sidebar-category-name" data-categories="代码审计"><span class="iconfont-archer">&#xe60a;</span>代码审计</span>
     
-        <span class="sidebar-category-name" data-categories="web"><span class="iconfont-archer">&#xe60a;</span>web</span>
-    
         <span class="sidebar-category-name" data-categories="安全"><span class="iconfont-archer">&#xe60a;</span>安全</span>
+    
+        <span class="sidebar-category-name" data-categories="web"><span class="iconfont-archer">&#xe60a;</span>web</span>
     
         <span class="sidebar-category-name" data-categories="Web"><span class="iconfont-archer">&#xe60a;</span>Web</span>
     
@@ -1368,9 +1414,9 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="开发"><span class="iconfont-archer">&#xe60a;</span>开发</span>
     
-        <span class="sidebar-category-name" data-categories="渗透测试"><span class="iconfont-archer">&#xe60a;</span>渗透测试</span>
-    
         <span class="sidebar-category-name" data-categories="其他"><span class="iconfont-archer">&#xe60a;</span>其他</span>
+    
+        <span class="sidebar-category-name" data-categories="渗透测试"><span class="iconfont-archer">&#xe60a;</span>渗透测试</span>
     
         <span class="sidebar-category-name" data-categories="other"><span class="iconfont-archer">&#xe60a;</span>other</span>
     

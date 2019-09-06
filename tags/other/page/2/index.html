@@ -346,6 +346,69 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/2019/08/30/session.upload_progress的利用/" >
+            
+                <span>session.upload_progress的利用</span>
+        </a>
+        <div class="abstract-content">
+            定义session.upload_progress 是PHP5.4的新特征当session.upload_progress.enabled选项开启时，PHP能够在每一个文件上传时监测上传进度。 这个信息对上传请求自身并没有什么帮助，但在文件上传时应用可以发送一个POST请求到终端（例如通过XHR）来检查这个状态。当一个上传在处理中，同时POST一个与INI中设置的session.upload_progress.name同名变量时，上传进度可以在$_SESSION中获得。 当PHP检测到这种POST请求时，它会在$_SESSION中添加一组数据, 索引是session.upload_pro...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/30</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "other">other</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2019/08/23/跨域实现-jsonp和CORS/" >
+            
+                <span>跨域实现-jsonp和CORS</span>
+        </a>
+        <div class="abstract-content">
+            同源策略(SOP)同源策略限制了同一个源于另一个源的脚本交互。一般同源策略必须满足三个条件：
+
+1、协议相同2、域名相同3、端口相同
+
+jsonp许多html标签都能够跨域发出请求，如：img、a、script等，jsonp就是利用了script标签src属性的特性进行动态获取json数据。jsonp客户端需要写一个函数，称为回调函数，通过服务器端触发调用，参数为所传递的json数据，服务器端返回明文如jsonp({&#39;id&#39;:1,&#39;name&#39;:&#39;kage&#39;})的调用字符串。
+具体看代码：用户登录验证：只有登录才能访问该jsonp接口，一定程...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/23</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "other">other</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/2019/08/15/CBC翻转字节攻击/" >
             
                 <span>CBC翻转字节攻击</span>
@@ -582,72 +645,10 @@ get.php12345$text = file_get_contents(&quot;./cookie.txt&quot;);$text = $text . 
         </div>
     </article>
     
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/07/20/PHP XXE/" >
-            
-                <span>PHP XXE</span>
-        </a>
-        <div class="abstract-content">
-            xml是什么XML指可扩展标记语言用处：被设计用来传输和存储数据。与HTML区别：HTML是被设计用来显示数据，HTML具有特效，XML用来传输数据XML 标签没有被预定义。需要自行定义标签XML 被设计为具有自我描述性
-一个XML文档实例第一行是xml声明，定义版本和使用编码第二行是根元素，一个xml文档必须拥有根元素其下几行是子元素1234567&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;&lt;note&gt;&lt;to&gt;George&lt;/to&gt;&lt;from&gt;John&l...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/20</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "other">other</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/02/03/同一台电脑连接多个github仓库/" >
-            
-                <span>同一台电脑连接多个github仓库</span>
-        </a>
-        <div class="abstract-content">
-            0x01.生成密钥1ssh-keygen -t rsa -C &quot;yourname@email.com&quot;
-分别生成两次公钥，可以得到两组公钥和私钥
-0x02. 在github上添加公钥不解释
-0x03. 添加config配置文件在.ssh文件夹下添加config文件1234567891011#第一个账号 Bu1uokageHost github.comHostName github.comUser gitIdentityFile ~/.ssh/id_rsa#第二个账号 K4geHost K4geHostName github.comUser gitIdentityFil...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/02/03</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "other">other</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
     <!-- paginator  -->
     
     <nav class="page-nav">
-        <a class="extend prev" rel="prev" href="/tags/other/">&#60; PREV</a><a class="page-number" href="/tags/other/">1</a><span class="page-number current">2</span>
+        <a class="extend prev" rel="prev" href="/tags/other/">&#60; PREV</a><a class="page-number" href="/tags/other/">1</a><span class="page-number current">2</span><a class="page-number" href="/tags/other/page/3/">3</a><a class="extend next" rel="next" href="/tags/other/page/3/">NEXT &#62;</a>
     </nav>
     
 </main>
@@ -1143,9 +1144,47 @@ get.php12345$text = file_get_contents(&quot;./cookie.txt&quot;);$text = $text . 
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 29
+        Total : 31
         </div>
         <!-- search  -->
         
@@ -1158,6 +1197,16 @@ get.php12345$text = file_get_contents(&quot;./cookie.txt&quot;);$text = $text . 
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/06</span><a class="archive-post-title" href= "/2019/09/06/linux常用指令/" >linux常用指令</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/06</span><a class="archive-post-title" href= "/2019/09/06/python脚本(不定时更新)/" >python脚本(不定时更新)</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -1309,13 +1358,13 @@ get.php12345$text = file_get_contents(&quot;./cookie.txt&quot;);$text = $text . 
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
     
-        <span class="sidebar-tag-name" data-tags="编程"><span class="iconfont-archer">&#xe606;</span>编程</span>
-    
         <span class="sidebar-tag-name" data-tags="other"><span class="iconfont-archer">&#xe606;</span>other</span>
     
-        <span class="sidebar-tag-name" data-tags="Web"><span class="iconfont-archer">&#xe606;</span>Web</span>
+        <span class="sidebar-tag-name" data-tags="编程"><span class="iconfont-archer">&#xe606;</span>编程</span>
     
         <span class="sidebar-tag-name" data-tags="web"><span class="iconfont-archer">&#xe606;</span>web</span>
+    
+        <span class="sidebar-tag-name" data-tags="Web"><span class="iconfont-archer">&#xe606;</span>Web</span>
     
         <span class="sidebar-tag-name" data-tags="ctf"><span class="iconfont-archer">&#xe606;</span>ctf</span>
     
@@ -1354,15 +1403,15 @@ jsonContent:
         <div class="sidebar-panel-categories">
     <div class="sidebar-categories-name">
     
-        <span class="sidebar-category-name" data-categories="编程"><span class="iconfont-archer">&#xe60a;</span>编程</span>
-    
         <span class="sidebar-category-name" data-categories="ctf"><span class="iconfont-archer">&#xe60a;</span>ctf</span>
+    
+        <span class="sidebar-category-name" data-categories="编程"><span class="iconfont-archer">&#xe60a;</span>编程</span>
     
         <span class="sidebar-category-name" data-categories="代码审计"><span class="iconfont-archer">&#xe60a;</span>代码审计</span>
     
-        <span class="sidebar-category-name" data-categories="web"><span class="iconfont-archer">&#xe60a;</span>web</span>
-    
         <span class="sidebar-category-name" data-categories="安全"><span class="iconfont-archer">&#xe60a;</span>安全</span>
+    
+        <span class="sidebar-category-name" data-categories="web"><span class="iconfont-archer">&#xe60a;</span>web</span>
     
         <span class="sidebar-category-name" data-categories="Web"><span class="iconfont-archer">&#xe60a;</span>Web</span>
     
@@ -1370,9 +1419,9 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="开发"><span class="iconfont-archer">&#xe60a;</span>开发</span>
     
-        <span class="sidebar-category-name" data-categories="渗透测试"><span class="iconfont-archer">&#xe60a;</span>渗透测试</span>
-    
         <span class="sidebar-category-name" data-categories="其他"><span class="iconfont-archer">&#xe60a;</span>其他</span>
+    
+        <span class="sidebar-category-name" data-categories="渗透测试"><span class="iconfont-archer">&#xe60a;</span>渗透测试</span>
     
         <span class="sidebar-category-name" data-categories="other"><span class="iconfont-archer">&#xe60a;</span>other</span>
     
