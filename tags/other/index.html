@@ -346,6 +346,37 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/2019/09/07/PHP利用PCRE回溯绕过正则表达式/" >
+            
+                <span>PHP利用PCRE回溯绕过正则表达式</span>
+        </a>
+        <div class="abstract-content">
+            正则匹配过程PHP正则利用的是NFA（非确定性有限自动机）。遇到.*或者.+：直接匹配字符串末尾，然后一个个回溯，与之后的模式比较遇到.*?或者.+?：非贪婪模式，在匹配到符合的字符串，停止，由下一个模式匹配，下一个模式不符合，回溯，再有.*?匹配，直到下一个模式符合
+preg_match函数问题PHP为了防止拒绝服务攻击，设置了回溯上限次数为1000000，当回溯次数超过上限，preg_match函数会返回false，因此绕过waf
+实例1.sql的waf123if (preg_match(&apos;/UNION.+?SELECT/is&apos;, $input)) &#123;	...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/09/07</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "other">other</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/2019/09/06/python脚本(不定时更新)/" >
             
                 <span>python脚本(不定时更新)</span>
@@ -599,35 +630,6 @@
             <!-- date  -->
             <div class="abstract-date">
                 <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/09/01</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "other">other</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/08/31/2018-Xctf Final & bestphp-revenge/" >
-            
-                <span>2018-Xctf Final &amp; bestphp-revenge</span>
-        </a>
-        <div class="abstract-content">
-            bestphp考点：变量覆盖+lfi+session文件转移代码：123456789101112highlight_file(__FILE__);error_reporting(0);ini_set(&apos;open_basedir&apos;, &apos;C:/www/t/830&apos;);$file = &apos;function.php&apos;;$func = isset($_GET[&apos;function&apos;]) ? $_GET[&apos;function&apos;] : &apos;filters&apos;;call_user_func($f...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/31</span>
             </div>
             <!-- tags  -->
             
@@ -1157,9 +1159,16 @@
     
     
     
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 31
+        Total : 32
         </div>
         <!-- search  -->
         
@@ -1175,12 +1184,17 @@
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">09/06</span><a class="archive-post-title" href= "/2019/09/06/python脚本(不定时更新)/" >python脚本(不定时更新)</a>
+            <span class="archive-post-date">09/07</span><a class="archive-post-title" href= "/2019/09/07/PHP利用PCRE回溯绕过正则表达式/" >PHP利用PCRE回溯绕过正则表达式</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">09/06</span><a class="archive-post-title" href= "/2019/09/06/linux常用指令/" >linux常用指令</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/06</span><a class="archive-post-title" href= "/2019/09/06/python脚本(不定时更新)/" >python脚本(不定时更新)</a>
         </li>
     
     
@@ -1300,12 +1314,12 @@
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/13</span><a class="archive-post-title" href= "/2019/05/13/代码审计的相关函数分析/" >代码审计相关函数分析</a>
+            <span class="archive-post-date">05/13</span><a class="archive-post-title" href= "/2019/05/13/bugku代码审计wp/" >bugku代码审计wp</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/13</span><a class="archive-post-title" href= "/2019/05/13/bugku代码审计wp/" >bugku代码审计wp</a>
+            <span class="archive-post-date">05/13</span><a class="archive-post-title" href= "/2019/05/13/代码审计的相关函数分析/" >代码审计相关函数分析</a>
         </li>
     
     
@@ -1380,27 +1394,27 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="ctf"><span class="iconfont-archer">&#xe60a;</span>ctf</span>
     
-        <span class="sidebar-category-name" data-categories="编程"><span class="iconfont-archer">&#xe60a;</span>编程</span>
-    
         <span class="sidebar-category-name" data-categories="安全"><span class="iconfont-archer">&#xe60a;</span>安全</span>
     
         <span class="sidebar-category-name" data-categories="代码审计"><span class="iconfont-archer">&#xe60a;</span>代码审计</span>
     
-        <span class="sidebar-category-name" data-categories="web"><span class="iconfont-archer">&#xe60a;</span>web</span>
+        <span class="sidebar-category-name" data-categories="编程"><span class="iconfont-archer">&#xe60a;</span>编程</span>
     
-        <span class="sidebar-category-name" data-categories="Web"><span class="iconfont-archer">&#xe60a;</span>Web</span>
+        <span class="sidebar-category-name" data-categories="web"><span class="iconfont-archer">&#xe60a;</span>web</span>
     
         <span class="sidebar-category-name" data-categories="渗透"><span class="iconfont-archer">&#xe60a;</span>渗透</span>
     
+        <span class="sidebar-category-name" data-categories="Web"><span class="iconfont-archer">&#xe60a;</span>Web</span>
+    
         <span class="sidebar-category-name" data-categories="开发"><span class="iconfont-archer">&#xe60a;</span>开发</span>
-    
-        <span class="sidebar-category-name" data-categories="渗透测试"><span class="iconfont-archer">&#xe60a;</span>渗透测试</span>
-    
-        <span class="sidebar-category-name" data-categories="其他"><span class="iconfont-archer">&#xe60a;</span>其他</span>
     
         <span class="sidebar-category-name" data-categories="other"><span class="iconfont-archer">&#xe60a;</span>other</span>
     
         <span class="sidebar-category-name" data-categories="资料"><span class="iconfont-archer">&#xe60a;</span>资料</span>
+    
+        <span class="sidebar-category-name" data-categories="其他"><span class="iconfont-archer">&#xe60a;</span>其他</span>
+    
+        <span class="sidebar-category-name" data-categories="渗透测试"><span class="iconfont-archer">&#xe60a;</span>渗透测试</span>
     
         <span class="sidebar-category-name" data-categories="技术小卖铺"><span class="iconfont-archer">&#xe60a;</span>技术小卖铺</span>
     
