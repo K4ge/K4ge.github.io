@@ -346,6 +346,67 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/2019/09/17/ESPCMS代码审计/" >
+            
+                <span>ESPCMS代码审计</span>
+        </a>
+        <div class="abstract-content">
+            espcms p8 后台sql注入原理分析在ArticleMain.php，第108行，$search_key通过$_REQUEST全局变量获得。第110行，$search_key经过了一次url解码，这里是漏洞关键点，我们可以通过双重url编码进行绕过全局addslashes过滤，从而进行sql注入。之后$search_key变量拼接到$db_where中1$search_key = urldecode($search_key);
+在第114行，需要searchlist参数为false才能继续执行最后$db_where直接被带入SQL语句中执行
+漏洞复现后台登录，选择内容管理在最右边有...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/09/17</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "other">other</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2019/09/11/phar+mysql client触发反序列化本地复现/" >
+            
+                <span>phar+mysql client触发反序列化本地复现</span>
+        </a>
+        <div class="abstract-content">
+            原理用户请求mysql_client端，client会连接mysql server服务器，mysql server服务器读取phar://phar.gif/test.txt，使得client端执行load client data...的sql语句读取phar文件，触发反序列化。
+mysql_client端脚本my_ubuntu12345678910&lt;?phpclass TestObject &#123;	public function __destruct() &#123;		echo &apos;Destruct called&apos;;	&#125;&#125;$m = my...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/09/11</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "other">other</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/2019/09/10/linux常用指令/" >
             
                 <span>linux常用指令</span>
@@ -572,65 +633,6 @@ preg_match函数问题PHP为了防止拒绝服务攻击，设置了回溯上限�
             <!-- date  -->
             <div class="abstract-date">
                 <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/09/04</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "other">other</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/09/04/链接/" >
-            
-                <span>一些链接记录</span>
-        </a>
-        <div class="abstract-content">
-            phpStorm调试：https://www.php.cn/php-weizijiaocheng-387522.html
-
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/09/04</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "other">other</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/09/01/Typecho反序列化小白笔记/" >
-            
-                <span>Typecho反序列化小白笔记</span>
-        </a>
-        <div class="abstract-content">
-            分析序列化内容：Array（Object）反序列化反序列化内容传入Typecho_Db的构造函数中Typecho_Db构造函数将Object与字符串拼接触发__toString方法搜寻__toString方法在Typecho_Feed类中__toString方法第290行的私有变量调用了某个属性$_items该属性被遍历，其元素的$item[&#39;author&#39;]调用了某个属性screenName我们可以控制其访问不可访问属性来触发__get方法，因此将Object设置为Typecho_feed搜寻__get方法找到Typecho_Request类，分析__get方法，__g...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/09/01</span>
             </div>
             <!-- tags  -->
             
@@ -1184,9 +1186,63 @@ preg_match函数问题PHP为了防止拒绝服务攻击，设置了回溯上限�
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 33
+        Total : 35
         </div>
         <!-- search  -->
         
@@ -1199,6 +1255,16 @@ preg_match函数问题PHP为了防止拒绝服务攻击，设置了回溯上限�
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/17</span><a class="archive-post-title" href= "/2019/09/17/ESPCMS代码审计/" >ESPCMS代码审计</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/11</span><a class="archive-post-title" href= "/2019/09/11/phar+mysql client触发反序列化本地复现/" >phar+mysql client触发反序列化本地复现</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -1267,12 +1333,12 @@ preg_match函数问题PHP为了防止拒绝服务攻击，设置了回溯上限�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">08/23</span><a class="archive-post-title" href= "/2019/08/23/跨域实现-jsonp和CORS/" >跨域实现-jsonp和CORS</a>
+            <span class="archive-post-date">08/23</span><a class="archive-post-title" href= "/2019/08/23/sqli-labs 通关1/" >sqli-labs 通关1</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">08/23</span><a class="archive-post-title" href= "/2019/08/23/sqli-labs 通关1/" >sqli-labs 通关1</a>
+            <span class="archive-post-date">08/23</span><a class="archive-post-title" href= "/2019/08/23/跨域实现-jsonp和CORS/" >跨域实现-jsonp和CORS</a>
         </li>
     
     
@@ -1370,9 +1436,9 @@ preg_match函数问题PHP为了防止拒绝服务攻击，设置了回溯上限�
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
     
-        <span class="sidebar-tag-name" data-tags="other"><span class="iconfont-archer">&#xe606;</span>other</span>
-    
         <span class="sidebar-tag-name" data-tags="编程"><span class="iconfont-archer">&#xe606;</span>编程</span>
+    
+        <span class="sidebar-tag-name" data-tags="other"><span class="iconfont-archer">&#xe606;</span>other</span>
     
         <span class="sidebar-tag-name" data-tags="Web"><span class="iconfont-archer">&#xe606;</span>Web</span>
     
@@ -1415,27 +1481,29 @@ jsonContent:
         <div class="sidebar-panel-categories">
     <div class="sidebar-categories-name">
     
-        <span class="sidebar-category-name" data-categories="ctf"><span class="iconfont-archer">&#xe60a;</span>ctf</span>
-    
         <span class="sidebar-category-name" data-categories="编程"><span class="iconfont-archer">&#xe60a;</span>编程</span>
+    
+        <span class="sidebar-category-name" data-categories="ctf"><span class="iconfont-archer">&#xe60a;</span>ctf</span>
     
         <span class="sidebar-category-name" data-categories="安全"><span class="iconfont-archer">&#xe60a;</span>安全</span>
     
         <span class="sidebar-category-name" data-categories="代码审计"><span class="iconfont-archer">&#xe60a;</span>代码审计</span>
     
+        <span class="sidebar-category-name" data-categories="Web"><span class="iconfont-archer">&#xe60a;</span>Web</span>
+    
         <span class="sidebar-category-name" data-categories="web"><span class="iconfont-archer">&#xe60a;</span>web</span>
     
         <span class="sidebar-category-name" data-categories="渗透"><span class="iconfont-archer">&#xe60a;</span>渗透</span>
     
-        <span class="sidebar-category-name" data-categories="Web"><span class="iconfont-archer">&#xe60a;</span>Web</span>
+        <span class="sidebar-category-name" data-categories="杂货店"><span class="iconfont-archer">&#xe60a;</span>杂货店</span>
     
         <span class="sidebar-category-name" data-categories="开发"><span class="iconfont-archer">&#xe60a;</span>开发</span>
     
-        <span class="sidebar-category-name" data-categories="其他"><span class="iconfont-archer">&#xe60a;</span>其他</span>
+        <span class="sidebar-category-name" data-categories="other"><span class="iconfont-archer">&#xe60a;</span>other</span>
     
         <span class="sidebar-category-name" data-categories="渗透测试"><span class="iconfont-archer">&#xe60a;</span>渗透测试</span>
     
-        <span class="sidebar-category-name" data-categories="other"><span class="iconfont-archer">&#xe60a;</span>other</span>
+        <span class="sidebar-category-name" data-categories="其他"><span class="iconfont-archer">&#xe60a;</span>其他</span>
     
         <span class="sidebar-category-name" data-categories="资料"><span class="iconfont-archer">&#xe60a;</span>资料</span>
     
