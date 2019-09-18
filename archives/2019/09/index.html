@@ -346,14 +346,15 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href = "/2019/09/18/C语言套接字编程/" >
+        <a class="abstract-title" href = "/2019/09/18/linux常用指令/" >
             
-                <span>C语言套接字编程</span>
+                <span>linux常用指令</span>
         </a>
         <div class="abstract-content">
-            前言学校最近布置了个套接字实验，挺有意思的，记录一下。
-题目描述
-服务器端代码服务器端，前部分代码大部分都为套路，从while循环开始，正式编程。通过accept函数返回值得到已连接套接字，之后我们都要使用这个套接字与客户端进行通信，同时该函数还会将客户端套接字通过指针进行返回，我们可以通过该套接字获取客户端的信息。如果要退出，直接exit就可以。第二层while对read进行循环，可以循环读取客户端输入的数据，这是一个阻塞函数，当客户端提交数据，将会调用该函数，该函数返回用户输入的字符串长度，而用户输入的字符串是通过指针传到buff值进行返回，要退出循环可以用exit。read之后可以...
+            Mysql授权用户远程访问登录Mysql，执行sql语句1234use mysql;grant all privileges on *.* to &apos;root&apos;@&apos;%&apos; identified by &apos;root&apos; with grant option;flush privileges;quit;
+修改mysqld.cnf，默认位置在/etc/mysql/mysql.conf.d1vi /etc/mysql/mysql.conf.d/mysqld.cnf
+将bind=127.0.0.1注释掉1service mysql restart
+...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -377,15 +378,44 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href = "/2019/09/18/linux常用指令/" >
+        <a class="abstract-title" href = "/2019/09/18/链接/" >
             
-                <span>linux常用指令</span>
+                <span>链接</span>
         </a>
         <div class="abstract-content">
-            Mysql授权用户远程访问登录Mysql，执行sql语句1234use mysql;grant all privileges on *.* to &apos;root&apos;@&apos;%&apos; identified by &apos;root&apos; with grant option;flush privileges;quit;
-修改mysqld.cnf，默认位置在/etc/mysql/mysql.conf.d1vi /etc/mysql/mysql.conf.d/mysqld.cnf
-将bind=127.0.0.1注释掉1service mysql restart
-...
+            phpStorm调试：https://www.php.cn/php-weizijiaocheng-387522.html短信轰炸：https://www.anquanke.com/post/id/93878windows defender关闭：https://www.win7qjb.com/jiaocheng/41093.html
+
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/09/18</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "other">other</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2019/09/18/C语言套接字编程/" >
+            
+                <span>C语言套接字编程</span>
+        </a>
+        <div class="abstract-content">
+            前言学校最近布置了个套接字实验，挺有意思的，记录一下。
+题目描述
+服务器端代码服务器端，前部分代码大部分都为套路，从while循环开始，正式编程。通过accept函数返回值得到已连接套接字，之后我们都要使用这个套接字与客户端进行通信，同时该函数还会将客户端套接字通过指针进行返回，我们可以通过该套接字获取客户端的信息。如果要退出，直接exit就可以。第二层while对read进行循环，可以循环读取客户端输入的数据，这是一个阻塞函数，当客户端提交数据，将会调用该函数，该函数返回用户输入的字符串长度，而用户输入的字符串是通过指针传到buff值进行返回，要退出循环可以用exit。read之后可以...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -599,37 +629,6 @@ preg_match函数问题PHP为了防止拒绝服务攻击，设置了回溯上限�
             1.Warmup：123function escape(s) &#123;  return &apos;&lt;script&gt;console.log(&quot;&apos;+s+&apos;&quot;);&lt;/script&gt;&apos;;&#125;
 将用户输入字符串放入console.log中，可以通过闭合括号和注释，输出alert&quot;);alert(1)//js正则表达式
 2.Adobe：1234function escape(s) &#123;  s = s.replace(/&quot;/g, &apos;\\&quot;&apos;);  retur...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/09/05</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "other">other</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/09/05/XSS挑战write up/" >
-            
-                <span>XSS挑战write up</span>
-        </a>
-        <div class="abstract-content">
-            一、DVWA1.DOMlow：&lt;script&gt;alert(1)&lt;/script&gt;medium：&lt;/option&gt;&lt;/select&gt;&lt;img src=1 onerror=alert(1)&gt;注意有的要包裹前面的high：English#&lt;script&gt;alert(1)&lt;/script&gt;服务器端过滤的是GET的参数，而前端js使用的是整个url，可以通过#隔开插入js语句
-2.stored和reflect&lt;img src=1 onerror=alert(1)&gt;通关所有
-二、XSS挑战level1：h...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -1238,6 +1237,16 @@ preg_match函数问题PHP为了防止拒绝服务攻击，设置了回溯上限�
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
         Total : 37
@@ -1256,22 +1265,27 @@ preg_match函数问题PHP为了防止拒绝服务攻击，设置了回溯上限�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">09/18</span><a class="archive-post-title" href= "/2019/09/18/C语言套接字编程/" >C语言套接字编程</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">09/18</span><a class="archive-post-title" href= "/2019/09/18/linux常用指令/" >linux常用指令</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">09/18</span><a class="archive-post-title" href= "/2019/09/18/SCMS接口处存在sql注入漏洞/" >SCMS接口处存在sql注入漏洞</a>
+            <span class="archive-post-date">09/18</span><a class="archive-post-title" href= "/2019/09/18/链接/" >链接</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/18</span><a class="archive-post-title" href= "/2019/09/18/C语言套接字编程/" >C语言套接字编程</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">09/18</span><a class="archive-post-title" href= "/2019/09/18/python脚本(不定时更新)/" >python脚本(不定时更新)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/18</span><a class="archive-post-title" href= "/2019/09/18/SCMS接口处存在sql注入漏洞/" >SCMS接口处存在sql注入漏洞</a>
         </li>
     
     
@@ -1312,11 +1326,6 @@ preg_match函数问题PHP为了防止拒绝服务攻击，设置了回溯上限�
     
         <li class="archive-post-item">
             <span class="archive-post-date">09/04</span><a class="archive-post-title" href= "/2019/09/04/ESPCMS p8前台SQL注入/" >ESPCMS p8前台SQL注入</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">09/04</span><a class="archive-post-title" href= "/2019/09/04/链接/" >一些链接记录</a>
         </li>
     
     
@@ -1411,12 +1420,12 @@ preg_match函数问题PHP为了防止拒绝服务攻击，设置了回溯上限�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/13</span><a class="archive-post-title" href= "/2019/05/13/bugku代码审计wp/" >bugku代码审计wp</a>
+            <span class="archive-post-date">05/13</span><a class="archive-post-title" href= "/2019/05/13/代码审计的相关函数分析/" >代码审计相关函数分析</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/13</span><a class="archive-post-title" href= "/2019/05/13/代码审计的相关函数分析/" >代码审计相关函数分析</a>
+            <span class="archive-post-date">05/13</span><a class="archive-post-title" href= "/2019/05/13/bugku代码审计wp/" >bugku代码审计wp</a>
         </li>
     
     
@@ -1448,9 +1457,9 @@ preg_match函数问题PHP为了防止拒绝服务攻击，设置了回溯上限�
     
         <span class="sidebar-tag-name" data-tags="编程"><span class="iconfont-archer">&#xe606;</span>编程</span>
     
-        <span class="sidebar-tag-name" data-tags="web"><span class="iconfont-archer">&#xe606;</span>web</span>
-    
         <span class="sidebar-tag-name" data-tags="Web"><span class="iconfont-archer">&#xe606;</span>Web</span>
+    
+        <span class="sidebar-tag-name" data-tags="web"><span class="iconfont-archer">&#xe606;</span>web</span>
     
         <span class="sidebar-tag-name" data-tags="ctf"><span class="iconfont-archer">&#xe606;</span>ctf</span>
     
@@ -1489,7 +1498,7 @@ jsonContent:
         <div class="sidebar-panel-categories">
     <div class="sidebar-categories-name">
     
-        <span class="sidebar-category-name" data-categories="学习"><span class="iconfont-archer">&#xe60a;</span>学习</span>
+        <span class="sidebar-category-name" data-categories="安全"><span class="iconfont-archer">&#xe60a;</span>安全</span>
     
         <span class="sidebar-category-name" data-categories="编程"><span class="iconfont-archer">&#xe60a;</span>编程</span>
     
@@ -1497,7 +1506,7 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="代码审计"><span class="iconfont-archer">&#xe60a;</span>代码审计</span>
     
-        <span class="sidebar-category-name" data-categories="安全"><span class="iconfont-archer">&#xe60a;</span>安全</span>
+        <span class="sidebar-category-name" data-categories="学习"><span class="iconfont-archer">&#xe60a;</span>学习</span>
     
         <span class="sidebar-category-name" data-categories="web"><span class="iconfont-archer">&#xe60a;</span>web</span>
     
@@ -1509,9 +1518,9 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="开发"><span class="iconfont-archer">&#xe60a;</span>开发</span>
     
-        <span class="sidebar-category-name" data-categories="其他"><span class="iconfont-archer">&#xe60a;</span>其他</span>
-    
         <span class="sidebar-category-name" data-categories="渗透测试"><span class="iconfont-archer">&#xe60a;</span>渗透测试</span>
+    
+        <span class="sidebar-category-name" data-categories="其他"><span class="iconfont-archer">&#xe60a;</span>其他</span>
     
         <span class="sidebar-category-name" data-categories="other"><span class="iconfont-archer">&#xe60a;</span>other</span>
     
