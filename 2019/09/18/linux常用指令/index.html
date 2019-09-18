@@ -22,7 +22,7 @@
     <meta name="description" content="">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>阿杰的小站</title>
+    <title>linux常用指令 · 阿杰的小站</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -203,12 +203,23 @@
 </head>
 
     
+        <body class="post-body">
+    
     
 <header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >阿杰的小站</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">linux常用指令</a>
+            </div>
+    </div>
     
     <a class="home-link" href=/>阿杰的小站</a>
 </header>
@@ -220,24 +231,74 @@
 
 
 
+
+height:50vh;
 ">
     
     <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/)"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
+            
+            linux常用指令
+            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
+            
+            <!-- 404 -->
+            
         </p>
         <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "other">other</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>Word count: <span class="post-count word-count">640</span>Reading time: <span class="post-count reading-time">3 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2019/09/18</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
         
     </div>
 </div>
@@ -340,138 +401,37 @@
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-<p><strong>Table of Contents</strong>  <em>generated with <a href="https://github.com/thlorenz/doctoc" target="_blank" rel="noopener">DocToc</a></em></p>
-<ul>
-<li><a href="#1msf%E6%9E%B6%E6%9E%84">1.MSF架构</a><ul>
-<li><a href="#11msf%E7%9A%84%E6%9E%B6%E6%9E%84%E5%8F%AF%E4%BB%A5%E7%AE%80%E5%8D%95%E7%9A%84%E7%94%A8%E8%BF%99%E5%B9%85%E5%9B%BE%E6%8F%8F%E8%BF%B0">1.1.MSF的架构可以简单的用这幅图描述</a></li>
-<li><a href="#12msf%E7%9A%84%E6%95%B0%E6%8D%AE%E5%BA%93">1.2.MSF的数据库</a></li>
-</ul>
-</li>
-<li><a href="#2msf%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4">2.MSF常用命令</a><ul>
-<li><a href="#21%E4%BD%BF%E7%94%A8msf%E5%89%8D%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8%E7%9A%84%E4%B8%80%E4%BA%9B%E5%91%BD%E4%BB%A4">2.1.使用MSF前可以使用的一些命令：</a></li>
-<li><a href="#22msf%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4">2.2.MSF的一些常用命令</a></li>
-</ul>
-</li>
-</ul>
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
-<hr>
-<h2 id="title-Metasploit-Framework"><a href="#title-Metasploit-Framework" class="headerlink" title="title: Metasploit Framework"></a>title: Metasploit Framework</h2><h2 id="1-MSF架构"><a href="#1-MSF架构" class="headerlink" title="1.MSF架构"></a>1.MSF架构</h2><p>了解架构可以清楚的知道msf是怎么工作的。</p>
-<h3 id="1-1-MSF的架构可以简单的用这幅图描述"><a href="#1-1-MSF的架构可以简单的用这幅图描述" class="headerlink" title="1.1.MSF的架构可以简单的用这幅图描述"></a>1.1.MSF的架构可以简单的用这幅图描述</h3><p><img src="/img/5211.png" alt=""><br>msf的架构，对于大部分库初学先简单了解下有些概念就行了，因为很多在后台自动化运行接触不到。<br><a id="more"></a></p>
-<ul>
-<li><p><strong>Rex：“基础库”</strong><br>MSF需要依赖的基本功能的库，用于完成日常基本任务，无需人工手动编码实现<br>如：处理socket连接访问、协议应答(http、SMB、SMB等)、编码转换</p>
-</li>
-<li><p><strong>MSF::Core：“底层核心库”</strong><br>MSF最底层、最基本功能的实现，提供MSF的核心基本API，是框架核心能力实现库。<br>如：Datastore(数据库管理)、PluginManager(插件管理)等</p>
-</li>
-<li><p><strong>MSF::Base: “基础库”</strong><br>Core库经过扩展形成Base库，主要是为上层用户更好调用API、再次开发的库。<br>如：Sessions(对会话进行管理)</p>
-</li>
-<li><p><strong>MSF::UI：“用户界面”</strong><br>MSF提供了6种操作方式，kali一般是用console命令行操作。</p>
-</li>
-<li><p><strong>Framework Plugins：“框架扩展”</strong><br>MSF虽然很强大，但是也并不是所有功能都包含，因而可以调用一些扩展来完善<br>如：可以调用nessus、openvas、sqlmap、nmap等</p>
-</li>
-<li><p>🚩<strong>Penetration Modules: “渗透模块”</strong><br>这个模块是用户直接使用、调用功能的模块，是我们最经常使用的模块。</p>
-<ul>
-<li>Auxiliary：“辅助模块”<br>用户执行信息收集、枚举、指纹探测、扫描等功能的模块。</li>
-<li>Exploits：“利用模块”<br>利用漏洞进行攻击的动作，这个模块对应每一个具体漏洞的攻击方法。</li>
-<li>Payloads<br>成功exploit之后，真正在目标系统执行的代码或指令。</li>
-<li>Encoders<br>主要是辅助payloads模块，对payload进行加密，躲避AV检查的模块</li>
-<li>Nops<br>也是用来辅助payloads模块，能够提高payload的稳定性及维持大小。</li>
-</ul>
-</li>
-</ul>
-<h3 id="1-2-MSF的数据库"><a href="#1-2-MSF的数据库" class="headerlink" title="1.2.MSF的数据库"></a>1.2.MSF的数据库</h3><p>可以让各个数据能够在每个模块存储、传输，如：通过Auxiliary模块搜集的信息通过exploit模块进行利用。<br>MSF使用的是postgersql数据库进行数据存储，工作在5432端口。在每次开启MSF的时候，都会开启数据库。</p>
-<p>但有时候数据库开启也会失败，可以用下面命令调试一下：</p>
-<ul>
-<li>service postgresql start：开启postgresql服务</li>
-<li>msfdb init：初始化数据库</li>
-<li>msfdb reinit：重新初始化数据库</li>
-<li>msfdb delete：删除数据库</li>
-<li>msfdb start：觉得数据没开启自己开一下</li>
-<li>msfdb stop：手动停止数据库</li>
-</ul>
-<h2 id="2-MSF常用命令"><a href="#2-MSF常用命令" class="headerlink" title="2.MSF常用命令"></a>2.MSF常用命令</h2><p>命令行操作那肯定要熟悉命令啦，不然怎么操作…其实大部分命令可以用msf的help，或者命令加-h就可以得到详细指南，不过都是英文的，看的有点头大，所以把一些常用的整理一下..</p>
-<h3 id="2-1-使用MSF前可以使用的一些命令："><a href="#2-1-使用MSF前可以使用的一些命令：" class="headerlink" title="2.1.使用MSF前可以使用的一些命令："></a>2.1.使用MSF前可以使用的一些命令：</h3><ul>
-<li>msfupdate：使用前升级</li>
-<li>msfconsle<ul>
-<li>-h：帮助</li>
-<li>-q：安静启动</li>
-<li>-r：导入资源<br><br>如：msfconsole -r r.rc</li>
-<li>-v：查看版本</li>
-<li>-x：编写脚本便于调用<br><br>如：msfconsole -x “use ms08_067_netapi;set RHOST 1.1.1.1 ……”</li>
-</ul>
-</li>
-</ul>
-<h3 id="2-2-MSF的一些常用命令"><a href="#2-2-MSF的一些常用命令" class="headerlink" title="2.2.MSF的一些常用命令"></a>2.2.MSF的一些常用命令</h3><p>在msf界面下，可以使用kali下的命令，如cd、ls、pwd、甚至nc、sqlmap都可以</p>
-<ul>
-<li>banner：进入控制界面获得的图像</li>
-<li>back：回到提示符起点</li>
-<li>color：设置提示符颜色<br>如：color false就是关闭颜色</li>
-<li>connect：可以理解为提示符界面下的nc命令<br>如：connect 192.168.1.1 80</li>
-<li>show：显示功能模块信息<br>如：show encoders</li>
-<li>search：寻找模块<br>如：search ms10-046<br>参数：<ul>
-<li>name：关键字筛选</li>
-<li>path：路径筛选</li>
-<li>platform：哪个平台的</li>
-<li>cve：比如2018就是2018的cve</li>
-<li>type：哪个类型的(payloads、exploit等)</li>
-</ul>
-</li>
-<li>use：进入模块<br>进入模块后，可以进行这些命令：<ul>
-<li>info: 得到模块信息</li>
-<li>show：<br>如：show options<br>参数：<ul>
-<li>targets：显示可攻击的目标</li>
-<li>options：显示可选项</li>
-<li>payloads：适用于当前模块的pyaload</li>
-<li>evasion：做混淆的参数</li>
-<li>missing：查看哪些选项还没设置</li>
-</ul>
-</li>
-<li>set：设置选项，设置的结果只在当前运行有效<br>如：set rhost 192.168.1.1</li>
-<li>setg：设置全局选项，就是所有模块的这个选项都被设置</li>
-<li>unset：取消选项</li>
-<li>unsetg：取消全局选项</li>
-<li>edit：直接修改模块的脚本文件内容，进行二次开发</li>
-<li>check：测试一下目标是否存在漏洞，大部分模块没这个功能</li>
-<li>back：回到命令行起点位置</li>
-<li>run：运行模块，auxiliary习惯使用</li>
-<li>exoploit：也是运行模块，exploit习惯使用<br>-j：命令执行后，会在后台执行</li>
-<li>creds：查看攻击后的信息</li>
-<li>vulns：扫完漏洞后可以查看漏洞</li>
-<li>loot：查看密码的hash值</li>
-<li>sessions：一旦攻击成功，会在目标机器与攻击机建立一个会话，这个命令可以查看会话<br>-i 2：进入第二个会话</li>
-</ul>
-</li>
-<li>db_<ul>
-<li>db_status：查看数据库状态，要是没连上，可以看下上文1.2处理方案</li>
-<li>db_rebulid_cache：缓存模块信息，可以让search命令搜的更快</li>
-<li>db_disconnect：断开连接</li>
-<li>db_conncet：连接指定数据库</li>
-<li>db_nmap：和nmap几乎一样，不同的是会把结果保存在数据库里</li>
-<li>db_export：将数据导出<br>如：db_export -f xml /root/msf.bak.xml</li>
-<li>db_import：将数据导入，可以导入备份数据，甚至可以导入nmap扫出来的数据<br>如：db_import /root/nmap.xml</li>
-</ul>
-</li>
-<li>hosts：查看已发现的主机</li>
-<li>sevices：查看发现主机的端口信息</li>
-<li>save：保存刚才设置所有操作成配置文件，配置文件在/root/.msf4/config</li>
-<li>load：调用外部插件<br>如：load nessus</li>
-<li>unload：取消调用</li>
-<li>loadpath：调用自己开发的模块</li>
-<li>route：指定session路由流量</li>
-<li>resource：调用资源文件<br>如：可以设置一个资源文件为<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">use ms08-067</span><br><span class="line">set rhost 192.168.1.121</span><br><span class="line">exploit</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>保存为r.rc，然后resouce r.rc直接调用</p>
-
+        <h2 id="Mysql授权用户远程访问"><a href="#Mysql授权用户远程访问" class="headerlink" title="Mysql授权用户远程访问"></a>Mysql授权用户远程访问</h2><p>登录Mysql，执行sql语句<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">use mysql;</span><br><span class="line">grant all privileges on *.* to &apos;root&apos;@&apos;%&apos; identified by &apos;root&apos; with grant option;</span><br><span class="line">flush privileges;</span><br><span class="line">quit;</span><br></pre></td></tr></table></figure></p>
+<p>修改mysqld.cnf，默认位置在/etc/mysql/mysql.conf.d<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/mysql/mysql.conf.d/mysqld.cnf</span><br></pre></td></tr></table></figure></p>
+<p>将bind=127.0.0.1注释掉<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service mysql restart</span><br></pre></td></tr></table></figure></p>
+<p>重启mysql即可</p>
+<h2 id="Git操作"><a href="#Git操作" class="headerlink" title="Git操作"></a>Git操作</h2><p>ssh和https抓取<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git clone git@github.com:k4ge/k4ge</span><br><span class="line">git clone https://github.com/k4ge/k4ge</span><br></pre></td></tr></table></figure></p>
+<h2 id="Docker安装"><a href="#Docker安装" class="headerlink" title="Docker安装"></a>Docker安装</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">apt-get install docker</span><br><span class="line">apt-get install docker.io</span><br><span class="line">apt-get install docker-compose</span><br></pre></td></tr></table></figure>
+<h2 id="Docker-compose安装"><a href="#Docker-compose安装" class="headerlink" title="Docker-compose安装"></a>Docker-compose安装</h2><p>到github，docker项目<br><a href="https://github.com/docker/compose/releases" target="_blank" rel="noopener">https://github.com/docker/compose/releases</a><br>以14.1为例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl -L https://github.com/docker/compose/releases/download/1.24.1/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose</span><br><span class="line">chmod +x /usr/local/bin/docker-compose</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cp /usr/local/bin/docker-compose /usr/local/bin</span><br><span class="line">chmod +x /usr/local/bin/docker-compose</span><br></pre></td></tr></table></figure>
+<h2 id="Docker更改源"><a href="#Docker更改源" class="headerlink" title="Docker更改源"></a>Docker更改源</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gedit /etc/docker/daemon.json</span><br></pre></td></tr></table></figure>
+<p>添加<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">&quot;registry-mirrors&quot;: [&quot;https://docker.mirrors.ustc.edu.cn/&quot;,&quot;https://hub-mirror.c.163.com&quot;,&quot;https://registry.docker-cn.com&quot;],</span><br><span class="line">&quot;insecure-registries&quot;: [&quot;10.0.0.12:5000&quot;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>重启docker<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl restart docker.service</span><br><span class="line">service docker restart</span><br></pre></td></tr></table></figure></p>
+<h2 id="lnmp安装"><a href="#lnmp安装" class="headerlink" title="lnmp安装"></a>lnmp安装</h2><p>一键安装<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget http://soft.vpser.net/lnmp/lnmp1.6.tar.gz -cO lnmp1.6.tar.gz &amp;&amp; tar zxf lnmp1.6.tar.gz &amp;&amp; cd lnmp1.6 &amp;&amp; ./install.sh lnmp</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">nginx:</span><br><span class="line"> image: index.alauda.cn/library/nginx</span><br><span class="line"> links:</span><br><span class="line"> - phpfpm</span><br><span class="line"> ports:</span><br><span class="line"> - &quot;80:80&quot;</span><br><span class="line"> - &quot;443:443&quot;</span><br><span class="line"> volumes:</span><br><span class="line"> - /Users/chenishr/www:/usr/share/nginx/html</span><br><span class="line"> - ./nginx.conf:/etc/nginx/nginx.conf</span><br><span class="line"> - ./nginx.d:/etc/nginx/conf.d</span><br><span class="line"></span><br><span class="line">mysql:</span><br><span class="line"> image: index.alauda.cn/library/mysql</span><br><span class="line"> environment:</span><br><span class="line"> MYSQL_ROOT_PASSWORD: qazasdedc123</span><br><span class="line"> ports:</span><br><span class="line"> - &quot;3306:3306&quot;</span><br><span class="line"></span><br><span class="line">phpfpm:</span><br><span class="line"> image: index.alauda.cn/library/php:7.0-fpm</span><br><span class="line"> links:</span><br><span class="line"> - mysql</span><br><span class="line"> volumes:</span><br><span class="line"> - /Users/chenishr/www:/var/www/html</span><br><span class="line"> ports:</span><br><span class="line"> - &quot;9000:9000&quot;</span><br></pre></td></tr></table></figure>
+<p>改端口<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/nginx/conf/</span><br><span class="line">vi nginx.conf</span><br><span class="line">修改listen的值</span><br></pre></td></tr></table></figure></p>
+<p>绑定域名<br><a href="https://blog.csdn.net/grn11/article/details/77869117" target="_blank" rel="noopener">https://blog.csdn.net/grn11/article/details/77869117</a></p>
+<h2 id="更换源"><a href="#更换源" class="headerlink" title="更换源"></a>更换源</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gedit /etc/apt/sources.list</span><br></pre></td></tr></table></figure>
+<p>在这里找个合适的替换掉文件内容即可<br><a href="https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/" target="_blank" rel="noopener">https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/</a><br>清华源：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"># 默认注释了源码镜像以提高 apt update 速度，如有需要可自行取消注释</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial main restricted universe multiverse</span><br><span class="line"># deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial main restricted universe multiverse</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-updates main restricted universe multiverse</span><br><span class="line"># deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-updates main restricted universe multiverse</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-backports main restricted universe multiverse</span><br><span class="line"># deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-backports main restricted universe multiverse</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-security main restricted universe multiverse</span><br><span class="line"># deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-security main restricted universe multiverse</span><br><span class="line"></span><br><span class="line"># 预发布软件源，不建议启用</span><br><span class="line"># deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-proposed main restricted universe multiverse</span><br><span class="line"># deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-proposed main restricted universe multiverse</span><br></pre></td></tr></table></figure></p>
+<h2 id="apache启动"><a href="#apache启动" class="headerlink" title="apache启动"></a>apache启动</h2><p>安装apache<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get install apache2</span><br></pre></td></tr></table></figure></p>
+<p>安装php<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get install php</span><br></pre></td></tr></table></figure></p>
+<p>配置apache与php<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get install libapache2-mod-php</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/etc/init.d/apache2 start</span><br><span class="line">/etc/init.d/apache2 restart</span><br><span class="line">/etc/init.d/apache2 stop</span><br></pre></td></tr></table></figure>
+<h2 id="linux进程"><a href="#linux进程" class="headerlink" title="linux进程"></a>linux进程</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ps -ef |grep redis</span><br><span class="line">kill -9 4394</span><br></pre></td></tr></table></figure>
+<h2 id="mysqli"><a href="#mysqli" class="headerlink" title="mysqli"></a>mysqli</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get install php7.0-mysqli php7.0-mysqlnd</span><br></pre></td></tr></table></figure>
     </article>
     <!-- license  -->
     
         <div class="license-wrapper">
             <p>Author：<a href="http://yoursite.com">Kage</a>
-            <p>原文链接：<a href="http://yoursite.com/others/zaoqi/msf.html">http://yoursite.com/others/zaoqi/msf.html</a>
-            <p>发表日期：<a href="http://yoursite.com/others/zaoqi/msf.html">July 20th 2019, 6:33:37 pm</a>
-            <p>更新日期：<a href="http://yoursite.com/others/zaoqi/msf.html">July 20th 2019, 6:33:37 pm</a>
+            <p>原文链接：<a href="http://yoursite.com/2019/09/18/linux常用指令/">http://yoursite.com/2019/09/18/linux常用指令/</a>
+            <p>发表日期：<a href="http://yoursite.com/2019/09/18/linux常用指令/">九月 18日 2019, 12:12:53 中午</a>
+            <p>更新日期：<a href="http://yoursite.com/2019/09/18/linux常用指令/">September 18th 2019, 12:12:53 pm</a>
             <p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
@@ -479,8 +439,18 @@
     <ul class="post-paginator">
         <li class="next">
             
+                <div class="nextSlogan">Next Post</div>
+                <a href= "/2019/09/18/C语言套接字编程/" title= "C语言套接字编程">
+                    <div class="nextTitle">C语言套接字编程</div>
+                </a>
+            
         </li>
         <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href= "/2019/09/18/python脚本(不定时更新)/" title= "python脚本(不定时更新)">
+                    <div class="prevTitle">python脚本(不定时更新)</div>
+                </a>
             
         </li>
     </ul>
@@ -579,6 +549,24 @@
 </footer>
     </div>
     <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Mysql授权用户远程访问"><span class="toc-number">1.</span> <span class="toc-text">Mysql授权用户远程访问</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Git操作"><span class="toc-number">2.</span> <span class="toc-text">Git操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker安装"><span class="toc-number">3.</span> <span class="toc-text">Docker安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker-compose安装"><span class="toc-number">4.</span> <span class="toc-text">Docker-compose安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker更改源"><span class="toc-number">5.</span> <span class="toc-text">Docker更改源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#lnmp安装"><span class="toc-number">6.</span> <span class="toc-text">lnmp安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#更换源"><span class="toc-number">7.</span> <span class="toc-text">更换源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#apache启动"><span class="toc-number">8.</span> <span class="toc-text">apache启动</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#linux进程"><span class="toc-number">9.</span> <span class="toc-text">linux进程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mysqli"><span class="toc-number">10.</span> <span class="toc-text">mysqli</span></a></li></ol>
+    </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
@@ -1396,6 +1384,8 @@ jsonContent:
     
     </div>
     <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
      
     </body>
 </html>

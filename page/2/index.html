@@ -359,6 +359,36 @@ height:50vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/2019/09/05/实验吧web wp/" >
+            
+                <span>实验吧web wp</span>
+        </a>
+        <div class="abstract-content">
+            1. 简单登录题考点：CBC翻转字节攻击+sql注入从返回包得到tip：test.php访问得到源码阅读源码，接收id，对id进行过滤，然后将id分配到数组进行序列化加密，把加密后的id数据和iv进行base64编码发送给用户，用户通过加密的id和iv访问页面，后台对id进行解密，无法序列化返回plaintext，能够序列化不检查直接拼接到sql语句库进行查询
+解法：sql注入：limit后的sql注入，可以通过拼接union进行查询，过滤了=，可以用regexp进行绕过，过滤了,，过滤了union，通过cbc进行绕过cbc翻转：解密是从后往前，第一次请求输入2nion，明文为2，可以进...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/09/05</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "other">other</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/2019/09/04/ESPCMS p8前台SQL注入/" >
             
                 <span>ESPCMS p8前台SQL注入</span>
@@ -617,37 +647,6 @@ jsonp许多html标签都能够跨域发出请求，如：img、a、script等，j
             <div class= abstract-tags >
     
         <a class="post-tag" href="javascript:void(0);" data-tags = "靶场">靶场</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/08/15/CBC翻转字节攻击/" >
-            
-                <span>CBC翻转字节攻击</span>
-        </a>
-        <div class="abstract-content">
-            CBC模式加密过程：将Plaintext分成多组，每组16个字节，第一轮与IV进行异或，然后加密，再将第一组密文与第二组plantext进行异或，再进行加密解密过程：与加密过程相反，先将密文解密，再与前一组密文异或，第一轮是先解密再与IV异或
-对于解密：设明文为X，密文为Y，解密函数为kX[i] = k(Y[i]) Xor Y[i-1]对于第一组：X[1] = k(Y[1]) Xor IV
-CBC翻转攻击如果客户知道明文X、密文Y和IV，并可以对其进行修改，那么可以实现CBC翻转攻击，使得后台解密得到的明文可以让我们所控制。控制X[i]：令Y[i-1] = Y[i-1] Xor X[i]...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/15</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "other">other</a>
     
 </div>
             
@@ -1339,30 +1338,9 @@ CBC翻转攻击如果客户知道明文X、密文Y和IV，并可以对其进行�
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 36
+        Total : 37
         </div>
         <!-- search  -->
         
@@ -1375,6 +1353,16 @@ CBC翻转攻击如果客户知道明文X、密文Y和IV，并可以对其进行�
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/18</span><a class="archive-post-title" href= "/2019/09/18/C语言套接字编程/" >C语言套接字编程</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/18</span><a class="archive-post-title" href= "/2019/09/18/linux常用指令/" >linux常用指令</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -1398,11 +1386,6 @@ CBC翻转攻击如果客户知道明文X、密文Y和IV，并可以对其进行�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">09/10</span><a class="archive-post-title" href= "/2019/09/10/linux常用指令/" >linux常用指令</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">09/09</span><a class="archive-post-title" href= "/2019/09/09/phar反序列化漏洞/" >phar反序列化漏洞</a>
         </li>
     
@@ -1413,12 +1396,12 @@ CBC翻转攻击如果客户知道明文X、密文Y和IV，并可以对其进行�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">09/05</span><a class="archive-post-title" href= "/2019/09/05/alert(1) to win wp/" >alert(1) to win wp</a>
+            <span class="archive-post-date">09/05</span><a class="archive-post-title" href= "/2019/09/05/XSS挑战write up/" >XSS挑战write up</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">09/05</span><a class="archive-post-title" href= "/2019/09/05/XSS挑战write up/" >XSS挑战write up</a>
+            <span class="archive-post-date">09/05</span><a class="archive-post-title" href= "/2019/09/05/alert(1) to win wp/" >alert(1) to win wp</a>
         </li>
     
     
@@ -1458,12 +1441,12 @@ CBC翻转攻击如果客户知道明文X、密文Y和IV，并可以对其进行�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">08/23</span><a class="archive-post-title" href= "/2019/08/23/跨域实现-jsonp和CORS/" >跨域实现-jsonp和CORS</a>
+            <span class="archive-post-date">08/23</span><a class="archive-post-title" href= "/2019/08/23/sqli-labs 通关1/" >sqli-labs 通关1</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">08/23</span><a class="archive-post-title" href= "/2019/08/23/sqli-labs 通关1/" >sqli-labs 通关1</a>
+            <span class="archive-post-date">08/23</span><a class="archive-post-title" href= "/2019/08/23/跨域实现-jsonp和CORS/" >跨域实现-jsonp和CORS</a>
         </li>
     
     
@@ -1606,13 +1589,15 @@ jsonContent:
         <div class="sidebar-panel-categories">
     <div class="sidebar-categories-name">
     
-        <span class="sidebar-category-name" data-categories="ctf"><span class="iconfont-archer">&#xe60a;</span>ctf</span>
+        <span class="sidebar-category-name" data-categories="学习"><span class="iconfont-archer">&#xe60a;</span>学习</span>
     
         <span class="sidebar-category-name" data-categories="编程"><span class="iconfont-archer">&#xe60a;</span>编程</span>
     
-        <span class="sidebar-category-name" data-categories="安全"><span class="iconfont-archer">&#xe60a;</span>安全</span>
+        <span class="sidebar-category-name" data-categories="ctf"><span class="iconfont-archer">&#xe60a;</span>ctf</span>
     
         <span class="sidebar-category-name" data-categories="代码审计"><span class="iconfont-archer">&#xe60a;</span>代码审计</span>
+    
+        <span class="sidebar-category-name" data-categories="安全"><span class="iconfont-archer">&#xe60a;</span>安全</span>
     
         <span class="sidebar-category-name" data-categories="web"><span class="iconfont-archer">&#xe60a;</span>web</span>
     
@@ -1624,9 +1609,9 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="开发"><span class="iconfont-archer">&#xe60a;</span>开发</span>
     
-        <span class="sidebar-category-name" data-categories="渗透测试"><span class="iconfont-archer">&#xe60a;</span>渗透测试</span>
-    
         <span class="sidebar-category-name" data-categories="其他"><span class="iconfont-archer">&#xe60a;</span>其他</span>
+    
+        <span class="sidebar-category-name" data-categories="渗透测试"><span class="iconfont-archer">&#xe60a;</span>渗透测试</span>
     
         <span class="sidebar-category-name" data-categories="other"><span class="iconfont-archer">&#xe60a;</span>other</span>
     
