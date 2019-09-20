@@ -346,6 +346,68 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/2019/09/07/PHP利用PCRE回溯绕过正则表达式/" >
+            
+                <span>PHP利用PCRE回溯绕过正则表达式</span>
+        </a>
+        <div class="abstract-content">
+            正则匹配过程PHP正则利用的是NFA（非确定性有限自动机）。遇到.*或者.+：直接匹配字符串末尾，然后一个个回溯，与之后的模式比较遇到.*?或者.+?：非贪婪模式，在匹配到符合的字符串，停止，由下一个模式匹配，下一个模式不符合，回溯，再有.*?匹配，直到下一个模式符合
+preg_match函数问题PHP为了防止拒绝服务攻击，设置了回溯上限次数为1000000，当回溯次数超过上限，preg_match函数会返回false，因此绕过waf
+实例1.sql的waf123if (preg_match(&apos;/UNION.+?SELECT/is&apos;, $input)) &#123;	...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/09/07</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "other">other</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2019/09/05/alert(1) to win wp/" >
+            
+                <span>alert(1) to win wp</span>
+        </a>
+        <div class="abstract-content">
+            1.Warmup：123function escape(s) &#123;  return &apos;&lt;script&gt;console.log(&quot;&apos;+s+&apos;&quot;);&lt;/script&gt;&apos;;&#125;
+将用户输入字符串放入console.log中，可以通过闭合括号和注释，输出alert&quot;);alert(1)//js正则表达式
+2.Adobe：1234function escape(s) &#123;  s = s.replace(/&quot;/g, &apos;\\&quot;&apos;);  retur...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/09/05</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "other">other</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/2019/09/05/XSS挑战write up/" >
             
                 <span>XSS挑战write up</span>
@@ -569,68 +631,6 @@ jsonp许多html标签都能够跨域发出请求，如：img、a、script等，j
             <!-- date  -->
             <div class="abstract-date">
                 <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/23</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "other">other</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/08/15/CBC翻转字节攻击/" >
-            
-                <span>CBC翻转字节攻击</span>
-        </a>
-        <div class="abstract-content">
-            CBC模式加密过程：将Plaintext分成多组，每组16个字节，第一轮与IV进行异或，然后加密，再将第一组密文与第二组plantext进行异或，再进行加密解密过程：与加密过程相反，先将密文解密，再与前一组密文异或，第一轮是先解密再与IV异或
-对于解密：设明文为X，密文为Y，解密函数为kX[i] = k(Y[i]) Xor Y[i-1]对于第一组：X[1] = k(Y[1]) Xor IV
-CBC翻转攻击如果客户知道明文X、密文Y和IV，并可以对其进行修改，那么可以实现CBC翻转攻击，使得后台解密得到的明文可以让我们所控制。控制X[i]：令Y[i-1] = Y[i-1] Xor X[i]...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/15</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "other">other</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/08/11/python中byte、str和bytearray相互转换/" >
-            
-                <span>python中byte、str和bytearray相互转换</span>
-        </a>
-        <div class="abstract-content">
-            三者用途首先str是采用Unicode编码方式的序列，主要用于显示。而bytes是字节序列，主要用于网络和文件传输。bytearray和bytes是一样的，只是它是可变的，它们的关系和str与list类似。在aes解密或者网络数据中，数据应该是bytes或bytearray。
-str 和 bytestr = &#39;asdf&#39;.encode(&#39;utf-8&#39;)byte = b&#39;asdf&#39;.decode(&#39;utf-8&#39;)
-byte 和 byetearraybyte = bytearray(b&#39;asdf&#39;)byte = ...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/11</span>
             </div>
             <!-- tags  -->
             
@@ -1244,9 +1244,115 @@ byte 和 byetearraybyte = bytearray(b&#39;asdf&#39;)byte = ...
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 37
+        Total : 39
         </div>
         <!-- search  -->
         
@@ -1259,6 +1365,16 @@ byte 和 byetearraybyte = bytearray(b&#39;asdf&#39;)byte = ...
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/20</span><a class="archive-post-title" href= "/2019/09/20/apk反编译/" >apk反编译</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/20</span><a class="archive-post-title" href= "/2019/09/20/PHP伪协议的黑魔法/" >PHP filter伪协议的黑魔法</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -1417,12 +1533,12 @@ byte 和 byetearraybyte = bytearray(b&#39;asdf&#39;)byte = ...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/13</span><a class="archive-post-title" href= "/2019/05/13/代码审计的相关函数分析/" >代码审计相关函数分析</a>
+            <span class="archive-post-date">05/13</span><a class="archive-post-title" href= "/2019/05/13/bugku代码审计wp/" >bugku代码审计wp</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/13</span><a class="archive-post-title" href= "/2019/05/13/bugku代码审计wp/" >bugku代码审计wp</a>
+            <span class="archive-post-date">05/13</span><a class="archive-post-title" href= "/2019/05/13/代码审计的相关函数分析/" >代码审计相关函数分析</a>
         </li>
     
     
@@ -1454,9 +1570,9 @@ byte 和 byetearraybyte = bytearray(b&#39;asdf&#39;)byte = ...
     
         <span class="sidebar-tag-name" data-tags="编程"><span class="iconfont-archer">&#xe606;</span>编程</span>
     
-        <span class="sidebar-tag-name" data-tags="Web"><span class="iconfont-archer">&#xe606;</span>Web</span>
-    
         <span class="sidebar-tag-name" data-tags="web"><span class="iconfont-archer">&#xe606;</span>web</span>
+    
+        <span class="sidebar-tag-name" data-tags="Web"><span class="iconfont-archer">&#xe606;</span>Web</span>
     
         <span class="sidebar-tag-name" data-tags="ctf"><span class="iconfont-archer">&#xe606;</span>ctf</span>
     
@@ -1495,15 +1611,15 @@ jsonContent:
         <div class="sidebar-panel-categories">
     <div class="sidebar-categories-name">
     
-        <span class="sidebar-category-name" data-categories="安全"><span class="iconfont-archer">&#xe60a;</span>安全</span>
+        <span class="sidebar-category-name" data-categories="ctf"><span class="iconfont-archer">&#xe60a;</span>ctf</span>
     
         <span class="sidebar-category-name" data-categories="编程"><span class="iconfont-archer">&#xe60a;</span>编程</span>
     
-        <span class="sidebar-category-name" data-categories="ctf"><span class="iconfont-archer">&#xe60a;</span>ctf</span>
+        <span class="sidebar-category-name" data-categories="学习"><span class="iconfont-archer">&#xe60a;</span>学习</span>
+    
+        <span class="sidebar-category-name" data-categories="安全"><span class="iconfont-archer">&#xe60a;</span>安全</span>
     
         <span class="sidebar-category-name" data-categories="代码审计"><span class="iconfont-archer">&#xe60a;</span>代码审计</span>
-    
-        <span class="sidebar-category-name" data-categories="学习"><span class="iconfont-archer">&#xe60a;</span>学习</span>
     
         <span class="sidebar-category-name" data-categories="web"><span class="iconfont-archer">&#xe60a;</span>web</span>
     
