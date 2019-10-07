@@ -346,6 +346,36 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/2019/09/09/phar反序列化漏洞/" >
+            
+                <span>phar反序列化漏洞</span>
+        </a>
+        <div class="abstract-content">
+            phar文件结构1.stub用来标志phar文件，格式为xxx&lt;?php xxx; __HALT_COMPILER();?&gt;，必须以__HALT_COMPILER();?&gt;来结尾。2.manifest用来描述phar文件的属性等，其中含有可以由用户自定义的序列化数据meta-data，也是该攻击的核心地方。3.file contents被压缩内容4.signature签名，放在文件末尾
+测试需要将php.ini的phar.readonly选项设置为off，才能生成phar文件phar1.php1234567891011121314&lt;?php    class Te...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/09/09</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "other">other</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/2019/09/07/PHP利用PCRE回溯绕过正则表达式/" >
             
                 <span>PHP利用PCRE回溯绕过正则表达式</span>
@@ -1258,9 +1288,37 @@ preg_match函数问题PHP为了防止拒绝服务攻击，设置了回溯上限�
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 39
+        Total : 41
         </div>
         <!-- search  -->
         
@@ -1276,17 +1334,27 @@ preg_match函数问题PHP为了防止拒绝服务攻击，设置了回溯上限�
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">10/07</span><a class="archive-post-title" href= "/2019/10/07/thinkphp5.x 框架分析/" >thinkphp5.x 框架分析</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/26</span><a class="archive-post-title" href= "/2019/09/26/linux常用指令/" >linux常用指令</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/26</span><a class="archive-post-title" href= "/2019/09/26/python编程总结/" >python编程总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">09/20</span><a class="archive-post-title" href= "/2019/09/20/apk反编译/" >apk反编译</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">09/20</span><a class="archive-post-title" href= "/2019/09/20/PHP伪协议的黑魔法/" >PHP filter伪协议的黑魔法</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">09/18</span><a class="archive-post-title" href= "/2019/09/18/linux常用指令/" >linux常用指令</a>
         </li>
     
     
@@ -1331,12 +1399,12 @@ preg_match函数问题PHP为了防止拒绝服务攻击，设置了回溯上限�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">09/05</span><a class="archive-post-title" href= "/2019/09/05/XSS挑战write up/" >XSS挑战write up</a>
+            <span class="archive-post-date">09/05</span><a class="archive-post-title" href= "/2019/09/05/alert(1) to win wp/" >alert(1) to win wp</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">09/05</span><a class="archive-post-title" href= "/2019/09/05/alert(1) to win wp/" >alert(1) to win wp</a>
+            <span class="archive-post-date">09/05</span><a class="archive-post-title" href= "/2019/09/05/XSS挑战write up/" >XSS挑战write up</a>
         </li>
     
     
@@ -1474,9 +1542,9 @@ preg_match函数问题PHP为了防止拒绝服务攻击，设置了回溯上限�
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
     
-        <span class="sidebar-tag-name" data-tags="other"><span class="iconfont-archer">&#xe606;</span>other</span>
-    
         <span class="sidebar-tag-name" data-tags="编程"><span class="iconfont-archer">&#xe606;</span>编程</span>
+    
+        <span class="sidebar-tag-name" data-tags="other"><span class="iconfont-archer">&#xe606;</span>other</span>
     
         <span class="sidebar-tag-name" data-tags="web"><span class="iconfont-archer">&#xe606;</span>web</span>
     
@@ -1519,13 +1587,13 @@ jsonContent:
         <div class="sidebar-panel-categories">
     <div class="sidebar-categories-name">
     
-        <span class="sidebar-category-name" data-categories="ctf"><span class="iconfont-archer">&#xe60a;</span>ctf</span>
-    
         <span class="sidebar-category-name" data-categories="编程"><span class="iconfont-archer">&#xe60a;</span>编程</span>
     
-        <span class="sidebar-category-name" data-categories="学习"><span class="iconfont-archer">&#xe60a;</span>学习</span>
+        <span class="sidebar-category-name" data-categories="ctf"><span class="iconfont-archer">&#xe60a;</span>ctf</span>
     
         <span class="sidebar-category-name" data-categories="安全"><span class="iconfont-archer">&#xe60a;</span>安全</span>
+    
+        <span class="sidebar-category-name" data-categories="学习"><span class="iconfont-archer">&#xe60a;</span>学习</span>
     
         <span class="sidebar-category-name" data-categories="代码审计"><span class="iconfont-archer">&#xe60a;</span>代码审计</span>
     

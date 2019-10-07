@@ -346,6 +346,66 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/2019/09/11/phar+mysql client触发反序列化本地复现/" >
+            
+                <span>phar+mysql client触发反序列化本地复现</span>
+        </a>
+        <div class="abstract-content">
+            原理用户请求mysql_client端，client会连接mysql server服务器，mysql server服务器读取phar://phar.gif/test.txt，使得client端执行load client data...的sql语句读取phar文件，触发反序列化。
+mysql_client端脚本my_ubuntu12345678910&lt;?phpclass TestObject &#123;	public function __destruct() &#123;		echo &apos;Destruct called&apos;;	&#125;&#125;$m = my...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/09/11</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "other">other</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2019/09/09/phar反序列化漏洞/" >
+            
+                <span>phar反序列化漏洞</span>
+        </a>
+        <div class="abstract-content">
+            phar文件结构1.stub用来标志phar文件，格式为xxx&lt;?php xxx; __HALT_COMPILER();?&gt;，必须以__HALT_COMPILER();?&gt;来结尾。2.manifest用来描述phar文件的属性等，其中含有可以由用户自定义的序列化数据meta-data，也是该攻击的核心地方。3.file contents被压缩内容4.signature签名，放在文件末尾
+测试需要将php.ini的phar.readonly选项设置为off，才能生成phar文件phar1.php1234567891011121314&lt;?php    class Te...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/09/09</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "other">other</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/2019/09/07/PHP利用PCRE回溯绕过正则表达式/" >
             
                 <span>PHP利用PCRE回溯绕过正则表达式</span>
@@ -580,73 +640,10 @@ preg_match函数问题PHP为了防止拒绝服务攻击，设置了回溯上限�
         </div>
     </article>
     
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/08/30/session.upload_progress的利用/" >
-            
-                <span>session.upload_progress的利用</span>
-        </a>
-        <div class="abstract-content">
-            定义session.upload_progress 是PHP5.4的新特征当session.upload_progress.enabled选项开启时，PHP能够在每一个文件上传时监测上传进度。 这个信息对上传请求自身并没有什么帮助，但在文件上传时应用可以发送一个POST请求到终端（例如通过XHR）来检查这个状态。当一个上传在处理中，同时POST一个与INI中设置的session.upload_progress.name同名变量时，上传进度可以在$_SESSION中获得。 当PHP检测到这种POST请求时，它会在$_SESSION中添加一组数据, 索引是session.upload_pro...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/30</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "other">other</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/08/23/跨域实现-jsonp和CORS/" >
-            
-                <span>跨域实现-jsonp和CORS</span>
-        </a>
-        <div class="abstract-content">
-            同源策略(SOP)同源策略限制了同一个源于另一个源的脚本交互。一般同源策略必须满足三个条件：
-
-1、协议相同2、域名相同3、端口相同
-
-jsonp许多html标签都能够跨域发出请求，如：img、a、script等，jsonp就是利用了script标签src属性的特性进行动态获取json数据。jsonp客户端需要写一个函数，称为回调函数，通过服务器端触发调用，参数为所传递的json数据，服务器端返回明文如jsonp({&#39;id&#39;:1,&#39;name&#39;:&#39;kage&#39;})的调用字符串。
-具体看代码：用户登录验证：只有登录才能访问该jsonp接口，一定程...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/23</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "other">other</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
     <!-- paginator  -->
     
     <nav class="page-nav">
-        <a class="extend prev" rel="prev" href="/archives/2019/">&#60; PREV</a><a class="page-number" href="/archives/2019/">1</a><span class="page-number current">2</span><a class="page-number" href="/archives/2019/page/3/">3</a><a class="page-number" href="/archives/2019/page/4/">4</a><a class="extend next" rel="next" href="/archives/2019/page/3/">NEXT &#62;</a>
+        <a class="extend prev" rel="prev" href="/archives/2019/">&#60; PREV</a><a class="page-number" href="/archives/2019/">1</a><span class="page-number current">2</span><a class="page-number" href="/archives/2019/page/3/">3</a><a class="page-number" href="/archives/2019/page/4/">4</a><a class="page-number" href="/archives/2019/page/5/">5</a><a class="extend next" rel="next" href="/archives/2019/page/3/">NEXT &#62;</a>
     </nav>
     
 </main>
@@ -1350,9 +1347,37 @@ jsonp许多html标签都能够跨域发出请求，如：img、a、script等，j
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 39
+        Total : 41
         </div>
         <!-- search  -->
         
@@ -1368,17 +1393,27 @@ jsonp许多html标签都能够跨域发出请求，如：img、a、script等，j
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">10/07</span><a class="archive-post-title" href= "/2019/10/07/thinkphp5.x 框架分析/" >thinkphp5.x 框架分析</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/26</span><a class="archive-post-title" href= "/2019/09/26/linux常用指令/" >linux常用指令</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/26</span><a class="archive-post-title" href= "/2019/09/26/python编程总结/" >python编程总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">09/20</span><a class="archive-post-title" href= "/2019/09/20/apk反编译/" >apk反编译</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">09/20</span><a class="archive-post-title" href= "/2019/09/20/PHP伪协议的黑魔法/" >PHP filter伪协议的黑魔法</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">09/18</span><a class="archive-post-title" href= "/2019/09/18/linux常用指令/" >linux常用指令</a>
         </li>
     
     
@@ -1423,12 +1458,12 @@ jsonp许多html标签都能够跨域发出请求，如：img、a、script等，j
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">09/05</span><a class="archive-post-title" href= "/2019/09/05/XSS挑战write up/" >XSS挑战write up</a>
+            <span class="archive-post-date">09/05</span><a class="archive-post-title" href= "/2019/09/05/alert(1) to win wp/" >alert(1) to win wp</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">09/05</span><a class="archive-post-title" href= "/2019/09/05/alert(1) to win wp/" >alert(1) to win wp</a>
+            <span class="archive-post-date">09/05</span><a class="archive-post-title" href= "/2019/09/05/XSS挑战write up/" >XSS挑战write up</a>
         </li>
     
     
@@ -1566,9 +1601,9 @@ jsonp许多html标签都能够跨域发出请求，如：img、a、script等，j
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
     
-        <span class="sidebar-tag-name" data-tags="other"><span class="iconfont-archer">&#xe606;</span>other</span>
-    
         <span class="sidebar-tag-name" data-tags="编程"><span class="iconfont-archer">&#xe606;</span>编程</span>
+    
+        <span class="sidebar-tag-name" data-tags="other"><span class="iconfont-archer">&#xe606;</span>other</span>
     
         <span class="sidebar-tag-name" data-tags="web"><span class="iconfont-archer">&#xe606;</span>web</span>
     
@@ -1611,13 +1646,13 @@ jsonContent:
         <div class="sidebar-panel-categories">
     <div class="sidebar-categories-name">
     
-        <span class="sidebar-category-name" data-categories="ctf"><span class="iconfont-archer">&#xe60a;</span>ctf</span>
-    
         <span class="sidebar-category-name" data-categories="编程"><span class="iconfont-archer">&#xe60a;</span>编程</span>
     
-        <span class="sidebar-category-name" data-categories="学习"><span class="iconfont-archer">&#xe60a;</span>学习</span>
+        <span class="sidebar-category-name" data-categories="ctf"><span class="iconfont-archer">&#xe60a;</span>ctf</span>
     
         <span class="sidebar-category-name" data-categories="安全"><span class="iconfont-archer">&#xe60a;</span>安全</span>
+    
+        <span class="sidebar-category-name" data-categories="学习"><span class="iconfont-archer">&#xe60a;</span>学习</span>
     
         <span class="sidebar-category-name" data-categories="代码审计"><span class="iconfont-archer">&#xe60a;</span>代码审计</span>
     

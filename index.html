@@ -359,6 +359,98 @@ height:50vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/2019/10/07/thinkphp5.x 框架分析/" >
+            
+                <span>thinkphp5.x 框架分析</span>
+        </a>
+        <div class="abstract-content">
+            一、前言最近在n1ctf遇到thinkphp的利用链挖掘，以及上学期很火的rce漏洞，都需要对tp5框架流程有一个清晰的认识。可能记得有些杂，主要是作为个人笔记使用。
+二、小知识点2.1.自动加载主要是利用spl_autoload_register函数，该函数是用来注册自动加载函数。什么是自动加载函数呢，就是当我们调用一个不存在的类，如new person()时，就会自动调用这个自动加载函数，并且把类名person传入该函数中，我们就可以通过自动加载函数来包含指定文件来获得该类。12345678error_reporting(0);spl_autoload_register(&quot;...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/10/07</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "other">other</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2019/09/26/python编程总结/" >
+            
+                <span>python编程总结</span>
+        </a>
+        <div class="abstract-content">
+            python操作mysql数据库操作模板123456import pymysqldb = pymysql.connect(&quot;localhost&quot;,&quot;root&quot;,&quot;root&quot;,&quot;subdomain&quot;)cursor = db.cursor()cursor.execute(&quot;select version&quot;)data = cursor.fetchone()db.close()
+python文件操作写文件12with open(&quot;./subdomain.txt&quot;,&quot;a&...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/09/26</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "other">other</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2019/09/26/linux常用指令/" >
+            
+                <span>linux常用指令</span>
+        </a>
+        <div class="abstract-content">
+            Mysql授权用户远程访问登录Mysql，执行sql语句1234use mysql;grant all privileges on *.* to &apos;root&apos;@&apos;%&apos; identified by &apos;root&apos; with grant option;flush privileges;quit;
+修改mysqld.cnf，默认位置在/etc/mysql/mysql.conf.d1vi /etc/mysql/mysql.conf.d/mysqld.cnf
+将bind=127.0.0.1注释掉1service mysql restart
+...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/09/26</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "other">other</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/2019/09/20/apk反编译/" >
             
                 <span>apk反编译</span>
@@ -403,38 +495,6 @@ dex2jar下载地址：http://www.onlinedown.net/soft/989451.htm将apk文件后�
             <!-- date  -->
             <div class="abstract-date">
                 <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/09/20</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "other">other</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/09/18/linux常用指令/" >
-            
-                <span>linux常用指令</span>
-        </a>
-        <div class="abstract-content">
-            Mysql授权用户远程访问登录Mysql，执行sql语句1234use mysql;grant all privileges on *.* to &apos;root&apos;@&apos;%&apos; identified by &apos;root&apos; with grant option;flush privileges;quit;
-修改mysqld.cnf，默认位置在/etc/mysql/mysql.conf.d1vi /etc/mysql/mysql.conf.d/mysqld.cnf
-将bind=127.0.0.1注释掉1service mysql restart
-...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/09/18</span>
             </div>
             <!-- tags  -->
             
@@ -599,70 +659,10 @@ dex2jar下载地址：http://www.onlinedown.net/soft/989451.htm将apk文件后�
         </div>
     </article>
     
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/09/11/phar+mysql client触发反序列化本地复现/" >
-            
-                <span>phar+mysql client触发反序列化本地复现</span>
-        </a>
-        <div class="abstract-content">
-            原理用户请求mysql_client端，client会连接mysql server服务器，mysql server服务器读取phar://phar.gif/test.txt，使得client端执行load client data...的sql语句读取phar文件，触发反序列化。
-mysql_client端脚本my_ubuntu12345678910&lt;?phpclass TestObject &#123;	public function __destruct() &#123;		echo &apos;Destruct called&apos;;	&#125;&#125;$m = my...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/09/11</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "other">other</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/09/09/phar反序列化漏洞/" >
-            
-                <span>phar反序列化漏洞</span>
-        </a>
-        <div class="abstract-content">
-            phar文件结构1.stub用来标志phar文件，格式为xxx&lt;?php xxx; __HALT_COMPILER();?&gt;，必须以__HALT_COMPILER();?&gt;来结尾。2.manifest用来描述phar文件的属性等，其中含有可以由用户自定义的序列化数据meta-data，也是该攻击的核心地方。3.file contents被压缩内容4.signature签名，放在文件末尾
-测试需要将php.ini的phar.readonly选项设置为off，才能生成phar文件phar1.php1234567891011121314&lt;?php    class Te...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/09/09</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "other">other</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
     <!-- paginator  -->
     
     <nav class="page-nav">
-        <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">NEXT &#62;</a>
+        <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/">NEXT &#62;</a>
     </nav>
     
 </main>
@@ -1460,9 +1460,37 @@ mysql_client端脚本my_ubuntu12345678910&lt;?phpclass TestObject &#123;	public 
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 39
+        Total : 41
         </div>
         <!-- search  -->
         
@@ -1478,17 +1506,27 @@ mysql_client端脚本my_ubuntu12345678910&lt;?phpclass TestObject &#123;	public 
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">10/07</span><a class="archive-post-title" href= "/2019/10/07/thinkphp5.x 框架分析/" >thinkphp5.x 框架分析</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/26</span><a class="archive-post-title" href= "/2019/09/26/linux常用指令/" >linux常用指令</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/26</span><a class="archive-post-title" href= "/2019/09/26/python编程总结/" >python编程总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">09/20</span><a class="archive-post-title" href= "/2019/09/20/apk反编译/" >apk反编译</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">09/20</span><a class="archive-post-title" href= "/2019/09/20/PHP伪协议的黑魔法/" >PHP filter伪协议的黑魔法</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">09/18</span><a class="archive-post-title" href= "/2019/09/18/linux常用指令/" >linux常用指令</a>
         </li>
     
     
@@ -1533,12 +1571,12 @@ mysql_client端脚本my_ubuntu12345678910&lt;?phpclass TestObject &#123;	public 
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">09/05</span><a class="archive-post-title" href= "/2019/09/05/XSS挑战write up/" >XSS挑战write up</a>
+            <span class="archive-post-date">09/05</span><a class="archive-post-title" href= "/2019/09/05/alert(1) to win wp/" >alert(1) to win wp</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">09/05</span><a class="archive-post-title" href= "/2019/09/05/alert(1) to win wp/" >alert(1) to win wp</a>
+            <span class="archive-post-date">09/05</span><a class="archive-post-title" href= "/2019/09/05/XSS挑战write up/" >XSS挑战write up</a>
         </li>
     
     
@@ -1676,9 +1714,9 @@ mysql_client端脚本my_ubuntu12345678910&lt;?phpclass TestObject &#123;	public 
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
     
-        <span class="sidebar-tag-name" data-tags="other"><span class="iconfont-archer">&#xe606;</span>other</span>
-    
         <span class="sidebar-tag-name" data-tags="编程"><span class="iconfont-archer">&#xe606;</span>编程</span>
+    
+        <span class="sidebar-tag-name" data-tags="other"><span class="iconfont-archer">&#xe606;</span>other</span>
     
         <span class="sidebar-tag-name" data-tags="web"><span class="iconfont-archer">&#xe606;</span>web</span>
     
@@ -1721,13 +1759,13 @@ jsonContent:
         <div class="sidebar-panel-categories">
     <div class="sidebar-categories-name">
     
-        <span class="sidebar-category-name" data-categories="ctf"><span class="iconfont-archer">&#xe60a;</span>ctf</span>
-    
         <span class="sidebar-category-name" data-categories="编程"><span class="iconfont-archer">&#xe60a;</span>编程</span>
     
-        <span class="sidebar-category-name" data-categories="学习"><span class="iconfont-archer">&#xe60a;</span>学习</span>
+        <span class="sidebar-category-name" data-categories="ctf"><span class="iconfont-archer">&#xe60a;</span>ctf</span>
     
         <span class="sidebar-category-name" data-categories="安全"><span class="iconfont-archer">&#xe60a;</span>安全</span>
+    
+        <span class="sidebar-category-name" data-categories="学习"><span class="iconfont-archer">&#xe60a;</span>学习</span>
     
         <span class="sidebar-category-name" data-categories="代码审计"><span class="iconfont-archer">&#xe60a;</span>代码审计</span>
     

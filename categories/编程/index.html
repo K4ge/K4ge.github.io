@@ -346,20 +346,18 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href = "/2019/09/18/linux常用指令/" >
+        <a class="abstract-title" href = "/2019/09/26/python编程总结/" >
             
-                <span>linux常用指令</span>
+                <span>python编程总结</span>
         </a>
         <div class="abstract-content">
-            Mysql授权用户远程访问登录Mysql，执行sql语句1234use mysql;grant all privileges on *.* to &apos;root&apos;@&apos;%&apos; identified by &apos;root&apos; with grant option;flush privileges;quit;
-修改mysqld.cnf，默认位置在/etc/mysql/mysql.conf.d1vi /etc/mysql/mysql.conf.d/mysqld.cnf
-将bind=127.0.0.1注释掉1service mysql restart
-...
+            python操作mysql数据库操作模板123456import pymysqldb = pymysql.connect(&quot;localhost&quot;,&quot;root&quot;,&quot;root&quot;,&quot;subdomain&quot;)cursor = db.cursor()cursor.execute(&quot;select version&quot;)data = cursor.fetchone()db.close()
+python文件操作写文件12with open(&quot;./subdomain.txt&quot;,&quot;a&...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/09/18</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/09/26</span>
             </div>
             <!-- tags  -->
             
@@ -1212,9 +1210,37 @@ byte 和 byetearraybyte = bytearray(b&#39;asdf&#39;)byte = ...
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 39
+        Total : 41
         </div>
         <!-- search  -->
         
@@ -1230,17 +1256,27 @@ byte 和 byetearraybyte = bytearray(b&#39;asdf&#39;)byte = ...
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">10/07</span><a class="archive-post-title" href= "/2019/10/07/thinkphp5.x 框架分析/" >thinkphp5.x 框架分析</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/26</span><a class="archive-post-title" href= "/2019/09/26/linux常用指令/" >linux常用指令</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/26</span><a class="archive-post-title" href= "/2019/09/26/python编程总结/" >python编程总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">09/20</span><a class="archive-post-title" href= "/2019/09/20/apk反编译/" >apk反编译</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">09/20</span><a class="archive-post-title" href= "/2019/09/20/PHP伪协议的黑魔法/" >PHP filter伪协议的黑魔法</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">09/18</span><a class="archive-post-title" href= "/2019/09/18/linux常用指令/" >linux常用指令</a>
         </li>
     
     
@@ -1285,12 +1321,12 @@ byte 和 byetearraybyte = bytearray(b&#39;asdf&#39;)byte = ...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">09/05</span><a class="archive-post-title" href= "/2019/09/05/XSS挑战write up/" >XSS挑战write up</a>
+            <span class="archive-post-date">09/05</span><a class="archive-post-title" href= "/2019/09/05/alert(1) to win wp/" >alert(1) to win wp</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">09/05</span><a class="archive-post-title" href= "/2019/09/05/alert(1) to win wp/" >alert(1) to win wp</a>
+            <span class="archive-post-date">09/05</span><a class="archive-post-title" href= "/2019/09/05/XSS挑战write up/" >XSS挑战write up</a>
         </li>
     
     
@@ -1428,9 +1464,9 @@ byte 和 byetearraybyte = bytearray(b&#39;asdf&#39;)byte = ...
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
     
-        <span class="sidebar-tag-name" data-tags="other"><span class="iconfont-archer">&#xe606;</span>other</span>
-    
         <span class="sidebar-tag-name" data-tags="编程"><span class="iconfont-archer">&#xe606;</span>编程</span>
+    
+        <span class="sidebar-tag-name" data-tags="other"><span class="iconfont-archer">&#xe606;</span>other</span>
     
         <span class="sidebar-tag-name" data-tags="web"><span class="iconfont-archer">&#xe606;</span>web</span>
     
@@ -1473,13 +1509,13 @@ jsonContent:
         <div class="sidebar-panel-categories">
     <div class="sidebar-categories-name">
     
-        <span class="sidebar-category-name" data-categories="ctf"><span class="iconfont-archer">&#xe60a;</span>ctf</span>
-    
         <span class="sidebar-category-name" data-categories="编程"><span class="iconfont-archer">&#xe60a;</span>编程</span>
     
-        <span class="sidebar-category-name" data-categories="学习"><span class="iconfont-archer">&#xe60a;</span>学习</span>
+        <span class="sidebar-category-name" data-categories="ctf"><span class="iconfont-archer">&#xe60a;</span>ctf</span>
     
         <span class="sidebar-category-name" data-categories="安全"><span class="iconfont-archer">&#xe60a;</span>安全</span>
+    
+        <span class="sidebar-category-name" data-categories="学习"><span class="iconfont-archer">&#xe60a;</span>学习</span>
     
         <span class="sidebar-category-name" data-categories="代码审计"><span class="iconfont-archer">&#xe60a;</span>代码审计</span>
     
