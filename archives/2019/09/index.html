@@ -346,68 +346,6 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href = "/2019/09/26/python编程总结/" >
-            
-                <span>python编程总结</span>
-        </a>
-        <div class="abstract-content">
-            python操作mysql数据库操作模板123456import pymysqldb = pymysql.connect(&quot;localhost&quot;,&quot;root&quot;,&quot;root&quot;,&quot;subdomain&quot;)cursor = db.cursor()cursor.execute(&quot;select version&quot;)data = cursor.fetchone()db.close()
-python文件操作写文件12with open(&quot;./subdomain.txt&quot;,&quot;a&...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/09/26</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "other">other</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/09/26/linux常用指令/" >
-            
-                <span>linux常用指令</span>
-        </a>
-        <div class="abstract-content">
-            Mysql授权用户远程访问登录Mysql，执行sql语句1234use mysql;grant all privileges on *.* to &apos;root&apos;@&apos;%&apos; identified by &apos;root&apos; with grant option;flush privileges;quit;
-修改mysqld.cnf，默认位置在/etc/mysql/mysql.conf.d1vi /etc/mysql/mysql.conf.d/mysqld.cnf
-将bind=127.0.0.1注释掉1service mysql restart
-...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/09/26</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "other">other</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
         <a class="abstract-title" href = "/2019/09/20/apk反编译/" >
             
                 <span>apk反编译</span>
@@ -531,35 +469,6 @@ dex2jar下载地址：http://www.onlinedown.net/soft/989451.htm将apk文件后�
     
     
     <article class="index-post">
-        <a class="abstract-title" href = "/2019/09/18/python脚本(不定时更新)/" >
-            
-                <span>python脚本(不定时更新)</span>
-        </a>
-        <div class="abstract-content">
-            md5验证码python312345678910111213141516171819202122232425262728293031323334import hashlibfrom multiprocessing.dummy import Pool as ThreadPool# MD5截断数值已知 求原始数据# 例子 substr(md5(captcha), 0, 6)=60b7efdef md5(s):  # 计算MD5字符串    return hashlib.md5(str(s).encode(&apos;utf-8&apos;)).hexdigest()keymd5 = &apo...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/09/18</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "other">other</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
         <a class="abstract-title" href = "/2019/09/18/SCMS接口处存在sql注入漏洞/" >
             
                 <span>SCMS接口处存在sql注入漏洞</span>
@@ -634,6 +543,98 @@ mysql_client端脚本my_ubuntu12345678910&lt;?phpclass TestObject &#123;	public 
             <!-- date  -->
             <div class="abstract-date">
                 <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/09/11</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "other">other</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2019/09/09/phar反序列化漏洞/" >
+            
+                <span>phar反序列化漏洞</span>
+        </a>
+        <div class="abstract-content">
+            phar文件结构1.stub用来标志phar文件，格式为xxx&lt;?php xxx; __HALT_COMPILER();?&gt;，必须以__HALT_COMPILER();?&gt;来结尾。2.manifest用来描述phar文件的属性等，其中含有可以由用户自定义的序列化数据meta-data，也是该攻击的核心地方。3.file contents被压缩内容4.signature签名，放在文件末尾
+测试需要将php.ini的phar.readonly选项设置为off，才能生成phar文件phar1.php1234567891011121314&lt;?php    class Te...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/09/09</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "other">other</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2019/09/07/PHP利用PCRE回溯绕过正则表达式/" >
+            
+                <span>PHP利用PCRE回溯绕过正则表达式</span>
+        </a>
+        <div class="abstract-content">
+            正则匹配过程PHP正则利用的是NFA（非确定性有限自动机）。遇到.*或者.+：直接匹配字符串末尾，然后一个个回溯，与之后的模式比较遇到.*?或者.+?：非贪婪模式，在匹配到符合的字符串，停止，由下一个模式匹配，下一个模式不符合，回溯，再有.*?匹配，直到下一个模式符合
+preg_match函数问题PHP为了防止拒绝服务攻击，设置了回溯上限次数为1000000，当回溯次数超过上限，preg_match函数会返回false，因此绕过waf
+实例1.sql的waf123if (preg_match(&apos;/UNION.+?SELECT/is&apos;, $input)) &#123;	...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/09/07</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "other">other</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2019/09/05/alert(1) to win wp/" >
+            
+                <span>alert(1) to win wp</span>
+        </a>
+        <div class="abstract-content">
+            1.Warmup：123function escape(s) &#123;  return &apos;&lt;script&gt;console.log(&quot;&apos;+s+&apos;&quot;);&lt;/script&gt;&apos;;&#125;
+将用户输入字符串放入console.log中，可以通过闭合括号和注释，输出alert&quot;);alert(1)//js正则表达式
+2.Adobe：1234function escape(s) &#123;  s = s.replace(/&quot;/g, &apos;\\&quot;&apos;);  retur...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/09/05</span>
             </div>
             <!-- tags  -->
             
@@ -1381,9 +1382,40 @@ mysql_client端脚本my_ubuntu12345678910&lt;?phpclass TestObject &#123;	public 
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 41
+        Total : 42
         </div>
         <!-- search  -->
         
@@ -1399,17 +1431,27 @@ mysql_client端脚本my_ubuntu12345678910&lt;?phpclass TestObject &#123;	public 
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">10/16</span><a class="archive-post-title" href= "/2019/10/16/2019下半年计划/" >2019下半年计划</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/16</span><a class="archive-post-title" href= "/2019/10/16/python编程总结/" >python编程总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/16</span><a class="archive-post-title" href= "/2019/10/16/python脚本(不定时更新)/" >python脚本(不定时更新)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/11</span><a class="archive-post-title" href= "/2019/10/11/linux常用指令/" >linux常用指令</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">10/07</span><a class="archive-post-title" href= "/2019/10/07/thinkphp5.x 框架分析/" >thinkphp5.x 框架分析</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">09/26</span><a class="archive-post-title" href= "/2019/09/26/linux常用指令/" >linux常用指令</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">09/26</span><a class="archive-post-title" href= "/2019/09/26/python编程总结/" >python编程总结</a>
         </li>
     
     
@@ -1430,11 +1472,6 @@ mysql_client端脚本my_ubuntu12345678910&lt;?phpclass TestObject &#123;	public 
     
         <li class="archive-post-item">
             <span class="archive-post-date">09/18</span><a class="archive-post-title" href= "/2019/09/18/C语言套接字编程/" >C语言套接字编程</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">09/18</span><a class="archive-post-title" href= "/2019/09/18/python脚本(不定时更新)/" >python脚本(不定时更新)</a>
         </li>
     
     
@@ -1464,12 +1501,12 @@ mysql_client端脚本my_ubuntu12345678910&lt;?phpclass TestObject &#123;	public 
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">09/05</span><a class="archive-post-title" href= "/2019/09/05/alert(1) to win wp/" >alert(1) to win wp</a>
+            <span class="archive-post-date">09/05</span><a class="archive-post-title" href= "/2019/09/05/XSS挑战write up/" >XSS挑战write up</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">09/05</span><a class="archive-post-title" href= "/2019/09/05/XSS挑战write up/" >XSS挑战write up</a>
+            <span class="archive-post-date">09/05</span><a class="archive-post-title" href= "/2019/09/05/alert(1) to win wp/" >alert(1) to win wp</a>
         </li>
     
     
@@ -1607,9 +1644,9 @@ mysql_client端脚本my_ubuntu12345678910&lt;?phpclass TestObject &#123;	public 
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
     
-        <span class="sidebar-tag-name" data-tags="编程"><span class="iconfont-archer">&#xe606;</span>编程</span>
-    
         <span class="sidebar-tag-name" data-tags="other"><span class="iconfont-archer">&#xe606;</span>other</span>
+    
+        <span class="sidebar-tag-name" data-tags="编程"><span class="iconfont-archer">&#xe606;</span>编程</span>
     
         <span class="sidebar-tag-name" data-tags="web"><span class="iconfont-archer">&#xe606;</span>web</span>
     
@@ -1652,33 +1689,35 @@ jsonContent:
         <div class="sidebar-panel-categories">
     <div class="sidebar-categories-name">
     
-        <span class="sidebar-category-name" data-categories="编程"><span class="iconfont-archer">&#xe60a;</span>编程</span>
+        <span class="sidebar-category-name" data-categories="规划"><span class="iconfont-archer">&#xe60a;</span>规划</span>
     
         <span class="sidebar-category-name" data-categories="ctf"><span class="iconfont-archer">&#xe60a;</span>ctf</span>
     
-        <span class="sidebar-category-name" data-categories="安全"><span class="iconfont-archer">&#xe60a;</span>安全</span>
+        <span class="sidebar-category-name" data-categories="编程"><span class="iconfont-archer">&#xe60a;</span>编程</span>
     
         <span class="sidebar-category-name" data-categories="学习"><span class="iconfont-archer">&#xe60a;</span>学习</span>
     
+        <span class="sidebar-category-name" data-categories="安全"><span class="iconfont-archer">&#xe60a;</span>安全</span>
+    
         <span class="sidebar-category-name" data-categories="代码审计"><span class="iconfont-archer">&#xe60a;</span>代码审计</span>
+    
+        <span class="sidebar-category-name" data-categories="渗透"><span class="iconfont-archer">&#xe60a;</span>渗透</span>
     
         <span class="sidebar-category-name" data-categories="web"><span class="iconfont-archer">&#xe60a;</span>web</span>
     
         <span class="sidebar-category-name" data-categories="Web"><span class="iconfont-archer">&#xe60a;</span>Web</span>
     
-        <span class="sidebar-category-name" data-categories="渗透"><span class="iconfont-archer">&#xe60a;</span>渗透</span>
-    
         <span class="sidebar-category-name" data-categories="杂货店"><span class="iconfont-archer">&#xe60a;</span>杂货店</span>
     
         <span class="sidebar-category-name" data-categories="开发"><span class="iconfont-archer">&#xe60a;</span>开发</span>
-    
-        <span class="sidebar-category-name" data-categories="渗透测试"><span class="iconfont-archer">&#xe60a;</span>渗透测试</span>
     
         <span class="sidebar-category-name" data-categories="其他"><span class="iconfont-archer">&#xe60a;</span>其他</span>
     
         <span class="sidebar-category-name" data-categories="other"><span class="iconfont-archer">&#xe60a;</span>other</span>
     
         <span class="sidebar-category-name" data-categories="资料"><span class="iconfont-archer">&#xe60a;</span>资料</span>
+    
+        <span class="sidebar-category-name" data-categories="渗透测试"><span class="iconfont-archer">&#xe60a;</span>渗透测试</span>
     
         <span class="sidebar-category-name" data-categories="技术小卖铺"><span class="iconfont-archer">&#xe60a;</span>技术小卖铺</span>
     
