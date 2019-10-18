@@ -359,6 +359,37 @@ height:50vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/2019/09/18/SCMS接口处存在sql注入漏洞/" >
+            
+                <span>SCMS接口处存在sql注入漏洞</span>
+        </a>
+        <div class="abstract-content">
+            前言复现一下最近cms的一些cve，学一些技巧套路。
+原理分析在/scms/js/scms.php中，第184行-208行中直接获取pageid的值，并将其拼接在where子句中，存在SQL布尔盲注
+漏洞复现正确返回xxx.jpg错误不返回xxx.jpg编写python脚本注入123456789101112131415161718192021222324252627282930313233343536373839import requestsfrom bs4 import BeautifulSoupurl = &quot;http://127.0.0.1/js/scms.php&quot...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/09/18</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "other">other</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/2019/09/17/ESPCMS代码审计/" >
             
                 <span>ESPCMS代码审计</span>
@@ -609,35 +640,6 @@ preg_match函数问题PHP为了防止拒绝服务攻击，设置了回溯上限�
         </a>
         <div class="abstract-content">
             分析序列化内容：Array（Object）反序列化反序列化内容传入Typecho_Db的构造函数中Typecho_Db构造函数将Object与字符串拼接触发__toString方法搜寻__toString方法在Typecho_Feed类中__toString方法第290行的私有变量调用了某个属性$_items该属性被遍历，其元素的$item[&#39;author&#39;]调用了某个属性screenName我们可以控制其访问不可访问属性来触发__get方法，因此将Object设置为Typecho_feed搜寻__get方法找到Typecho_Request类，分析__get方法，__g...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/09/01</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "other">other</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/09/01/PHP反序列化原生类魔术方法的利用/" >
-            
-                <span>PHP反序列化原生类魔术方法的利用</span>
-        </a>
-        <div class="abstract-content">
-            SoapClient方法：call12345678910error_reporting(0);$target = &apos;http://127.0.0.1/flag.php&apos;;$a = new SoapClient(null, array(&apos;location&apos; =&gt; $target,	&apos;user_agent&apos; =&gt; &quot;AAA:BBB\r\n&quot; .	&quot;Cookie:PHPSESSID=2r4kt8t9l0c6hhq67e1bs4th90&quot;,	&apos;uri&apos; =&gt; ...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -1470,54 +1472,9 @@ preg_match函数问题PHP为了防止拒绝服务攻击，设置了回溯上限�
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 42
+        Total : 43
         </div>
         <!-- search  -->
         
@@ -1533,17 +1490,22 @@ preg_match函数问题PHP为了防止拒绝服务攻击，设置了回溯上限�
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">10/18</span><a class="archive-post-title" href= "/2019/10/18/个人渗透脚本整理/" >个人渗透脚本整理</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">10/16</span><a class="archive-post-title" href= "/2019/10/16/2019下半年计划/" >2019下半年计划</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/16</span><a class="archive-post-title" href= "/2019/10/16/python编程总结/" >python编程总结</a>
+            <span class="archive-post-date">10/16</span><a class="archive-post-title" href= "/2019/10/16/python脚本(不定时更新)/" >python脚本(不定时更新)</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/16</span><a class="archive-post-title" href= "/2019/10/16/python脚本(不定时更新)/" >python脚本(不定时更新)</a>
+            <span class="archive-post-date">10/16</span><a class="archive-post-title" href= "/2019/10/16/python编程总结/" >python编程总结</a>
         </li>
     
     
@@ -1797,29 +1759,29 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="编程"><span class="iconfont-archer">&#xe60a;</span>编程</span>
     
-        <span class="sidebar-category-name" data-categories="学习"><span class="iconfont-archer">&#xe60a;</span>学习</span>
+        <span class="sidebar-category-name" data-categories="代码审计"><span class="iconfont-archer">&#xe60a;</span>代码审计</span>
     
         <span class="sidebar-category-name" data-categories="安全"><span class="iconfont-archer">&#xe60a;</span>安全</span>
     
-        <span class="sidebar-category-name" data-categories="代码审计"><span class="iconfont-archer">&#xe60a;</span>代码审计</span>
-    
-        <span class="sidebar-category-name" data-categories="渗透"><span class="iconfont-archer">&#xe60a;</span>渗透</span>
-    
         <span class="sidebar-category-name" data-categories="web"><span class="iconfont-archer">&#xe60a;</span>web</span>
     
+        <span class="sidebar-category-name" data-categories="学习"><span class="iconfont-archer">&#xe60a;</span>学习</span>
+    
         <span class="sidebar-category-name" data-categories="Web"><span class="iconfont-archer">&#xe60a;</span>Web</span>
+    
+        <span class="sidebar-category-name" data-categories="渗透"><span class="iconfont-archer">&#xe60a;</span>渗透</span>
     
         <span class="sidebar-category-name" data-categories="杂货店"><span class="iconfont-archer">&#xe60a;</span>杂货店</span>
     
         <span class="sidebar-category-name" data-categories="开发"><span class="iconfont-archer">&#xe60a;</span>开发</span>
+    
+        <span class="sidebar-category-name" data-categories="渗透测试"><span class="iconfont-archer">&#xe60a;</span>渗透测试</span>
     
         <span class="sidebar-category-name" data-categories="其他"><span class="iconfont-archer">&#xe60a;</span>其他</span>
     
         <span class="sidebar-category-name" data-categories="other"><span class="iconfont-archer">&#xe60a;</span>other</span>
     
         <span class="sidebar-category-name" data-categories="资料"><span class="iconfont-archer">&#xe60a;</span>资料</span>
-    
-        <span class="sidebar-category-name" data-categories="渗透测试"><span class="iconfont-archer">&#xe60a;</span>渗透测试</span>
     
         <span class="sidebar-category-name" data-categories="技术小卖铺"><span class="iconfont-archer">&#xe60a;</span>技术小卖铺</span>
     

@@ -359,6 +359,35 @@ height:50vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/2019/10/18/个人渗透脚本整理/" >
+            
+                <span>个人渗透脚本整理</span>
+        </a>
+        <div class="abstract-content">
+            子域名类子域名匹配及后续处理有三个函数，第一个函数利用正则匹配re库来对各个网页搜寻到的子域名进行匹配。第二个函数将子域名入库，并进行去重操作。第三个函数将数据库的子域名表导出到文件当中来。12345678910111213141516171819202122232425262728293031323334353637import reimport pymysql# 程序功能：将字符串中的域名验证是否重复，再插入数据库中。# 输入：字符串，返回：匹配子域名的数组def getDomain(string):	pattern = re.compile(r&quot;[\w\.]*?\.ymm...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/10/18</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "other">other</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/2019/10/16/2019下半年计划/" >
             
                 <span>2019下半年计划</span>
@@ -616,37 +645,6 @@ dex2jar下载地址：http://www.onlinedown.net/soft/989451.htm将apk文件后�
             前言学校最近布置了个套接字实验，挺有意思的，记录一下。
 题目描述
 服务器端代码服务器端，前部分代码大部分都为套路，从while循环开始，正式编程。通过accept函数返回值得到已连接套接字，之后我们都要使用这个套接字与客户端进行通信，同时该函数还会将客户端套接字通过指针进行返回，我们可以通过该套接字获取客户端的信息。如果要退出，直接exit就可以。第二层while对read进行循环，可以循环读取客户端输入的数据，这是一个阻塞函数，当客户端提交数据，将会调用该函数，该函数返回用户输入的字符串长度，而用户输入的字符串是通过指针传到buff值进行返回，要退出循环可以用exit。read之后可以...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/09/18</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "other">other</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/09/18/SCMS接口处存在sql注入漏洞/" >
-            
-                <span>SCMS接口处存在sql注入漏洞</span>
-        </a>
-        <div class="abstract-content">
-            前言复现一下最近cms的一些cve，学一些技巧套路。
-原理分析在/scms/js/scms.php中，第184行-208行中直接获取pageid的值，并将其拼接在where子句中，存在SQL布尔盲注
-漏洞复现正确返回xxx.jpg错误不返回xxx.jpg编写python脚本注入123456789101112131415161718192021222324252627282930313233343536373839import requestsfrom bs4 import BeautifulSoupurl = &quot;http://127.0.0.1/js/scms.php&quot...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -1479,54 +1477,9 @@ dex2jar下载地址：http://www.onlinedown.net/soft/989451.htm将apk文件后�
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 42
+        Total : 43
         </div>
         <!-- search  -->
         
@@ -1542,17 +1495,22 @@ dex2jar下载地址：http://www.onlinedown.net/soft/989451.htm将apk文件后�
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">10/18</span><a class="archive-post-title" href= "/2019/10/18/个人渗透脚本整理/" >个人渗透脚本整理</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">10/16</span><a class="archive-post-title" href= "/2019/10/16/2019下半年计划/" >2019下半年计划</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/16</span><a class="archive-post-title" href= "/2019/10/16/python编程总结/" >python编程总结</a>
+            <span class="archive-post-date">10/16</span><a class="archive-post-title" href= "/2019/10/16/python脚本(不定时更新)/" >python脚本(不定时更新)</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/16</span><a class="archive-post-title" href= "/2019/10/16/python脚本(不定时更新)/" >python脚本(不定时更新)</a>
+            <span class="archive-post-date">10/16</span><a class="archive-post-title" href= "/2019/10/16/python编程总结/" >python编程总结</a>
         </li>
     
     
@@ -1806,29 +1764,29 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="编程"><span class="iconfont-archer">&#xe60a;</span>编程</span>
     
-        <span class="sidebar-category-name" data-categories="学习"><span class="iconfont-archer">&#xe60a;</span>学习</span>
+        <span class="sidebar-category-name" data-categories="代码审计"><span class="iconfont-archer">&#xe60a;</span>代码审计</span>
     
         <span class="sidebar-category-name" data-categories="安全"><span class="iconfont-archer">&#xe60a;</span>安全</span>
     
-        <span class="sidebar-category-name" data-categories="代码审计"><span class="iconfont-archer">&#xe60a;</span>代码审计</span>
-    
-        <span class="sidebar-category-name" data-categories="渗透"><span class="iconfont-archer">&#xe60a;</span>渗透</span>
-    
         <span class="sidebar-category-name" data-categories="web"><span class="iconfont-archer">&#xe60a;</span>web</span>
     
+        <span class="sidebar-category-name" data-categories="学习"><span class="iconfont-archer">&#xe60a;</span>学习</span>
+    
         <span class="sidebar-category-name" data-categories="Web"><span class="iconfont-archer">&#xe60a;</span>Web</span>
+    
+        <span class="sidebar-category-name" data-categories="渗透"><span class="iconfont-archer">&#xe60a;</span>渗透</span>
     
         <span class="sidebar-category-name" data-categories="杂货店"><span class="iconfont-archer">&#xe60a;</span>杂货店</span>
     
         <span class="sidebar-category-name" data-categories="开发"><span class="iconfont-archer">&#xe60a;</span>开发</span>
+    
+        <span class="sidebar-category-name" data-categories="渗透测试"><span class="iconfont-archer">&#xe60a;</span>渗透测试</span>
     
         <span class="sidebar-category-name" data-categories="其他"><span class="iconfont-archer">&#xe60a;</span>其他</span>
     
         <span class="sidebar-category-name" data-categories="other"><span class="iconfont-archer">&#xe60a;</span>other</span>
     
         <span class="sidebar-category-name" data-categories="资料"><span class="iconfont-archer">&#xe60a;</span>资料</span>
-    
-        <span class="sidebar-category-name" data-categories="渗透测试"><span class="iconfont-archer">&#xe60a;</span>渗透测试</span>
     
         <span class="sidebar-category-name" data-categories="技术小卖铺"><span class="iconfont-archer">&#xe60a;</span>技术小卖铺</span>
     
