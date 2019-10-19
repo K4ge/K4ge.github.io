@@ -346,6 +346,35 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/2019/10/19/updatexml injection without concat/" >
+            
+                <span>updatexml injection without concat</span>
+        </a>
+        <div class="abstract-content">
+            updatexml报错原理，updatexml函数第二个参数中存在特殊字符、字母时，会出现报错，报错信息为特殊字符、字母及之后的内容，也就是说如果是以数字开头的，那么数字的信息将会被忽略，如图：既然updatexml函数是从特殊字符、字母后面开始截取的，因而传统的updatexml函数构造利用concat()函数来构造。我们延伸一下，对于waf我们经常会遇见过滤concat函数，那么我们应该怎么绕过？可以利用make_set函数，具体用法我也不太明白，反正能用就是了。payload：1select updatexml(1,make_set(3,&apos;~&apos;,(select ...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/10/19</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "other">other</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/2019/07/22/XSS利用/" >
             
                 <span>XSS利用</span>
@@ -1087,6 +1116,54 @@ get.php12345$text = file_get_contents(&quot;./cookie.txt&quot;);$text = $text . 
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
         Total : 43
@@ -1105,6 +1182,21 @@ get.php12345$text = file_get_contents(&quot;./cookie.txt&quot;);$text = $text . 
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">10/19</span><a class="archive-post-title" href= "/2019/10/19/linux常用指令/" >linux常用指令</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/19</span><a class="archive-post-title" href= "/2019/10/19/updatexml injection without concat/" >updatexml injection without concat</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/18</span><a class="archive-post-title" href= "/2019/10/18/python脚本(不定时更新)/" >python脚本(不定时更新)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">10/18</span><a class="archive-post-title" href= "/2019/10/18/个人渗透脚本整理/" >个人渗透脚本整理</a>
         </li>
     
@@ -1115,17 +1207,7 @@ get.php12345$text = file_get_contents(&quot;./cookie.txt&quot;);$text = $text . 
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/16</span><a class="archive-post-title" href= "/2019/10/16/python脚本(不定时更新)/" >python脚本(不定时更新)</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">10/16</span><a class="archive-post-title" href= "/2019/10/16/python编程总结/" >python编程总结</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">10/11</span><a class="archive-post-title" href= "/2019/10/11/linux常用指令/" >linux常用指令</a>
         </li>
     
     
@@ -1160,11 +1242,6 @@ get.php12345$text = file_get_contents(&quot;./cookie.txt&quot;);$text = $text . 
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">09/17</span><a class="archive-post-title" href= "/2019/09/17/ESPCMS代码审计/" >ESPCMS代码审计</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">09/11</span><a class="archive-post-title" href= "/2019/09/11/phar+mysql client触发反序列化本地复现/" >phar+mysql client触发反序列化本地复现</a>
         </li>
     
@@ -1180,12 +1257,12 @@ get.php12345$text = file_get_contents(&quot;./cookie.txt&quot;);$text = $text . 
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">09/05</span><a class="archive-post-title" href= "/2019/09/05/XSS挑战write up/" >XSS挑战write up</a>
+            <span class="archive-post-date">09/05</span><a class="archive-post-title" href= "/2019/09/05/alert(1) to win wp/" >alert(1) to win wp</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">09/05</span><a class="archive-post-title" href= "/2019/09/05/alert(1) to win wp/" >alert(1) to win wp</a>
+            <span class="archive-post-date">09/05</span><a class="archive-post-title" href= "/2019/09/05/XSS挑战write up/" >XSS挑战write up</a>
         </li>
     
     
@@ -1220,12 +1297,12 @@ get.php12345$text = file_get_contents(&quot;./cookie.txt&quot;);$text = $text . 
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">08/23</span><a class="archive-post-title" href= "/2019/08/23/sqli-labs 通关1/" >sqli-labs 通关1</a>
+            <span class="archive-post-date">08/23</span><a class="archive-post-title" href= "/2019/08/23/跨域实现-jsonp和CORS/" >跨域实现-jsonp和CORS</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">08/23</span><a class="archive-post-title" href= "/2019/08/23/跨域实现-jsonp和CORS/" >跨域实现-jsonp和CORS</a>
+            <span class="archive-post-date">08/23</span><a class="archive-post-title" href= "/2019/08/23/sqli-labs 通关1/" >sqli-labs 通关1</a>
         </li>
     
     
@@ -1368,19 +1445,19 @@ jsonContent:
         <div class="sidebar-panel-categories">
     <div class="sidebar-categories-name">
     
-        <span class="sidebar-category-name" data-categories="规划"><span class="iconfont-archer">&#xe60a;</span>规划</span>
-    
         <span class="sidebar-category-name" data-categories="ctf"><span class="iconfont-archer">&#xe60a;</span>ctf</span>
+    
+        <span class="sidebar-category-name" data-categories="规划"><span class="iconfont-archer">&#xe60a;</span>规划</span>
     
         <span class="sidebar-category-name" data-categories="编程"><span class="iconfont-archer">&#xe60a;</span>编程</span>
     
-        <span class="sidebar-category-name" data-categories="代码审计"><span class="iconfont-archer">&#xe60a;</span>代码审计</span>
-    
         <span class="sidebar-category-name" data-categories="安全"><span class="iconfont-archer">&#xe60a;</span>安全</span>
     
-        <span class="sidebar-category-name" data-categories="web"><span class="iconfont-archer">&#xe60a;</span>web</span>
-    
         <span class="sidebar-category-name" data-categories="学习"><span class="iconfont-archer">&#xe60a;</span>学习</span>
+    
+        <span class="sidebar-category-name" data-categories="代码审计"><span class="iconfont-archer">&#xe60a;</span>代码审计</span>
+    
+        <span class="sidebar-category-name" data-categories="web"><span class="iconfont-archer">&#xe60a;</span>web</span>
     
         <span class="sidebar-category-name" data-categories="Web"><span class="iconfont-archer">&#xe60a;</span>Web</span>
     

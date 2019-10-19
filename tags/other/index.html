@@ -346,6 +346,96 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/2019/10/19/linux常用指令/" >
+            
+                <span>linux常用指令</span>
+        </a>
+        <div class="abstract-content">
+            Mysql授权用户远程访问登录Mysql，执行sql语句1234use mysql;grant all privileges on *.* to &apos;root&apos;@&apos;%&apos; identified by &apos;root&apos; with grant option;flush privileges;quit;
+修改mysqld.cnf，默认位置在/etc/mysql/mysql.conf.d1vi /etc/mysql/mysql.conf.d/mysqld.cnf
+将bind=127.0.0.1注释掉1service mysql restart
+...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/10/19</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "other">other</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2019/10/19/updatexml injection without concat/" >
+            
+                <span>updatexml injection without concat</span>
+        </a>
+        <div class="abstract-content">
+            updatexml报错原理，updatexml函数第二个参数中存在特殊字符、字母时，会出现报错，报错信息为特殊字符、字母及之后的内容，也就是说如果是以数字开头的，那么数字的信息将会被忽略，如图：既然updatexml函数是从特殊字符、字母后面开始截取的，因而传统的updatexml函数构造利用concat()函数来构造。我们延伸一下，对于waf我们经常会遇见过滤concat函数，那么我们应该怎么绕过？可以利用make_set函数，具体用法我也不太明白，反正能用就是了。payload：1select updatexml(1,make_set(3,&apos;~&apos;,(select ...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/10/19</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "other">other</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2019/10/18/python脚本(不定时更新)/" >
+            
+                <span>python脚本(不定时更新)</span>
+        </a>
+        <div class="abstract-content">
+            md5验证码python312345678910111213141516171819202122232425262728293031323334import hashlibfrom multiprocessing.dummy import Pool as ThreadPool# MD5截断数值已知 求原始数据# 例子 substr(md5(captcha), 0, 6)=60b7efdef md5(s):  # 计算MD5字符串    return hashlib.md5(str(s).encode(&apos;utf-8&apos;)).hexdigest()keymd5 = &apo...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/10/18</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "other">other</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/2019/10/18/个人渗透脚本整理/" >
             
                 <span>个人渗透脚本整理</span>
@@ -423,67 +513,6 @@
             <!-- date  -->
             <div class="abstract-date">
                 <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/10/16</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "other">other</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/10/16/python脚本(不定时更新)/" >
-            
-                <span>python脚本(不定时更新)</span>
-        </a>
-        <div class="abstract-content">
-            md5验证码python312345678910111213141516171819202122232425262728293031323334import hashlibfrom multiprocessing.dummy import Pool as ThreadPool# MD5截断数值已知 求原始数据# 例子 substr(md5(captcha), 0, 6)=60b7efdef md5(s):  # 计算MD5字符串    return hashlib.md5(str(s).encode(&apos;utf-8&apos;)).hexdigest()keymd5 = &apo...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/10/16</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "other">other</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/10/11/linux常用指令/" >
-            
-                <span>linux常用指令</span>
-        </a>
-        <div class="abstract-content">
-            Mysql授权用户远程访问登录Mysql，执行sql语句1234use mysql;grant all privileges on *.* to &apos;root&apos;@&apos;%&apos; identified by &apos;root&apos; with grant option;flush privileges;quit;
-修改mysqld.cnf，默认位置在/etc/mysql/mysql.conf.d1vi /etc/mysql/mysql.conf.d/mysqld.cnf
-将bind=127.0.0.1注释掉1service mysql restart
-...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/10/11</span>
             </div>
             <!-- tags  -->
             
@@ -601,37 +630,6 @@ dex2jar下载地址：http://www.onlinedown.net/soft/989451.htm将apk文件后�
         <div class="abstract-content">
             phpStorm调试：https://www.php.cn/php-weizijiaocheng-387522.html短信轰炸：https://www.anquanke.com/post/id/93878windows defender关闭：https://www.win7qjb.com/jiaocheng/41093.html
 
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/09/18</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "other">other</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/09/18/C语言套接字编程/" >
-            
-                <span>C语言套接字编程</span>
-        </a>
-        <div class="abstract-content">
-            前言学校最近布置了个套接字实验，挺有意思的，记录一下。
-题目描述
-服务器端代码服务器端，前部分代码大部分都为套路，从while循环开始，正式编程。通过accept函数返回值得到已连接套接字，之后我们都要使用这个套接字与客户端进行通信，同时该函数还会将客户端套接字通过指针进行返回，我们可以通过该套接字获取客户端的信息。如果要退出，直接exit就可以。第二层while对read进行循环，可以循环读取客户端输入的数据，这是一个阻塞函数，当客户端提交数据，将会调用该函数，该函数返回用户输入的字符串长度，而用户输入的字符串是通过指针传到buff值进行返回，要退出循环可以用exit。read之后可以...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -1370,6 +1368,54 @@ dex2jar下载地址：http://www.onlinedown.net/soft/989451.htm将apk文件后�
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
         Total : 43
@@ -1388,6 +1434,21 @@ dex2jar下载地址：http://www.onlinedown.net/soft/989451.htm将apk文件后�
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">10/19</span><a class="archive-post-title" href= "/2019/10/19/linux常用指令/" >linux常用指令</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/19</span><a class="archive-post-title" href= "/2019/10/19/updatexml injection without concat/" >updatexml injection without concat</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/18</span><a class="archive-post-title" href= "/2019/10/18/python脚本(不定时更新)/" >python脚本(不定时更新)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">10/18</span><a class="archive-post-title" href= "/2019/10/18/个人渗透脚本整理/" >个人渗透脚本整理</a>
         </li>
     
@@ -1398,17 +1459,7 @@ dex2jar下载地址：http://www.onlinedown.net/soft/989451.htm将apk文件后�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/16</span><a class="archive-post-title" href= "/2019/10/16/python脚本(不定时更新)/" >python脚本(不定时更新)</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">10/16</span><a class="archive-post-title" href= "/2019/10/16/python编程总结/" >python编程总结</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">10/11</span><a class="archive-post-title" href= "/2019/10/11/linux常用指令/" >linux常用指令</a>
         </li>
     
     
@@ -1443,11 +1494,6 @@ dex2jar下载地址：http://www.onlinedown.net/soft/989451.htm将apk文件后�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">09/17</span><a class="archive-post-title" href= "/2019/09/17/ESPCMS代码审计/" >ESPCMS代码审计</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">09/11</span><a class="archive-post-title" href= "/2019/09/11/phar+mysql client触发反序列化本地复现/" >phar+mysql client触发反序列化本地复现</a>
         </li>
     
@@ -1463,12 +1509,12 @@ dex2jar下载地址：http://www.onlinedown.net/soft/989451.htm将apk文件后�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">09/05</span><a class="archive-post-title" href= "/2019/09/05/XSS挑战write up/" >XSS挑战write up</a>
+            <span class="archive-post-date">09/05</span><a class="archive-post-title" href= "/2019/09/05/alert(1) to win wp/" >alert(1) to win wp</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">09/05</span><a class="archive-post-title" href= "/2019/09/05/alert(1) to win wp/" >alert(1) to win wp</a>
+            <span class="archive-post-date">09/05</span><a class="archive-post-title" href= "/2019/09/05/XSS挑战write up/" >XSS挑战write up</a>
         </li>
     
     
@@ -1503,12 +1549,12 @@ dex2jar下载地址：http://www.onlinedown.net/soft/989451.htm将apk文件后�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">08/23</span><a class="archive-post-title" href= "/2019/08/23/sqli-labs 通关1/" >sqli-labs 通关1</a>
+            <span class="archive-post-date">08/23</span><a class="archive-post-title" href= "/2019/08/23/跨域实现-jsonp和CORS/" >跨域实现-jsonp和CORS</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">08/23</span><a class="archive-post-title" href= "/2019/08/23/跨域实现-jsonp和CORS/" >跨域实现-jsonp和CORS</a>
+            <span class="archive-post-date">08/23</span><a class="archive-post-title" href= "/2019/08/23/sqli-labs 通关1/" >sqli-labs 通关1</a>
         </li>
     
     
@@ -1651,19 +1697,19 @@ jsonContent:
         <div class="sidebar-panel-categories">
     <div class="sidebar-categories-name">
     
-        <span class="sidebar-category-name" data-categories="规划"><span class="iconfont-archer">&#xe60a;</span>规划</span>
-    
         <span class="sidebar-category-name" data-categories="ctf"><span class="iconfont-archer">&#xe60a;</span>ctf</span>
+    
+        <span class="sidebar-category-name" data-categories="规划"><span class="iconfont-archer">&#xe60a;</span>规划</span>
     
         <span class="sidebar-category-name" data-categories="编程"><span class="iconfont-archer">&#xe60a;</span>编程</span>
     
-        <span class="sidebar-category-name" data-categories="代码审计"><span class="iconfont-archer">&#xe60a;</span>代码审计</span>
-    
         <span class="sidebar-category-name" data-categories="安全"><span class="iconfont-archer">&#xe60a;</span>安全</span>
     
-        <span class="sidebar-category-name" data-categories="web"><span class="iconfont-archer">&#xe60a;</span>web</span>
-    
         <span class="sidebar-category-name" data-categories="学习"><span class="iconfont-archer">&#xe60a;</span>学习</span>
+    
+        <span class="sidebar-category-name" data-categories="代码审计"><span class="iconfont-archer">&#xe60a;</span>代码审计</span>
+    
+        <span class="sidebar-category-name" data-categories="web"><span class="iconfont-archer">&#xe60a;</span>web</span>
     
         <span class="sidebar-category-name" data-categories="Web"><span class="iconfont-archer">&#xe60a;</span>Web</span>
     
