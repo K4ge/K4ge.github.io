@@ -78,6 +78,8 @@
     <link rel="preload" href= "/css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'" />
     <link rel="stylesheet" href= "/css/mobile.css?v=20180824" media="(max-width: 980px)">
     
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    
     <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
 /* This file is meant as a standalone workflow for
 - testing support for link[rel=preload]
@@ -201,10 +203,8 @@
 </head>
 
     
-        <body class="home-body">
     
-    
-<header class="header index-header">
+<header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
@@ -220,34 +220,21 @@
 
 
 
-
-height:50vh;
 ">
     
     <!-- 主页  -->
-    
-    
-    <!-- 文章页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/intro/index-bg3.jpeg)"></div>
+    <div class="site-intro-img" style="background-image: url(/)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            阿杰的小站
-            <!-- 文章页  -->
-            
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
-            
-            
-                冲冲冲.../成信大
-            
-            <!-- 文章页  -->
             
         </p>
         <!-- 文章页meta -->
@@ -351,267 +338,54 @@ height:50vh;
 </script>        
         <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
         <div class="container container-unloaded">
-            <main class="main index-page">
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/05/13/bugku代码审计wp/" >
-            
-                <span>bugku代码审计wp</span>
-        </a>
-        <div class="abstract-content">
-            0x01. extract变量覆盖1234567891011121314$flag=&apos;xxx&apos;;extract($_GET);if(isset($shiyan))&#123;$content=trim(file_get_contents($flag));if($shiyan==$content)&#123;echo&apos;flag&#123;xxx&#125;&apos;;&#125;else&#123;echo&apos;Oh.no&apos;;&#125;&#125;
-\$shiyan和$flag变量由extract变量覆盖进行控制$content变量由fil...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/05/13</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "web">web</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/04/21/PHP反序列化绕过__wakeup方法/" >
-            
-                <span>PHP反序列化绕过__wakeup方法</span>
-        </a>
-        <div class="abstract-content">
-            0x01.前言做国赛ctf，遇到一个绕过点感觉挺有价值的，主要是通过CVE-2016-7124进行绕过。影响版本：PHP5 &lt; 5.6.25 PHP7 &lt; 7.0.10
-0x02. public private protected的序列化12345678910111213class Kage&#123;	public $name=&apos;kxj&apos;;	private $name2=&apos;kxj&apos;;	protected $name3=&apos;kxj&apos;;	public function getName()&#123;		var_dump(...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/21</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "web">web</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/03/31/文件包含漏洞/" >
-            
-                <span>文件包含漏洞小结</span>
-        </a>
-        <div class="abstract-content">
-            原理如果客户可以将恶意参数动态地添加到包含函数中，会导致恶意代码执行，敏感信息泄露，主要包括本地文件包含和远程文件包含两种形式。常见函数有：include()、require()区别：
+            <main class="main post-page">
+    <article class="article-entry">
+        <h2 id="python编程总结"><a href="#python编程总结" class="headerlink" title="python编程总结"></a>python编程总结</h2><p>@(杂货店)</p>
+<h3 id="python操作mysql数据库"><a href="#python操作mysql数据库" class="headerlink" title="python操作mysql数据库"></a>python操作mysql数据库</h3><p>查询<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">import pymysql</span><br><span class="line">db = pymysql.connect(&quot;localhost&quot;,&quot;root&quot;,&quot;root&quot;,&quot;subdomain&quot;)</span><br><span class="line">cursor = db.cursor()</span><br><span class="line">cursor.execute(&quot;select version&quot;)</span><br><span class="line">data = cursor.fetchone()</span><br><span class="line">db.close()</span><br></pre></td></tr></table></figure></p>
+<p>插入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">conn = pymysql.connect(&quot;localhost&quot;,&quot;root&quot;,&quot;root&quot;,&quot;tool&quot;)</span><br><span class="line">cursor = conn.cursor()</span><br><span class="line">for name in l:</span><br><span class="line">	try:</span><br><span class="line">		cursor.execute(&quot;insert into maodou(name) values (&apos;%s&apos;)&quot; % name)</span><br><span class="line">	except:</span><br><span class="line">		print(&quot;子域名重复：%s&quot; % name)</span><br><span class="line">conn.commit()</span><br><span class="line">cursor.close()</span><br><span class="line">conn.close()</span><br></pre></td></tr></table></figure></p>
+<p>修改<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">conn = pymysql.connect(&quot;localhost&quot;,&quot;root&quot;,&quot;root&quot;,&quot;thinkcmf&quot;)</span><br><span class="line">cursor = conn.cursor()</span><br><span class="line">cursor.execute(&quot;UPDATE com set vuln=2 where ip=&apos;%s&apos;&quot; % ip)</span><br><span class="line">conn.commit()</span><br><span class="line">cursor.close()</span><br><span class="line">conn.close()</span><br><span class="line">print(&quot;%s hacked&quot; % ip)</span><br></pre></td></tr></table></figure></p>
+<h3 id="python文件操作"><a href="#python文件操作" class="headerlink" title="python文件操作"></a>python文件操作</h3><p>写文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">with open(&quot;./subdomain.txt&quot;,&quot;a&quot;,encoding=&apos;UTF-8&apos;) as fp:</span><br><span class="line">	fp.write(&quot;6666&quot;)</span><br></pre></td></tr></table></figure></p>
+<p>读取文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">with open(path,&apos;r&apos;,encoding=&apos;UTF-8&apos;) as fp:</span><br><span class="line">	s = fp.read()</span><br></pre></td></tr></table></figure></p>
+<h3 id="dns解析域名"><a href="#dns解析域名" class="headerlink" title="dns解析域名"></a>dns解析域名</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">import socket</span><br><span class="line">print(socket.gethostbyname(&apos;host&apos;))</span><br></pre></td></tr></table></figure>
+<h3 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h3><p>简单的小demo<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">import threading</span><br><span class="line">def myfunction(arg1):</span><br><span class="line">	print(&quot;thread %s is running\n&quot; % threading.current_thread().name)</span><br><span class="line">	print(arg1)</span><br><span class="line">	print(&quot;thread %s is ended\n&quot; % threading.current_thread().name)</span><br><span class="line"></span><br><span class="line">for i in range(10):</span><br><span class="line">	t = threading.Thread(target=myfunction,name=str(i),args=(i,)) </span><br><span class="line">	t.start()</span><br></pre></td></tr></table></figure></p>
+<p>执行框架，10线程同时进行。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">def myfunction(ip):</span><br><span class="line">	# 线程执行语句</span><br><span class="line">	if check(ip):</span><br><span class="line">		conn = pymysql.connect(&quot;localhost&quot;,&quot;root&quot;,&quot;root&quot;,&quot;thinkcmf&quot;)</span><br><span class="line">		cursor = conn.cursor()</span><br><span class="line">		cursor.execute(&quot;UPDATE com set vuln=2 where ip=&apos;%s&apos;&quot; % ip)</span><br><span class="line">		conn.commit()</span><br><span class="line">		cursor.close()</span><br><span class="line">		conn.close()</span><br><span class="line">		print(&quot;%s hacked&quot; % ip)</span><br><span class="line">	else:</span><br><span class="line">		print(&quot;%s nono&quot; % ip)</span><br><span class="line"></span><br><span class="line">def run(ip):</span><br><span class="line">	lwork = []</span><br><span class="line">	# 设置线程数量，将10个数据每个送进一个线程</span><br><span class="line">	for i in range(0,10):</span><br><span class="line">		data = ip[i][0]</span><br><span class="line">		# 进入线程</span><br><span class="line">		t = threading.Thread(target=myfunction,name=data,args=(data,)) </span><br><span class="line">		t.start()</span><br><span class="line">		lwork.append(t)</span><br><span class="line"></span><br><span class="line">	for i in lwork:</span><br><span class="line">		i.join()</span><br><span class="line"># 获取list数据</span><br><span class="line">ip = getIP()</span><br><span class="line">for i in range(0,17):</span><br><span class="line">	print(&quot;[*]%d turn is start&quot; % i)</span><br><span class="line">	# 通过切片技术，每十个传进来</span><br><span class="line">	run(ip[i*10:i*10+10])</span><br><span class="line">	print(&quot;[*]%d turn finished&quot; % i)</span><br></pre></td></tr></table></figure></p>
 
-include是当代码执行到它的时候才加载文件,发生错误的时候只是给一个警告,然后继续往下执行
-require是只要程序一执行就会立即调用文件,发生错误的时候会输出错误信息,并且终止脚本的运行
-
-require一般是用于文件头包含类文件、数据库等等文件，include一般是用于包含html模板文件include_once()、require_once()与(include\require)的功能相同,只...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/03/31</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "web">web</a>
-    
-</div>
-            
-        </div>
     </article>
+    <!-- license  -->
     
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/02/03/同一台电脑连接多个github仓库/" >
-            
-                <span>同一台电脑连接多个github仓库</span>
-        </a>
-        <div class="abstract-content">
-            0x01.生成密钥1ssh-keygen -t rsa -C &quot;yourname@email.com&quot;
-分别生成两次公钥，可以得到两组公钥和私钥
-0x02. 在github上添加公钥不解释
-0x03. 添加config配置文件在.ssh文件夹下添加config文件1234567891011#第一个账号 Bu1uokageHost github.comHostName github.comUser gitIdentityFile ~/.ssh/id_rsa#第二个账号 K4geHost K4geHostName github.comUser gitIdentityFil...
+        <div class="license-wrapper">
+            <p>原文作者：<a href="http://yoursite.com">Kage</a>
+            <p>原文链接：<a href="http://yoursite.com/others/python编程总结.html">http://yoursite.com/others/python编程总结.html</a>
+            <p>发表日期：<a href="http://yoursite.com/others/python编程总结.html">October 24th 2019, 10:43:04 pm</a>
+            <p>更新日期：<a href="http://yoursite.com/others/python编程总结.html">October 24th 2019, 10:43:04 pm</a>
+            <p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/02/03</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "other">other</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/02/03/hgame草稿/" >
-            
-                <span>hgame-web-week1</span>
-        </a>
-        <div class="abstract-content">
-            1. 谁吃了我的flag获取vim备份文件vim自动退出会临时备份隐藏文件 .xxx.swp用linux打vim -r .xxx.swp 可以恢复备份文件hgame{3eek_diScl0Sure_fRom+wEbsit@}
-2. 换头大作战输入框输入，要求使用postpost输入要求使用waterfox，更改要求bilibili登录最后得到flaghgame{hTTp_HeaDeR_iS_Ez}
-3. very easy web1234567891011121314&lt;?phperror_reporting(0);include(&quot;flag.php&quot;);if(s...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/02/03</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "ctf">ctf</a>
-    
-</div>
-            
-        </div>
-    </article>
     
     <!-- paginator  -->
-    
-    <nav class="page-nav">
-        <a class="extend prev" rel="prev" href="/page/4/">&#60; PREV</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span>
-    </nav>
-    
-</main>
-            <!-- profile -->
+    <ul class="post-paginator">
+        <li class="next">
             
-            <div class="profile">
-    <img class="profile-avatar" alt="avatar" src= /avatar/Kage.jpg >
-    <div class="profile-name">部落阿杰</div>
-    
-    <div class="profile-signature">
-        苟有恒，何必三更眠五更起。
-    </div>
-    
-    
-    <div class="profile-social">
-        
-    
-        
+        </li>
+        <li class="previous">
             
-                <a href="mailto:543251348@qq.com" class="iconfont-archer email" title=email ></a>
-            
-        
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
     
-        
-            
-                <a href="//github.com/K4ge" class="iconfont-archer github" target="_blank" title=github></a>
-            
-        
     
-        
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
     
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-            
-                <a href="/atom.xml" class="iconfont-archer rss" target="_blank" title=rss></a>
-            
-        
     
 
-    </div>
-    
-    
-        <div class="friends">
-            <div>FRIENDS</div>
-            
-                
-                    <span>
-                        <a href= //www.baidu.com target="_black">friendA</a>
-                    </span>
-                
-            
-                
-                    <span>
-                        <a href= //www.google.com target="_black">friendB</a>
-                    </span>
-                
-            
-                
-            
-        </div>
-    
-    
-        <div class="about-me">
-            <a href = "/about" >ABOUT ME</a>
-        </div>
-    
-</div>
+    <!-- 评论 -->
+</main>
+            <!-- profile -->
             
         </div>
         <footer class="footer footer-unloaded">

