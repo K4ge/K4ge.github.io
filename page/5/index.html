@@ -359,6 +359,42 @@ height:50vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/2019/05/13/代码审计的相关函数分析/" >
+            
+                <span>代码审计相关函数分析</span>
+        </a>
+        <div class="abstract-content">
+            0x01. \$_GET$_GET函数经常是ctf解题入口，该函数可以传递数组get.php1var_dump($_GET);
+(1) 传递多个值优先选择后一个值(2) 传递数组(3) array&gt;数字
+附：$_POST同样有效
+0x02. extract将键名摘取为变量值，键值作为变量值
+0x03. strcmp传入数组返回Null
+0x04. strpos传入数组返回null
+0x05. ereg传入数组返回null
+0x06. is_numeric可以传入&#39;数字+字母&#39;绕过判断，如&#39;123a&#39;比较可被当成数字，即&#39;123a&#39;&g...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/05/13</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "web">web</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/2019/05/13/bugku代码审计wp/" >
             
                 <span>bugku代码审计wp</span>
@@ -1345,9 +1381,56 @@ require一般是用于文件头包含类文件、数据库等等文件，include
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 45
+        Total : 46
         </div>
         <!-- search  -->
         
@@ -1360,6 +1443,11 @@ require一般是用于文件头包含类文件、数据库等等文件，include
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/31</span><a class="archive-post-title" href= "/2019/10/31/java 0day整理/" >java 0day整理</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -1558,12 +1646,12 @@ require一般是用于文件头包含类文件、数据库等等文件，include
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/13</span><a class="archive-post-title" href= "/2019/05/13/代码审计的相关函数分析/" >代码审计相关函数分析</a>
+            <span class="archive-post-date">05/13</span><a class="archive-post-title" href= "/2019/05/13/bugku代码审计wp/" >bugku代码审计wp</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/13</span><a class="archive-post-title" href= "/2019/05/13/bugku代码审计wp/" >bugku代码审计wp</a>
+            <span class="archive-post-date">05/13</span><a class="archive-post-title" href= "/2019/05/13/代码审计的相关函数分析/" >代码审计相关函数分析</a>
         </li>
     
     
@@ -1597,9 +1685,9 @@ require一般是用于文件头包含类文件、数据库等等文件，include
     
         <span class="sidebar-tag-name" data-tags="web"><span class="iconfont-archer">&#xe606;</span>web</span>
     
-        <span class="sidebar-tag-name" data-tags="Web"><span class="iconfont-archer">&#xe606;</span>Web</span>
-    
         <span class="sidebar-tag-name" data-tags="ctf"><span class="iconfont-archer">&#xe606;</span>ctf</span>
+    
+        <span class="sidebar-tag-name" data-tags="Web"><span class="iconfont-archer">&#xe606;</span>Web</span>
     
         <span class="sidebar-tag-name" data-tags="靶场"><span class="iconfont-archer">&#xe606;</span>靶场</span>
     
@@ -1636,35 +1724,35 @@ jsonContent:
         <div class="sidebar-panel-categories">
     <div class="sidebar-categories-name">
     
-        <span class="sidebar-category-name" data-categories="ctf"><span class="iconfont-archer">&#xe60a;</span>ctf</span>
-    
         <span class="sidebar-category-name" data-categories="规划"><span class="iconfont-archer">&#xe60a;</span>规划</span>
+    
+        <span class="sidebar-category-name" data-categories="ctf"><span class="iconfont-archer">&#xe60a;</span>ctf</span>
     
         <span class="sidebar-category-name" data-categories="编程"><span class="iconfont-archer">&#xe60a;</span>编程</span>
     
-        <span class="sidebar-category-name" data-categories="安全"><span class="iconfont-archer">&#xe60a;</span>安全</span>
-    
         <span class="sidebar-category-name" data-categories="学习"><span class="iconfont-archer">&#xe60a;</span>学习</span>
     
-        <span class="sidebar-category-name" data-categories="代码审计"><span class="iconfont-archer">&#xe60a;</span>代码审计</span>
+        <span class="sidebar-category-name" data-categories="安全"><span class="iconfont-archer">&#xe60a;</span>安全</span>
     
         <span class="sidebar-category-name" data-categories="web"><span class="iconfont-archer">&#xe60a;</span>web</span>
     
-        <span class="sidebar-category-name" data-categories="Web"><span class="iconfont-archer">&#xe60a;</span>Web</span>
+        <span class="sidebar-category-name" data-categories="代码审计"><span class="iconfont-archer">&#xe60a;</span>代码审计</span>
     
         <span class="sidebar-category-name" data-categories="渗透"><span class="iconfont-archer">&#xe60a;</span>渗透</span>
     
-        <span class="sidebar-category-name" data-categories="杂货店"><span class="iconfont-archer">&#xe60a;</span>杂货店</span>
-    
         <span class="sidebar-category-name" data-categories="开发"><span class="iconfont-archer">&#xe60a;</span>开发</span>
     
-        <span class="sidebar-category-name" data-categories="渗透测试"><span class="iconfont-archer">&#xe60a;</span>渗透测试</span>
+        <span class="sidebar-category-name" data-categories="杂货店"><span class="iconfont-archer">&#xe60a;</span>杂货店</span>
     
         <span class="sidebar-category-name" data-categories="其他"><span class="iconfont-archer">&#xe60a;</span>其他</span>
     
-        <span class="sidebar-category-name" data-categories="other"><span class="iconfont-archer">&#xe60a;</span>other</span>
+        <span class="sidebar-category-name" data-categories="渗透测试"><span class="iconfont-archer">&#xe60a;</span>渗透测试</span>
     
         <span class="sidebar-category-name" data-categories="资料"><span class="iconfont-archer">&#xe60a;</span>资料</span>
+    
+        <span class="sidebar-category-name" data-categories="other"><span class="iconfont-archer">&#xe60a;</span>other</span>
+    
+        <span class="sidebar-category-name" data-categories="Web"><span class="iconfont-archer">&#xe60a;</span>Web</span>
     
         <span class="sidebar-category-name" data-categories="技术小卖铺"><span class="iconfont-archer">&#xe60a;</span>技术小卖铺</span>
     
