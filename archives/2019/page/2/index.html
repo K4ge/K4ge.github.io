@@ -346,6 +346,36 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/2019/10/07/thinkphp5.x 框架分析/" >
+            
+                <span>thinkphp5.x 框架分析</span>
+        </a>
+        <div class="abstract-content">
+            一、前言最近在n1ctf遇到thinkphp的利用链挖掘，以及上学期很火的rce漏洞，都需要对tp5框架流程有一个清晰的认识。可能记得有些杂，主要是作为个人笔记使用。
+二、小知识点2.1.自动加载主要是利用spl_autoload_register函数，该函数是用来注册自动加载函数。什么是自动加载函数呢，就是当我们调用一个不存在的类，如new person()时，就会自动调用这个自动加载函数，并且把类名person传入该函数中，我们就可以通过自动加载函数来包含指定文件来获得该类。12345678error_reporting(0);spl_autoload_register(&quot;...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/10/07</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "other">other</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/2019/09/20/apk反编译/" >
             
                 <span>apk反编译</span>
@@ -599,37 +629,6 @@ preg_match函数问题PHP为了防止拒绝服务攻击，设置了回溯上限�
             1.Warmup：123function escape(s) &#123;  return &apos;&lt;script&gt;console.log(&quot;&apos;+s+&apos;&quot;);&lt;/script&gt;&apos;;&#125;
 将用户输入字符串放入console.log中，可以通过闭合括号和注释，输出alert&quot;);alert(1)//js正则表达式
 2.Adobe：1234function escape(s) &#123;  s = s.replace(/&quot;/g, &apos;\\&quot;&apos;);  retur...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/09/05</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "other">other</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/09/05/XSS挑战write up/" >
-            
-                <span>XSS挑战write up</span>
-        </a>
-        <div class="abstract-content">
-            一、DVWA1.DOMlow：&lt;script&gt;alert(1)&lt;/script&gt;medium：&lt;/option&gt;&lt;/select&gt;&lt;img src=1 onerror=alert(1)&gt;注意有的要包裹前面的high：English#&lt;script&gt;alert(1)&lt;/script&gt;服务器端过滤的是GET的参数，而前端js使用的是整个url，可以通过#隔开插入js语句
-2.stored和reflect&lt;img src=1 onerror=alert(1)&gt;通关所有
-二、XSS挑战level1：h...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -1419,9 +1418,30 @@ preg_match函数问题PHP为了防止拒绝服务攻击，设置了回溯上限�
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 46
+        Total : 47
         </div>
         <!-- search  -->
         
@@ -1434,6 +1454,11 @@ preg_match函数问题PHP为了防止拒绝服务攻击，设置了回溯上限�
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/13</span><a class="archive-post-title" href= "/2019/12/13/java安全之攻击RMI Registry/" >java安全之攻击RMI Registry</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -1637,12 +1662,12 @@ preg_match函数问题PHP为了防止拒绝服务攻击，设置了回溯上限�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/13</span><a class="archive-post-title" href= "/2019/05/13/代码审计的相关函数分析/" >代码审计相关函数分析</a>
+            <span class="archive-post-date">05/13</span><a class="archive-post-title" href= "/2019/05/13/bugku代码审计wp/" >bugku代码审计wp</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/13</span><a class="archive-post-title" href= "/2019/05/13/bugku代码审计wp/" >bugku代码审计wp</a>
+            <span class="archive-post-date">05/13</span><a class="archive-post-title" href= "/2019/05/13/代码审计的相关函数分析/" >代码审计相关函数分析</a>
         </li>
     
     
@@ -1715,17 +1740,17 @@ jsonContent:
         <div class="sidebar-panel-categories">
     <div class="sidebar-categories-name">
     
+        <span class="sidebar-category-name" data-categories="规划"><span class="iconfont-archer">&#xe60a;</span>规划</span>
+    
+        <span class="sidebar-category-name" data-categories="学习"><span class="iconfont-archer">&#xe60a;</span>学习</span>
+    
         <span class="sidebar-category-name" data-categories="ctf"><span class="iconfont-archer">&#xe60a;</span>ctf</span>
     
-        <span class="sidebar-category-name" data-categories="规划"><span class="iconfont-archer">&#xe60a;</span>规划</span>
+        <span class="sidebar-category-name" data-categories="代码审计"><span class="iconfont-archer">&#xe60a;</span>代码审计</span>
     
         <span class="sidebar-category-name" data-categories="编程"><span class="iconfont-archer">&#xe60a;</span>编程</span>
     
         <span class="sidebar-category-name" data-categories="安全"><span class="iconfont-archer">&#xe60a;</span>安全</span>
-    
-        <span class="sidebar-category-name" data-categories="学习"><span class="iconfont-archer">&#xe60a;</span>学习</span>
-    
-        <span class="sidebar-category-name" data-categories="代码审计"><span class="iconfont-archer">&#xe60a;</span>代码审计</span>
     
         <span class="sidebar-category-name" data-categories="web"><span class="iconfont-archer">&#xe60a;</span>web</span>
     
@@ -1737,9 +1762,9 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="开发"><span class="iconfont-archer">&#xe60a;</span>开发</span>
     
-        <span class="sidebar-category-name" data-categories="渗透测试"><span class="iconfont-archer">&#xe60a;</span>渗透测试</span>
-    
         <span class="sidebar-category-name" data-categories="其他"><span class="iconfont-archer">&#xe60a;</span>其他</span>
+    
+        <span class="sidebar-category-name" data-categories="渗透测试"><span class="iconfont-archer">&#xe60a;</span>渗透测试</span>
     
         <span class="sidebar-category-name" data-categories="other"><span class="iconfont-archer">&#xe60a;</span>other</span>
     
