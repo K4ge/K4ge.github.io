@@ -1,0 +1,1987 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <!-- title -->
+
+
+
+
+<!-- keywords -->
+
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" >
+    <meta name="author" content="Kage">
+    <meta name="renderer" content="webkit">
+    <meta name="copyright" content="Kage">
+    
+    <meta name="keywords" content="hexo,hexo-theme,hexo-blog">
+    
+    <meta name="description" content="">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>高级攻防复习 · 阿杰的小站</title>
+    <style type="text/css">
+    @font-face {
+        font-family: 'Oswald-Regular';
+        src: url("/font/Oswald-Regular.ttf");
+    }
+
+    body {
+        margin: 0;
+    }
+
+    header,
+    footer,
+    .back-top,
+    .sidebar,
+    .container,
+    .site-intro-meta,
+    .toc-wrapper {
+        display: none;
+    }
+
+    .site-intro {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        /* height: 50vh; */
+        overflow: hidden;
+    }
+
+    .site-intro-placeholder {
+        position: absolute;
+        z-index: -2;
+        top: 0;
+        left: 0;
+        width: calc(100% + 300px);
+        height: 100%;
+        background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
+        background-position: center center;
+        transform: translate3d(-226px, 0, 0);
+        animation: gradient-move 2.5s ease-out 0s infinite;
+    }
+
+    @keyframes gradient-move {
+        0% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+</style>
+
+    <link rel="preload" href= "/css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <link rel="stylesheet" href= "/css/mobile.css?v=20180824" media="(max-width: 980px)">
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    
+    <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+/* This file is meant as a standalone workflow for
+- testing support for link[rel=preload]
+- enabling async CSS loading in browsers that do not support rel=preload
+- applying rel preload css once loaded, whether supported or not.
+*/ -->
+<script>
+(function( w ){
+	"use strict";
+	// rel=preload support test
+	if( !w.loadCSS ){
+		w.loadCSS = function(){};
+	}
+	// define on the loadCSS obj
+	var rp = loadCSS.relpreload = {};
+	// rel=preload feature support test
+	// runs once and returns a function for compat purposes
+	rp.support = (function(){
+		var ret;
+		try {
+			ret = w.document.createElement( "link" ).relList.supports( "preload" );
+		} catch (e) {
+			ret = false;
+		}
+		return function(){
+			return ret;
+		};
+	})();
+
+	// if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+	// then change that media back to its intended value on load
+	rp.bindMediaToggle = function( link ){
+		// remember existing media attr for ultimate state, or default to 'all'
+		var finalMedia = link.media || "all";
+
+		function enableStylesheet(){
+			link.media = finalMedia;
+		}
+
+		// bind load handlers to enable media
+		if( link.addEventListener ){
+			link.addEventListener( "load", enableStylesheet );
+		} else if( link.attachEvent ){
+			link.attachEvent( "onload", enableStylesheet );
+		}
+
+		// Set rel and non-applicable media type to start an async request
+		// note: timeout allows this to happen async to let rendering continue in IE
+		setTimeout(function(){
+			link.rel = "stylesheet";
+			link.media = "only x";
+		});
+		// also enable media after 3 seconds,
+		// which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+		setTimeout( enableStylesheet, 3000 );
+	};
+
+	// loop through link elements in DOM
+	rp.poly = function(){
+		// double check this to prevent external calls from running
+		if( rp.support() ){
+			return;
+		}
+		var links = w.document.getElementsByTagName( "link" );
+		for( var i = 0; i < links.length; i++ ){
+			var link = links[ i ];
+			// qualify links to those with rel=preload and as=style attrs
+			if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+				// prevent rerunning on link
+				link.setAttribute( "data-loadcss", true );
+				// bind listeners to toggle media back
+				rp.bindMediaToggle( link );
+			}
+		}
+	};
+
+	// if unsupported, run the polyfill
+	if( !rp.support() ){
+		// run once at least
+		rp.poly();
+
+		// rerun poly on an interval until onload
+		var run = w.setInterval( rp.poly, 500 );
+		if( w.addEventListener ){
+			w.addEventListener( "load", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		} else if( w.attachEvent ){
+			w.attachEvent( "onload", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		}
+	}
+
+
+	// commonjs
+	if( typeof exports !== "undefined" ){
+		exports.loadCSS = loadCSS;
+	}
+	else {
+		w.loadCSS = loadCSS;
+	}
+}( typeof global !== "undefined" ? global : this ) );
+</script>
+
+    <link rel="icon" href= "/assets/favicon.ico" />
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js" as="script" />
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" as="script" />
+    <link rel="preload" href="/scripts/main.js" as="script" />
+    <link rel="preload" as="font" href="/font/Oswald-Regular.ttf" crossorigin>
+    <link rel="preload" as="font" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" crossorigin>
+    
+    <!-- fancybox -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script>
+    <!-- 百度统计  -->
+    
+    <!-- 谷歌统计  -->
+    
+</head>
+
+    
+        <body class="post-body">
+    
+    
+<header class="header">
+
+    <div class="read-progress"></div>
+    <div class="header-sidebar-menu">&#xe775;</div>
+    <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >阿杰的小站</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">高级攻防复习</a>
+            </div>
+    </div>
+    
+    <a class="home-link" href=/>阿杰的小站</a>
+</header>
+    <div class="wrapper">
+        <div class="site-intro" style="
+
+
+
+
+
+
+
+height:50vh;
+">
+    
+    <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
+            
+    <div class="site-intro-placeholder"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
+    <div class="site-intro-meta">
+        <!-- 标题  -->
+        <h1 class="intro-title">
+            <!-- 主页  -->
+            
+            高级攻防复习
+            <!-- 404 -->
+            
+        </h1>
+        <!-- 副标题 -->
+        <p class="intro-subtitle">
+            <!-- 主页副标题  -->
+            
+            
+            <!-- 404 -->
+            
+        </p>
+        <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "other">other</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">4.2k</span>阅读时长: <span class="post-count reading-time">16 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2019/12/20</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
+        
+    </div>
+</div>
+        <script>
+ 
+  // get user agent
+  var browser = {
+    versions: function () {
+      var u = window.navigator.userAgent;
+      return {
+        userAgent: u,
+        trident: u.indexOf('Trident') > -1, //IE内核
+        presto: u.indexOf('Presto') > -1, //opera内核
+        webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+        gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+        mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+        ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+        android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+        iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
+        iPad: u.indexOf('iPad') > -1, //是否为iPad
+        webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
+        weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
+        uc: u.indexOf('UCBrowser') > -1 //是否为android下的UC浏览器
+      };
+    }()
+  }
+  console.log("userAgent:" + browser.versions.userAgent);
+
+  // callback
+  function fontLoaded() {
+    console.log('font loaded');
+    if (document.getElementsByClassName('site-intro-meta')) {
+      document.getElementsByClassName('intro-title')[0].classList.add('intro-fade-in');
+      document.getElementsByClassName('intro-subtitle')[0].classList.add('intro-fade-in');
+      var postIntros = document.getElementsByClassName('post-intros')[0]
+      if (postIntros) {
+        postIntros.classList.add('post-fade-in');
+      }
+    }
+  }
+
+  // UC不支持跨域，所以直接显示
+  function asyncCb(){
+    if (browser.versions.uc) {
+      console.log("UCBrowser");
+      fontLoaded();
+    } else {
+      WebFont.load({
+        custom: {
+          families: ['Oswald-Regular']
+        },
+        loading: function () {  //所有字体开始加载
+          // console.log('loading');
+        },
+        active: function () {  //所有字体已渲染
+          fontLoaded();
+        },
+        inactive: function () { //字体预加载失败，无效字体或浏览器不支持加载
+          console.log('inactive: timeout');
+          fontLoaded();
+        },
+        timeout: 5000 // Set the timeout to two seconds
+      });
+    }
+  }
+
+  function asyncErr(){
+    console.warn('script load from CDN failed, will load local script')
+  }
+
+  // load webfont-loader async, and add callback function
+  function async(u, cb, err) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (cb) { o.addEventListener('load', function (e) { cb(null, e); }, false); }
+    if (err) { o.addEventListener('error', function (e) { err(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+
+  var asyncLoadWithFallBack = function(arr, success, reject) {
+      var currReject = function(){
+        reject()
+        arr.shift()
+        if(arr.length)
+          async(arr[0], success, currReject)
+        }
+
+      async(arr[0], success, currReject)
+  }
+
+  asyncLoadWithFallBack([
+    "https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js", 
+    "https://cdn.bootcss.com/webfont/1.6.28/webfontloader.js",
+    "/lib/webfontloader.min.js"
+  ], asyncCb, asyncErr)
+</script>        
+        <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+        <div class="container container-unloaded">
+            <main class="main post-page">
+    <article class="article-entry">
+        <h2 id="第一章：Kali入门"><a href="#第一章：Kali入门" class="headerlink" title="第一章：Kali入门"></a>第一章：Kali入门</h2><h3 id="虚拟机设置固定ip地址"><a href="#虚拟机设置固定ip地址" class="headerlink" title="虚拟机设置固定ip地址"></a>虚拟机设置固定ip地址</h3><p>需要修改虚拟机的网络设置文件<code>/etc/network/interfaces</code><br>并设置ip和子网掩码等。</p>
+<h3 id="配置无线网络"><a href="#配置无线网络" class="headerlink" title="配置无线网络"></a>配置无线网络</h3><p>kali可以使用USB接口的无线网卡。<br>如果无线网卡可以被kali识别，可以用<code>dmesg</code>指令的输出中看到无线网卡的硬件信息。</p>
+<h3 id="启用网络"><a href="#启用网络" class="headerlink" title="启用网络"></a>启用网络</h3><p>可以通过service指令来启动和关闭网络<br>开启网络：<br><code>service networking start</code><br>关闭网络：<br><code>service networking stop</code><br>开机自动启动：<br><code>update-rc.d networking defaults</code></p>
+<h3 id="系统更新"><a href="#系统更新" class="headerlink" title="系统更新"></a>系统更新</h3><p>apt-get指令会查询<code>/etc/apt/sources.list</code>文件，从中获取更新服务器的信息。<br>同步索引的指令：<br><code>apt-get update</code><br>系统更新的指令：<br><code>apt-get upgrade</code>：升级系统上安装的所有软件包<br><code>apt-get dist-upgrade</code>：升级整个Kali Linux系统</p>
+<h3 id="apache2"><a href="#apache2" class="headerlink" title="apache2"></a>apache2</h3><p>渗透的时候，可能经常会用到Web服务器<br>开启apache服务器的指令：<br><code>service apache2 start</code><br>关闭apache服务器的指令：<br><code>service apache2 stop</code><br>开机自动启动：<br><code>update-rc.d apache2 defaults</code></p>
+<h3 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h3><p>通常会把渗透测试的测试结果存储到MySQL服务器里。<br>启动MySQL指令：<br><code>service mysql start</code><br>登录MySQL服务器：<br><code>mysql -u root -p</code><br>停止MySQL指令：<br><code>service mysql stop</code></p>
+<h3 id="SSH"><a href="#SSH" class="headerlink" title="SSH"></a>SSH</h3><p>全称Secure Shell，可以用于远程登录会话和其他网络服务提供安全性的协议。<br>开启kali的ssh服务，使之可以在远程被登录：<br><code>service ssh start</code><br>关闭ssh服务：<br><code>service ssh stop</code><br>开机自动启动：<br><code>update-rc.d ssh defaults</code></p>
+<h2 id="第二章：渗透测试方法论"><a href="#第二章：渗透测试方法论" class="headerlink" title="第二章：渗透测试方法论"></a>第二章：渗透测试方法论</h2><h3 id="渗透测试种类"><a href="#渗透测试种类" class="headerlink" title="渗透测试种类"></a>渗透测试种类</h3><p>分为两类：白盒测试和黑盒测试</p>
+<p>黑盒测试：安全审计员在不清楚被测单位的内部技术构造的情况下，从外部评估网络基础设施的安全性。<br>白盒测试：白盒测试的审计员可以获取被测单位的各种内部资料甚至不公开资料，所以渗透测试人员的视野更为开阔。</p>
+<h3 id="通用渗透测试框架"><a href="#通用渗透测试框架" class="headerlink" title="通用渗透测试框架"></a>通用渗透测试框架</h3><p>步骤包括：</p>
+<ul>
+<li>范围界定</li>
+<li>信息收集</li>
+<li>目标识别</li>
+<li>服务枚举</li>
+<li>漏洞映射</li>
+<li>社会工程学</li>
+<li>漏洞利用</li>
+<li>提升权限</li>
+<li>访问维护</li>
+<li>文档报告</li>
+</ul>
+<h2 id="第三章：范围界定"><a href="#第三章：范围界定" class="headerlink" title="第三章：范围界定"></a>第三章：范围界定</h2><h2 id="第四章：信息收集"><a href="#第四章：信息收集" class="headerlink" title="第四章：信息收集"></a>第四章：信息收集</h2><h3 id="whois"><a href="#whois" class="headerlink" title="whois"></a>whois</h3><p>WHOIS是一个标准的互联网协议，可以用于收集：</p>
+<ul>
+<li>DNS服务器信息</li>
+<li>域名注册人的联系信息</li>
+</ul>
+<p>使用：<br><code>whois baidu.com</code></p>
+<h3 id="DNS记录分析"><a href="#DNS记录分析" class="headerlink" title="DNS记录分析"></a>DNS记录分析</h3><p>DNS记录可以记下述几类：</p>
+<ul>
+<li>NS：名称解析服务器</li>
+<li>A：IPv4地址</li>
+<li>PTR：逆向解析记录</li>
+<li>AAAA：IPv6地址</li>
+</ul>
+<h3 id="host"><a href="#host" class="headerlink" title="host"></a>host</h3><p>DNS服务器有主机的IP地址，我们可以使用host指令向DNS服务器查询主机的IP地址，可以收集：</p>
+<ul>
+<li>IP地址</li>
+</ul>
+<p>使用：<br><code>host baidu.com</code><br>指定DNS服务器：<br><code>host -l baidu.com ns4.isp.com</code><br>指定查询某个记录（如A记录）：<br><code>host -a baidu.com</code></p>
+<h3 id="dig"><a href="#dig" class="headerlink" title="dig"></a>dig</h3><p>dig指令与host指令类似，也可以用于DNS查询，相比host指令而言，更加灵活，可以收集：</p>
+<ul>
+<li>DNS的各种记录</li>
+</ul>
+<p>使用（默认只查A记录）：<br><code>dig baidu.com</code><br>查询全部类型的DNS数据：<br><code>dig baidu.com any</code></p>
+<h3 id="dnsenum"><a href="#dnsenum" class="headerlink" title="dnsenum"></a>dnsenum</h3><p>dnsenum也可以收集DNS数据，相比前两个功能更加多，可以收集：</p>
+<ul>
+<li>DNS的各种记录，并作分类</li>
+<li>其他功能：<ul>
+<li>谷歌搜索子域名</li>
+<li>子域名爆破</li>
+<li>C段whois查询</li>
+<li>网段反向查询</li>
+</ul>
+</li>
+</ul>
+<p>使用：<br><code>dnsenum baidu.com</code><br>子域名爆破：<br><code>dnsenum -f dns.txt baidu.com</code></p>
+<h3 id="DMitry"><a href="#DMitry" class="headerlink" title="DMitry"></a>DMitry</h3><p>这是一个多功能的信息搜集工具，主要收集：</p>
+<ul>
+<li>whois</li>
+<li>Netcrafg.coms收集信息（没听过）</li>
+<li>子域名</li>
+<li>邮件地址</li>
+<li>端口</li>
+</ul>
+<p>使用（除了端口外收集）：<br><code>dmitry -iwnse baidu.com</code><br>端口扫描（从1~n扫的）：<br><code>dmitry -p baidu.com -f -b</code></p>
+<h3 id="Maltego"><a href="#Maltego" class="headerlink" title="Maltego"></a>Maltego</h3><p>图形化的多功能的信息收集工具，这个工具可以标注各种信息之间的关联，可以收集：</p>
+<ul>
+<li>whois</li>
+<li>IP</li>
+<li>域名</li>
+</ul>
+<p>还能收集人的信息：</p>
+<ul>
+<li>某人的公司或组织</li>
+<li>某人的邮件地址</li>
+<li>某人有关的网站</li>
+<li>某人有关的社交网站</li>
+<li>某人有关的电话号码</li>
+</ul>
+<p>使用：<br>图形界面，点来点去就行了。</p>
+<h3 id="路由信息"><a href="#路由信息" class="headerlink" title="路由信息"></a>路由信息</h3><p>网络路由信息可以帮助测试人员了解自己的主机到目标主机之间的网络通信路径，进而理解目标主机的网络情况。</p>
+<h3 id="tcptraceroute"><a href="#tcptraceroute" class="headerlink" title="tcptraceroute"></a>tcptraceroute</h3><p>tcptraceroute是traceroute的补充工具，传统的traceroute是在发送的UDP或ICMP echo数据包里，设置TTL标志位，将TTL从1递增，指到数据包到达目标主机为止。而tcptracroute是使用TCP SYN数据包进行测试。<br>特点就是，如果对方防火墙禁止了traceroute指令，那么对tcptracroute是一点效果都没有的。<br>如果目标端口是开放，接收到SYN数据包，会立即返回RST数据包。</p>
+<p>使用：<br><code>tcptraceroute www.baidu.com</code></p>
+<h3 id="tctrace"><a href="#tctrace" class="headerlink" title="tctrace"></a>tctrace</h3><p>和tcptraceroute类似，也是通过发送TCP SYN数据包来获取相应信息。</p>
+<p>使用：<br><code>tctrace -i eth0 -d www.baidu.com</code></p>
+<h3 id="搜索引擎"><a href="#搜索引擎" class="headerlink" title="搜索引擎"></a>搜索引擎</h3><p>搜索引擎也有很多信息哦。</p>
+<h3 id="theharvester"><a href="#theharvester" class="headerlink" title="theharvester"></a>theharvester</h3><p>就是个搜索引擎集成工具，可以收集：</p>
+<ul>
+<li>邮件地址</li>
+<li>用户名</li>
+<li>主机名</li>
+<li>子域名</li>
+</ul>
+<p>使用：<br>从谷歌的前100项结果挖掘baidu的电子邮件地址和主机名<br><code>theharvester -d baidu.com -l 100 -b google</code></p>
+<h3 id="Metagoofil"><a href="#Metagoofil" class="headerlink" title="Metagoofil"></a>Metagoofil</h3><p>这个工具通过谷歌搜索引擎搜索目标域的各种文件，可以收集的文件：</p>
+<ul>
+<li>Word</li>
+<li>表格文件EXCEL</li>
+<li>演示文件PPT</li>
+<li>PDF文件</li>
+</ul>
+<p>使用：<br>-d：目标域(baidu.com)<br>-t：文件类型(doc、pdf)<br>-l：收集多少个(20个)<br>-n：下载几个(5个)<br>-f：保存的文件名(test.html)<br>-o：保存在某个目录下(test目录下)<br><code>metagoofil -d baidu.com -l 20 -t doc,pdf -n 5 -f test.html -o test</code></p>
+<h2 id="第五章：目标识别"><a href="#第五章：目标识别" class="headerlink" title="第五章：目标识别"></a>第五章：目标识别</h2><h3 id="识别目标主机"><a href="#识别目标主机" class="headerlink" title="识别目标主机"></a>识别目标主机</h3><p>5个ping命令</p>
+<h3 id="ping"><a href="#ping" class="headerlink" title="ping"></a>ping</h3><p>检查主机是否在线的工具。<br>该工具向目标发送ICMP的<strong>echo request</strong>数据包，如果目标主机在线且允许受理ping请求，那么目标主机将回复ICMP <strong>echo reply</strong>数据包。</p>
+<p>使用：<br>-c：设置发送数echo request数据包的数量<br><code>ping -c 1 192.168.15.1</code></p>
+<h3 id="arping"><a href="#arping" class="headerlink" title="arping"></a>arping</h3><p>arping是在局域网中使用ARP请求判断目标主机是否在线的工具。可以使用IP地址或者MAC地址作为它的测试目标。它只能检测本地局域网络中的主机。</p>
+<p>使用：<br><code>arping 192.168.15.1 -c 1</code></p>
+<h3 id="fping"><a href="#fping" class="headerlink" title="fping"></a>fping</h3><p>与ping相比，多了可以同时向多个主机发送ping请求的功能。</p>
+<p>使用：<br><code>fping 192.168.15.1 192.168.15.2</code><br>ping一个网段：<br><code>fping -g 192.168.15.0/24</code><br>-r设置重复次数，默认为3，类似-c：<br><code>fping -r 1 192.168.15.2 192.168.15.3</code></p>
+<h3 id="hping3"><a href="#hping3" class="headerlink" title="hping3"></a>hping3</h3><p>可以使用这个工具生成自定义的网络数据包进行测试，比如：ip、icmp、udp、tcp等<br>具体参数看书P112。</p>
+<p>使用：<br>比如ICMP<br><code>hping3 -I 192.168.15.2 -c 1</code></p>
+<h3 id="nping"><a href="#nping" class="headerlink" title="nping"></a>nping</h3><p>更加高度的自定义设置网络数据包，可以修改协议头的字段，如修改TCP和UDP的源端口和目的端口，还可以指定多个目标。</p>
+<p>具体参数看书P116。</p>
+<p>使用：<br>比如tcp(-p 指定端口)<br><code>nping --tcp -c 1 -p 22 192.168.15.1</code></p>
+<h3 id="识别操作系统"><a href="#识别操作系统" class="headerlink" title="识别操作系统"></a>识别操作系统</h3><p>确定目标主机在线，应当识别它们使用的操作系统。</p>
+<h3 id="p0f"><a href="#p0f" class="headerlink" title="p0f"></a>p0f</h3><p>p0f采用被动方式的方法探测目标主机的操作系统类型。</p>
+<p>使用：<br>因为是被动的，所以不需要指定目标主机<br>-f：指定指纹数据库文件<br>-o：保存为日志文件<br><code>p0f -f /etc/p0f/p0f.fp -o p0f.log</code></p>
+<h3 id="Nmap"><a href="#Nmap" class="headerlink" title="Nmap"></a>Nmap</h3><p>记住-O是识别操作系统就行了。</p>
+<p>使用：<br><code>nmap -O 192.168.15.1</code></p>
+<h2 id="第六章：服务枚举"><a href="#第六章：服务枚举" class="headerlink" title="第六章：服务枚举"></a>第六章：服务枚举</h2><h3 id="TCP-IP协议"><a href="#TCP-IP协议" class="headerlink" title="TCP/IP协议"></a>TCP/IP协议</h3><p>UDP<br>基于UDP协议的：DNS、DHCP、SNMP<br>特点：</p>
+<ul>
+<li>面向无连接</li>
+<li>尽可能将数据包发送到目标地址，不会自动重传</li>
+</ul>
+<p>TCP<br>三次握手：syn、syn ack、ack<br>特点：</p>
+<ul>
+<li>面向连接</li>
+<li>可靠</li>
+</ul>
+<p>常用端口：</p>
+<ul>
+<li>80：HTTP</li>
+<li>443：HTTPS</li>
+<li>23：Telnet</li>
+<li>21：FTP</li>
+<li>22：SSH</li>
+<li>25：SMTP</li>
+<li>8080：TOMCAT</li>
+<li>3389：WIN2003远程登录</li>
+<li>8081：Symantec AV/Filter for MSE</li>
+<li>1521：Oracle</li>
+<li>1433：MSSQL、SQL SERVER</li>
+<li>3306：Mysql</li>
+<li>1080：QQ/udp</li>
+<li>53：DNS/udp</li>
+</ul>
+<h3 id="Nmap-1"><a href="#Nmap-1" class="headerlink" title="Nmap"></a>Nmap</h3><p>-sT：TCP连接扫描，三次握手<br>-sS：SYN扫描，默认，半开<br>-sN：TCP NULL，不设置控制位<br>-sF：FIN扫描，仅设置FIN标志位<br>-sX：XMAS扫描，设置\FIN\PSH\URG标志位<br>-sM：TCP Maimon扫描<br>-sA：TCP ACK扫描<br>-sW：TCP窗口扫描<br>-sI：TCP Idle扫描<br>-sU：UDP扫描，速度慢<br>-sV：检测服务端软件的<strong>版本信息</strong><br>-O：识别目标主机的<strong>操作系统</strong><br>-Pn：在目标主机禁止ping的时候用<br>-A：强力检测，Nmap将检测下述信息-sV、-O、-sC、–traceroute，时间较长<br>-sC或者- -script=default：启动默认类NSE脚本<br>- -script filename：指定文件名执行相应的脚本</p>
+<h3 id="Unicornscan"><a href="#Unicornscan" class="headerlink" title="Unicornscan"></a>Unicornscan</h3><p>信息收集和关联分析的引擎，与其他类似工具区别在于扩展性和高效性，在扫描UDP端口方面速度比较快。</p>
+<p>使用：<br>检测UDP协议，速度10000<br><code>unicornscan -m U -Iv 192.168.15.1:1-65535 -r 10000</code></p>
+<h3 id="Zenmap"><a href="#Zenmap" class="headerlink" title="Zenmap"></a>Zenmap</h3><p>nmap的图形化工具。交互性更好，可以比较两次扫描结果，可以调整配置文件</p>
+<p>使用：<br>图形的点点就好了。</p>
+<h3 id="Amap"><a href="#Amap" class="headerlink" title="Amap"></a>Amap</h3><p>可检测在指定端口上运行的服务程序。在快速识别服务程序方面表现良好。</p>
+<p>使用：<br>-b：获取banner信息<br>-q：禁止程序报告关闭的端口（看不懂）<br>-v：防止报错<br>扫描22端口上运行的程序<br><code>amap -bqv 192.168.15.2 22</code></p>
+<h3 id="SMB枚举"><a href="#SMB枚举" class="headerlink" title="SMB枚举"></a>SMB枚举</h3><p>如果测试的目标主机是Windows，可以使用nbtscan工具来获取系统的信息。<br>这个工具可以获取：</p>
+<ul>
+<li>IP</li>
+<li>NetBIOS计算机名</li>
+<li>服务名称</li>
+<li>已登录用户名</li>
+<li>MAC地址</li>
+</ul>
+<p>使用：<br><code>nbtscan 192.168.15.1-254</code></p>
+<h3 id="SNMP枚举"><a href="#SNMP枚举" class="headerlink" title="SNMP枚举"></a>SNMP枚举</h3><p>可以从配置不当的SNMP设备上获取配置文件，挖掘重要信息。<br>知道3个命令就行了：<br>onesixtyone：<br><code>onesixtyone 192.168.15.1</code><br>onesixtyone细致扫：<br><code>onesixtyone -d 192.168.15.1</code><br>snmpcheck：<br><code>snmpcheck -t 192.168.15.1</code></p>
+<h3 id="VPN枚举"><a href="#VPN枚举" class="headerlink" title="VPN枚举"></a>VPN枚举</h3><p>知道用ike-scan可以用来VPN枚举应该就行了。</p>
+<h2 id="第七章：漏洞映射"><a href="#第七章：漏洞映射" class="headerlink" title="第七章：漏洞映射"></a>第七章：漏洞映射</h2><h3 id="OpenVAS"><a href="#OpenVAS" class="headerlink" title="OpenVAS"></a>OpenVAS</h3><p>安装：<code>apt-get install openvas</code><br>检测：<code>openvase-check-setup</code><br>使用：<code>http://127.0.0.1:9392</code>，web界面，点点就行了。</p>
+<h3 id="Cisco-Auditing-Tool"><a href="#Cisco-Auditing-Tool" class="headerlink" title="Cisco Auditing Tool"></a>Cisco Auditing Tool</h3><p>简称CAT，它可以检测出Cisco路由器上的常见漏洞。<br>能够发现默认注入密码、默认SNMP字符串和老版本Cisco操作系统上存在的bug问题。</p>
+<h3 id="Cisco-Global-Exploer："><a href="#Cisco-Global-Exploer：" class="headerlink" title="Cisco Global Exploer："></a>Cisco Global Exploer：</h3><p>简称CGE，是一个Perl程序，可以测试Cisco设备的14种独立漏洞。</p>
+<h3 id="Fuzz分析工具"><a href="#Fuzz分析工具" class="headerlink" title="Fuzz分析工具"></a>Fuzz分析工具</h3><p>Bruteforce Exploit Detector（BED）：纯文本协议的模糊测试工具，用于检测软件常见漏洞<br>JBroFuzz：是对Web应用程序进行模糊测试的著名平台。</p>
+<h3 id="sqlmap"><a href="#sqlmap" class="headerlink" title="sqlmap"></a>sqlmap</h3><p>-u：指定url<br>- -dbs：获取数据库<br>-D dvwa - -tables：获取表名<br>-D dvwa -T users - -columns：获取字段名<br>-D dvwa -T users -C name - -dump：获取数据</p>
+<h3 id="wafw00f"><a href="#wafw00f" class="headerlink" title="wafw00f"></a>wafw00f</h3><p>检测Web应用程序防火墙的Python程序</p>
+<p>使用：<br><code>wafw00f http://www.baidu.com</code></p>
+<h2 id="第八章：社会工程学"><a href="#第八章：社会工程学" class="headerlink" title="第八章：社会工程学"></a>第八章：社会工程学</h2><h2 id="第九章：漏洞利用"><a href="#第九章：漏洞利用" class="headerlink" title="第九章：漏洞利用"></a>第九章：漏洞利用</h2><h3 id="Metasploit"><a href="#Metasploit" class="headerlink" title="Metasploit"></a>Metasploit</h3><p>msf启动：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">service postgresql start</span><br><span class="line">msfconsole</span><br></pre></td></tr></table></figure></p>
+<p>使用（以08_067举例）：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">search ms08_067</span><br><span class="line">use exploit/windows/smb/ms08_067_metapi</span><br><span class="line">show options</span><br><span class="line">set rhost 192.168.15.1</span><br><span class="line">set payload windows/shell/bind_tcp</span><br><span class="line">exploit</span><br></pre></td></tr></table></figure></p>
+<h3 id="Metepreter"><a href="#Metepreter" class="headerlink" title="Metepreter"></a>Metepreter</h3><p>Metepreter是一种先进的、隐蔽的、多功能的、可动态扩展的payload，它可在目标主机的系统内存注入DLL。还支持运行期间加载脚本和插件。方便提权等。<br>Metepreter shell会采用全程加密通信。</p>
+<ul>
+<li>background：隐藏到后台</li>
+<li>sessions：<ul>
+<li>-l：查看以成功获取的回话</li>
+<li>-i 1：切换到第一个回话</li>
+</ul>
+</li>
+<li>quit：关闭当前回话</li>
+<li>shell：获取系统控制台shell</li>
+<li>cat：查看文件内容</li>
+<li>getwd：获取当前目录</li>
+<li>upload：上传文件</li>
+<li>download：下载文件</li>
+<li>edit：vi编辑器</li>
+<li>ipconfig：网络信息</li>
+<li>portfwd：端口转发</li>
+<li>portfwd add -l 1234 -p 3389 -r 192.168.15.1</li>
+<li>route：路由信息</li>
+<li>migrate：进程迁移</li>
+<li>getpid：获取当前会话pid</li>
+<li>kill：杀死进程</li>
+<li>getuid：获取当前会话的权限</li>
+<li>sysinfo：获取目标系统信息</li>
+<li>getsystem：提权</li>
+<li>hashdump：获取系统密码hash</li>
+<li>clearrev：日志清除</li>
+<li>timestomp：修改文件访问时间</li>
+</ul>
+<h3 id="msfvenom"><a href="#msfvenom" class="headerlink" title="msfvenom"></a>msfvenom</h3><p>用于制作木马</p>
+<p>用法：<br><code>./msfvenom -p windows/meterpreter/bind_tcp -x calc.exe -f exe &gt; new.exe</code></p>
+<h2 id="第十章：提升权限"><a href="#第十章：提升权限" class="headerlink" title="第十章：提升权限"></a>第十章：提升权限</h2><h3 id="samdump2"><a href="#samdump2" class="headerlink" title="samdump2"></a>samdump2</h3><p>Windows系统账户密码，以哈希值的形式存储于SAM的文件型数据库里。</p>
+<p>使用：<br>整理sam文件，保存为test-sam<br><code>samdump2 system sam -o test-sam</code></p>
+<p>获取Windows密码哈希值的方法：直接使用samdump2，在Windows运行期间，不能读取。可挂在到其他系统分区；使用pwdump系列软件；Meterpreter后，使用hashdump命令。</p>
+<h3 id="john"><a href="#john" class="headerlink" title="john"></a>john</h3><p>破解密码哈希值的工具</p>
+<p>使用：<br><code>unshadow /etc/passwd /etc/shadow &gt; pass</code> 合并hash文件<br><code>john pass</code>：破解哈希<br><code>john --show pass</code>：查看密码<br><code>john test-sam --wordlist=password.lst -format=nt</code>：使用字典文件破解Windows哈希</p>
+<h3 id="CeWL"><a href="#CeWL" class="headerlink" title="CeWL"></a>CeWL</h3><p>以爬虫模式在指定URL上收集单词，把收集到的单词纳入密码字典，提高命中率。</p>
+<p>用法：<br><code>cewl -w target.txt http://www.baidu.com</code></p>
+<h3 id="hydra"><a href="#hydra" class="headerlink" title="hydra"></a>hydra</h3><p>猜测并破解用户名和密码的工具，支持多种网络协议，可以破解HTTP、FTP、POP3和SMB等协议的密码。</p>
+<p>使用：<br>破解VNC服务器密码<br><code>hydra -P password.lst 192.168.15.1</code></p>
+<h3 id="medusa"><a href="#medusa" class="headerlink" title="medusa"></a>medusa</h3><p>在线破解网络服务密码的程序，速度快、并发性能强、模板化、另有通用模板。</p>
+<p>使用：<br>破解VNC服务器密码<br><code>medusa -u root -P password.lst -h 192.168.15.1 -M vnc -v 4</code></p>
+<h3 id="网络欺骗工具"><a href="#网络欺骗工具" class="headerlink" title="网络欺骗工具"></a>网络欺骗工具</h3><p>指的是修改网络数据的各种手段，旨在获取网络上两个会话主机之间的通信数据。如伪造MAC地址、伪造IP地址等。</p>
+<h3 id="DNSChef"><a href="#DNSChef" class="headerlink" title="DNSChef"></a>DNSChef</h3><p>DNS代理工具，可替代DNS服务器对被测主机进行DNS回复，把域名解析为攻击者管控的IP，从而获取客户主机的网络流量。</p>
+<p>使用：<br>骗192.168.15.2访问192.168.15.1，并将google.com解析为本机<br><code>dnschef --fakeip=192.168.15.2 --fakedomains google.com --interface 192.168.15.1 -q</code></p>
+<h3 id="arpspoof"><a href="#arpspoof" class="headerlink" title="arpspoof"></a>arpspoof</h3><p>ARP欺骗工具</p>
+<p>使用：<br>网关为192.168.15.1，被骗主机192.168.15.3,<br><code>arpspoof -t 192.168.15.3 192.168.15.1</code></p>
+<h3 id="Ettercap"><a href="#Ettercap" class="headerlink" title="Ettercap"></a>Ettercap</h3><p>在LAN中进行中间人攻击的工具集，通过ARP攻击充当网络通信的中间人，还可以做DNS欺骗</p>
+<p>使用：<br>图形化界面，点来点去</p>
+<h2 id="第十一章：访问维持"><a href="#第十一章：访问维持" class="headerlink" title="第十一章：访问维持"></a>第十一章：访问维持</h2><h3 id="WeBaCoo"><a href="#WeBaCoo" class="headerlink" title="WeBaCoo"></a>WeBaCoo</h3><p>隐蔽的脚本类Web后门工具。Web服务器和客户端之间的通信载体是Cookie</p>
+<p>使用：<br>生成后门<br><code>webacoo -g -o test.php</code><br>上传到被测主机<br><code>webacoo -t -u http://www.baidu.com/test.php</code></p>
+<h2 id="内网和域"><a href="#内网和域" class="headerlink" title="内网和域"></a>内网和域</h2><h3 id="域管理的好处"><a href="#域管理的好处" class="headerlink" title="域管理的好处"></a>域管理的好处</h3><ul>
+<li>1、方便管理，权限管理比较集中</li>
+<li>2、安全性高</li>
+<li>3、SMS能够分发应用程序、系统补丁等</li>
+</ul>
+<h3 id="域渗透常用命令"><a href="#域渗透常用命令" class="headerlink" title="域渗透常用命令"></a>域渗透常用命令</h3><p>ipconfig /all：查看本机IP，所在域<br>ping D1.com ：查看域控的IP<br>nltest /dclist:d1 ： 查看域控名字<br>net time /domain ：查看时间，域控机器名<br>net view：显示域中的计算机名列表<br>net view  /domain:D1：显示指定域中机器名<br>net user /domain ：查看当前域中的用户<br>net group “domain admins” /domain：查询域管理员用户组<br>net config workstation：显示更改可配置工作站参数，也可以获得登录域，机器名等信息<br>net accounts：查看本地密码策略<br>netstat –an/ano/anb：网络连接查询<br>route print：路由表<br>dsquery：可以用来收集跨域的信息，但是跨域执行的前提是必须建立信任关系</p>
+<h3 id="端口转发"><a href="#端口转发" class="headerlink" title="端口转发"></a>端口转发</h3><p>ppt上挺多的，见第8章后面部分。</p>
+<p>举例：<br>攻击机不能直接访问内网WEB服务器，需要内网中的XP做端口转发</p>
+<p>在攻击机上运行：htran.exe -p -listen 9999  3333。把本机端口9999转发到3333。并监听9999<br>在内网XP机上运行htran.exe -p -slave 10.10.10.130   9999  192.168.66.133  3389<br>把WEB服务器的3389端口转到攻击机的9999端口。</p>
+<h2 id="powershell"><a href="#powershell" class="headerlink" title="powershell"></a>powershell</h2><p>是一种命令行外壳程序和脚本环境，使命令行用户和脚本编写者可以利用 .NET Framework的强大功能。</p>
+<p>Powershell的优点:<br>1.代码运行在内存中可以不去接触磁盘<br>2.从另一个系统中下载代码并执行<br>3.很多安全产品并不能监测到powershell的活动<br>4.cmd.exe通常被阻止运行，但是powershell不会</p>
+<p>简单命令：<br>（1）查看版本信息$PSVersionTable<br>（2）获取当前目录的所有文件信息： ls或者dir<br>（3）把命令输出保存到文件中：’&gt;’为覆盖，’&gt;&gt;’追加<br>（4）支持常用的加减乘除模（+,-,*,/,%）运算<br>（5）能自动识别计算机容量单位,包括KB、MB、GB、TB、PB<br>（6）Powershell 能够像CMD一样很好的执行外部命令：<br>通过netstat查看网络端口状态。<br>通过ipconfig查看自己的网络配置。<br>通过route print查看路由信息。<br>启动CMD控制台键入cmd、退出命令exit。通过Cmd /chelp查找可用的cmd控制台命令。</p>
+
+    </article>
+    <!-- license  -->
+    
+        <div class="license-wrapper">
+            <p>原文作者：<a href="http://yoursite.com">Kage</a>
+            <p>原文链接：<a href="http://yoursite.com/2019/12/20/高级攻防复习/">http://yoursite.com/2019/12/20/高级攻防复习/</a>
+            <p>发表日期：<a href="http://yoursite.com/2019/12/20/高级攻防复习/">十二月 20日 2019, 12:11:06 中午</a>
+            <p>更新日期：<a href="http://yoursite.com/2019/12/20/高级攻防复习/">December 20th 2019, 12:11:06 pm</a>
+            <p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
+        </div>
+    
+    <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href= "/2019/12/13/java安全之攻击RMI Registry/" title= "java安全之攻击RMI Registry">
+                    <div class="prevTitle">java安全之攻击RMI Registry</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
+    
+    
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
+</main>
+            <!-- profile -->
+            
+        </div>
+        <footer class="footer footer-unloaded">
+    <!-- social  -->
+    
+    <div class="social">
+        
+    
+        
+            
+                <a href="mailto:543251348@qq.com" class="iconfont-archer email" title=email ></a>
+            
+        
+    
+        
+            
+                <a href="//github.com/K4ge" class="iconfont-archer github" target="_blank" title=github></a>
+            
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+            
+                <a href="/atom.xml" class="iconfont-archer rss" target="_blank" title=rss></a>
+            
+        
+    
+
+    </div>
+    
+    <!-- powered by Hexo  -->
+    <div class="copyright">
+        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">Archer</a></span>
+    </div>
+    <!-- 不蒜子  -->
+    
+    <div class="busuanzi-container">
+    
+     
+    <span id="busuanzi_container_site_pv">PV: <span id="busuanzi_value_site_pv"></span> :)</span>
+    
+    </div>
+    
+</footer>
+    </div>
+    <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#第一章：Kali入门"><span class="toc-number">1.</span> <span class="toc-text">第一章：Kali入门</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#虚拟机设置固定ip地址"><span class="toc-number">1.1.</span> <span class="toc-text">虚拟机设置固定ip地址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置无线网络"><span class="toc-number">1.2.</span> <span class="toc-text">配置无线网络</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#启用网络"><span class="toc-number">1.3.</span> <span class="toc-text">启用网络</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#系统更新"><span class="toc-number">1.4.</span> <span class="toc-text">系统更新</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#apache2"><span class="toc-number">1.5.</span> <span class="toc-text">apache2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MySQL"><span class="toc-number">1.6.</span> <span class="toc-text">MySQL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SSH"><span class="toc-number">1.7.</span> <span class="toc-text">SSH</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第二章：渗透测试方法论"><span class="toc-number">2.</span> <span class="toc-text">第二章：渗透测试方法论</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#渗透测试种类"><span class="toc-number">2.1.</span> <span class="toc-text">渗透测试种类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#通用渗透测试框架"><span class="toc-number">2.2.</span> <span class="toc-text">通用渗透测试框架</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第三章：范围界定"><span class="toc-number">3.</span> <span class="toc-text">第三章：范围界定</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第四章：信息收集"><span class="toc-number">4.</span> <span class="toc-text">第四章：信息收集</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#whois"><span class="toc-number">4.1.</span> <span class="toc-text">whois</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DNS记录分析"><span class="toc-number">4.2.</span> <span class="toc-text">DNS记录分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#host"><span class="toc-number">4.3.</span> <span class="toc-text">host</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#dig"><span class="toc-number">4.4.</span> <span class="toc-text">dig</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#dnsenum"><span class="toc-number">4.5.</span> <span class="toc-text">dnsenum</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DMitry"><span class="toc-number">4.6.</span> <span class="toc-text">DMitry</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Maltego"><span class="toc-number">4.7.</span> <span class="toc-text">Maltego</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#路由信息"><span class="toc-number">4.8.</span> <span class="toc-text">路由信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#tcptraceroute"><span class="toc-number">4.9.</span> <span class="toc-text">tcptraceroute</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#tctrace"><span class="toc-number">4.10.</span> <span class="toc-text">tctrace</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#搜索引擎"><span class="toc-number">4.11.</span> <span class="toc-text">搜索引擎</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#theharvester"><span class="toc-number">4.12.</span> <span class="toc-text">theharvester</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Metagoofil"><span class="toc-number">4.13.</span> <span class="toc-text">Metagoofil</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第五章：目标识别"><span class="toc-number">5.</span> <span class="toc-text">第五章：目标识别</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#识别目标主机"><span class="toc-number">5.1.</span> <span class="toc-text">识别目标主机</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ping"><span class="toc-number">5.2.</span> <span class="toc-text">ping</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#arping"><span class="toc-number">5.3.</span> <span class="toc-text">arping</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#fping"><span class="toc-number">5.4.</span> <span class="toc-text">fping</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#hping3"><span class="toc-number">5.5.</span> <span class="toc-text">hping3</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#nping"><span class="toc-number">5.6.</span> <span class="toc-text">nping</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#识别操作系统"><span class="toc-number">5.7.</span> <span class="toc-text">识别操作系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#p0f"><span class="toc-number">5.8.</span> <span class="toc-text">p0f</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Nmap"><span class="toc-number">5.9.</span> <span class="toc-text">Nmap</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第六章：服务枚举"><span class="toc-number">6.</span> <span class="toc-text">第六章：服务枚举</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#TCP-IP协议"><span class="toc-number">6.1.</span> <span class="toc-text">TCP/IP协议</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Nmap-1"><span class="toc-number">6.2.</span> <span class="toc-text">Nmap</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Unicornscan"><span class="toc-number">6.3.</span> <span class="toc-text">Unicornscan</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Zenmap"><span class="toc-number">6.4.</span> <span class="toc-text">Zenmap</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Amap"><span class="toc-number">6.5.</span> <span class="toc-text">Amap</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SMB枚举"><span class="toc-number">6.6.</span> <span class="toc-text">SMB枚举</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SNMP枚举"><span class="toc-number">6.7.</span> <span class="toc-text">SNMP枚举</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#VPN枚举"><span class="toc-number">6.8.</span> <span class="toc-text">VPN枚举</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第七章：漏洞映射"><span class="toc-number">7.</span> <span class="toc-text">第七章：漏洞映射</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#OpenVAS"><span class="toc-number">7.1.</span> <span class="toc-text">OpenVAS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Cisco-Auditing-Tool"><span class="toc-number">7.2.</span> <span class="toc-text">Cisco Auditing Tool</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Cisco-Global-Exploer："><span class="toc-number">7.3.</span> <span class="toc-text">Cisco Global Exploer：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Fuzz分析工具"><span class="toc-number">7.4.</span> <span class="toc-text">Fuzz分析工具</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sqlmap"><span class="toc-number">7.5.</span> <span class="toc-text">sqlmap</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#wafw00f"><span class="toc-number">7.6.</span> <span class="toc-text">wafw00f</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第八章：社会工程学"><span class="toc-number">8.</span> <span class="toc-text">第八章：社会工程学</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第九章：漏洞利用"><span class="toc-number">9.</span> <span class="toc-text">第九章：漏洞利用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Metasploit"><span class="toc-number">9.1.</span> <span class="toc-text">Metasploit</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Metepreter"><span class="toc-number">9.2.</span> <span class="toc-text">Metepreter</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#msfvenom"><span class="toc-number">9.3.</span> <span class="toc-text">msfvenom</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第十章：提升权限"><span class="toc-number">10.</span> <span class="toc-text">第十章：提升权限</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#samdump2"><span class="toc-number">10.1.</span> <span class="toc-text">samdump2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#john"><span class="toc-number">10.2.</span> <span class="toc-text">john</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CeWL"><span class="toc-number">10.3.</span> <span class="toc-text">CeWL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#hydra"><span class="toc-number">10.4.</span> <span class="toc-text">hydra</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#medusa"><span class="toc-number">10.5.</span> <span class="toc-text">medusa</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#网络欺骗工具"><span class="toc-number">10.6.</span> <span class="toc-text">网络欺骗工具</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DNSChef"><span class="toc-number">10.7.</span> <span class="toc-text">DNSChef</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#arpspoof"><span class="toc-number">10.8.</span> <span class="toc-text">arpspoof</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Ettercap"><span class="toc-number">10.9.</span> <span class="toc-text">Ettercap</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第十一章：访问维持"><span class="toc-number">11.</span> <span class="toc-text">第十一章：访问维持</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#WeBaCoo"><span class="toc-number">11.1.</span> <span class="toc-text">WeBaCoo</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#内网和域"><span class="toc-number">12.</span> <span class="toc-text">内网和域</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#域管理的好处"><span class="toc-number">12.1.</span> <span class="toc-text">域管理的好处</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#域渗透常用命令"><span class="toc-number">12.2.</span> <span class="toc-text">域渗透常用命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#端口转发"><span class="toc-number">12.3.</span> <span class="toc-text">端口转发</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#powershell"><span class="toc-number">13.</span> <span class="toc-text">powershell</span></a></li></ol>
+    </div>
+    
+    <div class="back-top iconfont-archer">&#xe639;</div>
+    <div class="sidebar sidebar-hide">
+    <ul class="sidebar-tabs sidebar-tabs-active-0">
+        <li class="sidebar-tab-archives"><span class="iconfont-archer">&#xe67d;</span><span class="tab-name">Archive</span></li>
+        <li class="sidebar-tab-tags"><span class="iconfont-archer">&#xe61b;</span><span class="tab-name">Tag</span></li>
+        <li class="sidebar-tab-categories"><span class="iconfont-archer">&#xe666;</span><span class="tab-name">Cate</span></li>
+    </ul>
+    <div class="sidebar-content sidebar-content-show-archive">
+          <div class="sidebar-panel-archives">
+    <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="total-and-search">
+        <div class="total-archive">
+        Total : 48
+        </div>
+        <!-- search  -->
+        
+    </div>
+    
+    <div class="post-archive">
+    
+    
+    
+    
+    <div class="archive-year"> 2019 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/20</span><a class="archive-post-title" href= "/2019/12/20/高级攻防复习/" >高级攻防复习</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/13</span><a class="archive-post-title" href= "/2019/12/13/java安全之攻击RMI Registry/" >java安全之攻击RMI Registry</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/31</span><a class="archive-post-title" href= "/2019/10/31/java 0day整理/" >java 0day整理</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/24</span><a class="archive-post-title" href= "/2019/10/24/Thinkcmf批量搜漏洞并提交到漏洞平台/" >Thinkcmf批量搜漏洞并提交到漏洞平台</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/24</span><a class="archive-post-title" href= "/2019/10/24/python编程总结/" >python编程总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/24</span><a class="archive-post-title" href= "/2019/10/24/反弹shell合集/" >反弹shell合集</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/19</span><a class="archive-post-title" href= "/2019/10/19/linux常用指令/" >linux常用指令</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/19</span><a class="archive-post-title" href= "/2019/10/19/updatexml injection without concat/" >updatexml injection without concat</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/18</span><a class="archive-post-title" href= "/2019/10/18/python脚本(不定时更新)/" >python脚本(不定时更新)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/18</span><a class="archive-post-title" href= "/2019/10/18/个人渗透脚本整理/" >个人渗透脚本整理</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/16</span><a class="archive-post-title" href= "/2019/10/16/2019下半年计划/" >2019下半年计划</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/07</span><a class="archive-post-title" href= "/2019/10/07/thinkphp5.x 框架分析/" >thinkphp5.x 框架分析</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/20</span><a class="archive-post-title" href= "/2019/09/20/apk反编译/" >apk反编译</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/20</span><a class="archive-post-title" href= "/2019/09/20/PHP伪协议的黑魔法/" >PHP filter伪协议的黑魔法</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/18</span><a class="archive-post-title" href= "/2019/09/18/链接/" >链接</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/18</span><a class="archive-post-title" href= "/2019/09/18/C语言套接字编程/" >C语言套接字编程</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/18</span><a class="archive-post-title" href= "/2019/09/18/SCMS接口处存在sql注入漏洞/" >SCMS接口处存在sql注入漏洞</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/11</span><a class="archive-post-title" href= "/2019/09/11/phar+mysql client触发反序列化本地复现/" >phar+mysql client触发反序列化本地复现</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/09</span><a class="archive-post-title" href= "/2019/09/09/phar反序列化漏洞/" >phar反序列化漏洞</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/07</span><a class="archive-post-title" href= "/2019/09/07/PHP利用PCRE回溯绕过正则表达式/" >PHP利用PCRE回溯绕过正则表达式</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/05</span><a class="archive-post-title" href= "/2019/09/05/alert(1) to win wp/" >alert(1) to win wp</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/05</span><a class="archive-post-title" href= "/2019/09/05/XSS挑战write up/" >XSS挑战write up</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/05</span><a class="archive-post-title" href= "/2019/09/05/实验吧web wp/" >实验吧web wp</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/04</span><a class="archive-post-title" href= "/2019/09/04/ESPCMS p8前台SQL注入/" >ESPCMS p8前台SQL注入</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/01</span><a class="archive-post-title" href= "/2019/09/01/Typecho反序列化小白笔记/" >Typecho反序列化小白笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/01</span><a class="archive-post-title" href= "/2019/09/01/PHP反序列化原生类魔术方法的利用/" >PHP反序列化原生类魔术方法的利用</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/31</span><a class="archive-post-title" href= "/2019/08/31/2018-Xctf Final & bestphp-revenge/" >2018-Xctf Final & bestphp-revenge</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/30</span><a class="archive-post-title" href= "/2019/08/30/session.upload_progress的利用/" >session.upload_progress的利用</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/23</span><a class="archive-post-title" href= "/2019/08/23/跨域实现-jsonp和CORS/" >跨域实现-jsonp和CORS</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/23</span><a class="archive-post-title" href= "/2019/08/23/sqli-labs 通关1/" >sqli-labs 通关1</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/17</span><a class="archive-post-title" href= "/2019/08/17/sqli-labs通过2/" >sqli-labs通过2</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/15</span><a class="archive-post-title" href= "/2019/08/15/CBC翻转字节攻击/" >CBC翻转字节攻击</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/11</span><a class="archive-post-title" href= "/2019/08/11/python中byte、str和bytearray相互转换/" >python中byte、str和bytearray相互转换</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/06</span><a class="archive-post-title" href= "/2019/08/06/De1CTF SSRF ME/" >De1CTF SSRF ME</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/28</span><a class="archive-post-title" href= "/2019/07/28/XSS练习靶场/" >XSS练习靶场</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/28</span><a class="archive-post-title" href= "/2019/07/28/制作windows小脚本/" >制作windows小脚本</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/22</span><a class="archive-post-title" href= "/2019/07/22/任意用户密码重置/" >任意用户密码重置</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/22</span><a class="archive-post-title" href= "/2019/07/22/XSS利用/" >XSS利用</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/20</span><a class="archive-post-title" href= "/2019/07/20/python脚本-自动上传到hexo/" >python脚本-自动上传到hexo</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/20</span><a class="archive-post-title" href= "/2019/07/20/PHP XXE/" >PHP XXE</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/13</span><a class="archive-post-title" href= "/2019/06/13/Sqli-labs 盲注脚本编写/" >Sqli-labs 盲注脚本编写</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/21</span><a class="archive-post-title" href= "/2019/05/21/Beautifulsoup解析/" >BeautifulSoup解析</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/13</span><a class="archive-post-title" href= "/2019/05/13/bugku代码审计wp/" >bugku代码审计wp</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/13</span><a class="archive-post-title" href= "/2019/05/13/代码审计的相关函数分析/" >代码审计相关函数分析</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/21</span><a class="archive-post-title" href= "/2019/04/21/PHP反序列化绕过__wakeup方法/" >PHP反序列化绕过__wakeup方法</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/31</span><a class="archive-post-title" href= "/2019/03/31/文件包含漏洞/" >文件包含漏洞小结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/03</span><a class="archive-post-title" href= "/2019/02/03/同一台电脑连接多个github仓库/" >同一台电脑连接多个github仓库</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/03</span><a class="archive-post-title" href= "/2019/02/03/hgame草稿/" >hgame-web-week1</a>
+        </li>
+    
+    </div>
+  </div>
+        <div class="sidebar-panel-tags">
+    <div class="sidebar-tags-name">
+    
+        <span class="sidebar-tag-name" data-tags="other"><span class="iconfont-archer">&#xe606;</span>other</span>
+    
+        <span class="sidebar-tag-name" data-tags="编程"><span class="iconfont-archer">&#xe606;</span>编程</span>
+    
+        <span class="sidebar-tag-name" data-tags="web"><span class="iconfont-archer">&#xe606;</span>web</span>
+    
+        <span class="sidebar-tag-name" data-tags="Web"><span class="iconfont-archer">&#xe606;</span>Web</span>
+    
+        <span class="sidebar-tag-name" data-tags="ctf"><span class="iconfont-archer">&#xe606;</span>ctf</span>
+    
+        <span class="sidebar-tag-name" data-tags="靶场"><span class="iconfont-archer">&#xe606;</span>靶场</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
+    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+    缺失模块。<br/>
+    1、请确保node版本大于6.2<br/>
+    2、在博客根目录（注意不是archer根目录）执行以下命令：<br/>
+    <span style="color: #f75357; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content --save</span><br/>
+    3、在根目录_config.yml里添加配置：
+    <pre style="color: #787878; font-size: 0.6rem;">
+jsonContent:
+  meta: false
+  pages: false
+  posts:
+    title: true
+    date: true
+    path: true
+    text: false
+    raw: false
+    content: false
+    slug: false
+    updated: false
+    comments: false
+    link: false
+    permalink: false
+    excerpt: false
+    categories: true
+    tags: true</pre>
+    </div> 
+    <div class="sidebar-tags-list"></div>
+</div>
+        <div class="sidebar-panel-categories">
+    <div class="sidebar-categories-name">
+    
+        <span class="sidebar-category-name" data-categories="规划"><span class="iconfont-archer">&#xe60a;</span>规划</span>
+    
+        <span class="sidebar-category-name" data-categories="编程"><span class="iconfont-archer">&#xe60a;</span>编程</span>
+    
+        <span class="sidebar-category-name" data-categories="学习"><span class="iconfont-archer">&#xe60a;</span>学习</span>
+    
+        <span class="sidebar-category-name" data-categories="ctf"><span class="iconfont-archer">&#xe60a;</span>ctf</span>
+    
+        <span class="sidebar-category-name" data-categories="代码审计"><span class="iconfont-archer">&#xe60a;</span>代码审计</span>
+    
+        <span class="sidebar-category-name" data-categories="web"><span class="iconfont-archer">&#xe60a;</span>web</span>
+    
+        <span class="sidebar-category-name" data-categories="安全"><span class="iconfont-archer">&#xe60a;</span>安全</span>
+    
+        <span class="sidebar-category-name" data-categories="Web"><span class="iconfont-archer">&#xe60a;</span>Web</span>
+    
+        <span class="sidebar-category-name" data-categories="渗透"><span class="iconfont-archer">&#xe60a;</span>渗透</span>
+    
+        <span class="sidebar-category-name" data-categories="杂货店"><span class="iconfont-archer">&#xe60a;</span>杂货店</span>
+    
+        <span class="sidebar-category-name" data-categories="开发"><span class="iconfont-archer">&#xe60a;</span>开发</span>
+    
+        <span class="sidebar-category-name" data-categories="其他"><span class="iconfont-archer">&#xe60a;</span>其他</span>
+    
+        <span class="sidebar-category-name" data-categories="渗透测试"><span class="iconfont-archer">&#xe60a;</span>渗透测试</span>
+    
+        <span class="sidebar-category-name" data-categories="other"><span class="iconfont-archer">&#xe60a;</span>other</span>
+    
+        <span class="sidebar-category-name" data-categories="资料"><span class="iconfont-archer">&#xe60a;</span>资料</span>
+    
+        <span class="sidebar-category-name" data-categories="技术小卖铺"><span class="iconfont-archer">&#xe60a;</span>技术小卖铺</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
+    <div class="sidebar-categories-list"></div>
+</div>
+    </div>
+</div> 
+    <script>
+    var siteMeta = {
+        root: "/",
+        author: "Kage"
+    }
+</script>
+    <!-- CDN failover -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        if (typeof window.$ === 'undefined')
+        {
+            console.warn('jquery load from jsdelivr failed, will load local script')
+            document.write('<script src="/lib/jquery.min.js">\x3C/script>')
+        }
+    </script>
+    <script src="/scripts/main.js"></script>
+    <!-- algolia -->
+    
+    <!-- busuanzi  -->
+    
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+    <!-- CNZZ  -->
+    
+    </div>
+    <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
+     
+    </body>
+</html>
+
+
