@@ -1,1 +1,62 @@
-site_name: My Docs
+site_name: Kage Notes
+site_url: https://k4ge.github.io/
+site_description: Kage 的知识站
+site_author: Kage
+
+theme:
+  name: material
+  language: zh
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+  palette:
+    - scheme: default
+      primary: white
+      accent: blue grey
+      toggle:
+        icon: material/weather-night
+        name: 切换深色模式
+    - scheme: slate
+      primary: black
+      accent: blue grey
+      toggle:
+        icon: material/weather-sunny
+        name: 切换浅色模式
+
+plugins:
+  - search
+
+markdown_extensions:
+  - admonition
+  - toc:
+      permalink: true
+  - pymdownx.highlight
+  - pymdownx.superfences
+  - pymdownx.inlinehilite
+  - pymdownx.details
+  - pymdownx.tabbed:
+      alternate_style: true
+
+nav:
+  - 首页: index.md
+  - AI 学习:
+      - 总览: ai/index.md
+      - Transformer: ai/transformer.md
+      - KV Cache: ai/kv-cache.md
+      - MiniGPT: ai/minigpt.md
+  - 项目实战:
+      - 总览: projects/index.md
+      - kage-life: projects/kage-life.md
+      - MiniGPT 项目: projects/minigpt-project.md
+  - 工程笔记:
+      - 总览: engineering/index.md
+      - Python: engineering/python.md
+      - PyTorch: engineering/pytorch.md
+      - MySQL: engineering/mysql.md
+  - 随想总结:
+      - 总览: reflections/index.md
+      - 学习方法: reflections/learning.md

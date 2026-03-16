@@ -1,17 +1,25 @@
-# Welcome to MkDocs
+# Kage Notes
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+欢迎来到我的知识站。
 
-## Commands
+这里主要记录：
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
+- AI 学习笔记
+- Transformer / MiniGPT 理解
+- 项目实战与工程记录
+- Python / PyTorch / MySQL 踩坑
+- 阶段总结与个人思考
 
-## Project layout
+## 当前重点
 
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+- MiniGPT
+- Transformer
+- KV Cache
+- kage-life
+- AI 工程成长路线
+
+## 最近更新
+
+- [KV Cache 理解](ai/kv-cache.md)
+- [MiniGPT 学习记录](ai/minigpt.md)
+- [kage-life 项目记录](projects/kage-life.md)
