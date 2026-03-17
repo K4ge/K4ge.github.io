@@ -8,7 +8,6 @@ theme:
   language: zh
   features:
     - navigation.tabs
-    - navigation.sections
     - navigation.top
     - search.suggest
     - search.highlight
@@ -43,11 +42,75 @@ markdown_extensions:
 
 nav:
   - 首页: index.md
-  - AI 学习:
+  - AI学习:
       - 总览: ai/index.md
-      - Transformer: ai/transformer.md
-      - KV Cache: ai/kv-cache.md
-      - MiniGPT: ai/minigpt.md
+      - 数学基础:
+          - 总览: ai/math/index.md
+          - 线性代数:
+              - 总览: ai/math/linear_algebra/index.md
+              - 向量: ai/math/linear_algebra/vector.md
+              - 矩阵: ai/math/linear_algebra/matrix.md
+              - 特征值: ai/math/linear_algebra/eigenvalue.md
+          - 微积分:
+              - 总览: ai/math/calculus/index.md
+              - 导数: ai/math/calculus/derivative.md
+              - 链式法则: ai/math/calculus/chain_rule.md
+          - 概率统计: ai/math/probability_statistics.md
+          - 信息论: ai/math/information_theory.md
+      - 深度学习:
+          - 总览: ai/deep_learning/index.md
+          - 神经网络基础:
+              - 总览: ai/deep_learning/neural_network/index.md
+              - 前向传播: ai/deep_learning/neural_network/forward.md
+              - 反向传播: ai/deep_learning/neural_network/backward.md
+              - loss函数: ai/deep_learning/neural_network/loss.md
+              - 激活函数: ai/deep_learning/neural_network/activation.md
+              - 线性层: ai/deep_learning/neural_network/linear.md
+          - CNN:
+              - 总览: ai/deep_learning/cnn/index.md
+              - YOLO: ai/deep_learning/cnn/yolo.md
+          - RNN: ai/deep_learning/rnn.md
+          - Transformer: ai/deep_learning/transformer.md
+          - GPT: ai/deep_learning/gpt.md
+      - Transformer & LLM:
+          - 总览: ai/transformer_llm/index.md
+          - Attention机制: ai/transformer_llm/attention.md
+          - Mask机制: ai/transformer_llm/mask.md
+          - KV Cache: ai/transformer_llm/kv_cache.md
+          - RoPE: ai/transformer_llm/rope.md
+          - GPT结构: ai/transformer_llm/gpt_architecture.md
+          - 推理过程: ai/transformer_llm/inference.md
+          - Tokenization: ai/transformer_llm/tokenization.md
+      - 数据准备:
+          - 总览: ai/data/index.md
+          - 数据集:
+              - 总览: ai/data/datasets/index.md
+              - LCCC: ai/data/datasets/lccc.md
+              - 微信聊天记录: ai/data/datasets/wechat_chat.md
+              - 苹果健康: ai/data/datasets/apple_health.md
+          - 数据清洗: ai/data/cleaning.md
+          - 数据采集:
+              - 总览: ai/data/collection/index.md
+              - requests: ai/data/collection/requests.md
+          - 数据存储: ai/data/storage.md
+      - 模型训练:
+          - 总览: ai/training/index.md
+          - batch: ai/training/batch.md
+          - learning rate: ai/training/learning_rate.md
+          - 残差网络: ai/training/residual_network.md
+          - 梯度缺失问题: ai/training/vanishing_gradient.md
+      - 强化学习:
+          - 总览: ai/reinforcement_learning/index.md
+      - 模型优化:
+          - 总览: ai/optimization/index.md
+      - 编程框架:
+          - 总览: ai/frameworks/index.md
+          - numpy: ai/frameworks/numpy.md
+          - pytorch: ai/frameworks/pytorch.md
+          - huggingface: ai/frameworks/huggingface.md
+          - datasets: ai/frameworks/datasets.md
+      - 业界进展:
+          - 总览: ai/industry/index.md
   - 项目实战:
       - 总览: projects/index.md
       - kage-life: projects/kage-life.md
