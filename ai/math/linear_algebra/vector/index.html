@@ -683,7 +683,40 @@
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        向量的理解
+        二维坐标表示
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        现实表示
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        向量的加法
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        向量的乘法
       
     </span>
   </a>
@@ -3301,7 +3334,40 @@
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        向量的理解
+        二维坐标表示
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        现实表示
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        向量的加法
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        向量的乘法
       
     </span>
   </a>
@@ -3326,7 +3392,34 @@
 
 
 <h1 id="_1">向量<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
-<h3 id="_2">向量的理解<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<p>向量可以理解为对一个事物的各个特征的一个表示。向量的每一个分量代表一个特征，而对向量的表示应该看成一个整体，如二维平面的向量所表示的含义就是一个箭头。</p>
+<h2 id="_2">二维坐标表示<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>如坐标轴二维向量[1,2]：第一个特征代表的是向右，第二个特征代表的是向上。</p>
+<p>那整体所代表的含义就是一个箭头，它向左走了一步，又向上走了两步。</p>
+<h2 id="_3">现实表示<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<ul>
+<li>房价：如房子的价格分析，可以通过房子的面积和价格进行建模，房子有两个特征，第一个是面积，第二个是价格，那同样的可以通过二维向量进行表示，如：90平230万，120平300万等等</li>
+</ul>
+<div class="highlight"><pre><span></span><code>[90,230]
+[120,300]
+[60,180]
+</code></pre></div>
+<ul>
+<li>大语言模型：Transformer最常见的Token，比如一个词，可以由token来表示，而token其实就是一个向量，这个向量可以二维，也可以很多维，即一个词语你可以用两个特征表示，也可以用多个特征来进行表示，而更多维度的表示所能体现的词的含义就会更丰富饱满。</li>
+</ul>
+<div class="highlight"><pre><span></span><code>[0.4561,0.1231,0.4564,0.1456...]
+</code></pre></div>
+<ul>
+<li>计算机视觉：对于人眼所看到的图片和视频，是五颜六色的，但是对于计算机是不明白颜色的含义，在底层只有二进制的数学表示，那么对于一张图片，可以通过向量抽象地进行表示，而每一个维度就代表每一个像素块，每一个像素块的值所代表的就是rgb数值。</li>
+</ul>
+<h2 id="_4">向量的加法<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>向量的加法可以理解为所抽象出来的模型相加，那么两个模型本身就是抽象的，再相加就更抽象了，所以通过数学的表示来说，向量的相加所代表的就是向量的各个分量相加。</p>
+<p>那怎么去理解两个模型的相加呢，最简单的还是以二维坐标箭头为例子，两个箭头的相加，其实就是将第二个箭头连结到第一个箭头之上，由原点画一条直线，如下图所示。</p>
+<p><img src="./image-20260318232701418.png" alt="image-20260318232701418" width="80%"></p>
+<p>那其实这种箭头的相加，就是V[1,2]和W[3,-1]相加，V所代表的含义就是向左一步，向上两步，W所代表的含义是向左三步，向下一步。所以最终就是向左3+1为四步，向上2-1为一步，最终的向量就是[4,1]。</p>
+<p>那对于现实计算机表示的模型，可以理解为相加，就是对各个分量特征的相加的结果，结果是新的一个相加后的模型。</p>
+<h2 id="_5">向量的乘法<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<p>向量的乘法我觉得比加法是要好理解的，乘法其实对于向量其实就是一个缩放的效果，对所有的特征进行一个放大或放小。</p>
 
 
 
