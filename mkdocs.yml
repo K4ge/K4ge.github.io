@@ -2,6 +2,7 @@ site_name: Kage Notes
 site_url: https://k4ge.github.io/
 site_description: Kage 的知识站
 site_author: Kage
+use_directory_urls: false
 
 theme:
   name: material
