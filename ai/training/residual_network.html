@@ -12,31 +12,31 @@
         <meta name="author" content="Kage">
       
       
-        <link rel="canonical" href="https://k4ge.github.io/ai/deep_learning/neural_network/index.html">
+        <link rel="canonical" href="https://k4ge.github.io/ai/training/residual_network.html">
       
       
-        <link rel="prev" href="../index.html">
+        <link rel="prev" href="learning_rate.html">
       
       
-        <link rel="next" href="forward.html">
+        <link rel="next" href="vanishing_gradient.html">
       
       
         
       
       
-      <link rel="icon" href="../../../assets/images/favicon.png">
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.5">
     
     
       
-        <title>总览 - Kage Notes</title>
+        <title>残差网络 - Kage Notes</title>
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
       
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -55,7 +55,7 @@
       
     
     
-    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#neural_network" class="md-skip">
+        <a href="#residual_network" class="md-skip">
           跳转至
         </a>
       
@@ -94,7 +94,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="页眉">
-    <a href="../../../index.html" title="Kage Notes" class="md-header__button md-logo" aria-label="Kage Notes" data-md-component="logo">
+    <a href="../../index.html" title="Kage Notes" class="md-header__button md-logo" aria-label="Kage Notes" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -114,7 +114,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              总览
+              残差网络
             
           </span>
         </div>
@@ -215,7 +215,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../../index.html" class="md-tabs__link">
+      <a href="../../index.html" class="md-tabs__link">
         
   
   
@@ -238,7 +238,7 @@
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="../../index.html" class="md-tabs__link">
+        <a href="../index.html" class="md-tabs__link">
           
   
   
@@ -258,7 +258,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../projects/index.md" class="md-tabs__link">
+        <a href="../../projects/index.md" class="md-tabs__link">
           
   
   
@@ -278,7 +278,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../engineering/index.md" class="md-tabs__link">
+        <a href="../../engineering/index.md" class="md-tabs__link">
           
   
   
@@ -298,7 +298,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../reflections/index.md" class="md-tabs__link">
+        <a href="../../reflections/index.md" class="md-tabs__link">
           
   
   
@@ -332,7 +332,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../index.html" title="Kage Notes" class="md-nav__button md-logo" aria-label="Kage Notes" data-md-component="logo">
+    <a href="../../index.html" title="Kage Notes" class="md-nav__button md-logo" aria-label="Kage Notes" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -350,7 +350,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../index.html" class="md-nav__link">
+      <a href="../../index.html" class="md-nav__link">
         
   
   
@@ -432,7 +432,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../index.html" class="md-nav__link">
+      <a href="../index.html" class="md-nav__link">
         
   
   
@@ -510,7 +510,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../math/index.html" class="md-nav__link">
+      <a href="../math/index.html" class="md-nav__link">
         
   
   
@@ -588,7 +588,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../math/linear_algebra/index.html" class="md-nav__link">
+      <a href="../math/linear_algebra/index.html" class="md-nav__link">
         
   
   
@@ -616,7 +616,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../math/linear_algebra/vector.html" class="md-nav__link">
+      <a href="../math/linear_algebra/vector.html" class="md-nav__link">
         
   
   
@@ -644,7 +644,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../math/linear_algebra/matrix.html" class="md-nav__link">
+      <a href="../math/linear_algebra/matrix.html" class="md-nav__link">
         
   
   
@@ -672,7 +672,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../math/linear_algebra/eigenvalue.html" class="md-nav__link">
+      <a href="../math/linear_algebra/eigenvalue.html" class="md-nav__link">
         
   
   
@@ -758,7 +758,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../math/calculus/index.html" class="md-nav__link">
+      <a href="../math/calculus/index.html" class="md-nav__link">
         
   
   
@@ -786,7 +786,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../math/calculus/derivative.html" class="md-nav__link">
+      <a href="../math/calculus/derivative.html" class="md-nav__link">
         
   
   
@@ -814,7 +814,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../math/calculus/chain_rule.html" class="md-nav__link">
+      <a href="../math/calculus/chain_rule.html" class="md-nav__link">
         
   
   
@@ -850,7 +850,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../math/probability_statistics.html" class="md-nav__link">
+      <a href="../math/probability_statistics.html" class="md-nav__link">
         
   
   
@@ -878,7 +878,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../math/information_theory.html" class="md-nav__link">
+      <a href="../math/information_theory.html" class="md-nav__link">
         
   
   
@@ -911,8 +911,6 @@
                 
   
   
-    
-  
   
   
     
@@ -923,11 +921,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
         
           
           <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
@@ -948,7 +946,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2_3">
             <span class="md-nav__icon md-icon"></span>
             
@@ -966,7 +964,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../index.html" class="md-nav__link">
+      <a href="../deep_learning/index.html" class="md-nav__link">
         
   
   
@@ -991,8 +989,6 @@
                 
   
   
-    
-  
   
   
     
@@ -1003,11 +999,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3_2" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3_2" >
         
           
           <label class="md-nav__link" for="__nav_2_3_2" id="__nav_2_3_2_label" tabindex="0">
@@ -1028,7 +1024,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_3_2_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_3_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2_3_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1043,37 +1039,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    总览
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="index.html" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../deep_learning/neural_network/index.html" class="md-nav__link">
         
   
   
@@ -1089,37 +1058,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="目录">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      目录
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        📌 计划内容
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1132,7 +1070,7 @@
   
   
     <li class="md-nav__item">
-      <a href="forward.html" class="md-nav__link">
+      <a href="../deep_learning/neural_network/forward.html" class="md-nav__link">
         
   
   
@@ -1160,7 +1098,7 @@
   
   
     <li class="md-nav__item">
-      <a href="backward.html" class="md-nav__link">
+      <a href="../deep_learning/neural_network/backward.html" class="md-nav__link">
         
   
   
@@ -1188,7 +1126,7 @@
   
   
     <li class="md-nav__item">
-      <a href="loss.html" class="md-nav__link">
+      <a href="../deep_learning/neural_network/loss.html" class="md-nav__link">
         
   
   
@@ -1216,7 +1154,7 @@
   
   
     <li class="md-nav__item">
-      <a href="activation.html" class="md-nav__link">
+      <a href="../deep_learning/neural_network/activation.html" class="md-nav__link">
         
   
   
@@ -1244,7 +1182,7 @@
   
   
     <li class="md-nav__item">
-      <a href="linear.html" class="md-nav__link">
+      <a href="../deep_learning/neural_network/linear.html" class="md-nav__link">
         
   
   
@@ -1330,7 +1268,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cnn/index.html" class="md-nav__link">
+      <a href="../deep_learning/cnn/index.html" class="md-nav__link">
         
   
   
@@ -1358,7 +1296,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cnn/yolo.html" class="md-nav__link">
+      <a href="../deep_learning/cnn/yolo.html" class="md-nav__link">
         
   
   
@@ -1394,7 +1332,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../rnn.html" class="md-nav__link">
+      <a href="../deep_learning/rnn.html" class="md-nav__link">
         
   
   
@@ -1422,7 +1360,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../transformer.html" class="md-nav__link">
+      <a href="../deep_learning/transformer.html" class="md-nav__link">
         
   
   
@@ -1450,7 +1388,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../gpt.html" class="md-nav__link">
+      <a href="../deep_learning/gpt.html" class="md-nav__link">
         
   
   
@@ -1536,7 +1474,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../transformer_llm/index.html" class="md-nav__link">
+      <a href="../transformer_llm/index.html" class="md-nav__link">
         
   
   
@@ -1564,7 +1502,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../transformer_llm/attention.html" class="md-nav__link">
+      <a href="../transformer_llm/attention.html" class="md-nav__link">
         
   
   
@@ -1592,7 +1530,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../transformer_llm/mask.html" class="md-nav__link">
+      <a href="../transformer_llm/mask.html" class="md-nav__link">
         
   
   
@@ -1620,7 +1558,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../transformer_llm/kv_cache.html" class="md-nav__link">
+      <a href="../transformer_llm/kv_cache.html" class="md-nav__link">
         
   
   
@@ -1648,7 +1586,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../transformer_llm/rope.html" class="md-nav__link">
+      <a href="../transformer_llm/rope.html" class="md-nav__link">
         
   
   
@@ -1676,7 +1614,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../transformer_llm/gpt_architecture.html" class="md-nav__link">
+      <a href="../transformer_llm/gpt_architecture.html" class="md-nav__link">
         
   
   
@@ -1704,7 +1642,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../transformer_llm/inference.html" class="md-nav__link">
+      <a href="../transformer_llm/inference.html" class="md-nav__link">
         
   
   
@@ -1732,7 +1670,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../transformer_llm/tokenization.html" class="md-nav__link">
+      <a href="../transformer_llm/tokenization.html" class="md-nav__link">
         
   
   
@@ -1818,7 +1756,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../data/index.html" class="md-nav__link">
+      <a href="../data/index.html" class="md-nav__link">
         
   
   
@@ -1896,7 +1834,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../data/datasets/index.html" class="md-nav__link">
+      <a href="../data/datasets/index.html" class="md-nav__link">
         
   
   
@@ -1924,7 +1862,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../data/datasets/lccc.html" class="md-nav__link">
+      <a href="../data/datasets/lccc.html" class="md-nav__link">
         
   
   
@@ -1952,7 +1890,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../data/datasets/wechat_chat.html" class="md-nav__link">
+      <a href="../data/datasets/wechat_chat.html" class="md-nav__link">
         
   
   
@@ -1980,7 +1918,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../data/datasets/apple_health.html" class="md-nav__link">
+      <a href="../data/datasets/apple_health.html" class="md-nav__link">
         
   
   
@@ -2016,7 +1954,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../data/cleaning.html" class="md-nav__link">
+      <a href="../data/cleaning.html" class="md-nav__link">
         
   
   
@@ -2094,7 +2032,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../data/collection/index.html" class="md-nav__link">
+      <a href="../data/collection/index.html" class="md-nav__link">
         
   
   
@@ -2122,7 +2060,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../data/collection/requests.html" class="md-nav__link">
+      <a href="../data/collection/requests.html" class="md-nav__link">
         
   
   
@@ -2158,7 +2096,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../data/storage.html" class="md-nav__link">
+      <a href="../data/storage.html" class="md-nav__link">
         
   
   
@@ -2191,6 +2129,8 @@
                 
   
   
+    
+  
   
   
     
@@ -2201,11 +2141,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_6" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_6" checked>
         
           
           <label class="md-nav__link" for="__nav_2_6" id="__nav_2_6_label" tabindex="0">
@@ -2226,7 +2166,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_6_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_6_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2_6">
             <span class="md-nav__icon md-icon"></span>
             
@@ -2244,7 +2184,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../training/index.html" class="md-nav__link">
+      <a href="index.html" class="md-nav__link">
         
   
   
@@ -2272,7 +2212,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../training/batch.html" class="md-nav__link">
+      <a href="batch.html" class="md-nav__link">
         
   
   
@@ -2300,7 +2240,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../training/learning_rate.html" class="md-nav__link">
+      <a href="learning_rate.html" class="md-nav__link">
         
   
   
@@ -2325,10 +2265,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../training/residual_network.html" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    残差网络
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="residual_network.html" class="md-nav__link md-nav__link--active">
         
   
   
@@ -2344,6 +2311,37 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📌 计划内容
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -2356,7 +2354,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../training/vanishing_gradient.html" class="md-nav__link">
+      <a href="vanishing_gradient.html" class="md-nav__link">
         
   
   
@@ -2442,7 +2440,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reinforcement_learning/index.html" class="md-nav__link">
+      <a href="../reinforcement_learning/index.html" class="md-nav__link">
         
   
   
@@ -2528,7 +2526,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../optimization/index.html" class="md-nav__link">
+      <a href="../optimization/index.html" class="md-nav__link">
         
   
   
@@ -2614,7 +2612,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../frameworks/index.html" class="md-nav__link">
+      <a href="../frameworks/index.html" class="md-nav__link">
         
   
   
@@ -2642,7 +2640,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../frameworks/numpy.html" class="md-nav__link">
+      <a href="../frameworks/numpy.html" class="md-nav__link">
         
   
   
@@ -2670,7 +2668,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../frameworks/pytorch.html" class="md-nav__link">
+      <a href="../frameworks/pytorch.html" class="md-nav__link">
         
   
   
@@ -2698,7 +2696,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../frameworks/huggingface.html" class="md-nav__link">
+      <a href="../frameworks/huggingface.html" class="md-nav__link">
         
   
   
@@ -2726,7 +2724,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../frameworks/datasets.html" class="md-nav__link">
+      <a href="../frameworks/datasets.html" class="md-nav__link">
         
   
   
@@ -2812,7 +2810,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../industry/index.html" class="md-nav__link">
+      <a href="../industry/index.html" class="md-nav__link">
         
   
   
@@ -2905,7 +2903,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../projects/index.md" class="md-nav__link">
+      <a href="../../projects/index.md" class="md-nav__link">
         
   
   
@@ -2933,7 +2931,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../projects/kage-life.md" class="md-nav__link">
+      <a href="../../projects/kage-life.md" class="md-nav__link">
         
   
   
@@ -2961,7 +2959,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../projects/minigpt-project.md" class="md-nav__link">
+      <a href="../../projects/minigpt-project.md" class="md-nav__link">
         
   
   
@@ -3046,7 +3044,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../engineering/index.md" class="md-nav__link">
+      <a href="../../engineering/index.md" class="md-nav__link">
         
   
   
@@ -3074,7 +3072,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../engineering/python.md" class="md-nav__link">
+      <a href="../../engineering/python.md" class="md-nav__link">
         
   
   
@@ -3102,7 +3100,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../engineering/pytorch.md" class="md-nav__link">
+      <a href="../../engineering/pytorch.md" class="md-nav__link">
         
   
   
@@ -3130,7 +3128,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../engineering/mysql.md" class="md-nav__link">
+      <a href="../../engineering/mysql.md" class="md-nav__link">
         
   
   
@@ -3215,7 +3213,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../reflections/index.md" class="md-nav__link">
+      <a href="../../reflections/index.md" class="md-nav__link">
         
   
   
@@ -3243,7 +3241,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../reflections/learning.md" class="md-nav__link">
+      <a href="../../reflections/learning.md" class="md-nav__link">
         
   
   
@@ -3325,7 +3323,7 @@
 
 
 
-<h1 id="neural_network">neural_network<a class="headerlink" href="#neural_network" title="Permanent link">&para;</a></h1>
+<h1 id="residual_network">residual_network<a class="headerlink" href="#residual_network" title="Permanent link">&para;</a></h1>
 <p>🚧 正在更新中...</p>
 <hr />
 <h2 id="_1">📌 计划内容<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
@@ -3387,10 +3385,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
     
   </body>
