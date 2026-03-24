@@ -62,6 +62,7 @@ nav:
           - 总览: ai/deep_learning/index.md
           - 神经网络基础:
               - 总览: ai/deep_learning/neural_network/index.md
+              - 函数: ai/deep_learning/neural_network/function.md
               - 前向传播: ai/deep_learning/neural_network/forward.md
               - 反向传播: ai/deep_learning/neural_network/backward.md
               - loss函数: ai/deep_learning/neural_network/loss.md

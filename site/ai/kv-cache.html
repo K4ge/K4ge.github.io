@@ -12,31 +12,27 @@
         <meta name="author" content="Kage">
       
       
-        <link rel="canonical" href="https://k4ge.github.io/ai/data/index.html">
+        <link rel="canonical" href="https://k4ge.github.io/ai/kv-cache.html">
       
       
-        <link rel="prev" href="../transformer_llm/tokenization.html">
-      
-      
-        <link rel="next" href="datasets/index.html">
       
       
         
       
       
-      <link rel="icon" href="../../assets/images/favicon.png">
+      <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.5">
     
     
       
-        <title>总览 - Kage Notes</title>
+        <title>KV Cache 是什么 - Kage Notes</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -55,7 +51,7 @@
       
     
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -80,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#data" class="md-skip">
+        <a href="#kv-cache" class="md-skip">
           跳转至
         </a>
       
@@ -94,7 +90,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="页眉">
-    <a href="../../index.html" title="Kage Notes" class="md-header__button md-logo" aria-label="Kage Notes" data-md-component="logo">
+    <a href="../index.html" title="Kage Notes" class="md-header__button md-logo" aria-label="Kage Notes" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -114,7 +110,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              总览
+              KV Cache 是什么
             
           </span>
         </div>
@@ -215,7 +211,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../index.html" class="md-tabs__link">
+      <a href="../index.html" class="md-tabs__link">
         
   
   
@@ -232,13 +228,11 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="../index.html" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="index.html" class="md-tabs__link">
           
   
   
@@ -258,7 +252,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../projects/index.md" class="md-tabs__link">
+        <a href="../projects/index.md" class="md-tabs__link">
           
   
   
@@ -278,7 +272,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../engineering/index.md" class="md-tabs__link">
+        <a href="../engineering/index.md" class="md-tabs__link">
           
   
   
@@ -298,7 +292,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../reflections/index.md" class="md-tabs__link">
+        <a href="../reflections/index.md" class="md-tabs__link">
           
   
   
@@ -332,7 +326,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../index.html" title="Kage Notes" class="md-nav__button md-logo" aria-label="Kage Notes" data-md-component="logo">
+    <a href="../index.html" title="Kage Notes" class="md-nav__button md-logo" aria-label="Kage Notes" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -350,7 +344,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../index.html" class="md-nav__link">
+      <a href="../index.html" class="md-nav__link">
         
   
   
@@ -374,29 +368,24 @@
       
   
   
-    
   
   
-  
     
     
     
     
       
-        
-        
-      
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
         
           
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
             
   
   
@@ -414,7 +403,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -432,7 +421,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../index.html" class="md-nav__link">
+      <a href="index.html" class="md-nav__link">
         
   
   
@@ -510,7 +499,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../math/index.html" class="md-nav__link">
+      <a href="math/index.html" class="md-nav__link">
         
   
   
@@ -588,7 +577,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../math/linear_algebra/index.html" class="md-nav__link">
+      <a href="math/linear_algebra/index.html" class="md-nav__link">
         
   
   
@@ -616,7 +605,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../math/linear_algebra/vector.html" class="md-nav__link">
+      <a href="math/linear_algebra/vector.html" class="md-nav__link">
         
   
   
@@ -644,7 +633,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../math/linear_algebra/matrix.html" class="md-nav__link">
+      <a href="math/linear_algebra/matrix.html" class="md-nav__link">
         
   
   
@@ -672,7 +661,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../math/linear_algebra/eigenvalue.html" class="md-nav__link">
+      <a href="math/linear_algebra/eigenvalue.html" class="md-nav__link">
         
   
   
@@ -758,7 +747,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../math/calculus/index.html" class="md-nav__link">
+      <a href="math/calculus/index.html" class="md-nav__link">
         
   
   
@@ -786,7 +775,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../math/calculus/derivative.html" class="md-nav__link">
+      <a href="math/calculus/derivative.html" class="md-nav__link">
         
   
   
@@ -814,7 +803,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../math/calculus/chain_rule.html" class="md-nav__link">
+      <a href="math/calculus/chain_rule.html" class="md-nav__link">
         
   
   
@@ -850,7 +839,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../math/probability_statistics.html" class="md-nav__link">
+      <a href="math/probability_statistics.html" class="md-nav__link">
         
   
   
@@ -878,7 +867,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../math/information_theory.html" class="md-nav__link">
+      <a href="math/information_theory.html" class="md-nav__link">
         
   
   
@@ -964,7 +953,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../deep_learning/index.html" class="md-nav__link">
+      <a href="deep_learning/index.html" class="md-nav__link">
         
   
   
@@ -1042,7 +1031,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../deep_learning/neural_network/index.html" class="md-nav__link">
+      <a href="deep_learning/neural_network/index.html" class="md-nav__link">
         
   
   
@@ -1070,7 +1059,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../deep_learning/neural_network/function.html" class="md-nav__link">
+      <a href="deep_learning/neural_network/function.html" class="md-nav__link">
         
   
   
@@ -1098,7 +1087,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../deep_learning/neural_network/forward.html" class="md-nav__link">
+      <a href="deep_learning/neural_network/forward.html" class="md-nav__link">
         
   
   
@@ -1126,7 +1115,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../deep_learning/neural_network/backward.html" class="md-nav__link">
+      <a href="deep_learning/neural_network/backward.html" class="md-nav__link">
         
   
   
@@ -1154,7 +1143,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../deep_learning/neural_network/loss.html" class="md-nav__link">
+      <a href="deep_learning/neural_network/loss.html" class="md-nav__link">
         
   
   
@@ -1182,7 +1171,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../deep_learning/neural_network/activation.html" class="md-nav__link">
+      <a href="deep_learning/neural_network/activation.html" class="md-nav__link">
         
   
   
@@ -1210,7 +1199,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../deep_learning/neural_network/linear.html" class="md-nav__link">
+      <a href="deep_learning/neural_network/linear.html" class="md-nav__link">
         
   
   
@@ -1296,7 +1285,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../deep_learning/cnn/index.html" class="md-nav__link">
+      <a href="deep_learning/cnn/index.html" class="md-nav__link">
         
   
   
@@ -1324,7 +1313,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../deep_learning/cnn/yolo.html" class="md-nav__link">
+      <a href="deep_learning/cnn/yolo.html" class="md-nav__link">
         
   
   
@@ -1360,7 +1349,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../deep_learning/rnn.html" class="md-nav__link">
+      <a href="deep_learning/rnn.html" class="md-nav__link">
         
   
   
@@ -1388,7 +1377,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../deep_learning/transformer.html" class="md-nav__link">
+      <a href="deep_learning/transformer.html" class="md-nav__link">
         
   
   
@@ -1416,7 +1405,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../deep_learning/gpt.html" class="md-nav__link">
+      <a href="deep_learning/gpt.html" class="md-nav__link">
         
   
   
@@ -1502,7 +1491,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../transformer_llm/index.html" class="md-nav__link">
+      <a href="transformer_llm/index.html" class="md-nav__link">
         
   
   
@@ -1530,7 +1519,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../transformer_llm/attention.html" class="md-nav__link">
+      <a href="transformer_llm/attention.html" class="md-nav__link">
         
   
   
@@ -1558,7 +1547,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../transformer_llm/mask.html" class="md-nav__link">
+      <a href="transformer_llm/mask.html" class="md-nav__link">
         
   
   
@@ -1586,7 +1575,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../transformer_llm/kv_cache.html" class="md-nav__link">
+      <a href="transformer_llm/kv_cache.html" class="md-nav__link">
         
   
   
@@ -1614,7 +1603,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../transformer_llm/rope.html" class="md-nav__link">
+      <a href="transformer_llm/rope.html" class="md-nav__link">
         
   
   
@@ -1642,7 +1631,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../transformer_llm/gpt_architecture.html" class="md-nav__link">
+      <a href="transformer_llm/gpt_architecture.html" class="md-nav__link">
         
   
   
@@ -1670,7 +1659,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../transformer_llm/inference.html" class="md-nav__link">
+      <a href="transformer_llm/inference.html" class="md-nav__link">
         
   
   
@@ -1698,7 +1687,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../transformer_llm/tokenization.html" class="md-nav__link">
+      <a href="transformer_llm/tokenization.html" class="md-nav__link">
         
   
   
@@ -1731,8 +1720,6 @@
                 
   
   
-    
-  
   
   
     
@@ -1743,11 +1730,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5" >
         
           
           <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="0">
@@ -1768,7 +1755,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2_5">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1783,37 +1770,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    总览
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="index.html" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="data/index.html" class="md-nav__link">
         
   
   
@@ -1829,37 +1789,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="目录">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      目录
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        📌 计划内容
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1922,7 +1851,7 @@
   
   
     <li class="md-nav__item">
-      <a href="datasets/index.html" class="md-nav__link">
+      <a href="data/datasets/index.html" class="md-nav__link">
         
   
   
@@ -1950,7 +1879,7 @@
   
   
     <li class="md-nav__item">
-      <a href="datasets/lccc.html" class="md-nav__link">
+      <a href="data/datasets/lccc.html" class="md-nav__link">
         
   
   
@@ -1978,7 +1907,7 @@
   
   
     <li class="md-nav__item">
-      <a href="datasets/wechat_chat.html" class="md-nav__link">
+      <a href="data/datasets/wechat_chat.html" class="md-nav__link">
         
   
   
@@ -2006,7 +1935,7 @@
   
   
     <li class="md-nav__item">
-      <a href="datasets/apple_health.html" class="md-nav__link">
+      <a href="data/datasets/apple_health.html" class="md-nav__link">
         
   
   
@@ -2042,7 +1971,7 @@
   
   
     <li class="md-nav__item">
-      <a href="cleaning.html" class="md-nav__link">
+      <a href="data/cleaning.html" class="md-nav__link">
         
   
   
@@ -2120,7 +2049,7 @@
   
   
     <li class="md-nav__item">
-      <a href="collection/index.html" class="md-nav__link">
+      <a href="data/collection/index.html" class="md-nav__link">
         
   
   
@@ -2148,7 +2077,7 @@
   
   
     <li class="md-nav__item">
-      <a href="collection/requests.html" class="md-nav__link">
+      <a href="data/collection/requests.html" class="md-nav__link">
         
   
   
@@ -2184,7 +2113,7 @@
   
   
     <li class="md-nav__item">
-      <a href="storage.html" class="md-nav__link">
+      <a href="data/storage.html" class="md-nav__link">
         
   
   
@@ -2270,7 +2199,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../training/index.html" class="md-nav__link">
+      <a href="training/index.html" class="md-nav__link">
         
   
   
@@ -2298,7 +2227,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../training/batch.html" class="md-nav__link">
+      <a href="training/batch.html" class="md-nav__link">
         
   
   
@@ -2326,7 +2255,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../training/learning_rate.html" class="md-nav__link">
+      <a href="training/learning_rate.html" class="md-nav__link">
         
   
   
@@ -2354,7 +2283,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../training/residual_network.html" class="md-nav__link">
+      <a href="training/residual_network.html" class="md-nav__link">
         
   
   
@@ -2382,7 +2311,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../training/vanishing_gradient.html" class="md-nav__link">
+      <a href="training/vanishing_gradient.html" class="md-nav__link">
         
   
   
@@ -2468,7 +2397,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../reinforcement_learning/index.html" class="md-nav__link">
+      <a href="reinforcement_learning/index.html" class="md-nav__link">
         
   
   
@@ -2554,7 +2483,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../optimization/index.html" class="md-nav__link">
+      <a href="optimization/index.html" class="md-nav__link">
         
   
   
@@ -2640,7 +2569,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../frameworks/index.html" class="md-nav__link">
+      <a href="frameworks/index.html" class="md-nav__link">
         
   
   
@@ -2668,7 +2597,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../frameworks/numpy.html" class="md-nav__link">
+      <a href="frameworks/numpy.html" class="md-nav__link">
         
   
   
@@ -2696,7 +2625,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../frameworks/pytorch.html" class="md-nav__link">
+      <a href="frameworks/pytorch.html" class="md-nav__link">
         
   
   
@@ -2724,7 +2653,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../frameworks/huggingface.html" class="md-nav__link">
+      <a href="frameworks/huggingface.html" class="md-nav__link">
         
   
   
@@ -2752,7 +2681,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../frameworks/datasets.html" class="md-nav__link">
+      <a href="frameworks/datasets.html" class="md-nav__link">
         
   
   
@@ -2838,7 +2767,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../industry/index.html" class="md-nav__link">
+      <a href="industry/index.html" class="md-nav__link">
         
   
   
@@ -2931,7 +2860,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../projects/index.md" class="md-nav__link">
+      <a href="../projects/index.md" class="md-nav__link">
         
   
   
@@ -2959,7 +2888,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../projects/kage-life.md" class="md-nav__link">
+      <a href="../projects/kage-life.md" class="md-nav__link">
         
   
   
@@ -2987,7 +2916,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../projects/minigpt-project.md" class="md-nav__link">
+      <a href="../projects/minigpt-project.md" class="md-nav__link">
         
   
   
@@ -3072,7 +3001,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../engineering/index.md" class="md-nav__link">
+      <a href="../engineering/index.md" class="md-nav__link">
         
   
   
@@ -3100,7 +3029,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../engineering/python.md" class="md-nav__link">
+      <a href="../engineering/python.md" class="md-nav__link">
         
   
   
@@ -3128,7 +3057,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../engineering/pytorch.md" class="md-nav__link">
+      <a href="../engineering/pytorch.md" class="md-nav__link">
         
   
   
@@ -3156,7 +3085,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../engineering/mysql.md" class="md-nav__link">
+      <a href="../engineering/mysql.md" class="md-nav__link">
         
   
   
@@ -3241,7 +3170,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reflections/index.md" class="md-nav__link">
+      <a href="../reflections/index.md" class="md-nav__link">
         
   
   
@@ -3269,7 +3198,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reflections/learning.md" class="md-nav__link">
+      <a href="../reflections/learning.md" class="md-nav__link">
         
   
   
@@ -3327,7 +3256,18 @@
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📌 计划内容
+        为什么它重要
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        我的理解
       
     </span>
   </a>
@@ -3351,13 +3291,20 @@
 
 
 
-<h1 id="data">data<a class="headerlink" href="#data" title="Permanent link">&para;</a></h1>
-<p>🚧 正在更新中...</p>
-<hr />
-<h2 id="_1">📌 计划内容<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<h1 id="kv-cache">KV Cache 是什么<a class="headerlink" href="#kv-cache" title="Permanent link">&para;</a></h1>
+<p>我一开始理解 KV Cache 的时候很懵。</p>
+<p>后来我发现它本质上就是：</p>
 <ul>
-<li>（待补充）</li>
+<li>每一层 Transformer</li>
+<li>都会缓存历史 token 的 K 和 V</li>
+<li>下一个 token 来的时候，不需要重新计算前面所有 token 的 K/V</li>
 </ul>
+<h2 id="_1">为什么它重要<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>因为生成模型是一个 token 一个 token 地往后生成。</p>
+<p>如果每次都把历史重新算一遍，速度会很慢。</p>
+<h2 id="_2">我的理解<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>我现在把它想成：</p>
+<p>“每一层都在记笔记，后面生成时直接翻旧笔记。”</p>
 
 
 
@@ -3413,10 +3360,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
       
     
   </body>
