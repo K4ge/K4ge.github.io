@@ -2,222 +2,226 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://k4ge.github.io/index.html</loc>
-         <lastmod>2026-03-19</lastmod>
+         <lastmod>2026-03-24</lastmod>
     </url>
     <url>
          <loc>https://k4ge.github.io/ai/index.html</loc>
-         <lastmod>2026-03-19</lastmod>
+         <lastmod>2026-03-24</lastmod>
     </url>
     <url>
          <loc>https://k4ge.github.io/ai/kv-cache.html</loc>
-         <lastmod>2026-03-19</lastmod>
+         <lastmod>2026-03-24</lastmod>
     </url>
     <url>
          <loc>https://k4ge.github.io/ai/data/index.html</loc>
-         <lastmod>2026-03-19</lastmod>
+         <lastmod>2026-03-24</lastmod>
     </url>
     <url>
          <loc>https://k4ge.github.io/ai/data/cleaning.html</loc>
-         <lastmod>2026-03-19</lastmod>
+         <lastmod>2026-03-24</lastmod>
     </url>
     <url>
          <loc>https://k4ge.github.io/ai/data/storage.html</loc>
-         <lastmod>2026-03-19</lastmod>
+         <lastmod>2026-03-24</lastmod>
     </url>
     <url>
          <loc>https://k4ge.github.io/ai/data/collection/index.html</loc>
-         <lastmod>2026-03-19</lastmod>
+         <lastmod>2026-03-24</lastmod>
     </url>
     <url>
          <loc>https://k4ge.github.io/ai/data/collection/requests.html</loc>
-         <lastmod>2026-03-19</lastmod>
+         <lastmod>2026-03-24</lastmod>
     </url>
     <url>
          <loc>https://k4ge.github.io/ai/data/datasets/index.html</loc>
-         <lastmod>2026-03-19</lastmod>
+         <lastmod>2026-03-24</lastmod>
     </url>
     <url>
          <loc>https://k4ge.github.io/ai/data/datasets/apple_health.html</loc>
-         <lastmod>2026-03-19</lastmod>
+         <lastmod>2026-03-24</lastmod>
     </url>
     <url>
          <loc>https://k4ge.github.io/ai/data/datasets/lccc.html</loc>
-         <lastmod>2026-03-19</lastmod>
+         <lastmod>2026-03-24</lastmod>
     </url>
     <url>
          <loc>https://k4ge.github.io/ai/data/datasets/wechat_chat.html</loc>
-         <lastmod>2026-03-19</lastmod>
+         <lastmod>2026-03-24</lastmod>
     </url>
     <url>
          <loc>https://k4ge.github.io/ai/deep_learning/index.html</loc>
-         <lastmod>2026-03-19</lastmod>
+         <lastmod>2026-03-24</lastmod>
     </url>
     <url>
          <loc>https://k4ge.github.io/ai/deep_learning/gpt.html</loc>
-         <lastmod>2026-03-19</lastmod>
+         <lastmod>2026-03-24</lastmod>
     </url>
     <url>
          <loc>https://k4ge.github.io/ai/deep_learning/rnn.html</loc>
-         <lastmod>2026-03-19</lastmod>
+         <lastmod>2026-03-24</lastmod>
     </url>
     <url>
          <loc>https://k4ge.github.io/ai/deep_learning/transformer.html</loc>
-         <lastmod>2026-03-19</lastmod>
+         <lastmod>2026-03-24</lastmod>
     </url>
     <url>
          <loc>https://k4ge.github.io/ai/deep_learning/cnn/index.html</loc>
-         <lastmod>2026-03-19</lastmod>
+         <lastmod>2026-03-24</lastmod>
     </url>
     <url>
          <loc>https://k4ge.github.io/ai/deep_learning/cnn/yolo.html</loc>
-         <lastmod>2026-03-19</lastmod>
+         <lastmod>2026-03-24</lastmod>
     </url>
     <url>
          <loc>https://k4ge.github.io/ai/deep_learning/neural_network/index.html</loc>
-         <lastmod>2026-03-19</lastmod>
+         <lastmod>2026-03-24</lastmod>
     </url>
     <url>
          <loc>https://k4ge.github.io/ai/deep_learning/neural_network/activation.html</loc>
-         <lastmod>2026-03-19</lastmod>
+         <lastmod>2026-03-24</lastmod>
     </url>
     <url>
          <loc>https://k4ge.github.io/ai/deep_learning/neural_network/backward.html</loc>
-         <lastmod>2026-03-19</lastmod>
+         <lastmod>2026-03-24</lastmod>
     </url>
     <url>
          <loc>https://k4ge.github.io/ai/deep_learning/neural_network/forward.html</loc>
-         <lastmod>2026-03-19</lastmod>
+         <lastmod>2026-03-24</lastmod>
+    </url>
+    <url>
+         <loc>https://k4ge.github.io/ai/deep_learning/neural_network/function.html</loc>
+         <lastmod>2026-03-24</lastmod>
     </url>
     <url>
          <loc>https://k4ge.github.io/ai/deep_learning/neural_network/linear.html</loc>
-         <lastmod>2026-03-19</lastmod>
+         <lastmod>2026-03-24</lastmod>
     </url>
     <url>
          <loc>https://k4ge.github.io/ai/deep_learning/neural_network/loss.html</loc>
-         <lastmod>2026-03-19</lastmod>
+         <lastmod>2026-03-24</lastmod>
     </url>
     <url>
          <loc>https://k4ge.github.io/ai/frameworks/index.html</loc>
-         <lastmod>2026-03-19</lastmod>
+         <lastmod>2026-03-24</lastmod>
     </url>
     <url>
          <loc>https://k4ge.github.io/ai/frameworks/datasets.html</loc>
-         <lastmod>2026-03-19</lastmod>
+         <lastmod>2026-03-24</lastmod>
     </url>
     <url>
          <loc>https://k4ge.github.io/ai/frameworks/huggingface.html</loc>
-         <lastmod>2026-03-19</lastmod>
+         <lastmod>2026-03-24</lastmod>
     </url>
     <url>
          <loc>https://k4ge.github.io/ai/frameworks/numpy.html</loc>
-         <lastmod>2026-03-19</lastmod>
+         <lastmod>2026-03-24</lastmod>
     </url>
     <url>
          <loc>https://k4ge.github.io/ai/frameworks/pytorch.html</loc>
-         <lastmod>2026-03-19</lastmod>
+         <lastmod>2026-03-24</lastmod>
     </url>
     <url>
          <loc>https://k4ge.github.io/ai/industry/index.html</loc>
-         <lastmod>2026-03-19</lastmod>
+         <lastmod>2026-03-24</lastmod>
     </url>
     <url>
          <loc>https://k4ge.github.io/ai/math/index.html</loc>
-         <lastmod>2026-03-19</lastmod>
+         <lastmod>2026-03-24</lastmod>
     </url>
     <url>
          <loc>https://k4ge.github.io/ai/math/information_theory.html</loc>
-         <lastmod>2026-03-19</lastmod>
+         <lastmod>2026-03-24</lastmod>
     </url>
     <url>
          <loc>https://k4ge.github.io/ai/math/probability_statistics.html</loc>
-         <lastmod>2026-03-19</lastmod>
+         <lastmod>2026-03-24</lastmod>
     </url>
     <url>
          <loc>https://k4ge.github.io/ai/math/calculus/index.html</loc>
-         <lastmod>2026-03-19</lastmod>
+         <lastmod>2026-03-24</lastmod>
     </url>
     <url>
          <loc>https://k4ge.github.io/ai/math/calculus/chain_rule.html</loc>
-         <lastmod>2026-03-19</lastmod>
+         <lastmod>2026-03-24</lastmod>
     </url>
     <url>
          <loc>https://k4ge.github.io/ai/math/calculus/derivative.html</loc>
-         <lastmod>2026-03-19</lastmod>
+         <lastmod>2026-03-24</lastmod>
     </url>
     <url>
          <loc>https://k4ge.github.io/ai/math/linear_algebra/index.html</loc>
-         <lastmod>2026-03-19</lastmod>
+         <lastmod>2026-03-24</lastmod>
     </url>
     <url>
          <loc>https://k4ge.github.io/ai/math/linear_algebra/eigenvalue.html</loc>
-         <lastmod>2026-03-19</lastmod>
+         <lastmod>2026-03-24</lastmod>
     </url>
     <url>
          <loc>https://k4ge.github.io/ai/math/linear_algebra/matrix.html</loc>
-         <lastmod>2026-03-19</lastmod>
+         <lastmod>2026-03-24</lastmod>
     </url>
     <url>
          <loc>https://k4ge.github.io/ai/math/linear_algebra/vector.html</loc>
-         <lastmod>2026-03-19</lastmod>
+         <lastmod>2026-03-24</lastmod>
     </url>
     <url>
          <loc>https://k4ge.github.io/ai/optimization/index.html</loc>
-         <lastmod>2026-03-19</lastmod>
+         <lastmod>2026-03-24</lastmod>
     </url>
     <url>
          <loc>https://k4ge.github.io/ai/reinforcement_learning/index.html</loc>
-         <lastmod>2026-03-19</lastmod>
+         <lastmod>2026-03-24</lastmod>
     </url>
     <url>
          <loc>https://k4ge.github.io/ai/training/index.html</loc>
-         <lastmod>2026-03-19</lastmod>
+         <lastmod>2026-03-24</lastmod>
     </url>
     <url>
          <loc>https://k4ge.github.io/ai/training/batch.html</loc>
-         <lastmod>2026-03-19</lastmod>
+         <lastmod>2026-03-24</lastmod>
     </url>
     <url>
          <loc>https://k4ge.github.io/ai/training/learning_rate.html</loc>
-         <lastmod>2026-03-19</lastmod>
+         <lastmod>2026-03-24</lastmod>
     </url>
     <url>
          <loc>https://k4ge.github.io/ai/training/residual_network.html</loc>
-         <lastmod>2026-03-19</lastmod>
+         <lastmod>2026-03-24</lastmod>
     </url>
     <url>
          <loc>https://k4ge.github.io/ai/training/vanishing_gradient.html</loc>
-         <lastmod>2026-03-19</lastmod>
+         <lastmod>2026-03-24</lastmod>
     </url>
     <url>
          <loc>https://k4ge.github.io/ai/transformer_llm/index.html</loc>
-         <lastmod>2026-03-19</lastmod>
+         <lastmod>2026-03-24</lastmod>
     </url>
     <url>
          <loc>https://k4ge.github.io/ai/transformer_llm/attention.html</loc>
-         <lastmod>2026-03-19</lastmod>
+         <lastmod>2026-03-24</lastmod>
     </url>
     <url>
          <loc>https://k4ge.github.io/ai/transformer_llm/gpt_architecture.html</loc>
-         <lastmod>2026-03-19</lastmod>
+         <lastmod>2026-03-24</lastmod>
     </url>
     <url>
          <loc>https://k4ge.github.io/ai/transformer_llm/inference.html</loc>
-         <lastmod>2026-03-19</lastmod>
+         <lastmod>2026-03-24</lastmod>
     </url>
     <url>
          <loc>https://k4ge.github.io/ai/transformer_llm/kv_cache.html</loc>
-         <lastmod>2026-03-19</lastmod>
+         <lastmod>2026-03-24</lastmod>
     </url>
     <url>
          <loc>https://k4ge.github.io/ai/transformer_llm/mask.html</loc>
-         <lastmod>2026-03-19</lastmod>
+         <lastmod>2026-03-24</lastmod>
     </url>
     <url>
          <loc>https://k4ge.github.io/ai/transformer_llm/rope.html</loc>
-         <lastmod>2026-03-19</lastmod>
+         <lastmod>2026-03-24</lastmod>
     </url>
     <url>
          <loc>https://k4ge.github.io/ai/transformer_llm/tokenization.html</loc>
-         <lastmod>2026-03-19</lastmod>
+         <lastmod>2026-03-24</lastmod>
     </url>
 </urlset>

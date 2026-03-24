@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#matrix" class="md-skip">
+        <a href="#_1" class="md-skip">
           跳转至
         </a>
       
@@ -708,10 +708,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📌 计划内容
+        矩阵
       
     </span>
   </a>
@@ -1112,6 +1112,34 @@
     
   
     总览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deep_learning/neural_network/function.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    函数
   
 
     
@@ -3298,10 +3326,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📌 计划内容
+        矩阵
       
     </span>
   </a>
@@ -3325,13 +3353,22 @@
 
 
 
-<h1 id="matrix">matrix<a class="headerlink" href="#matrix" title="Permanent link">&para;</a></h1>
-<p>🚧 正在更新中...</p>
-<hr />
-<h2 id="_1">📌 计划内容<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<ul>
-<li>（待补充）</li>
-</ul>
+<h1 id="_1">矩阵与线性变换<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<p>线性变换可以理解为就是对向量的一种变化，一个向量经过某种函数，变成另一个向量的这么一个关系。</p>
+<p>如输入向量X[1,1,1]输出向量y[3,3,3]这么一个意思。</p>
+<p>而矩阵其实相当于这其中变换的一个媒介，充当着怎么变换的这么一个意思。</p>
+<h2 id="_2">矩阵<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>我们知道向量描述的是一种模型，而基向量代表的是可以描绘这些向量的在这个空间的一个基本单位，任意的向量都是可以通过基向量通过线性组合进行表示的。</p>
+<p>而这个空间，一个向量V，通过某种变换变成了另一个向量V2，其实对于V和V2来说，他们变换前和变换后和原来基向量的线性组合的关系都是保持一致的。</p>
+<p>可以理解为：</p>
+<div class="highlight"><pre><span></span><code>V = a * i + b * j
+</code></pre></div>
+<p>那么变换后</p>
+<div class="highlight"><pre><span></span><code>v2 = a * i (变) + b * j (变)
+</code></pre></div>
+<p>他们还是基于基向量i乘a加上基向量j乘b相加的这么一个结果，维度变的只有基向量。</p>
+<p>所以任意向量通过某种变换变成某个变量，可以看成在这个空间里，他的基向量跟着这个空间一起变换了，连带着自己也变换了。</p>
+<p>而这种变换的公式，其实就是 向量和矩阵相乘。</p>
 
 
 
